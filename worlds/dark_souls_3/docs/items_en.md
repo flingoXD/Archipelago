@@ -1,11 +1,9 @@
 # Dark Souls III Items
 
-[Game Page] | [Setup] | Items | [Locations] | [Enemy Randomization]
+[Game Page] | Items | [Locations]
 
 [Game Page]: /games/Dark%20Souls%20III/info/en
-[Setup]: /tutorial/Dark%20Souls%20III/setup/en
 [Locations]: /tutorial/Dark%20Souls%20III/locations/en
-[Enemy Randomization]: /tutorial/Dark%20Souls%20III/enemy-randomization/en
 
 ## Item Groups
 
