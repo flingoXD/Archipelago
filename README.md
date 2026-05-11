@@ -5,6 +5,11 @@ presently, Archipelago is also the randomizer itself.
 
 Currently, the following games are supported:
 
+#
+#
+###
+# #
+# #
 * The Legend of Zelda: A Link to the Past
 * Factorio
 * Subnautica
