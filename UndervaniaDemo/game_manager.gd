@@ -309,7 +309,6 @@ func _obtained_item(item: NetworkItem):
                 await grant_ability("check",1)
     elif iname1=="10 Gold": $Player.earn_gold(10)
     elif iname1=="lantern": Globals.grant_ability("lantern")
-    elif iname1=="glide": Globals.grant_ability("glide")
     else:
         match iname1:
             "lemonade":
@@ -321,6 +320,7 @@ func _ap_on_connect(conn: ConnectionInfo, _json: Dictionary):
     Archipelago.conn.obtained_item.connect(_obtained_item)
 
 func ap_check_location(item):
-    var ind = Globals.ap_location_name_to_id[Globals.item_name_to_ap_thing[item]]
+    var ind1 = Globals.item_name_to_ap_thing.get(item)
+    var ind = Globals.ap_location_name_to_id[ind1 if ind1 else item]
     Archipelago.collect_location(ind)
     return true

@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from rule_builder.options import OptionFilter
-from rule_builder.rules import Has, HasAll, Rule, CanReachRegion
+from rule_builder.rules import Has, HasAll, Rule, CanReachEntrance
 
 # from .options import HardMode
 
@@ -38,16 +38,20 @@ def set_all_entrance_rules(world: UVDemoWorld) -> None:
     world.set_rule(sw_er,east_ruins_rules)
     world.set_rule(sw_dc,east_ruins_rules)
     world.set_rule(wr_er,east_ruins_rules)
+    dr_wr = world.get_entrance("Dark Ruins Exits")
+    world.set_rule(dr_wr,has_weapon)
     
 def set_all_location_rules(world: UVDemoWorld) -> None:
     ss1 = world.get_location("Spider Store 1")
     ss2 = world.get_location("Spider Store 2")
     fr = world.get_location("Faded Ribbon")
-    world.set_rule(fr, Has("Napstablook Defeated"))
-    world.set_rule(ss1, Has("Napstablook Defeated"))
-    world.set_rule(ss2, Has("Napstablook Defeated"))
+    world.set_rule(fr, Has("Napstablook Defeated")|CanReachEntrance("Dark Ruins Exits"))
+    world.set_rule(ss1, Has("Napstablook Defeated")|CanReachEntrance("Dark Ruins Exits"))
+    world.set_rule(ss2, Has("Napstablook Defeated")|CanReachEntrance("Dark Ruins Exits"))
     napst = world.get_location("Napstablook Defeated")
     world.set_rule(napst, Has("Act - Cheer"))
+    cheer = world.get_location("Act - Cheer")
+    world.set_rule(cheer, Has("Act - Talk"))
     gp = world.get_location("Golden Pear")
     world.set_rule(gp,Has("Micro Froggit Defeated"))
     mc = world.get_location("Monster Candy")
@@ -55,7 +59,9 @@ def set_all_location_rules(world: UVDemoWorld) -> None:
     wings = world.get_location("Wings")
     world.set_rule(wings, Has("Decibat Defeated"))
     rtr = world.get_location("Raffle Ticket Rewards")
-    world.set_rule(rtr, Has("Toriel Defeated"))
+    world.set_rule(rtr, Has("Toriel Defeated")&Has("Raffle Ticket"))
+    rt = world.get_location("Buy Raffle Ticket")
+    world.set_rule(rt, has_act)
     tori = world.get_location("Toriel Defeated")
     world.set_rule(tori, Has("Glide") | Has("Act - Talk"))
     cc = world.get_location("Candy Corn")

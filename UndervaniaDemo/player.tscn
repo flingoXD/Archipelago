@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://d0pmmo0ji1nmg"]
+[gd_scene format=3 uid="uid://d0pmmo0ji1nmg"]
 
 [ext_resource type="Script" uid="uid://wacsdo4ndkaj" path="res://player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bx0a5qclm4c7r" path="res://sprites/glide_front.png" id="2"]
@@ -223,51 +223,51 @@ gravity = Vector3(0, 200, 0)
 scale_min = 2.0
 scale_max = 2.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1763463935]
 collision_layer = 2
 script = ExtResource("1")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1760121638]
 use_parent_material = true
 sprite_frames = ExtResource("4")
 animation = &"stagger"
 
-[node name="Glide" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+[node name="Glide" type="AnimatedSprite2D" parent="AnimatedSprite2D" unique_id=1414245090]
 position = Vector2(-0.5, 4)
 sprite_frames = SubResource("SpriteFrames_pbfsw")
 animation = &"side"
 
-[node name="Weapon" type="AnimatedSprite2D" parent="AnimatedSprite2D"]
+[node name="Weapon" type="AnimatedSprite2D" parent="AnimatedSprite2D" unique_id=1511263669]
 position = Vector2(0.5, 8.5)
 sprite_frames = SubResource("SpriteFrames_ivps1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=950894773]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_onrkg")
 
-[node name="CollisionStagger" type="CollisionShape2D" parent="."]
+[node name="CollisionStagger" type="CollisionShape2D" parent="." unique_id=1076641154]
 position = Vector2(0, 11)
 shape = SubResource("RectangleShape2D_nvl01")
 disabled = true
 
-[node name="Slash" type="Area2D" parent="."]
+[node name="Slash" type="Area2D" parent="." unique_id=1679867535]
 visible = false
 position = Vector2(0, 6)
 scale = Vector2(1, -1)
 collision_layer = 2
 collision_mask = 2
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Slash"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Slash" unique_id=1734775583]
 position = Vector2(22, 5)
 rotation = -1.5707964
 sprite_frames = SubResource("SpriteFrames_bwjto")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Slash"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Slash" unique_id=1258404393]
 position = Vector2(0, 2)
 scale = Vector2(1, 1.5)
 shape = ExtResource("6")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1986446880]
 enabled = false
 color = Color(0.2, 0.2, 0.2, 1)
 shadow_enabled = true
@@ -276,26 +276,26 @@ shadow_filter_smooth = 1.0
 texture = SubResource("GradientTexture2D_n7ghd")
 metadata/_edit_lock_ = true
 
-[node name="PointLight2D2" type="PointLight2D" parent="."]
+[node name="PointLight2D2" type="PointLight2D" parent="." unique_id=996586926]
 blend_mode = 2
 shadow_color = Color(0, 0, 0, 0.5019608)
 shadow_filter = 1
 texture = SubResource("GradientTexture2D_n7ghd")
 metadata/_edit_lock_ = true
 
-[node name="HeartShapedObject" type="Sprite2D" parent="."]
+[node name="HeartShapedObject" type="Sprite2D" parent="." unique_id=1123453302]
 visible = false
 position = Vector2(0, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("7")
 
-[node name="HeartAnim" type="Sprite2D" parent="HeartShapedObject"]
+[node name="HeartAnim" type="Sprite2D" parent="HeartShapedObject" unique_id=308925740]
 texture = ExtResource("7")
 
-[node name="Textbox" parent="." instance=ExtResource("8")]
+[node name="Textbox" parent="." unique_id=1736084779 instance=ExtResource("8")]
 position = Vector2(0, -20)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1649656351]
 process_mode = 3
 position = Vector2(14, 3.0000005)
 rotation = 1.0471976
@@ -305,8 +305,8 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_nvl01")
 
-[node name="GoldAudio" type="AudioStreamPlayer" parent="."]
+[node name="GoldAudio" type="AudioStreamPlayer" parent="." unique_id=1786983718]
 stream = ExtResource("12_ivps1")
 
-[node name="XpAudio" type="AudioStreamPlayer" parent="."]
+[node name="XpAudio" type="AudioStreamPlayer" parent="." unique_id=1109588230]
 stream = ExtResource("13_urp6f")

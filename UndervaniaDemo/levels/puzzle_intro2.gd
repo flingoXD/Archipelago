@@ -68,11 +68,12 @@ func _process(_delta):
     if $FakeWall.visible:
         for area in $FakeWall / Area2D.get_overlapping_areas():
             if area.visible and area.get_parent() is Player:
-                $FakeWall.hide()
-                $FakeWall / CameraLimitArea.queue_free()
-                $FakeWall.collision_enabled = false
-                $FakeWall / AudioStreamPlayer.play()
-                Globals.set_flag("fakewall_puzzle_intro2", true)
+                if area.get_parent().weapon:
+                    $FakeWall.hide()
+                    $FakeWall / CameraLimitArea.queue_free()
+                    $FakeWall.collision_enabled = false
+                    $FakeWall / AudioStreamPlayer.play()
+                    Globals.set_flag("fakewall_puzzle_intro2", true)
     var flag = Globals.get_flag("tutoriel_prog", 0)
     if $Lever.active and flag < 2.2:
         $Spikes.active = false

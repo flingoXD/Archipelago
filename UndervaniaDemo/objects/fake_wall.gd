@@ -15,7 +15,8 @@ func _process(_delta):
         return
     for area in break_area.get_overlapping_areas():
         if area.visible and area.get_parent() is Player:
-            if area.get_parent().weapon: wall_break()
+            if area.get_parent().weapon:
+                wall_break()
 
 func wall_break():
     var audio = AudioStreamPlayer.new()
