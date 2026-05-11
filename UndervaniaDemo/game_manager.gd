@@ -309,6 +309,7 @@ func _obtained_item(item: NetworkItem):
                 await grant_ability("check",1)
     elif iname1=="10 Gold": $Player.earn_gold(10)
     elif iname1=="lantern": Globals.grant_ability("lantern")
+    elif iname1=="glide": Globals.grant_ability("glide")
     else:
         match iname1:
             "lemonade":

@@ -36,7 +36,7 @@ func _process(_delta):
 
 func _on_cutscene_trigger_start_cutscene(player):
     await get_parent().grant_ability("glide")
-    Globals.game_manager.ap_check_location("Glide")
+    Globals.game_manager.ap_check_location("Wings")
     stream.stream_mask |= 2 ** 9 + 2 ** 8
     get_parent().play_stream(stream)
     $Bridge.queue_free()

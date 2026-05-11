@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://j2wx8kkdthju"]
+[gd_scene format=3 uid="uid://j2wx8kkdthju"]
 
 [ext_resource type="Script" uid="uid://bsdsh24i10b6" path="res://items/stick.gd" id="1_ugobb"]
 [ext_resource type="Texture2D" uid="uid://bwkqrakt5tcbt" path="res://sprites/stick.png" id="1_vfs4v"]
@@ -23,30 +23,30 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 
-[node name="Stick" type="RigidBody2D"]
+[node name="Stick" type="RigidBody2D" unique_id=1076052101]
 collision_layer = 0
 mass = 0.7
 physics_material_override = SubResource("PhysicsMaterial_bsidc")
 script = ExtResource("1_ugobb")
 stick = ExtResource("2_bsidc")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1050235618]
 scale = Vector2(2, 2)
 texture = ExtResource("1_vfs4v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=727391863]
 scale = Vector2(1.9999998, 1.9999998)
 shape = SubResource("RectangleShape2D_vfs4v")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=1404790375]
 collision_layer = 0
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2111319041]
 scale = Vector2(1.9999998, 1.9999998)
 shape = SubResource("RectangleShape2D_vfs4v")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1487104001]
 scale = Vector2(2, 2)
 blend_mode = 2
 shadow_color = Color(0, 0, 0, 0.5019608)

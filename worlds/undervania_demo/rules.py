@@ -27,8 +27,8 @@ def set_all_entrance_rules(world: UVDemoWorld) -> None:
     world.set_rule(sw_ot,HasAll("Strytax's Sword","Glide"))
     sw_dr = world.get_entrance("Dark Ruins Savepoint")
     wr_dr = world.get_entrance("West Ruins to Dark Ruins")
-    world.set_rule(sw_dr,has_act|has_weapon)
-    world.set_rule(wr_dr,has_act|has_weapon)
+    world.set_rule(sw_dr,has_act)
+    world.set_rule(wr_dr,has_act)
     sw_dc = world.get_entrance("Dark Caves Savepoint")
     sw_er = world.get_entrance("Home Savepoint")
     er_dc = world.get_entrance("Home Tower Door")
@@ -62,8 +62,8 @@ def set_all_location_rules(world: UVDemoWorld) -> None:
     world.set_rule(cc, Has("Glide"))
     tc = world.get_location("Tutorial Chest")
     world.set_rule(tc, has_weapon)
-    rc = world.get_location("Rock Candy")
-    world.set_rule(rc, CanReachRegion("West Dark Ruins"))
+    #rc = world.get_location("Rock Candy")
+    #world.set_rule(rc, CanReachRegion("West Dark Ruins"))
     #c = [world.get_location("Corn Maze Chest"),
          #world.get_location("Home Large Room Chest"),
          #world.get_location("Tutorial Chest"),

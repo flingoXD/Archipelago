@@ -117,7 +117,7 @@ const item_name_to_ap_thing = {
     "Act - Cheer": "Act - Cheer",
     "Act - Check": "Act - Check",
     "Act - Threat": "Act - Threat",
-    "Glide": "Glide",
+    "glide": "Glide",
     "10 Gold": "10 Gold",
     "lantern": "Lantern"
 }
