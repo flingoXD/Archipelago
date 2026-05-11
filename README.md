@@ -10,7 +10,7 @@ Currently, the following games are supported:
 \#\#\#
 \# \#
 \# \#
-dsijdiosjdiosjfiodjof
+asd
 * The Legend of Zelda: A Link to the Past
 * Factorio
 * Subnautica
