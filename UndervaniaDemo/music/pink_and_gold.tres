@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AudioStreamGroup" load_steps=5 format=3 uid="uid://dqvboi8ntieeg"]
+
+[ext_resource type="Script" uid="uid://btrwqaax5uf6" path="res://audio_stream_group.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://utpvqc8podqv" path="res://music/city of pink and gold.wav" id="2"]
+[ext_resource type="AudioStream" uid="uid://c8fn85k3xwyot" path="res://music/city of pink and gold - distant.wav" id="3"]
+[ext_resource type="AudioStream" uid="uid://dfcjb5t64yfux" path="res://music/city of pink and gold - colosseum.wav" id="4"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "pink and gold"
+streams = [ExtResource("2"), ExtResource("3"), ExtResource("4")]
+volume = 3
+title = "Home"
+title_delay = 26.0
+metadata/_custom_type_script = "uid://btrwqaax5uf6"

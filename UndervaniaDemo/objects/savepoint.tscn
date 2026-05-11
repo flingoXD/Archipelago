@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://dis2mec4abpt5"]
+
+[ext_resource type="Texture2D" uid="uid://yqc0i4vgp21c" path="res://sprites/savepoint.png" id="1"]
+[ext_resource type="Script" uid="uid://dufvwtmjiq1t" path="res://objects/savepoint.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://bbx068bke0rd1" path="res://sounds/save.wav" id="3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vca2o"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xvg3"]
+atlas = ExtResource("1")
+region = Rect2(0, 20, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5k3m0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vca2o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xvg3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xnaw"]
+size = Vector2(16, 16)
+
+[node name="Savepoint" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_5k3m0")
+script = ExtResource("2")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_5xnaw")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3")

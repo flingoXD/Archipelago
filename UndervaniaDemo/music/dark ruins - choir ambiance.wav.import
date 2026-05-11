@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cltnn1sdsxnlq"
+path="res://.godot/imported/dark ruins - choir ambiance.wav-a40d1f8f4edccd6f4f376602b49f6650.sample"
+
+[deps]
+
+source_file="res://music/dark ruins - choir ambiance.wav"
+dest_files=["res://.godot/imported/dark ruins - choir ambiance.wav-a40d1f8f4edccd6f4f376602b49f6650.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=793090
+edit/loop_end=4763074
+compress/mode=0

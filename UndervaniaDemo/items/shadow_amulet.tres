@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c35it0d3lwil4"]
+
+[ext_resource type="Script" uid="uid://dj03egvim7gpb" path="res://items/shadow_amulet.gd" id="1_u70h0"]
+
+[resource]
+script = ExtResource("1_u70h0")
+item_id = "shadow_amulet"
+display_name = "Shadow Amulet"
+nickname = "S. Amulet"
+wearable = true
+wear_def = 5
+description = "When you block an attack, your next attack will do extra damage."
+metadata/_custom_type_script = "uid://ds3e4kaukson"

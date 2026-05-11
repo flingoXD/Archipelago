@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bnmu60k72ge7x"
+path="res://.godot/imported/stronger monsters - buildup 3.wav-9be02b0986f880bc63c2af336e28a80f.sample"
+
+[deps]
+
+source_file="res://music/stronger monsters - buildup 3.wav"
+dest_files=["res://.godot/imported/stronger monsters - buildup 3.wav-9be02b0986f880bc63c2af336e28a80f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=235229
+edit/loop_end=1293289
+compress/mode=0

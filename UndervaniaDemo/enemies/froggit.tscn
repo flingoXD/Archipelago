@@ -1,0 +1,103 @@
+[gd_scene load_steps=13 format=3 uid="uid://bq4vau1r0vt7q"]
+
+[ext_resource type="Texture2D" uid="uid://iy1qti13usrt" path="res://sprites/froggit_npc.png" id="1_204tv"]
+[ext_resource type="Script" uid="uid://c6b44q1lkg0qu" path="res://enemies/froggit.gd" id="1_toc2f"]
+[ext_resource type="Texture2D" uid="uid://02ahsm8upgm7" path="res://sprites/froggit.png" id="2_toc2f"]
+[ext_resource type="Texture2D" uid="uid://bycy25fqlvnr2" path="res://sprites/froggit_jump.png" id="3_4m3fa"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="3_snwn2"]
+[ext_resource type="Script" uid="uid://ddb2vxbtpe3u8" path="res://objects/damage_hitbox.gd" id="4_4m3fa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_snwn2"]
+atlas = ExtResource("2_toc2f")
+region = Rect2(0, 0, 21, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m3fa"]
+atlas = ExtResource("2_toc2f")
+region = Rect2(0, 22, 21, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2sepp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_204tv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_4m3fa")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_snwn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4m3fa")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1v47"]
+size = Vector2(12, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snwn2"]
+size = Vector2(15, 8)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_toc2f"]
+radius = 128.0
+
+[node name="Froggit" type="CharacterBody2D" node_paths=PackedStringArray("detection")]
+script = ExtResource("1_toc2f")
+max_hp = 30
+atk = 4
+def = 4
+dropped_gold = 2
+dropped_xp = 3
+death_tex = ExtResource("1_204tv")
+knockback = 0
+detection = NodePath("DetectionRange")
+metadata/_custom_type_script = "uid://u6nmfmrmnplx"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_2sepp")
+animation = &"left"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_m1v47")
+
+[node name="Textbox" parent="." instance=ExtResource("3_snwn2")]
+position = Vector2(0, -10)
+
+[node name="DamageHitbox" type="Area2D" parent="."]
+script = ExtResource("4_4m3fa")
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_m1v47")
+
+[node name="JumpHitbox" type="Area2D" parent="."]
+visible = false
+script = ExtResource("4_4m3fa")
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpHitbox"]
+position = Vector2(-6.5, -3)
+shape = SubResource("RectangleShape2D_snwn2")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_toc2f")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjt8ii21blp2l"]
+
+[ext_resource type="Script" uid="uid://dk4emcn1kkn7b" path="res://silly_shaders/silly_shader.gd" id="1_bvnkm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bvnkm"]
+
+[node name="SillyShader" type="ColorRect"]
+visible = false
+z_index = 4096
+material = SubResource("ShaderMaterial_bvnkm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bvnkm")

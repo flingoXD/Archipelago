@@ -1,0 +1,203 @@
+[gd_scene load_steps=22 format=4 uid="uid://338ibbwde188"]
+
+[ext_resource type="Script" uid="uid://eqlsdon0fsgx" path="res://levels/start_room.gd" id="1_5qjer"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_cfm6c"]
+[ext_resource type="Texture2D" uid="uid://3mdstvact4k8" path="res://sprites/ruins_grey_door.png" id="3_n085v"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="4_421my"]
+[ext_resource type="Script" uid="uid://c7byuwt70ctt1" path="res://objects/camera_limit_area.gd" id="4_mlbqu"]
+[ext_resource type="FontFile" uid="uid://c0g4qqod4g3cs" path="res://fonts/DeterminationMonoWebRegular-Z5oq.ttf" id="6_4wh7y"]
+[ext_resource type="Script" uid="uid://cd8yb0wnhbywb" path="res://objects/cutscene_trigger.gd" id="7_5qjer"]
+[ext_resource type="PackedScene" uid="uid://ect1xkpw6171" path="res://objects/gold_chest.tscn" id="8_6dd2j"]
+[ext_resource type="PackedScene" uid="uid://cse5c01whxjp3" path="res://objects/broken_platform.tscn" id="8_886i1"]
+[ext_resource type="SpriteFrames" uid="uid://pj6k8edfrhtl" path="res://sprites/toriel.tres" id="9_n10od"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="10_n10od"]
+[ext_resource type="SpriteFrames" uid="uid://bd53o8ut1f45b" path="res://sprites/strytax.tres" id="12_g25at"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wh7y"]
+size = Vector2(41, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_421my"]
+size = Vector2(280, 440)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n10od"]
+size = Vector2(220, 240)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5qjer"]
+font = ExtResource("6_4wh7y")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6dd2j"]
+size = Vector2(80, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mlbqu"]
+size = Vector2(220, 100)
+
+[sub_resource type="GDScript" id="GDScript_886i1"]
+script/source = "extends EnemyNPC
+
+var toriel_talk = preload(\"res://sounds/toriel_talk.wav\")
+
+func _ready():
+	super._ready()
+	$Textbox.set_talk_sound(toriel_talk)
+"
+
+[sub_resource type="GDScript" id="GDScript_g25at"]
+script/source = "extends EnemyNPC
+
+var strytax_talk = preload(\"res://sounds/strytax_talk.wav\")
+
+func _ready():
+	super._ready()
+	$Textbox.set_talk_sound(strytax_talk)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_886i1"]
+size = Vector2(200, 20)
+
+[node name="StartRoom" type="Node2D"]
+script = ExtResource("1_5qjer")
+default_point = Vector2i(170, 60)
+limit_top = 480
+limit_bottom = 960
+limit_left = 20
+limit_right = 1520
+flowey_stalk = false
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -229.0
+offset_top = -40.0
+offset_right = 784.0
+offset_bottom = 513.0
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_cfm6c")
+
+[node name="Decor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAEABcAAQAGABEAAAAFABcAAQAGABEAAAAGABcAAQAGABEAAAAHABcAAQAGABEAAAAIABcAAQAGABEAAAAJABcAAQAGABEAAAAKABcAAQAGABEAAAALABcAAQAGABEAAAAMABcAAQAGABEAAAADABcAAQAGABEAAAACABcAAQAGABEAAAABABcAAQAGABEAAAANABcAAQAGABEAAAAOABcAAQAGABEAAAAPABcAAQAGABEAAAAQABcAAQAGABEAAAARABcAAQAGABEAAAASABcAAQAGABEAAAATABcAAQAGABEAAAAUABcAAQAGABEAAAAVABcAAQAGABEAAAAWABcAAQAGABEAAAAXABcAAQAGABEAAAAYABcAAQAGABEAAAAZABcAAQAGABEAAAAaABcAAQAGABEAAAAbABcAAQAGABEAAAAcABcAAQAGABEAAAAgABcAAQAGABEAAAAfABcAAQAGABEAAAAeABcAAQAGABEAAAAdABcAAQAGABEAAAAhABcAAQAGABEAAAAiABcAAQAGABEAAAAjABcAAQAGABEAAAAkABcAAQAGABEAAAD3/xYAAQAGABEAAAD4/xYAAQAGABEAAAD5/xYAAQAGABEAAAD6/xYAAQAGABEAAAD7/xYAAQAGABEAAAD8/xYAAQAGABEAAAD9/xYAAQAGABEAAAD+/xYAAQAGABEAAAD//xYAAQAGABEAAAD2/xYAAQAGABEAAAA=")
+tile_set = ExtResource("2_cfm6c")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAMAAAAAQAGABEAAAAMAAEAAQAGABEAAAAMAAIAAQAGABEAAAAMAAMAAQAGABEAAAAMAAQAAQAGABEAAAAMAAUAAQAGABEAAAAMAAYAAQAGABEAAAAMAAcAAQAGABEAAAAMAAgAAQAGABEAAAAMAAkAAQAGABEAAAAMAAoAAQAGABEAAAAMAAsAAQAGABEAAAAMAAwAAQAGABEAAAAAABcAAQAGABEAAAABABcAAQADAA0AAAACABcAAQADAA0AAAADABcAAQADAA0AAAAEABcAAQABAAYAAAAFABcAAQABAAQAAAAKABcAAQAHAAQAAAALABcAAQADAAQAAAAMABcAAQADAAYAAAANABcAAQADAA0AAAAOABcAAQADAA0AAAAPABcAAQADAA0AAAAPAA4AAQAGABEAAAAOAA4AAQAGABEAAAANAA4AAQAGABEAAAAMAA4AAQAGABEAAAAMAA0AAQAGABEAAAADAA4AAQAGABEAAAACAA4AAQAGABEAAAABAA4AAQAGABEAAAAAABYAAQAGABEAAAAAABIAAQAGABEAAAAAABEAAQAGABEAAAAAABAAAQAGABEAAAAAAA8AAQAGABEAAAAAAA4AAQAGABEAAAAHABcAAQAFAAwAAAAIABcAAQAGAAwAAAAJABcAAQAHAAwAAAAGABcAAQAHAAMAAAAEAA4AAQAGABEAAAAEAA0AAQAGABEAAAAEAAwAAQAGABEAAAAEAAsAAQAGABEAAAAEAAoAAQAGABEAAAAEAAkAAQAGABEAAAAEAAgAAQAGABEAAAAEAAcAAQAGABEAAAAEAAYAAQAGABEAAAAEAAUAAQAGABEAAAAEAAMAAQAGABEAAAAEAAQAAQAGABEAAAAEAAIAAQAGABEAAAAEAAEAAQAGABEAAAAEAAAAAQAGABEAAAAFAAAAAQAGABEAAAAGAAAAAQAGABEAAAAHAAAAAQAGABEAAAAIAAAAAQAGABEAAAAJAAAAAQAGABEAAAAKAAAAAQAGABEAAAALAAAAAQAGABEAAAAQABcAAQADAA0AAAAQAA4AAQAGABEAAAARABcAAQADAA0AAAASABcAAQADAA0AAAATABcAAQADAA0AAAAUABcAAQADAA0AAAAVABcAAQADAA0AAAAWABcAAQADAA0AAAAXABcAAQADAA0AAAAYABcAAQADAA0AAAAZABcAAQADAA0AAAAaABcAAQADAA0AAAAbABcAAQADAA0AAAAcABcAAQADAA0AAAAdABcAAQADAA0AAAAeABcAAQADAA0AAAAfABcAAQADAA0AAAAgABcAAQADAA0AAAARAA4AAQAGABEAAAASAA4AAQAGABEAAAATAA4AAQAGABEAAAAUAA4AAQAGABEAAAAVAA4AAQAGABEAAAAWAA4AAQAGABEAAAAXAA4AAQAGABEAAAAYAA4AAQAGABEAAAAZAA4AAQAGABEAAAAaAA4AAQAGABEAAAAbAA4AAQAGABEAAAAcAA4AAQAGABEAAAAdAA4AAQAGABEAAAAeAA4AAQAGABEAAAAfAA4AAQAGABEAAAAgAA4AAQAGABEAAAAhAA4AAQAGABEAAAAhABcAAQADAA0AAAAiABcAAQADAA0AAAAjABcAAQADAA0AAAAkABcAAQADAA0AAAAlABcAAQAGABEAAAAlABYAAQAGABEAAAAlABUAAQAGABEAAAAlABQAAQAGABEAAAAlABMAAQAGABEAAAAlABIAAQAGABEAAAAlABEAAQAGABEAAAAlABAAAQAGABEAAAAlAA8AAQAGABEAAAAkAA4AAQAGABEAAAAlAA4AAQAGABEAAAAjAA4AAQAGABEAAAAiAA4AAQAGABEAAAD2/xYAAQABAAYAAAD3/xYAAQABAAQAAAD4/xYAAQAEAA0AAAD5/xYAAQADAAQAAAD6/xYAAQADAAYAAAD7/xYAAQADAA0AAAD8/xYAAQADAA0AAAD9/xYAAQADAA0AAAD+/xYAAQADAA0AAAD//xYAAQADAA0AAAD1/xYAAQAGABEAAAD1/xUAAQAGABEAAAD1/xQAAQAGABEAAAD1/xMAAQAGABEAAAD1/xIAAQAGABEAAAD1/xEAAQAGABEAAAD1/xAAAQAGABEAAAD1/w8AAQAGABEAAAD1/w4AAQAGABEAAAD1/w0AAQAGABEAAAAAAAwAAQAGABEAAAAAAA0AAQAGABEAAAD1/wwAAQAGABEAAAD1/wsAAQAGABEAAAD1/woAAQAGABEAAAD1/wkAAQAGABEAAAD2/wkAAQAGABEAAAD3/wkAAQAGABEAAAD4/wkAAQAGABEAAAD5/wkAAQAGABEAAAD6/wkAAQAGABEAAAD7/wkAAQAGABEAAAD8/wkAAQAGABEAAAD9/wkAAQAGABEAAAD+/wkAAQAGABEAAAD//wkAAQAGABEAAAAAAAkAAQAGABEAAAAAAAoAAQAGABEAAAAAAAsAAQAGABEAAAA=")
+tile_set = ExtResource("2_cfm6c")
+
+[node name="Door" type="Sprite2D" parent="."]
+position = Vector2(688, 420)
+texture = ExtResource("3_n085v")
+
+[node name="InteractDoor" type="Area2D" parent="Door"]
+script = ExtResource("4_421my")
+destination = "flowey_room1"
+entry_point = Vector2i(30, 120)
+interact_required = true
+left_facing = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door/InteractDoor"]
+position = Vector2(-0.5, 11.5)
+shape = SubResource("RectangleShape2D_4wh7y")
+
+[node name="CameraLimitArea" type="Area2D" parent="."]
+script = ExtResource("4_mlbqu")
+limit_left = 20
+limit_right = 660
+metadata/_custom_type_script = "uid://c7byuwt70ctt1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitArea"]
+position = Vector2(160, 240)
+shape = SubResource("RectangleShape2D_421my")
+
+[node name="CameraLimitArea2" type="Area2D" parent="."]
+script = ExtResource("4_mlbqu")
+limit_left = -620
+limit_right = 20
+metadata/_custom_type_script = "uid://c7byuwt70ctt1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitArea2"]
+position = Vector2(-90, 320)
+shape = SubResource("RectangleShape2D_n10od")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -233.0
+offset_top = 343.0
+offset_right = 129.0
+offset_bottom = 380.0
+scale = Vector2(0.5, 0.5)
+text = "just pretend there's something here for now, I haven't made the inventory system yet"
+label_settings = SubResource("LabelSettings_5qjer")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="CutsceneTrigger" type="Area2D" parent="."]
+script = ExtResource("7_5qjer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger"]
+position = Vector2(170, 80)
+shape = SubResource("RectangleShape2D_6dd2j")
+
+[node name="CutsceneTrigger2" type="Area2D" parent="."]
+script = ExtResource("7_5qjer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger2"]
+position = Vector2(-90, 390)
+shape = SubResource("RectangleShape2D_mlbqu")
+
+[node name="BrokenPlatform" parent="." instance=ExtResource("8_886i1")]
+modulate = Color(0.5, 0.5, 0.5, 1)
+position = Vector2(-60, 370)
+platform_type = 1
+
+[node name="BrokenPlatform2" parent="." instance=ExtResource("8_886i1")]
+modulate = Color(0.5, 0.5, 0.5, 1)
+position = Vector2(-140, 330)
+platform_type = 1
+
+[node name="GoldChest" parent="." instance=ExtResource("8_6dd2j")]
+position = Vector2(-150, 440)
+chest_id = "chest_start_room"
+
+[node name="Toriel" type="AnimatedSprite2D" parent="."]
+position = Vector2(210, 437)
+sprite_frames = ExtResource("9_n10od")
+flip_h = true
+script = SubResource("GDScript_886i1")
+enemy_id = "toriel"
+talk1 = Array[String](["Do not worry about me.", "Someone has to take care of these flowers."])
+talk_end = Array[String](["Someone has to take care of these flowers."])
+cheer = Array[String](["Good luck!"])
+metadata/_custom_type_script = "uid://60v7rjl1crdr"
+
+[node name="Textbox" parent="Toriel" instance=ExtResource("10_n10od")]
+position = Vector2(0, -30)
+
+[node name="Strytax" type="AnimatedSprite2D" parent="."]
+position = Vector2(132, 432)
+sprite_frames = ExtResource("12_g25at")
+animation = &"cloaked"
+script = SubResource("GDScript_g25at")
+enemy_id = "strytax"
+talk1 = Array[String](["So apparently everyone else knew about the barrier all along.", "It is a great bubble around the Underground, blocking all sides.", "Even Toriel assumed I must have known, and that I was just... a \"loony\".", "Which, I suppose I was. Heheh.", "We have been talking here for a while now.", "We used to be friends, I think.", "I was much younger, and of course she never grows old...", "Ah, but Toriel was good friends with all of monsterkind, back then.", "The rest of the Underground lost a bright light the day she returned to the Ruins.", "We are lucky here to have her."])
+talk_end = Array[String](["But I shall not bore you with my reminiscences any longer.", "Go out, leave the Ruins.", "Do what you must do."])
+cheer = Array[String](["I wish you good fortune on your quest.", "Now grant me some solitude."])
+metadata/_custom_type_script = "uid://60v7rjl1crdr"
+
+[node name="Textbox" parent="Strytax" instance=ExtResource("10_n10od")]
+position = Vector2(0, -30)
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("4_421my")
+destination = "old_tomb"
+entry_point = Vector2i(170, 220)
+left_facing = 3
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(-100, 230)
+shape = SubResource("RectangleShape2D_886i1")
+
+[connection signal="body_entered" from="CutsceneTrigger" to="CutsceneTrigger" method="_on_body_entered"]
+[connection signal="start_cutscene" from="CutsceneTrigger" to="." method="_on_cutscene_trigger_start_cutscene"]
+[connection signal="body_entered" from="CutsceneTrigger2" to="CutsceneTrigger2" method="_on_body_entered"]
+[connection signal="start_cutscene" from="CutsceneTrigger2" to="." method="_on_cutscene_trigger2_start_cutscene"]

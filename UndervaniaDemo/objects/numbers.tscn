@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dm1i7eegg2nmy"]
+
+[ext_resource type="FontFile" uid="uid://d0pao6cqa5ha8" path="res://fonts/hachicro.ttf" id="1"]
+[ext_resource type="Script" uid="uid://b0dw15s6pns4e" path="res://objects/numbers.gd" id="2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1y2mv"]
+font = ExtResource("1")
+font_size = 8
+font_color = Color(1, 0, 0, 1)
+
+[node name="Numbers" type="Label"]
+modulate = Color(4.415934, 4.415934, 4.415934, 1)
+z_index = 1
+offset_left = -48.0
+offset_top = -8.0
+offset_right = 48.0
+offset_bottom = 8.0
+text = "999999"
+label_settings = SubResource("LabelSettings_1y2mv")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2")

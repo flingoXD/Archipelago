@@ -1,0 +1,74 @@
+[gd_scene load_steps=10 format=3 uid="uid://bq68abe1r4ixo"]
+
+[ext_resource type="Script" uid="uid://btsof16m5qwv8" path="res://enemies/sweet_corn.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dprod6wpki733" path="res://sprites/sweet_corn_death.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://dg0ylepejs35i" path="res://sprites/sweet_corn.png" id="3"]
+[ext_resource type="Script" uid="uid://ddb2vxbtpe3u8" path="res://objects/damage_hitbox.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_giwl6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j26cd"]
+size = Vector2(7, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uafku"]
+size = Vector2(15, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j26cd"]
+radius = 60.0
+
+[node name="SweetCorn" type="CharacterBody2D" node_paths=PackedStringArray("detection")]
+script = ExtResource("1")
+max_hp = 30
+atk = 3
+def = 3
+dropped_gold = 1
+dropped_xp = 1
+death_tex = ExtResource("2")
+detection = NodePath("DetectionRange")
+metadata/_custom_type_script = "uid://u6nmfmrmnplx"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_giwl6")
+
+[node name="DamageHitbox" type="Area2D" parent="AnimatedSprite2D"]
+visible = false
+script = ExtResource("4")
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/DamageHitbox"]
+shape = SubResource("RectangleShape2D_j26cd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_uafku")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_j26cd")
+
+[node name="Textbox" parent="." instance=ExtResource("5")]
+position = Vector2(0, -15)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)

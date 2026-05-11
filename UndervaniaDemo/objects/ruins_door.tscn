@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dstq48sodbfqp"]
+
+[ext_resource type="Texture2D" uid="uid://2ljbn0jmlwny" path="res://sprites/ruins_door.png" id="1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_byphh"]
+size = Vector2(20, 60)
+
+[node name="Door" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1")
+
+[node name="ColorRect" type="ColorRect" parent="Sprite2D"]
+offset_left = -10.0
+offset_top = -50.0
+offset_right = 10.0
+offset_bottom = -30.0
+color = Color(0, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_byphh")

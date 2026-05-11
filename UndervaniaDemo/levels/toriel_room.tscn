@@ -1,0 +1,141 @@
+[gd_scene load_steps=17 format=4 uid="uid://pmy8008wu2co"]
+
+[ext_resource type="Script" uid="uid://c2fgvgrhhytqh" path="res://level.gd" id="1_qk0xm"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_2y7oo"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2_7n1mk"]
+[ext_resource type="Texture2D" uid="uid://bfhl4wrh3gxre" path="res://sprites/toriel_house_torielroom.png" id="3_2y7oo"]
+[ext_resource type="Resource" uid="uid://c6lhwbe8x3gmd" path="res://music/home_group.tres" id="3_icwu6"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="4_xkn4l"]
+[ext_resource type="Script" uid="uid://do6xbjfs0rrt8" path="res://objects/sign.gd" id="5_rwahe"]
+
+[sub_resource type="AudioStream" id="AudioStream_xmoko"]
+script = ExtResource("2_7n1mk")
+stream_group = ExtResource("3_icwu6")
+stream_mask = 4
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7n1mk"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xkn4l"]
+size = Vector2(17, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwahe"]
+size = Vector2(61, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_icwu6"]
+size = Vector2(52, 31)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmoko"]
+size = Vector2(27, 43)
+
+[sub_resource type="GDScript" id="GDScript_7n1mk"]
+script/source = "extends Sign
+
+var shown = false
+
+func _process(delta):
+	super._process(delta)
+	if showing and not shown:
+		shown = true
+		Globals.set_flag(\"water_sausage\", true)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8ru8"]
+size = Vector2(60, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gj2y7"]
+size = Vector2(20, 9)
+
+[node name="TorielRoom" type="Node2D"]
+script = ExtResource("1_qk0xm")
+default_point = Vector2i(50, 180)
+limit_bottom = 480
+limit_left = 40
+limit_right = 680
+stream = SubResource("AudioStream_xmoko")
+flowey_stalk = false
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0.3825, 0.6318334, 0.85, 1)
+
+[node name="Walls" type="TileMapLayer" parent="."]
+modulate = Color(0.21620002, 0.6022267, 0.94, 1)
+tile_map_data = PackedByteArray("AAAAAAAAAgABAAEAAAABAAAAAgABAAEAAAACAAAAAgABAAEAAAADAAAAAgABAAEAAAAEAAAAAgABAAEAAAAFAAAAAgABAAEAAAAGAAAAAgABAAEAAAAHAAAAAgABAAEAAAAIAAAAAgABAAEAAAAJAAAAAgABAAEAAAAKAAAAAgABAAEAAAALAAAAAgABAAEAAAAMAAAAAgABAAEAAAANAAAAAgABAAEAAAAOAAAAAgABAAEAAAAPAAAAAgABAAEAAAAAAAsAAgABAAEAAAABAAsAAgABAAEAAAACAAsAAgABAAEAAAADAAsAAgABAAEAAAAEAAsAAgABAAEAAAAFAAsAAgABAAEAAAAGAAsAAgABAAEAAAAHAAsAAgABAAEAAAAIAAsAAgABAAEAAAAJAAsAAgABAAEAAAAKAAsAAgABAAEAAAALAAsAAgABAAEAAAAMAAsAAgABAAEAAAANAAsAAgABAAEAAAAPAAsAAgABAAEAAAAOAAsAAgABAAEAAAAAAAUAAgABAAIAAAAAAAQAAgABAAEAAAAAAAMAAgABAAEAAAAAAAIAAgABAAEAAAAAAAEAAgABAAEAAAAPAAEAAgABAAEAAAAPAAIAAgABAAEAAAAPAAMAAgABAAIAAAAQAAMAAgAAAAAAAAAQAAIAAgABAAEAAAAQAAEAAgABAAEAAAAQAAAAAgABAAEAAAD//wAAAgAAAAEAAAD//wEAAgAAAAEAAAD//wIAAgAAAAEAAAD//wMAAgAAAAEAAAD//wQAAgAAAAEAAAD//wUAAgAAAAIAAAD//wsAAgAAAAEAAAABAAEAAgABAAEAAAACAAEAAgABAAEAAAADAAEAAgABAAEAAAAEAAEAAgABAAEAAAAFAAEAAgABAAEAAAAGAAEAAgABAAEAAAAHAAEAAgABAAEAAAAIAAEAAgABAAEAAAAJAAEAAgABAAEAAAAKAAEAAgABAAEAAAALAAEAAgABAAEAAAAMAAEAAgABAAEAAAANAAEAAgABAAEAAAAOAAEAAgABAAEAAAAOAAIAAgABAAEAAAANAAIAAgABAAEAAAAMAAIAAgABAAEAAAALAAIAAgABAAEAAAAKAAIAAgABAAEAAAAJAAIAAgABAAEAAAAIAAIAAgABAAEAAAAHAAIAAgABAAEAAAAGAAIAAgABAAEAAAAFAAIAAgABAAEAAAAEAAIAAgABAAEAAAADAAIAAgABAAEAAAACAAIAAgABAAEAAAABAAIAAgABAAEAAAD//woAAgAAAAEAAAAAAAoAAgABAAEAAAABAAoAAgABAAEAAAACAAoAAgABAAEAAAADAAoAAgABAAEAAAAEAAoAAgABAAEAAAAFAAoAAgABAAEAAAAGAAoAAgABAAEAAAAHAAoAAgABAAEAAAAIAAoAAgABAAEAAAAJAAoAAgABAAEAAAAKAAoAAgABAAEAAAALAAoAAgABAAEAAAAMAAoAAgABAAEAAAANAAoAAgABAAEAAAAOAAoAAgABAAEAAAAPAAoAAgABAAEAAAAQAAoAAgABAAEAAAAAAAkAAgABAAEAAAD//wkAAgAAAAEAAAAQAAQAAgAAAAEAAAAQAAUAAgAAAAEAAAAQAAYAAgAAAAEAAAAQAAcAAgAAAAEAAAAQAAgAAgAAAAEAAAAPAAkAAgABAAEAAAAQAAkAAgABAAEAAAAOAAkAAgABAAEAAAANAAkAAgABAAEAAAAMAAkAAgABAAEAAAALAAkAAgABAAEAAAAKAAkAAgABAAEAAAAJAAkAAgABAAEAAAAIAAkAAgABAAEAAAAHAAkAAgABAAEAAAAGAAkAAgABAAEAAAAFAAkAAgABAAEAAAAEAAkAAgABAAEAAAADAAkAAgABAAEAAAACAAkAAgABAAEAAAABAAkAAgABAAEAAAAQAAsAAgABAAEAAAD//wwAAgAAAAIAAAAAAAwAAgABAAIAAAABAAwAAgABAAIAAAACAAwAAgABAAIAAAADAAwAAgABAAIAAAAEAAwAAgABAAIAAAAFAAwAAgABAAIAAAAGAAwAAgABAAIAAAAHAAwAAgABAAIAAAAIAAwAAgABAAIAAAAJAAwAAgABAAIAAAAKAAwAAgABAAIAAAALAAwAAgABAAIAAAAMAAwAAgABAAIAAAANAAwAAgABAAIAAAAOAAwAAgABAAIAAAAPAAwAAgABAAIAAAAQAAwAAgABAAIAAAABAAMAAgACAAAAAAACAAMAAgABAAIAAAADAAMAAgABAAIAAAAEAAMAAgABAAIAAAAFAAMAAgABAAIAAAAGAAMAAgABAAIAAAAHAAMAAgABAAIAAAAIAAMAAgABAAIAAAAJAAMAAgABAAIAAAAKAAMAAgABAAIAAAALAAMAAgABAAIAAAAMAAMAAgABAAIAAAANAAMAAgABAAIAAAAOAAMAAgABAAIAAAABAAUAAgACAAIAAAABAAQAAgACAAEAAAARAAwAAgACAAIAAAARAAsAAgACAAEAAAARAAoAAgACAAEAAAARAAkAAgACAAEAAAARAAgAAgACAAEAAAARAAcAAgACAAEAAAARAAYAAgACAAEAAAARAAUAAgACAAEAAAARAAQAAgACAAEAAAARAAMAAgACAAEAAAARAAIAAgACAAEAAAARAAEAAgACAAEAAAARAAAAAgACAAEAAAD//wYAAgACAAEAAAD//wcAAgACAAEAAAD//wgAAgACAAEAAAA=")
+tile_set = ExtResource("2_2y7oo")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+modulate = Color(0.78620815, 0.9316879, 2.0331757, 1)
+tile_map_data = PackedByteArray("AAABAAkAAgABAAAAAAACAAkAAgABAAAAAAADAAkAAgABAAAAAAAEAAkAAgABAAAAAAAFAAkAAgABAAAAAAAGAAkAAgABAAAAAAAHAAkAAgABAAAAAAAIAAkAAgABAAAAAAAJAAkAAgABAAAAAAAKAAkAAgABAAAAAAAOAAkAAgABAAAAAAANAAkAAgABAAAAAAAMAAkAAgABAAAAAAALAAkAAgABAAAAAAAAAAkAAgABAAAAAAAPAAkAAgABAAAAAAA=")
+tile_set = ExtResource("2_2y7oo")
+
+[node name="Hallway" type="Sprite2D" parent="."]
+position = Vector2(172, 185)
+texture = ExtResource("3_2y7oo")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("4_xkn4l")
+destination = "toriel_hallway"
+entry_point = Vector2i(367, 200)
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(10, 150)
+shape = SubResource("RectangleShape2D_7n1mk")
+
+[node name="Sign" type="Area2D" parent="."]
+script = ExtResource("5_rwahe")
+text = Array[String](["Just a regular old bucket...", "...of snails."])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign"]
+position = Vector2(74.5, 172.5)
+shape = SubResource("RectangleShape2D_xkn4l")
+
+[node name="Sign2" type="Area2D" parent="."]
+script = ExtResource("5_rwahe")
+text = Array[String](["Definitely bigger than a twin-sized bed.", "Better not sleep in it."])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign2"]
+position = Vector2(125.5, 166)
+shape = SubResource("RectangleShape2D_rwahe")
+
+[node name="Sign3" type="Area2D" parent="."]
+script = ExtResource("5_rwahe")
+text = Array[String](["It's Toriel's sock drawer. Scandalous!"])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign3"]
+position = Vector2(263, 166.5)
+shape = SubResource("RectangleShape2D_icwu6")
+
+[node name="Sign4" type="Area2D" parent="."]
+script = ExtResource("5_rwahe")
+text = Array[String](["Ah, the cactus. Truly the most tsundere of plants."])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign4"]
+position = Vector2(302.5, 160.5)
+shape = SubResource("RectangleShape2D_xmoko")
+
+[node name="Sign5" type="Area2D" parent="."]
+script = SubResource("GDScript_7n1mk")
+text = Array[String](["It's an encyclopaedia of subterranean plants.", "Here's one page from it:", "\"Typha\" - A group of wetland flowering plants with brown, oblong seed pods.", "Commonly known as \"water sausages\"."])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign5"]
+position = Vector2(205, 157)
+shape = SubResource("RectangleShape2D_y8ru8")
+
+[node name="Sign6" type="Area2D" parent="."]
+script = ExtResource("5_rwahe")
+text = Array[String](["It's Toriel's diary. One passage is circled.", "\"Why did the skeleton want a friend?\"", "\"Because she was feeling BONELY...\"", "The rest of the page is filled with jokes of a similar caliber."])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign6"]
+position = Vector2(54, 161.5)
+shape = SubResource("RectangleShape2D_gj2y7")

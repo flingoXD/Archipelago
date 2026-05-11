@@ -1,0 +1,245 @@
+[gd_scene format=4 uid="uid://ly8oot360171"]
+
+[ext_resource type="Script" uid="uid://c2fgvgrhhytqh" path="res://level.gd" id="1_6sr3f"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_ajn2s"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2_fn5y8"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="3_ajn2s"]
+[ext_resource type="Resource" uid="uid://bh86tsbegtgne" path="res://music/ruins_group.tres" id="3_motxk"]
+[ext_resource type="Texture2D" uid="uid://iy1qti13usrt" path="res://sprites/froggit_npc.png" id="4_egy6s"]
+[ext_resource type="Script" uid="uid://60v7rjl1crdr" path="res://enemy_npc.gd" id="4_j11kp"]
+[ext_resource type="Texture2D" uid="uid://c17kobdgq42wa" path="res://sprites/whimsun.png" id="6_bmahi"]
+[ext_resource type="Texture2D" uid="uid://c6lmp8tx576re" path="res://sprites/flier.png" id="7_rypxg"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="8_motxk"]
+[ext_resource type="Texture2D" uid="uid://2j1gciqpt6ck" path="res://sprites/idealist_silly.png" id="10_ljjl8"]
+[ext_resource type="Script" uid="uid://c7byuwt70ctt1" path="res://objects/camera_limit_area.gd" id="12_0ulkg"]
+
+[sub_resource type="AudioStream" id="AudioStream_ljjl8"]
+script = ExtResource("2_fn5y8")
+stream_group = ExtResource("3_motxk")
+stream_mask = 51
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j11kp"]
+size = Vector2(20, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0ulkg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_egy6s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_fn5y8"]
+script/source = "extends NPC
+
+var not_punchcard = preload(\"res://items/not_punchcard.tres\")
+
+const text = [
+	[
+		\"Ribbit, ribbit.\\n(Hello, little human.)\",
+		\"(You have come here at just the right time.)\",
+		\"(We are organising a raffle for the other monsters in the Ruins.)\",
+		\"(All earnings are donated to the RSPCM.)\",
+		\"(Would you like to buy a ticket too?)\",
+		\"(It only costs 10G.)\\nRibbit.\"
+	],
+	[
+		\"Ribbit, ribbit.\\n(Thank you for your contribution!)\",
+		\"(Don't forget to come back later to see if you've won anything.)\\nRibbit.\"
+	],
+	[
+		\"Ribbit, ribbit.\\n(It seems you don't have enough gold for that!)\",
+		\"(Come back when you're a little, um, richer.)\\nRibbit.\"
+	],
+	[
+		\"Ribbit, ribbit.\\n(I'm sorry, human, you've come too late.)\",
+		\"(The raffle's already over.)\\nRibbit.\"
+	],
+	[
+		\"Ribbit, ribbit.\\n(Hello again, human!)\",
+		\"(Let's see what your number is...)\",
+		\"(Ah, you've won 100G! One of the biggest prizes.)\",
+		\"(I hope you spend your winnings wisely.)\\nRibbit.\"
+	],
+	[
+		\"(I hope you spend your winnings wisely.)\\nRibbit.\"
+	]
+]
+
+func talk(_act):
+	var player = Globals.game_manager.find_child(\"Player\")
+	if Globals.get_enemy_flag(\"toriel\") != null:
+		if not Globals.get_flag(\"raffle_contributed\"):
+			await $Textbox.show_text(text[3])
+		elif Globals.get_flag(\"raffle_redeemed\"):
+			await $Textbox.show_text(text[5])
+		else:
+			# player.earn_gold(100)
+			Globals.game_manager.ap_check_location(\"Raffle Ticket Rewards\")
+			await $Textbox.show_text(text[4])
+			# Globals.set_flag(\"raffle_redeemed\", true)
+	elif not Globals.get_flag(\"raffle_encountered\"):
+		Globals.set_flag(\"raffle_encountered\", true)
+		await $Textbox.show_text(text[0])
+	elif Globals.get_flag(\"raffle_contributed\"):
+		await $Textbox.show_text(text[1])
+	elif player.gold < 10:
+		await $Textbox.show_text(text[2])
+	elif Globals.game_manager.ap_check_location(not_punchcard.item_id):
+		player.spend_gold(10)
+		# Globals.set_flag(\"raffle_contributed\", true)
+		await $Textbox.show_text(text[1])
+	else:
+		await $Textbox.show_text(\"(I don't think you have room to carry that.)\\nRibbit.\")
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rypxg"]
+atlas = ExtResource("6_bmahi")
+region = Rect2(0, 0, 27, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1vc3"]
+atlas = ExtResource("6_bmahi")
+region = Rect2(0, 25, 27, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fn5y8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rypxg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1vc3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fn5y8"]
+atlas = ExtResource("7_rypxg")
+region = Rect2(0, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_motxk"]
+atlas = ExtResource("7_rypxg")
+region = Rect2(0, 27, 27, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ljjl8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fn5y8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_motxk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y75sm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ljjl8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y75sm"]
+size = Vector2(220, 180)
+
+[node name="RaffleRoom" type="Node2D" unique_id=1752406620]
+script = ExtResource("1_6sr3f")
+default_point = Vector2i(30, 220)
+limit_bottom = 480
+limit_right = 640
+stream = SubResource("AudioStream_ljjl8")
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=163921040]
+visible = false
+offset_left = -555.0
+offset_top = -155.0
+offset_right = 458.0
+offset_bottom = 398.0
+
+[node name="Background" type="TileMapLayer" parent="." unique_id=292174127]
+tile_map_data = PackedByteArray("AAABAAoAAQABAAcAAAACAAoAAQABAAcAAAADAAoAAQABAAcAAAAEAAoAAQADAAcAAAAFAAoAAQABAAcAAAAGAAoAAQABAAcAAAAHAAoAAQABAAcAAAAIAAoAAQABAAcAAAAJAAoAAQADAAcAAAAKAAoAAQABAAcAAAALAAoAAQADAAcAAAAMAAoAAQABAAcAAAANAAoAAQABAAcAAAAOAAoAAQADAAcAAAABAAMAAQADAAcAAAABAAQAAQADAAcAAAABAAUAAQABAAcAAAABAAYAAQADAAcAAAABAAcAAQABAAcAAAABAAgAAQADAAcAAAABAAkAAQABAAcAAAACAAEAAQADAAcAAAACAAIAAQABAAcAAAACAAMAAQABAAcAAAACAAQAAQABAAcAAAACAAUAAQADAAcAAAACAAYAAQABAAcAAAACAAcAAQABAAcAAAACAAgAAQABAAcAAAACAAkAAQABAAcAAAADAAEAAQADAAcAAAADAAIAAQABAAcAAAADAAMAAQADAAcAAAADAAQAAQABAAcAAAADAAUAAQADAAcAAAADAAYAAQADAAcAAAADAAcAAQABAAcAAAADAAgAAQABAAcAAAADAAkAAQADAAcAAAAEAAEAAQADAAcAAAAEAAIAAQABAAcAAAAEAAMAAQABAAcAAAAEAAQAAQADAAcAAAAEAAUAAQADAAcAAAAEAAYAAQADAAcAAAAEAAgAAQABAAcAAAAEAAkAAQADAAcAAAAFAAEAAQABAAcAAAAFAAIAAQABAAcAAAAFAAMAAQADAAcAAAAFAAQAAQABAAcAAAAFAAUAAQABAAcAAAAFAAYAAQABAAcAAAAFAAgAAQADAAcAAAAFAAkAAQABAAcAAAAGAAEAAQADAAcAAAAGAAIAAQADAAcAAAAGAAMAAQABAAcAAAAGAAQAAQABAAcAAAAGAAUAAQADAAcAAAAGAAYAAQADAAcAAAAGAAcAAQADAAcAAAAGAAgAAQADAAcAAAAGAAkAAQADAAcAAAAHAAEAAQADAAcAAAAHAAIAAQABAAcAAAAHAAMAAQADAAcAAAAHAAQAAQABAAcAAAAHAAUAAQADAAcAAAAHAAYAAQADAAcAAAAHAAcAAQABAAcAAAAHAAgAAQADAAcAAAAHAAkAAQADAAcAAAAIAAEAAQADAAcAAAAIAAIAAQADAAcAAAAIAAMAAQADAAcAAAAIAAQAAQABAAcAAAAIAAUAAQABAAcAAAAIAAYAAQABAAcAAAAIAAcAAQABAAcAAAAIAAgAAQADAAcAAAAIAAkAAQABAAcAAAAJAAEAAQADAAcAAAAJAAIAAQABAAcAAAAJAAMAAQABAAcAAAAJAAQAAQADAAcAAAAJAAUAAQADAAcAAAAJAAYAAQABAAcAAAAJAAcAAQADAAcAAAAJAAgAAQABAAcAAAAJAAkAAQADAAcAAAAKAAEAAQABAAcAAAAKAAIAAQABAAcAAAAKAAMAAQABAAcAAAAKAAQAAQABAAcAAAAKAAUAAQADAAcAAAAKAAYAAQABAAcAAAAKAAcAAQABAAcAAAAKAAgAAQABAAcAAAAKAAkAAQABAAcAAAALAAEAAQADAAcAAAALAAIAAQADAAcAAAALAAMAAQABAAcAAAALAAQAAQABAAcAAAALAAUAAQADAAcAAAALAAYAAQADAAcAAAALAAcAAQABAAcAAAALAAgAAQADAAcAAAALAAkAAQADAAcAAAAMAAEAAQABAAcAAAAMAAIAAQADAAcAAAAMAAMAAQADAAcAAAAMAAQAAQADAAcAAAAMAAUAAQADAAcAAAAMAAYAAQADAAcAAAAMAAcAAQADAAcAAAAMAAgAAQADAAcAAAAMAAkAAQABAAcAAAANAAEAAQABAAcAAAANAAIAAQABAAcAAAANAAMAAQABAAcAAAANAAQAAQADAAcAAAANAAUAAQADAAcAAAANAAYAAQADAAcAAAANAAcAAQADAAcAAAANAAgAAQADAAcAAAANAAkAAQABAAcAAAAOAAEAAQABAAcAAAAOAAIAAQADAAcAAAAOAAMAAQADAAcAAAAOAAQAAQADAAcAAAAOAAUAAQABAAcAAAAOAAYAAQADAAcAAAAOAAcAAQADAAcAAAAOAAgAAQADAAcAAAAOAAkAAQADAAcAAAAEAAcAAQABAAcAAAAFAAcAAQABAAcAAAABAAEAAQABAAcAAAABAAIAAQADAAcAAAAAAAoAAQABAAcAAAAAAAkAAQADAAcAAAAAAAgAAQADAAcAAAAAAAcAAQADAAcAAAA=")
+tile_set = ExtResource("2_ajn2s")
+
+[node name="Decor" type="TileMapLayer" parent="." unique_id=890536420]
+tile_map_data = PackedByteArray("AAACAAEAAQAGAAoAAAACAAIAAQAGAAoAAAACAAMAAQAGAAoAAAACAAQAAQAGAAoAAAACAAUAAQAGAAoAAAACAAYAAQAGAAoAAAACAAcAAQAGAAoAAAACAAgAAQAGAAoAAAAGAAEAAQAGAAoAAAAGAAIAAQAGAAoAAAAGAAMAAQAGAAoAAAAGAAQAAQAGAAoAAAAKAAEAAQAEAAsAAAAKAAIAAQAEAAsAAAAKAAMAAQAEAAsAAAAKAAQAAQAEAAsAAAAKAAUAAQAEAAsAAAAKAAYAAQAEAAsAAAAKAAcAAQAEAAsAAAAKAAgAAQAEAAsAAAAKAAkAAQAEAAsAAAAKAAoAAQAEAAsAAAALAAoAAQAFAAsAAAALAAkAAQAFAAsAAAALAAgAAQAFAAsAAAALAAcAAQAGAAsAAAALAAYAAQAFAAsAAAALAAUAAQAGAAsAAAALAAQAAQAGAAsAAAALAAMAAQAFAAsAAAALAAIAAQAFAAsAAAALAAEAAQAFAAsAAAAMAAEAAQAHAAsAAAAMAAIAAQAHAAsAAAAMAAMAAQAHAAsAAAAMAAQAAQAHAAsAAAAMAAUAAQAHAAsAAAAMAAYAAQAHAAsAAAAMAAcAAQAHAAsAAAAMAAgAAQAHAAsAAAAMAAkAAQAHAAsAAAAMAAoAAQAHAAsAAAAOAAEAAQAGAAoAAAAOAAIAAQAGAAoAAAAOAAMAAQAGAAoAAAAOAAQAAQAGAAoAAAAOAAUAAQAGAAoAAAAOAAYAAQAGAAoAAAA=")
+tile_set = ExtResource("2_ajn2s")
+
+[node name="Walls" type="TileMapLayer" parent="." unique_id=749323046]
+tile_map_data = PackedByteArray("AAAAAAAAAQACAAAAAAABAAAAAQACAAEAAAACAAAAAQACAAEAAAADAAAAAQACAAEAAAAEAAAAAQACAAEAAAAFAAAAAQACAAEAAAAGAAAAAQACAAEAAAAHAAAAAQACAAEAAAAIAAAAAQACAAEAAAAJAAAAAQADAAEAAAAKAAAAAQACAAEAAAALAAAAAQACAAEAAAAMAAAAAQACAAEAAAANAAAAAQACAAEAAAAOAAAAAQACAAEAAAAPAAAAAQACAAAAAAAAAAEAAQAEAAAAAAAAAAIAAQAEAAAAAAAAAAMAAQAEAAAAAAAAAAQAAQAEAAAAAAAAAAUAAQAEAAAAAAAAAAYAAQAEAAAAAAAAAAcAAQAEAAEAAAD//wcAAQACAAEAAAD+/wcAAQABAAEAAAD+/wsAAQACAAEAAAD//wsAAQACAAEAAAAAAAsAAQACAAAAAAABAAsAAQACAAAAAAACAAsAAQACAAAAAAADAAsAAQAEAAIAAAAEAAsAAQACAAAAAAAFAAsAAQACAAAAAAAGAAsAAQAEAAIAAAAHAAsAAQACAAAAAAAIAAsAAQACAAAAAAAJAAsAAQACAAAAAAAKAAsAAQACAAAAAAALAAsAAQACAAAAAAAMAAsAAQAEAAIAAAANAAsAAQACAAAAAAAOAAsAAQACAAAAAAAPAAsAAQACAAAAAAAPAAoAAQABAAAAAAAPAAkAAQABAAAAAAAPAAgAAQABAAAAAAAPAAcAAQABAAAAAAAPAAYAAQABAAAAAAAPAAUAAQABAAAAAAAPAAQAAQABAAAAAAAPAAMAAQABAAAAAAAPAAIAAQABAAAAAAAPAAEAAQABAAAAAAD9/wsAAQACAAEAAAD8/wsAAQACAAEAAAD7/wsAAQACAAEAAAD6/wsAAQACAAEAAAD5/wsAAQACAAEAAAD4/wsAAQACAAEAAAD3/wsAAQACAAEAAAD2/wsAAQACAAEAAAD1/wsAAQACAAEAAAD0/wsAAQACAAEAAADz/wsAAQABAAEAAADy/woAAQAGABEAAADy/wkAAQAGABEAAADy/wgAAQAGABEAAADy/wcAAQAGABEAAADy/wYAAQAGABEAAADy/wUAAQAGABEAAADy/wQAAQAGABEAAADy/wMAAQAGABEAAADy/wIAAQAGABEAAADy/wEAAQAGABEAAADz/wEAAQAGABEAAAD0/wEAAQAGABEAAAD1/wEAAQAGABEAAAD2/wEAAQAGABEAAAD3/wEAAQAGABEAAAD4/wEAAQAGABEAAAD5/wEAAQAGABEAAAD6/wEAAQAGABEAAAD7/wEAAQAGABEAAAD8/wEAAQAGABEAAAD9/wEAAQAGABEAAAD+/wEAAQAGABEAAAD+/wIAAQAGABEAAAD+/wMAAQAGABEAAAD+/wQAAQAGABEAAAD+/wUAAQAGABEAAAD+/wYAAQAGABEAAADy/wsAAQAGABEAAAA=")
+tile_set = ExtResource("2_ajn2s")
+
+[node name="Floor" type="TileMapLayer" parent="." unique_id=1355783676]
+tile_map_data = PackedByteArray("AAAAAAsAAQAAAAIAAAABAAsAAQAAAAIAAAACAAsAAQAAAAIAAAAOAAsAAQAAAAIAAAANAAsAAQAAAAIAAAAMAAsAAQABAAMAAAADAAsAAQAAAAMAAAAEAAsAAQAAAAEAAAAFAAsAAQAAAAEAAAAGAAsAAQAAAAEAAAAHAAsAAQAAAAEAAAAIAAsAAQAAAAEAAAAJAAsAAQAAAAEAAAAKAAsAAQAAAAEAAAALAAsAAQAAAAEAAADz/wsAAQAAAA4AAAD0/wsAAQAAAAEAAAD1/wsAAQAAAAEAAAD2/wsAAQAAAAEAAAD3/wsAAQAAAAEAAAD4/wsAAQAAAAEAAAD5/wsAAQAAAAEAAAD6/wsAAQAAAAEAAAD7/wsAAQAAAAEAAAD8/wsAAQAAAAEAAAD9/wsAAQAAAAEAAAD+/wsAAQAAAAEAAAD//wsAAQABAAMAAAD//wcAAQACAAkAAAD+/wcAAQAEAA4AAAA=")
+tile_set = ExtResource("2_ajn2s")
+
+[node name="InteractDoor" type="Area2D" parent="." unique_id=2066172295]
+script = ExtResource("3_ajn2s")
+destination = "long_corridor"
+entry_point = Vector2i(2970, -160)
+left_facing = 1
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor" unique_id=1224722768]
+position = Vector2(-10, 190)
+shape = SubResource("RectangleShape2D_j11kp")
+
+[node name="MorshuFroggit" type="AnimatedSprite2D" parent="." unique_id=674496881]
+position = Vector2(170.5, 212)
+sprite_frames = SubResource("SpriteFrames_0ulkg")
+script = SubResource("GDScript_fn5y8")
+metadata/_custom_type_script = "uid://cnq6fe8slv75o"
+
+[node name="Textbox" parent="MorshuFroggit" unique_id=172425118 instance=ExtResource("8_motxk")]
+position = Vector2(0, -15)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2088410144]
+position = Vector2(90.5, 170.5)
+sprite_frames = SubResource("SpriteFrames_fn5y8")
+autoplay = "default"
+speed_scale = 0.9
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=660473713]
+position = Vector2(270.5, 180.5)
+sprite_frames = SubResource("SpriteFrames_fn5y8")
+autoplay = "default"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="." unique_id=116734211]
+position = Vector2(230.5, 160.5)
+sprite_frames = SubResource("SpriteFrames_ljjl8")
+autoplay = "default"
+speed_scale = 1.1
+
+[node name="Idealist" type="AnimatedSprite2D" parent="." unique_id=1160226537]
+position = Vector2(-230, 202)
+sprite_frames = SubResource("SpriteFrames_y75sm")
+script = ExtResource("4_j11kp")
+talk1 = Array[String](["Hehehe...", "I was wondering if somebody would figure that one out!", "It won't work on most doors though, the entry point is too far from the loading zone."])
+talk_end = Array[String](["I'm sure there's plenty of weird ways to use it that I didn't think of, though!"])
+metadata/_custom_type_script = "uid://60v7rjl1crdr"
+
+[node name="Textbox" parent="Idealist" unique_id=95731890 instance=ExtResource("8_motxk")]
+position = Vector2(0, -25)
+
+[node name="CameraLimitArea" type="Area2D" parent="." unique_id=729062086]
+script = ExtResource("12_0ulkg")
+limit_left = -640
+limit_right = 0
+metadata/_custom_type_script = "uid://c7byuwt70ctt1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitArea" unique_id=928078541]
+position = Vector2(-150, 130)
+shape = SubResource("RectangleShape2D_y75sm")

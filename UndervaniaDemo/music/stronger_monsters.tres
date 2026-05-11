@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AudioStreamGroup" load_steps=6 format=3 uid="uid://bbe4pebxm0aal"]
+
+[ext_resource type="Script" uid="uid://btrwqaax5uf6" path="res://audio_stream_group.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://bwp2wblpswef6" path="res://music/stronger monsters - buildup 1.wav" id="2"]
+[ext_resource type="AudioStream" uid="uid://xw36gfvw6eme" path="res://music/stronger monsters - buildup 2.wav" id="3"]
+[ext_resource type="AudioStream" uid="uid://bnmu60k72ge7x" path="res://music/stronger monsters - buildup 3.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://c5ht5dgubmpw" path="res://music/stronger monsters - buildup 4.wav" id="5"]
+
+[resource]
+script = ExtResource("1")
+streams = [ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5")]
+metadata/_custom_type_script = "uid://btrwqaax5uf6"

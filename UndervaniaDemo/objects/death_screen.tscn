@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://bj12fpar6toiw"]
+
+[ext_resource type="Script" uid="uid://b7aaykiq755db" path="res://objects/death_screen.gd" id="1_2s6mx"]
+[ext_resource type="AudioStream" uid="uid://cj4oar4ledrvl" path="res://sounds/break1.wav" id="2_cje2f"]
+[ext_resource type="AudioStream" uid="uid://duidmyhcb1msl" path="res://sounds/break2.wav" id="3_7luph"]
+[ext_resource type="Texture2D" uid="uid://chpcgtc5r15ht" path="res://sprites/heartbreak.png" id="4_2s6mx"]
+[ext_resource type="Texture2D" uid="uid://bi4lrw6bmyi6f" path="res://sprites/gameover.png" id="5_d0wba"]
+[ext_resource type="FontFile" uid="uid://c0g4qqod4g3cs" path="res://fonts/DeterminationMonoWebRegular-Z5oq.ttf" id="6_vuh76"]
+[ext_resource type="Script" uid="uid://bxvnq758qbcp3" path="res://music_player.gd" id="7_cje2f"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="8_7luph"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ihigi"]
+font = ExtResource("6_vuh76")
+font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7mxf"]
+atlas = ExtResource("4_2s6mx")
+region = Rect2(0, 0, 20, 20)
+
+[node name="DeathScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2s6mx")
+
+[node name="AudioBreak1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_cje2f")
+
+[node name="AudioBreak2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_7luph")
+
+[node name="GameOver" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -320.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+texture = ExtResource("5_d0wba")
+
+[node name="Label" type="Label" parent="GameOver"]
+visible = false
+modulate = Color(0.7, 0.7, 0.7, 1)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -252.0
+offset_top = 162.0
+offset_right = 251.99951
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press any button to continue"
+label_settings = SubResource("LabelSettings_ihigi")
+horizontal_alignment = 1
+
+[node name="Heart" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -10.0
+offset_top = -10.0
+offset_right = 30.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_m7mxf")
+
+[node name="MusicPlayer" type="Node" parent="."]
+script = ExtResource("7_cje2f")
+metadata/_custom_type_script = "uid://bxvnq758qbcp3"
+
+[node name="Textbox" parent="." instance=ExtResource("8_7luph")]
+position = Vector2(320, 360)
+scale = Vector2(2, 2)

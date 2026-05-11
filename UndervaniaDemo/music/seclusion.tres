@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AudioStreamGroup" load_steps=3 format=3 uid="uid://b82yixor8j1eg"]
+
+[ext_resource type="Script" uid="uid://btrwqaax5uf6" path="res://audio_stream_group.gd" id="2_bk4ft"]
+[ext_resource type="AudioStream" uid="uid://clpayx3b3mw5e" path="res://music/seclusion.wav" id="3_txhfc"]
+
+[resource]
+resource_name = "seclusion"
+script = ExtResource("2_bk4ft")
+streams = Array[AudioStream]([ExtResource("3_txhfc")])
+volume = 3
+title = "Dark Caves"
+title_delay = 12.5
+metadata/_custom_type_script = "uid://btrwqaax5uf6"

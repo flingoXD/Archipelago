@@ -30,6 +30,8 @@ ITEM_NAME_TO_ID = {
     "Act - Threat": 20,
     "Act - Check": 21,
     "Glide": 22,
+    "10 Gold": 23,
+    "Lantern": 24,
 }
 
 DEFAULT_ITEM_CLASSIFICATIONS = {
@@ -55,6 +57,8 @@ DEFAULT_ITEM_CLASSIFICATIONS = {
     "Act - Threat": ItemClassification.progression,
     "Act - Check": ItemClassification.useful,
     "Glide": ItemClassification.progression,
+    "10 Gold": ItemClassification.filler,
+    "Lantern": ItemClassification.useful,
 }
 
 class UVDemoItem(Item):
@@ -90,10 +94,12 @@ def create_all_items(world: UVDemoWorld) -> None:
         world.create_item("Act - Threat"),
         world.create_item("Act - Check"),
         world.create_item("Glide"),
+        world.create_item("Lantern"),
     ]
     for _ in range(2):
         itempool.append(world.create_item("Spider Cider"))
         itempool.append(world.create_item("Spider Donut"))
+    for _ in range(3): itempool.append(world.create_item("10 Gold"))
 
     number_of_items = len(itempool)
     number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))

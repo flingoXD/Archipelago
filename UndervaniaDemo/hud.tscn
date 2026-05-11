@@ -1,0 +1,161 @@
+[gd_scene load_steps=16 format=3 uid="uid://bg2b0tiy7dx84"]
+
+[ext_resource type="FontFile" uid="uid://w1w5t0oryk6v" path="res://fonts/Mars Needs Cunnilingus.ttf" id="1_37p78"]
+[ext_resource type="Script" uid="uid://b1kt7ls5dq6e" path="res://hud.gd" id="1_64ctp"]
+[ext_resource type="Texture2D" uid="uid://dwks3k5ens2wl" path="res://sprites/ability_check.png" id="3_1xsix"]
+[ext_resource type="Texture2D" uid="uid://cv5lj66bcd1fq" path="res://sprites/ability_attack.png" id="3_rftc2"]
+[ext_resource type="Texture2D" uid="uid://bx08ccqpvub0" path="res://sprites/ability_cheer.png" id="4_rftc2"]
+[ext_resource type="Texture2D" uid="uid://dj4cxlcnk8csm" path="res://sprites/ability_talk.png" id="5_61f8s"]
+[ext_resource type="Texture2D" uid="uid://c50gt2i368lya" path="res://sprites/ability_item.png" id="6_61f8s"]
+[ext_resource type="Texture2D" uid="uid://wohv3miys2ds" path="res://sprites/ability_threat.png" id="6_g10ll"]
+[ext_resource type="Texture2D" uid="uid://bahqqrhyee370" path="res://sprites/quitting.png" id="9_g10ll"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_64ctp"]
+line_spacing = 0.0
+font = ExtResource("1_37p78")
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37p78"]
+bg_color = Color(0.8, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64ctp"]
+bg_color = Color(1, 1, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xsix"]
+bg_color = Color(1, 1, 1, 0.5019608)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rftc2"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_klsip"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rftc2")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1xsix")
+}],
+"loop": true,
+"name": &"check",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rftc2")
+}],
+"loop": true,
+"name": &"cheer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_61f8s")
+}],
+"loop": true,
+"name": &"item",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_61f8s")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_g10ll")
+}],
+"loop": true,
+"name": &"threat",
+"speed": 5.0
+}]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_64ctp")
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 108.0
+offset_bottom = 36.0
+text = "Chara
+LV 1"
+label_settings = SubResource("LabelSettings_64ctp")
+uppercase = true
+
+[node name="HPLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -104.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = 36.0
+grow_horizontal = 0
+text = "20/20"
+label_settings = SubResource("LabelSettings_64ctp")
+horizontal_alignment = 2
+uppercase = true
+
+[node name="ProgressBar" type="ProgressBar" parent="HPLabel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_top = 36.0
+offset_right = -4.0
+offset_bottom = 64.0
+grow_horizontal = 0
+pivot_offset = Vector2(32, 0)
+theme_override_styles/background = SubResource("StyleBoxFlat_37p78")
+theme_override_styles/fill = SubResource("StyleBoxFlat_64ctp")
+max_value = 20.0
+step = 1.0
+value = 10.0
+show_percentage = false
+
+[node name="ActPopup" type="ProgressBar" parent="."]
+clip_children = 1
+layout_mode = 0
+offset_left = 592.0
+offset_top = 80.0
+offset_right = 632.0
+offset_bottom = 120.0
+theme_override_styles/background = SubResource("StyleBoxFlat_1xsix")
+theme_override_styles/fill = SubResource("StyleBoxFlat_rftc2")
+max_value = 1.0
+value = 0.36
+fill_mode = 3
+show_percentage = false
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ActPopup"]
+position = Vector2(20, 20)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_klsip")
+animation = &"item"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 4.0
+offset_top = 68.0
+offset_right = 94.0
+offset_bottom = 82.0
+texture = ExtResource("9_g10ll")

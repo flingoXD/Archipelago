@@ -1,0 +1,114 @@
+[gd_scene load_steps=16 format=3 uid="uid://cdey3c3ntbgnj"]
+
+[ext_resource type="Script" uid="uid://blxs4pp6odgi2" path="res://enemies/whimsdux.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://vewgft7o2fnh" path="res://sprites/whimsdux_death.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://6syjnlryq5nr" path="res://sprites/whimsdux.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bepevf2aesu4v" path="res://sprites/whimsdux_throw.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://bj2mo0xuvwhjb" path="res://sprites/whimsdux_windup.png" id="5"]
+[ext_resource type="Script" uid="uid://ddb2vxbtpe3u8" path="res://objects/damage_hitbox.gd" id="6"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lvncr"]
+atlas = ExtResource("3")
+region = Rect2(0, 0, 37, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_emfrv"]
+atlas = ExtResource("3")
+region = Rect2(0, 29, 37, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52se6"]
+atlas = ExtResource("4")
+region = Rect2(0, 0, 37, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t16bp"]
+atlas = ExtResource("4")
+region = Rect2(0, 29, 37, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_251mb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lvncr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_emfrv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52se6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t16bp")
+}],
+"loop": true,
+"name": &"throw",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
+"loop": true,
+"name": &"windup",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mydwq"]
+size = Vector2(13, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ae5u"]
+size = Vector2(9, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_flevq"]
+radius = 128.0
+
+[node name="Whimsdux" type="CharacterBody2D" node_paths=PackedStringArray("detection")]
+script = ExtResource("1")
+aggression = 3
+miniboss = true
+max_hp = 50
+atk = 6
+dropped_gold = 4
+dropped_xp = 6
+death_tex = ExtResource("2")
+gauntlet_fade = true
+detection = NodePath("DetectionRange")
+metadata/_custom_type_script = "uid://u6nmfmrmnplx"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_251mb")
+animation = &"windup"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_mydwq")
+
+[node name="DamageHitbox" type="Area2D" parent="."]
+script = ExtResource("6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox"]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_7ae5u")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_flevq")
+
+[node name="Textbox" parent="." instance=ExtResource("7")]
+position = Vector2(0, -15)

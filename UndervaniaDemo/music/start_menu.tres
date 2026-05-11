@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="AudioStreamGroup" load_steps=8 format=3 uid="uid://b6piny0ylyfiq"]
+
+[ext_resource type="Script" uid="uid://btrwqaax5uf6" path="res://audio_stream_group.gd" id="1_hnifc"]
+[ext_resource type="AudioStream" uid="uid://c00vfxidg6lmu" path="res://music/start menu - violin melody.wav" id="2_op2sb"]
+[ext_resource type="AudioStream" uid="uid://dfe5ym7g1v76n" path="res://music/start menu - violin harmony.wav" id="3_l58lk"]
+[ext_resource type="AudioStream" uid="uid://bt521rpn85xsd" path="res://music/start menu - viola ostinato.wav" id="4_oyk84"]
+[ext_resource type="AudioStream" uid="uid://d0pftqixajyy0" path="res://music/start menu - cello bass.wav" id="5_bt7vr"]
+[ext_resource type="AudioStream" uid="uid://cetcy33xvga3r" path="res://music/start menu - contrabass bass.wav" id="6_q2a5a"]
+[ext_resource type="AudioStream" uid="uid://eyrrs63nwuc2" path="res://music/start menu - guitar freedom.wav" id="7_op2sb"]
+
+[resource]
+resource_name = "start menu"
+script = ExtResource("1_hnifc")
+streams = Array[AudioStream]([ExtResource("2_op2sb"), ExtResource("3_l58lk"), ExtResource("4_oyk84"), ExtResource("5_bt7vr"), ExtResource("6_q2a5a"), ExtResource("7_op2sb")])
+metadata/_custom_type_script = "uid://btrwqaax5uf6"

@@ -1,0 +1,223 @@
+[gd_scene load_steps=24 format=3 uid="uid://c3onxv8j3fisk"]
+
+[ext_resource type="FontFile" uid="uid://c0g4qqod4g3cs" path="res://fonts/DeterminationMonoWebRegular-Z5oq.ttf" id="1_otbjg"]
+[ext_resource type="Script" uid="uid://dyxavv4n82cgw" path="res://objects/ability_cutscene.gd" id="1_xyrd8"]
+[ext_resource type="AudioStream" uid="uid://3y22lwnlmfq3" path="res://sounds/talk_textbox.wav" id="3_0d0kp"]
+[ext_resource type="AudioStream" uid="uid://bninp5d483mxh" path="res://music/ability gaining.wav" id="4_n87gm"]
+[ext_resource type="AudioStream" uid="uid://du7x6si3ecuu5" path="res://music/ability gained.wav" id="5_d7jqj"]
+[ext_resource type="Texture2D" uid="uid://c5gpo180o73eh" path="res://sprites/ability_cutscene_check.png" id="6_3ka1u"]
+[ext_resource type="Texture2D" uid="uid://b30dv7lx4ebmp" path="res://sprites/ability_cutscene_talk.png" id="6_iuwda"]
+[ext_resource type="Texture2D" uid="uid://dvncm8mxb4bou" path="res://sprites/ability_cutscene_cheer.png" id="7_fceu0"]
+[ext_resource type="Texture2D" uid="uid://0130j1w0oom6" path="res://sprites/ability_cutscene_glide.png" id="8_1ng4l"]
+[ext_resource type="Texture2D" uid="uid://dunw3te5dhcbp" path="res://sprites/ability_cutscene_threat.png" id="10_x83xd"]
+[ext_resource type="Texture2D" uid="uid://c80wcsta414bc" path="res://tilesets/intro1.png" id="11_fceu0"]
+[ext_resource type="Texture2D" uid="uid://b3ndv0b7erlps" path="res://tilesets/intro2.png" id="12_1ng4l"]
+[ext_resource type="Texture2D" uid="uid://uu1rkitnamrm" path="res://tilesets/intro3.png" id="13_d7ul6"]
+[ext_resource type="Texture2D" uid="uid://c8kxmcgey7h0n" path="res://tilesets/intro4.png" id="14_sag1h"]
+[ext_resource type="Texture2D" uid="uid://cr28gsr0utg37" path="res://tilesets/intro5.png" id="15_pycm5"]
+[ext_resource type="Texture2D" uid="uid://bql2no00cdddu" path="res://tilesets/intro6.png" id="16_dc8vv"]
+[ext_resource type="Texture2D" uid="uid://d28n0r63qdcti" path="res://tilesets/intro7.png" id="17_lpvrd"]
+[ext_resource type="Texture2D" uid="uid://bcndis35truss" path="res://tilesets/intro8.png" id="18_uo68p"]
+[ext_resource type="Texture2D" uid="uid://cfwpo7cus8n76" path="res://tilesets/intro9.png" id="19_3iob6"]
+[ext_resource type="Texture2D" uid="uid://6nipgorte22v" path="res://tilesets/introlast.png" id="20_sag1h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bhy7w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_3ka1u")
+}],
+"loop": true,
+"name": &"check",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_fceu0")
+}],
+"loop": true,
+"name": &"cheer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_1ng4l")
+}],
+"loop": true,
+"name": &"glide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_iuwda")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_x83xd")
+}],
+"loop": true,
+"name": &"threat",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ng4l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_fceu0")
+}],
+"loop": true,
+"name": &"intro1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_1ng4l")
+}],
+"loop": true,
+"name": &"intro2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_d7ul6")
+}],
+"loop": true,
+"name": &"intro3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_sag1h")
+}],
+"loop": true,
+"name": &"intro4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_pycm5")
+}],
+"loop": true,
+"name": &"intro5",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_dc8vv")
+}],
+"loop": true,
+"name": &"intro6",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_lpvrd")
+}],
+"loop": true,
+"name": &"intro7",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_uo68p")
+}],
+"loop": true,
+"name": &"intro8",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_3iob6")
+}],
+"loop": true,
+"name": &"intro9",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xyrd8"]
+font = ExtResource("1_otbjg")
+font_size = 32
+
+[node name="AbilityCutscene" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xyrd8")
+
+[node name="TalkSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0d0kp")
+volume_db = -6.0
+
+[node name="Timer" type="Timer" parent="TalkSound"]
+wait_time = 0.05
+autostart = true
+
+[node name="Gaining" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_n87gm")
+volume_db = -5.0
+
+[node name="Gained" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_d7jqj")
+volume_db = -5.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(320, 180)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_bhy7w")
+animation = &"check"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(320, 240)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_1ng4l")
+animation = &"intro1"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(320, -74)
+scale = Vector2(2, 2)
+texture = ExtResource("20_sag1h")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 56.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_top = 276.0
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.75
+anchor_right = 0.5
+anchor_bottom = 0.9114583
+offset_left = -280.0
+offset_top = -16.5
+offset_right = 280.0
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_xyrd8")
+autowrap_mode = 3
+visible_characters_behavior = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="TalkSound/Timer" to="." method="_on_timer_timeout"]

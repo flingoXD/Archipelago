@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://08t1f567cmfq"]
+
+[ext_resource type="Script" uid="uid://csbstpq4jivyr" path="res://bullets/rorrim_attack.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cevwjyexbhvv2" path="res://sprites/rorrim_attack.png" id="2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dc3ju"]
+size = Vector2(14, 23)
+
+[node name="RorrimAttack" type="Area2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1")
+atk = 5
+remove_after_damage = true
+collide_with_ground = true
+remove_on_ground = true
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1.5)
+texture = ExtResource("2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dc3ju")
+
+[connection signal="collided" from="." to="." method="_on_collided"]

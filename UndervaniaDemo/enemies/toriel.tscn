@@ -1,0 +1,327 @@
+[gd_scene load_steps=43 format=3 uid="uid://oua61jd0kpr"]
+
+[ext_resource type="Script" uid="uid://dl8fheokrd5g1" path="res://enemies/toriel.gd" id="1_int2g"]
+[ext_resource type="Resource" uid="uid://bjuc0s5wlpdui" path="res://music/sealed_vassal.tres" id="2_q8wdx"]
+[ext_resource type="AudioStream" uid="uid://cfkf68ynnsnfm" path="res://music/heartache.wav" id="2_rg7py"]
+[ext_resource type="Texture2D" uid="uid://b44wexyg8868b" path="res://sprites/toriel_angry.png" id="2_vj57x"]
+[ext_resource type="AudioStream" uid="uid://boihy5pegp30s" path="res://music/swish.wav" id="3_mmfyr"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="3_vj57x"]
+[ext_resource type="Texture2D" uid="uid://4spxwpspcmd1" path="res://sprites/toriel_shocked.png" id="4_int2g"]
+[ext_resource type="Texture2D" uid="uid://jwpk4kd0h6gn" path="res://sprites/toriel_death_silhouette.png" id="5_wr0xe"]
+[ext_resource type="Texture2D" uid="uid://dvwfxd5tid45u" path="res://sprites/toriel_sad.png" id="7_g70vc"]
+[ext_resource type="Texture2D" uid="uid://bjjo4p7q4ngqn" path="res://sprites/toriel_walk.png" id="7_h5vbp"]
+[ext_resource type="Texture2D" uid="uid://28p175nm2kyi" path="res://sprites/toriel_angry_walk.png" id="7_qi3ek"]
+[ext_resource type="Texture2D" uid="uid://c5kafndfamlkl" path="res://sprites/toriel_precolumn.png" id="7_ws5df"]
+[ext_resource type="Texture2D" uid="uid://ddarx0jgmbmh" path="res://sprites/toriel_column.png" id="8_424tj"]
+[ext_resource type="Texture2D" uid="uid://dd6uvuxdowego" path="res://sprites/toriel_focus.png" id="8_gwer6"]
+[ext_resource type="Texture2D" uid="uid://cgt6fk40tcw24" path="res://sprites/toriel_hug.png" id="8_hln4v"]
+[ext_resource type="Texture2D" uid="uid://gmpg55cdd4sq" path="res://sprites/toriel_hd_remaster.png" id="8_ycpwb"]
+[ext_resource type="Texture2D" uid="uid://cnl2yql0hgbrn" path="res://sprites/toriel_death.png" id="9_uk8ff"]
+[ext_resource type="Texture2D" uid="uid://tjuhuvnu2m17" path="res://sprites/toriel_worried.png" id="10_kfvig"]
+[ext_resource type="Texture2D" uid="uid://dx7263px8l5av" path="res://sprites/toriel_scream.png" id="12_08ec3"]
+[ext_resource type="Texture2D" uid="uid://4e1xlwodgg22" path="res://sprites/toriel_smoke.png" id="12_kfvig"]
+[ext_resource type="Texture2D" uid="uid://p88l2hsayg2t" path="res://sprites/toriel_widow.png" id="17_424tj"]
+[ext_resource type="Texture2D" uid="uid://bs0xpsfibmlt0" path="res://sprites/toriel_weave.png" id="17_bwi32"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kfvig"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 40.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+radial_velocity_min = -60.000023
+radial_velocity_max = -40.000023
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -300.0
+radial_accel_max = -300.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycpwb"]
+atlas = ExtResource("8_hln4v")
+region = Rect2(0, 0, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwer6"]
+atlas = ExtResource("8_hln4v")
+region = Rect2(32, 0, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08ec3"]
+atlas = ExtResource("8_hln4v")
+region = Rect2(0, 58, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hln4v"]
+atlas = ExtResource("7_h5vbp")
+region = Rect2(0, 0, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0w6i"]
+atlas = ExtResource("7_h5vbp")
+region = Rect2(32, 0, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws5df"]
+atlas = ExtResource("7_h5vbp")
+region = Rect2(0, 58, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_424tj"]
+atlas = ExtResource("7_h5vbp")
+region = Rect2(32, 58, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwi32"]
+atlas = ExtResource("7_h5vbp")
+region = Rect2(0, 0, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk8ff"]
+atlas = ExtResource("8_hln4v")
+region = Rect2(0, 58, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wr0xe"]
+atlas = ExtResource("8_hln4v")
+region = Rect2(32, 0, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mv647"]
+atlas = ExtResource("8_hln4v")
+region = Rect2(0, 0, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gtc2s"]
+atlas = ExtResource("7_qi3ek")
+region = Rect2(32, 0, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g70vc"]
+atlas = ExtResource("7_qi3ek")
+region = Rect2(0, 58, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfvig"]
+atlas = ExtResource("7_qi3ek")
+region = Rect2(32, 58, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5vbp"]
+atlas = ExtResource("7_qi3ek")
+region = Rect2(0, 0, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gv1ai"]
+atlas = ExtResource("17_bwi32")
+region = Rect2(0, 0, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_miut5"]
+atlas = ExtResource("17_bwi32")
+region = Rect2(32, 0, 32, 58)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rg7py"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_424tj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ws5df")
+}],
+"loop": false,
+"name": &"column",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_uk8ff")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vj57x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_gwer6")
+}],
+"loop": true,
+"name": &"focus",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ycpwb")
+}],
+"loop": true,
+"name": &"hd_remaster",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycpwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwer6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08ec3")
+}],
+"loop": false,
+"name": &"hug",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ws5df")
+}],
+"loop": true,
+"name": &"precolumn",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_g70vc")
+}],
+"loop": true,
+"name": &"sad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_08ec3")
+}],
+"loop": true,
+"name": &"scream",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_int2g")
+}],
+"loop": true,
+"name": &"shocked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hln4v")
+}],
+"loop": true,
+"name": &"smile",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0w6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ws5df")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_424tj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwi32")
+}],
+"loop": true,
+"name": &"smile_walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk8ff")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wr0xe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mv647")
+}],
+"loop": false,
+"name": &"unhug",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gtc2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g70vc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfvig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5vbp")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gv1ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_miut5")
+}],
+"loop": true,
+"name": &"weave",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_424tj")
+}],
+"loop": true,
+"name": &"widow",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_kfvig")
+}],
+"loop": true,
+"name": &"worried",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6715"]
+size = Vector2(12, 50)
+
+[node name="Toriel" type="CharacterBody2D"]
+script = ExtResource("1_int2g")
+sealed_vassal = ExtResource("2_q8wdx")
+boss_name = "Toriel"
+aggression = 24
+boss_music = ExtResource("2_rg7py")
+end_music = ExtResource("3_mmfyr")
+boss_bar_after_animation = true
+enemy_id = "toriel"
+max_hp = 440
+atk = 6
+def = 1
+dropped_xp = 150
+death_tex = ExtResource("5_wr0xe")
+knockback = 0
+metadata/_custom_type_script = "uid://b1o5dt0adx7r6"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -46.0
+offset_top = -49.0
+offset_right = 49.0
+offset_bottom = 43.0
+
+[node name="RoaringFraudParticles" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.5019608)
+emitting = false
+amount = 200
+texture = ExtResource("12_kfvig")
+lifetime = 0.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_kfvig")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_rg7py")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_i6715")
+
+[node name="Textbox" parent="." instance=ExtResource("3_vj57x")]
+position = Vector2(0, -30)

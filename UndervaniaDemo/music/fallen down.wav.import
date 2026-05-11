@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dy6ytwee0liqx"
+path="res://.godot/imported/fallen down.wav-96f8e3db3177b66737422d372f19b30d.sample"
+
+[deps]
+
+source_file="res://music/fallen down.wav"
+dest_files=["res://.godot/imported/fallen down.wav-96f8e3db3177b66737422d372f19b30d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=316205
+edit/loop_end=2218840
+compress/mode=0

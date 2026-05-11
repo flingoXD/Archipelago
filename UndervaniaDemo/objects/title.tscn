@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://dxb4npvypgseq"]
+
+[ext_resource type="FontFile" uid="uid://bpormot3svagd" path="res://fonts/undertale-monster-friend-back.otf" id="1"]
+[ext_resource type="FontFile" uid="uid://cnvyluobhysya" path="res://fonts/undertale-monster-friend-front.otf" id="2"]
+[ext_resource type="FontFile" uid="uid://c0g4qqod4g3cs" path="res://fonts/DeterminationMonoWebRegular-Z5oq.ttf" id="3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8y6t8"]
+font = ExtResource("1")
+font_size = 27
+font_color = Color(0.5, 0.5, 0.5, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_w8jvl"]
+font = ExtResource("2")
+font_size = 27
+
+[sub_resource type="LabelSettings" id="LabelSettings_4tuia"]
+font = ExtResource("3")
+font_size = 32
+font_color = Color(1, 1, 0, 1)
+
+[node name="Title" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TitleBack" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -8.5
+offset_top = 20.0
+offset_right = 288.5
+offset_bottom = 74.0
+grow_horizontal = 2
+text = "undeRvania"
+label_settings = SubResource("LabelSettings_8y6t8")
+
+[node name="Heart" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 143.5
+offset_top = 27.0
+offset_right = 159.5
+offset_bottom = 43.0
+color = Color(1, 0, 0, 1)
+
+[node name="TitleFore" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -8.5
+offset_top = 20.0
+offset_right = 288.5
+offset_bottom = 74.0
+grow_horizontal = 2
+text = "undeRvania"
+label_settings = SubResource("LabelSettings_w8jvl")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 108.0
+offset_top = 55.0
+offset_right = 172.0
+offset_bottom = 88.0
+grow_horizontal = 2
+text = "Demo"
+label_settings = SubResource("LabelSettings_4tuia")
+horizontal_alignment = 1

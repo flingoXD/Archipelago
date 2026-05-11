@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkmgcv0biouvf"]
+
+[ext_resource type="Script" uid="uid://b5n7tn7le7ifp" path="res://bullets/stalactite.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://tq3eta2vaalc" path="res://sprites/decibat_STALACTITE.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://bg2aphvdbhkec" path="res://sounds/switch.wav" id="3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjocx"]
+size = Vector2(6, 17)
+
+[node name="Stalactite" type="Area2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1")
+atk = 6
+remove_after_damage = true
+collide_with_ground = true
+remove_on_ground = true
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 0.5)
+texture = ExtResource("2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_qjocx")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 200)
+collision_mask = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3")
+
+[connection signal="collided" from="." to="." method="_on_collided"]

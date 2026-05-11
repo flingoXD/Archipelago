@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ropnsai8uo7t"
+path="res://.godot/imported/once upon a time.wav-ba209f72b76dd2242b1a58ad5646d2e8.sample"
+
+[deps]
+
+source_file="res://music/once upon a time.wav"
+dest_files=["res://.godot/imported/once upon a time.wav-ba209f72b76dd2242b1a58ad5646d2e8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=0
+compress/mode=0

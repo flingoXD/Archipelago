@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://rvdi76m5jx32"
+path="res://.godot/imported/ruins - piano high.wav-9bb0eb6de487bf7460543fa342034f8e.sample"
+
+[deps]
+
+source_file="res://music/ruins - piano high.wav"
+dest_files=["res://.godot/imported/ruins - piano high.wav-9bb0eb6de487bf7460543fa342034f8e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=577784
+edit/loop_end=5773126
+compress/mode=0

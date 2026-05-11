@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bytuv3fk4k8d4"
+path="res://.godot/imported/tempo giusto.wav-fc35ec947cbafa1ff937e1296c965578.sample"
+
+[deps]
+
+source_file="res://music/tempo giusto.wav"
+dest_files=["res://.godot/imported/tempo giusto.wav-fc35ec947cbafa1ff937e1296c965578.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=563106
+edit/loop_end=9316895
+compress/mode=0

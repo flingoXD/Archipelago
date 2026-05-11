@@ -1,0 +1,380 @@
+[gd_scene load_steps=8 format=3 uid="uid://4epdleqtl8rv"]
+
+[ext_resource type="Texture2D" uid="uid://dn7dwneeokqrb" path="res://sprites/menu_box.png" id="1_5tt2m"]
+[ext_resource type="Script" uid="uid://dnmnj3p3fnpme" path="res://inventory.gd" id="1_dw5ng"]
+[ext_resource type="PackedScene" uid="uid://tdxcq2n4sxjk" path="res://objects/start_submenu_option.tscn" id="2_dw5ng"]
+[ext_resource type="PackedScene" uid="uid://b3ta5ciyicf81" path="res://objects/inventory_option.tscn" id="3_dw5ng"]
+[ext_resource type="FontFile" uid="uid://c0g4qqod4g3cs" path="res://fonts/DeterminationMonoWebRegular-Z5oq.ttf" id="5_dw5ng"]
+
+[sub_resource type="GDScript" id="GDScript_dw5ng"]
+script/source = "extends NinePatchRect
+
+@warning_ignore(\"unused_signal\")
+signal selected(item)
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_dw5ng"]
+font = ExtResource("5_dw5ng")
+
+[node name="Inventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dw5ng")
+
+[node name="Menu" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -210.0
+offset_bottom = -173.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1_5tt2m")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="ItemOption" parent="Menu" node_paths=PackedStringArray("neighbor_right") instance=ExtResource("2_dw5ng")]
+layout_mode = 1
+offset_left = -40.0
+offset_right = -8.0
+text = "ITEM"
+neighbor_right = NodePath("../StatOption")
+
+[node name="StatOption" parent="Menu" node_paths=PackedStringArray("neighbor_left") instance=ExtResource("2_dw5ng")]
+layout_mode = 1
+offset_left = 13.0
+offset_right = 45.0
+text = "STAT"
+neighbor_left = NodePath("../ItemOption")
+
+[node name="Items" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -130.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1_5tt2m")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+script = SubResource("GDScript_dw5ng")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Items"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 132.0
+offset_bottom = 90.0
+metadata/_edit_lock_ = true
+
+[node name="InventoryOption" parent="Items/VBoxContainer" node_paths=PackedStringArray("neighbor_right", "neighbor_up", "neighbor_down") instance=ExtResource("3_dw5ng")]
+layout_mode = 2
+neighbor_right = NodePath("../../VBoxContainer2/InventoryOption5")
+neighbor_up = NodePath("../../VBoxContainer2/InventoryOption8")
+neighbor_down = NodePath("../InventoryOption2")
+
+[node name="InventoryOption2" parent="Items/VBoxContainer" node_paths=PackedStringArray("neighbor_right", "neighbor_up", "neighbor_down") instance=ExtResource("3_dw5ng")]
+layout_mode = 2
+neighbor_right = NodePath("../../VBoxContainer2/InventoryOption6")
+neighbor_up = NodePath("../InventoryOption")
+neighbor_down = NodePath("../InventoryOption3")
+
+[node name="InventoryOption3" parent="Items/VBoxContainer" node_paths=PackedStringArray("neighbor_right", "neighbor_up", "neighbor_down") instance=ExtResource("3_dw5ng")]
+layout_mode = 2
+neighbor_right = NodePath("../../VBoxContainer2/InventoryOption7")
+neighbor_up = NodePath("../InventoryOption2")
+neighbor_down = NodePath("../InventoryOption4")
+
+[node name="InventoryOption4" parent="Items/VBoxContainer" node_paths=PackedStringArray("neighbor_right", "neighbor_up", "neighbor_down") instance=ExtResource("3_dw5ng")]
+layout_mode = 2
+neighbor_right = NodePath("../../VBoxContainer2/InventoryOption8")
+neighbor_up = NodePath("../InventoryOption3")
+neighbor_down = NodePath("../../VBoxContainer2/InventoryOption5")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Items"]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 10.0
+offset_right = 272.0
+offset_bottom = 90.0
+metadata/_edit_lock_ = true
+
+[node name="InventoryOption5" parent="Items/VBoxContainer2" node_paths=PackedStringArray("neighbor_left", "neighbor_up", "neighbor_down") instance=ExtResource("3_dw5ng")]
+layout_mode = 2
+neighbor_left = NodePath("../../VBoxContainer/InventoryOption")
+neighbor_up = NodePath("../../VBoxContainer/InventoryOption4")
+neighbor_down = NodePath("../InventoryOption6")
+
+[node name="InventoryOption6" parent="Items/VBoxContainer2" node_paths=PackedStringArray("neighbor_left", "neighbor_up", "neighbor_down") instance=ExtResource("3_dw5ng")]
+layout_mode = 2
+neighbor_left = NodePath("../../VBoxContainer/InventoryOption2")
+neighbor_up = NodePath("../InventoryOption5")
+neighbor_down = NodePath("../InventoryOption7")
+
+[node name="InventoryOption7" parent="Items/VBoxContainer2" node_paths=PackedStringArray("neighbor_left", "neighbor_up", "neighbor_down") instance=ExtResource("3_dw5ng")]
+layout_mode = 2
+neighbor_left = NodePath("../../VBoxContainer/InventoryOption3")
+neighbor_up = NodePath("../InventoryOption6")
+neighbor_down = NodePath("../InventoryOption8")
+
+[node name="InventoryOption8" parent="Items/VBoxContainer2" node_paths=PackedStringArray("neighbor_left", "neighbor_up", "neighbor_down") instance=ExtResource("3_dw5ng")]
+layout_mode = 2
+neighbor_left = NodePath("../../VBoxContainer/InventoryOption4")
+neighbor_up = NodePath("../InventoryOption7")
+neighbor_down = NodePath("../../VBoxContainer/InventoryOption")
+
+[node name="ItemDesc" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = 76.0
+offset_bottom = 148.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1_5tt2m")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="Label" type="Label" parent="ItemDesc"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -28.5
+offset_right = 140.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Bepis.
+Has a distinct, oddly glooby
+flavor."
+label_settings = SubResource("LabelSettings_dw5ng")
+autowrap_mode = 3
+visible_characters_behavior = 1
+
+[node name="Label2" type="Label" parent="ItemDesc"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -28.5
+offset_right = -123.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "* 
+* "
+label_settings = SubResource("LabelSettings_dw5ng")
+autowrap_mode = 3
+visible_characters_behavior = 1
+
+[node name="ItemUse" type="NinePatchRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1_5tt2m")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[node name="UseOption" parent="ItemUse" node_paths=PackedStringArray("neighbor_right") instance=ExtResource("2_dw5ng")]
+layout_mode = 1
+offset_left = -40.0
+offset_right = -8.0
+text = "USE"
+neighbor_right = NodePath("../DropOption")
+
+[node name="DropOption" parent="ItemUse" node_paths=PackedStringArray("neighbor_left") instance=ExtResource("2_dw5ng")]
+layout_mode = 1
+offset_left = 13.0
+offset_right = 45.0
+text = "DROP"
+neighbor_left = NodePath("../UseOption")
+
+[node name="Stats" type="NinePatchRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -130.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1_5tt2m")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+script = SubResource("GDScript_dw5ng")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Stats"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 115.0
+offset_right = 132.0
+offset_bottom = 195.0
+metadata/_edit_lock_ = true
+
+[node name="Act1Label" type="Label" parent="Stats/VBoxContainer"]
+layout_mode = 2
+text = "ACT 1: Cheer"
+label_settings = SubResource("LabelSettings_dw5ng")
+
+[node name="Act2Label" type="Label" parent="Stats/VBoxContainer"]
+layout_mode = 2
+text = "ACT 2: Threat"
+label_settings = SubResource("LabelSettings_dw5ng")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Stats"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 115.0
+offset_right = 260.0
+offset_bottom = 195.0
+metadata/_edit_lock_ = true
+
+[node name="WeaponLabel" type="Label" parent="Stats/VBoxContainer2"]
+layout_mode = 2
+text = "WPN: Toy Knife"
+label_settings = SubResource("LabelSettings_dw5ng")
+
+[node name="ArmorLabel" type="Label" parent="Stats/VBoxContainer2"]
+layout_mode = 2
+text = "ARM: Ribbon"
+label_settings = SubResource("LabelSettings_dw5ng")
+
+[node name="NameLabel" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 60.0
+offset_bottom = 33.0
+text = "Chara"
+label_settings = SubResource("LabelSettings_dw5ng")
+
+[node name="LevelLabel" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 10.0
+offset_right = 140.0
+offset_bottom = 33.0
+text = "LV 1"
+label_settings = SubResource("LabelSettings_dw5ng")
+
+[node name="HpLabel" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 10.0
+offset_right = 212.0
+offset_bottom = 33.0
+text = "HP 20/20"
+label_settings = SubResource("LabelSettings_dw5ng")
+
+[node name="AtkLabel" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 31.0
+offset_right = 60.0
+offset_bottom = 54.0
+text = "AT 0 (0)"
+label_settings = SubResource("LabelSettings_dw5ng")
+
+[node name="DefLabel" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 52.0
+offset_right = 60.0
+offset_bottom = 75.0
+text = "DF 0 (0)"
+label_settings = SubResource("LabelSettings_dw5ng")
+
+[node name="ExpLabel" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 31.0
+offset_right = 196.0
+offset_bottom = 54.0
+text = "EXP: 0"
+label_settings = SubResource("LabelSettings_dw5ng")
+
+[node name="GoldLabel" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 148.0
+offset_top = 52.0
+offset_right = 228.0
+offset_bottom = 75.0
+text = "GOLD: 0"
+label_settings = SubResource("LabelSettings_dw5ng")
+
+[node name="AbilityLabel" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 73.0
+offset_right = 84.0
+offset_bottom = 96.0
+text = "Abilities: Glide, Lantern"
+label_settings = SubResource("LabelSettings_dw5ng")
+
+[node name="ActLabel" type="Label" parent="Stats"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 94.0
+offset_right = 220.0
+offset_bottom = 117.0
+text = "ACTs: Talk, Check"
+label_settings = SubResource("LabelSettings_dw5ng")
+
+[connection signal="inventory_exit" from="." to="." method="_on_inventory_exit"]
+[connection signal="selected" from="Menu/ItemOption" to="." method="_on_item_option_selected"]
+[connection signal="selected" from="Menu/StatOption" to="." method="_on_stat_option_selected"]
+[connection signal="selected" from="Items" to="." method="_on_items_selected"]
+[connection signal="selected" from="ItemUse/UseOption" to="." method="_on_use_option_selected"]
+[connection signal="selected" from="ItemUse/DropOption" to="." method="_on_drop_option_selected"]
+[connection signal="selected" from="Stats" to="." method="_on_items_selected"]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://xnvujepu4b8n"
+path="res://.godot/imported/too much.wav-30d9f640f9fa9f40cf6378933000bb7d.sample"
+
+[deps]
+
+source_file="res://music/too much.wav"
+dest_files=["res://.godot/imported/too much.wav-30d9f640f9fa9f40cf6378933000bb7d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=9553862
+compress/mode=0

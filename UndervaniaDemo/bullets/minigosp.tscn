@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnbset81dlari"]
+
+[ext_resource type="Script" uid="uid://cdtiuv4dgd81e" path="res://bullets/minigosp.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://fwe2ygpmn63m" path="res://sprites/minigosp.png" id="2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0kl0x"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 14, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxrio"]
+atlas = ExtResource("2")
+region = Rect2(0, 12, 14, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2s6pb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0kl0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxrio")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_60qtf"]
+size = Vector2(8, 8)
+
+[node name="Minigosp" type="Area2D"]
+script = ExtResource("1")
+atk = 5
+remove_after_damage = true
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -46.0
+offset_top = -49.0
+offset_right = 49.0
+offset_bottom = 43.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2s6pb")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_60qtf")

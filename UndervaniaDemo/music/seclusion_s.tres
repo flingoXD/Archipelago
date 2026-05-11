@@ -1,0 +1,10 @@
+[gd_resource type="AudioStream" script_class="AudioStreamSelection" load_steps=3 format=3 uid="uid://bqm3nnbyakkuu"]
+
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="1_861rr"]
+[ext_resource type="Resource" uid="uid://b82yixor8j1eg" path="res://music/seclusion.tres" id="2_gmd1w"]
+
+[resource]
+script = ExtResource("1_861rr")
+stream_group = ExtResource("2_gmd1w")
+stream_mask = 1
+metadata/_custom_type_script = "uid://by7e4dqljavyr"

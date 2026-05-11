@@ -1,0 +1,101 @@
+[gd_scene load_steps=14 format=4 uid="uid://br6b76re8dwhu"]
+
+[ext_resource type="Script" uid="uid://c2fgvgrhhytqh" path="res://level.gd" id="1_djsnv"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2_5c13u"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_aeltw"]
+[ext_resource type="Resource" uid="uid://b4hkqa3lucj3m" path="res://music/toofar.tres" id="3_f05og"]
+[ext_resource type="Shader" uid="uid://diu408fmisvhr" path="res://objects/god_rays.gdshader" id="4_bt4aa"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="5_f05og"]
+[ext_resource type="TileSet" uid="uid://b3v885he5ubyf" path="res://tilesets/strytax_thorns.tres" id="7_id7r1"]
+
+[sub_resource type="AudioStream" id="AudioStream_bt4aa"]
+script = ExtResource("2_5c13u")
+stream_group = ExtResource("3_f05og")
+stream_mask = 1
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_id7r1"]
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_bt4aa"]
+noise = SubResource("FastNoiseLite_id7r1")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v07gs"]
+shader = ExtResource("4_bt4aa")
+shader_parameter/skew = 0.2
+shader_parameter/time_scale = 0.02
+shader_parameter/noise2D = SubResource("NoiseTexture2D_bt4aa")
+shader_parameter/color = Color(1, 1, 1, 0.2509804)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bt4aa"]
+size = Vector2(20, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f05og"]
+size = Vector2(200, 20)
+
+[node name="OldTomb2" type="Node2D"]
+script = ExtResource("1_djsnv")
+default_point = Vector2i(30, 180)
+limit_top = -160
+limit_bottom = 480
+limit_right = 640
+stream = SubResource("AudioStream_bt4aa")
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -71.0
+offset_top = -615.0
+offset_right = 942.0
+offset_bottom = 324.0
+
+[node name="GodRays" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_v07gs")
+offset_left = -105.0
+offset_top = -316.0
+offset_right = 495.0
+offset_bottom = 284.0
+
+[node name="Walls" type="TileMapLayer" parent="."]
+modulate = Color(0.5, 0.5, 0.5, 1)
+tile_map_data = PackedByteArray("AAAAAAAAAQACAA8AAAAAAAEAAQACAA8AAAAAAAIAAQACAA8AAAACAAsAAQACAA8AAAAPAAUABgABAAAAAAAPAAYAAQACAA8AAAAPAAcAAQACAA8AAAAPAAgAAQACAA8AAAAPAAkAAQACAA8AAAAPAAoAAQACAA8AAAAPAAsAAQACAA8AAAACAAkABgABAAAAAAACAAoAAQACAA8AAAAAAAsAAQACAA8AAAABAAsAAQACAA8AAAAAAAoAAQACAA8AAAAAAAkABgABAAAAAAABAAkABgABAAAAAAABAAoAAQACAA8AAAAMAAsAAQACAA8AAAANAAsAAQACAA8AAAANAAoAAQACAA8AAAAOAAoAAQACAA8AAAAOAAsAAQACAA8AAAAOAAkAAQACAA8AAAANAAkAAQACAA8AAAANAAgAAQACAA8AAAAMAAkAAQACAA8AAAAMAAoAAQACAA8AAAAMAAgAAQACAA8AAAAOAAgAAQACAA8AAAAMAAYAAQACAA8AAAAMAAUABgABAAAAAAANAAYAAQACAA8AAAANAAcAAQACAA8AAAANAAUABgABAAAAAAAOAAUABgABAAAAAAAOAAYAAQACAA8AAAAOAAcAAQACAA8AAAAMAAcAAQACAA8AAAAMAP7/AQACAA8AAAANAP7/AQACAA8AAAAOAP7/AQACAA8AAAAPAP7/AQACAA8AAAAMAPz/AQACAA8AAAAMAP3/AQACAA8AAAANAP3/AQACAA8AAAANAPz/AQACAA8AAAAOAPz/AQACAA8AAAAPAPz/AQACAA8AAAAPAP3/AQACAA8AAAAOAP3/AQACAA8AAAACAP7/AQACAA8AAAACAP3/AQACAA8AAAACAPz/AQACAA8AAAABAPz/AQACAA8AAAAAAPz/AQACAA8AAAAAAP3/AQACAA8AAAAAAP7/AQACAA8AAAAAAP//AQACAA8AAAABAP7/AQACAA8AAAABAP3/AQACAA8AAAD//wkABgAAAAAAAAAQAAUABgACAAAAAAARAAUAAQAGABEAAAARAAQAAQAGABEAAAARAAMAAQAGABEAAAARAAIAAQAGABEAAAARAAEAAQAGABEAAAARAAAAAQAGABEAAAARAP//AQAGABEAAAARAP7/AQAGABEAAAAQAP7/AQAGABEAAAD+/wkAAQAGABEAAAD+/wgAAQAGABEAAAD+/wcAAQAGABEAAAD+/wYAAQAGABEAAAD+/wUAAQAGABEAAAD+/wQAAQAGABEAAAD+/wMAAQAGABEAAAD+/wIAAQAGABEAAAD//wIAAQAGABEAAAADAPn/AQAGABEAAAADAAoAAQACAA8AAAADAAsAAQACAA8AAAAMAAwAAQAGABEAAAAMAA0AAQAGABEAAAAMAA4AAQAGABEAAAADAA4AAQAGABEAAAADAA0AAQAGABEAAAADAAwAAQAGABEAAAADAP7/AQACAA8AAAADAP3/AQACAA8AAAADAPz/AQACAA8AAAADAPv/AQAGABEAAAADAPr/AQAGABEAAAAMAPn/AQAGABEAAAAMAPr/AQAGABEAAAAMAPv/AQAGABEAAAADAAkABgABAAAAAAAEAAkABgACAAAAAAALAAUABgAAAAAAAAAMAPj/AQAGABEAAAAMAPf/AQAGABEAAAAMAPb/AQAGABEAAAAMAPX/AQAGABEAAAAMAPT/AQAGABEAAAAMAPP/AQAGABEAAAADAPj/AQAGABEAAAADAPf/AQAGABEAAAADAPb/AQAGABEAAAADAPX/AQAGABEAAAADAPT/AQAGABEAAAADAPP/AQAGABEAAAA=")
+tile_set = ExtResource("2_aeltw")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("5_f05og")
+destination = "old_tomb"
+entry_point = Vector2i(290, -40)
+left_facing = 1
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(-10, 120)
+shape = SubResource("RectangleShape2D_bt4aa")
+
+[node name="InteractDoor2" type="Area2D" parent="."]
+script = ExtResource("5_f05og")
+destination = "start_room"
+entry_point = Vector2i(170, 180)
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor2"]
+position = Vector2(160, 250)
+shape = SubResource("RectangleShape2D_f05og")
+
+[node name="InteractDoor3" type="Area2D" parent="."]
+script = ExtResource("5_f05og")
+destination = "old_tomb3"
+entry_point = Vector2i(30, 60)
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor3"]
+position = Vector2(330, 40)
+shape = SubResource("RectangleShape2D_bt4aa")
+
+[node name="Thorns" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAMAAYAAAAAAAAABAANAAYAAAAAAAAABAAOAAYAAAAAAAAABAADAAoAAAAAAAAABAAEAAoAAAAAAAAABAAFAAkAAAAAAAAAAgA=")
+tile_set = ExtResource("7_id7r1")
+collision_enabled = false

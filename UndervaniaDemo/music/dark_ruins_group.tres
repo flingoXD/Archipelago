@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="AudioStreamGroup" load_steps=12 format=3 uid="uid://1jim1a1nieoy"]
+
+[ext_resource type="Script" uid="uid://btrwqaax5uf6" path="res://audio_stream_group.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://c0gmn5kmljjrs" path="res://music/dark ruins - contrabass ambiance.wav" id="2"]
+[ext_resource type="AudioStream" uid="uid://cltnn1sdsxnlq" path="res://music/dark ruins - choir ambiance.wav" id="3"]
+[ext_resource type="AudioStream" uid="uid://cd2pg1tloirur" path="res://music/dark ruins - bass clarinet ostinato.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://urxuaqxi6a3k" path="res://music/dark ruins - bassoon bass.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://dmeqxoorjeeo6" path="res://music/dark ruins - viola arpeggio.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://tacw74ds2cam" path="res://music/dark ruins - viola melody 1.wav" id="7"]
+[ext_resource type="AudioStream" uid="uid://dfc2nfb72dq03" path="res://music/dark ruins - bassoon melody 2.wav" id="8"]
+[ext_resource type="AudioStream" uid="uid://bkmw2lm2jtgkh" path="res://music/dark ruins - clarinet ostinato.wav" id="9"]
+[ext_resource type="AudioStream" uid="uid://850wyjsoq0mt" path="res://music/dark ruins - violin ambiance.wav" id="10"]
+[ext_resource type="AudioStream" uid="uid://ct38jdbfuuly0" path="res://music/dark ruins - glockenspiel melody.wav" id="11"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "dark ruins"
+streams = [ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6"), ExtResource("7"), ExtResource("8"), ExtResource("9"), ExtResource("10"), ExtResource("11")]
+title = "Dark Ruins"
+title_delay = 18.0
+metadata/_custom_type_script = "uid://btrwqaax5uf6"

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bw5mq5urbqt4p"]
+
+[ext_resource type="Script" uid="uid://p4wbah5u4t4f" path="res://bullets/the_reason_why_i_keep_dying_to_napstablook.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://c4y1333qmfndc" path="res://sprites/the_reason_why_i_keep_dying_to_napstablook.png" id="2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_14qi1"]
+size = Vector2(2, 12)
+
+[node name="TheReasonWhyIKeepDyingToNapstablook" type="Area2D"]
+script = ExtResource("1")
+atk = 5
+remove_after_damage = true
+physical = false
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_14qi1")

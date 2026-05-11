@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dfcjb5t64yfux"
+path="res://.godot/imported/city of pink and gold - colosseum.wav-5ece62955e0c55eed3e8df8f44659381.sample"
+
+[deps]
+
+source_file="res://music/city of pink and gold - colosseum.wav"
+dest_files=["res://.godot/imported/city of pink and gold - colosseum.wav-5ece62955e0c55eed3e8df8f44659381.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=1740273
+edit/loop_end=6948731
+compress/mode=0

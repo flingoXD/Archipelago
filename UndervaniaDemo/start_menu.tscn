@@ -1,0 +1,294 @@
+[gd_scene load_steps=29 format=4 uid="uid://3lrwcyqqjq3k"]
+
+[ext_resource type="Script" uid="uid://bwlgamhd1vpe3" path="res://start_menu.gd" id="1_ctwoq"]
+[ext_resource type="PackedScene" uid="uid://d0pmmo0ji1nmg" path="res://player.tscn" id="1_ia0g5"]
+[ext_resource type="Resource" uid="uid://b6piny0ylyfiq" path="res://music/start_menu.tres" id="2_acoh7"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_vpdu5"]
+[ext_resource type="Texture2D" uid="uid://bi4or6ah8tkoh" path="res://sprites/ruins_big_door.png" id="3_vpdu5"]
+[ext_resource type="PackedScene" uid="uid://dxb4npvypgseq" path="res://objects/title.tscn" id="4_gfl6h"]
+[ext_resource type="Script" uid="uid://bxvnq758qbcp3" path="res://music_player.gd" id="4_v2mkm"]
+[ext_resource type="Texture2D" uid="uid://bp7c0jbm3a3jp" path="res://sprites/chairiel.png" id="9_acoh7"]
+[ext_resource type="Texture2D" uid="uid://fp0jgsyo5p6d" path="res://sprites/chairiel_getup.png" id="10_6p4e4"]
+[ext_resource type="Texture2D" uid="uid://d0fvgb1ambj7e" path="res://sprites/decibat_sleepy.png" id="11_6p4e4"]
+[ext_resource type="Texture2D" uid="uid://gmpg55cdd4sq" path="res://sprites/toriel_hd_remaster.png" id="11_ld0yp"]
+[ext_resource type="SpriteFrames" uid="uid://ckiga2s1vuavl" path="res://sprites/flowey.tres" id="12_acoh7"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="13_jxkec"]
+[ext_resource type="SpriteFrames" uid="uid://bd53o8ut1f45b" path="res://sprites/strytax.tres" id="13_w8jvl"]
+[ext_resource type="SpriteFrames" uid="uid://c4nt6hku34x63" path="res://sprites/napstablook.tres" id="14_6p4e4"]
+[ext_resource type="PackedScene" uid="uid://bjt8ii21blp2l" path="res://silly_shaders/silly_shader.tscn" id="15_jxkec"]
+[ext_resource type="PackedScene" uid="uid://6lxxrlwawxpr" path="res://objects/start_menu_option.tscn" id="16_8y6t8"]
+
+[sub_resource type="GDScript" id="GDScript_6p4e4"]
+script/source = "extends NPC
+
+var flowey_talk = preload(\"res://sounds/flowey_talk.wav\")
+
+func talk(_act):
+	$Textbox.set_talk_sound(flowey_talk)
+	await $Textbox.show_text(\"Don't you have anything better to do?\")
+"
+
+[sub_resource type="GDScript" id="GDScript_jxkec"]
+script/source = "extends NPC
+
+const text = [
+	[
+		\"oh... hi...\",
+		\"i put this hat back on for some\\nreason\",
+		\"i can keep it on if you like...\",
+		\"or not...\"
+	],
+	[
+		\"...\"
+	]
+]
+var talked_to = false
+
+func talk(_act):
+	await $Textbox.show_text(text[1 if talked_to else 0])
+	talked_to = true
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_icqcr"]
+atlas = ExtResource("10_6p4e4")
+region = Rect2(0, 0, 63, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgtpl"]
+atlas = ExtResource("10_6p4e4")
+region = Rect2(63, 0, 63, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vn62g"]
+atlas = ExtResource("10_6p4e4")
+region = Rect2(0, 58, 63, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adqln"]
+atlas = ExtResource("10_6p4e4")
+region = Rect2(63, 58, 63, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyli0"]
+atlas = ExtResource("10_6p4e4")
+region = Rect2(0, 116, 63, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dmbo"]
+atlas = ExtResource("10_6p4e4")
+region = Rect2(63, 116, 63, 58)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jxkec"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_acoh7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_icqcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgtpl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vn62g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adqln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyli0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0dmbo")
+}],
+"loop": false,
+"name": &"getup",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_ld0yp")
+}],
+"loop": true,
+"name": &"hd_remaster",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_acoh7"]
+script/source = "extends NPC
+
+var toriel_talk = preload(\"res://sounds/toriel_talk.wav\")
+
+var hd_remaster = Globals.get_persistent_flag(\"silly_shader\") == \"hd_remaster\"
+
+func _ready():
+	if hd_remaster:
+		self.play(\"hd_remaster\")
+		self.scale = Vector2(0.5, 0.5)
+		$Textbox.position *= 2
+		$Textbox.scale *= 2
+
+func talk(_act):
+	$Textbox.set_talk_sound(toriel_talk)
+	await $Textbox.show_text([
+		\"Be careful out there, my child.\",
+		\"I wish you good luck.\"
+	])
+"
+
+[sub_resource type="GDScript" id="GDScript_w8jvl"]
+script/source = "extends NPC
+
+var strytax_talk = preload(\"res://sounds/strytax_talk.wav\")
+
+const text = [
+	[
+		\"Ah, hello again, human... I am so tired...\",
+		\"All the ambitions of my whole life, simply gone.\",
+		\"I do not know what to do with myself now.\",
+		\"Perhaps I shall take up knitting.\"
+	],
+	[
+		\"You have done well, child of man.\"
+	]
+]
+var talked_to = false
+
+func talk(_act):
+	$Textbox.set_talk_sound(strytax_talk)
+	await $Textbox.show_text(text[1 if talked_to else 0])
+	talked_to = true
+"
+
+[node name="StartMenu" type="Node2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_ctwoq")
+stream_group = ExtResource("2_acoh7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -229.0
+offset_top = -40.0
+offset_right = 784.0
+offset_bottom = 513.0
+
+[node name="Walls" type="TileMapLayer" parent="."]
+position = Vector2(10, 0)
+tile_map_data = PackedByteArray("AAAAAAAAAQAGABEAAAAAAAEAAQAGABEAAAAAAAIAAQAGABEAAAAAAAMAAQAGABEAAAAAAAQAAQAGABEAAAAAAAUAAQAGABEAAAAAAAYAAQAGABEAAAAAAAcAAQAGABEAAAAAAAgAAQAGABEAAAAAAAkAAQAGABEAAAAAAAoAAQAGABEAAAAAAAsAAQAGABEAAAABAAsAAQAGABEAAAACAAsAAQAGABEAAAADAAsAAQAGABEAAAAEAAsAAQAGABEAAAAFAAsAAQAGABEAAAAGAAsAAQAGABEAAAAHAAsAAQAGABEAAAAIAAsAAQAGABEAAAAJAAsAAQAGABEAAAAKAAsAAQAGABEAAAALAAsAAQAGABEAAAAMAAsAAQAGABEAAAANAAsAAQAGABEAAAAOAAsAAQAGABEAAAAOAAAAAQAGABEAAAABAAAAAQAGABEAAAACAAAAAQAGABEAAAADAAAAAQAGABEAAAAEAAAAAQAGABEAAAAFAAAAAQAGABEAAAAGAAAAAQAGABEAAAAHAAAAAQAGABEAAAAIAAAAAQAGABEAAAAJAAAAAQAGABEAAAAKAAAAAQAGABEAAAALAAAAAQAGABEAAAAMAAAAAQAGABEAAAANAAAAAQAGABEAAAAOAAoAAQAGABEAAAAOAAkAAQAGABEAAAAOAAgAAQAGABEAAAAOAAcAAQAGABEAAAAOAAYAAQAGABEAAAAOAAUAAQAGABEAAAAOAAQAAQAGABEAAAAOAAMAAQAGABEAAAAOAAIAAQAGABEAAAAOAAEAAQAGABEAAAA=")
+tile_set = ExtResource("2_vpdu5")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+position = Vector2(10, 0)
+tile_map_data = PackedByteArray("AAAHAAsAAQADAAsAAAAIAAsAAQAHAAQAAAAJAAsAAQADAAQAAAAKAAsAAQADAAYAAAAGAAsAAQAHAAMAAAAFAAsAAQABAAQAAAAEAAsAAQABAAYAAAALAAsAAQADAA0AAAAMAAsAAQADAA0AAAANAAsAAQADAA0AAAADAAsAAQADAA0AAAACAAsAAQADAA0AAAABAAsAAQADAA0AAAA=")
+tile_set = ExtResource("2_vpdu5")
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" parent="Menu" instance=ExtResource("4_gfl6h")]
+layout_mode = 0
+
+[node name="ScreenFade" type="ColorRect" parent="Menu"]
+z_index = 100
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0)
+
+[node name="Door" type="Sprite2D" parent="."]
+position = Vector2(82, 180)
+texture = ExtResource("3_vpdu5")
+
+[node name="NPCs" type="Node2D" parent="."]
+
+[node name="Flowey" type="AnimatedSprite2D" parent="NPCs"]
+visible = false
+position = Vector2(160, 211.5)
+sprite_frames = ExtResource("12_acoh7")
+script = SubResource("GDScript_6p4e4")
+metadata/_custom_type_script = "uid://cnq6fe8slv75o"
+
+[node name="Textbox" parent="NPCs/Flowey" instance=ExtResource("13_jxkec")]
+position = Vector2(0, -20)
+
+[node name="Napstablook" type="AnimatedSprite2D" parent="NPCs"]
+visible = false
+position = Vector2(277, 198.5)
+sprite_frames = ExtResource("14_6p4e4")
+animation = &"dapperblook"
+frame = 4
+script = SubResource("GDScript_jxkec")
+metadata/_custom_type_script = "uid://cnq6fe8slv75o"
+
+[node name="Textbox" parent="NPCs/Napstablook" instance=ExtResource("13_jxkec")]
+position = Vector2(-20, -25)
+
+[node name="Chairiel" type="AnimatedSprite2D" parent="NPCs"]
+visible = false
+position = Vector2(160.5, 202)
+sprite_frames = SubResource("SpriteFrames_jxkec")
+script = SubResource("GDScript_acoh7")
+metadata/_custom_type_script = "uid://cnq6fe8slv75o"
+
+[node name="Textbox" parent="NPCs/Chairiel" instance=ExtResource("13_jxkec")]
+position = Vector2(5.5, -30)
+
+[node name="Decibat" type="Sprite2D" parent="NPCs"]
+visible = false
+position = Vector2(27.5, 73)
+texture = ExtResource("11_6p4e4")
+
+[node name="Strytax" type="AnimatedSprite2D" parent="NPCs"]
+visible = false
+position = Vector2(36, 192)
+sprite_frames = ExtResource("13_w8jvl")
+animation = &"cloaked"
+flip_h = true
+script = SubResource("GDScript_w8jvl")
+metadata/_custom_type_script = "uid://cnq6fe8slv75o"
+
+[node name="Textbox" parent="NPCs/Strytax" instance=ExtResource("13_jxkec")]
+position = Vector2(40, -30)
+
+[node name="ContinueOption" parent="." instance=ExtResource("16_8y6t8")]
+position = Vector2(82, 191.5)
+text = "Continue"
+
+[node name="ResetOption" parent="." instance=ExtResource("16_8y6t8")]
+position = Vector2(160, 191.5)
+text = "Reset"
+
+[node name="SettingsOption" parent="." instance=ExtResource("16_8y6t8")]
+position = Vector2(240, 191.5)
+text = "Settings"
+
+[node name="Player" parent="." instance=ExtResource("1_ia0g5")]
+visible = false
+position = Vector2(80, 207.5)
+
+[node name="MusicPlayer" type="Node" parent="."]
+script = ExtResource("4_v2mkm")
+
+[node name="SillyShader" parent="." instance=ExtResource("15_jxkec")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="selected" from="ContinueOption" to="." method="_on_continue_option_selected"]
+[connection signal="selected" from="ResetOption" to="." method="_on_reset_option_selected"]
+[connection signal="selected" from="SettingsOption" to="." method="_on_settings_option_selected"]

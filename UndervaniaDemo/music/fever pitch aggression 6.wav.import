@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://belf61co8g414"
+path="res://.godot/imported/fever pitch aggression 6.wav-fcf7670155e8ae012c6dc40776bf0c48.sample"
+
+[deps]
+
+source_file="res://music/fever pitch aggression 6.wav"
+dest_files=["res://.godot/imported/fever pitch aggression 6.wav-fcf7670155e8ae012c6dc40776bf0c48.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=844932
+edit/loop_end=3102888
+compress/mode=0

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b0dvt684s50o8"
+path="res://.godot/imported/ruins - piano ostinato.wav-91f7e836094e271e1653ac13e9e1afa6.sample"
+
+[deps]
+
+source_file="res://music/ruins - piano ostinato.wav"
+dest_files=["res://.godot/imported/ruins - piano ostinato.wav-91f7e836094e271e1653ac13e9e1afa6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=577784
+edit/loop_end=5773126
+compress/mode=0

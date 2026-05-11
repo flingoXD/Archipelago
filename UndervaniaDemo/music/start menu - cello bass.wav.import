@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d0pftqixajyy0"
+path="res://.godot/imported/start menu - cello bass.wav-0cf4a779cae32ec87e364f1d2c7629ef.sample"
+
+[deps]
+
+source_file="res://music/start menu - cello bass.wav"
+dest_files=["res://.godot/imported/start menu - cello bass.wav-0cf4a779cae32ec87e364f1d2c7629ef.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=122254
+edit/loop_end=1532214
+compress/mode=0

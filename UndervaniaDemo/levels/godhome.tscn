@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=4 uid="uid://wcydph8sp6q3"]
+
+[ext_resource type="Script" uid="uid://3x8y23i4g2t1" path="res://levels/godhome.gd" id="1_36uev"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_0x6e2"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="3_h64bl"]
+[ext_resource type="PackedScene" uid="uid://6lxxrlwawxpr" path="res://objects/start_menu_option.tscn" id="4_36uev"]
+[ext_resource type="PackedScene" uid="uid://cn6d3duk6ik2l" path="res://objects/dream_ping.tscn" id="5_f5qdn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36uev"]
+size = Vector2(20, 100)
+
+[node name="Godhome" type="Node2D"]
+script = ExtResource("1_36uev")
+default_point = Vector2i(30, 120)
+limit_top = -200
+limit_bottom = 280
+limit_right = 1280
+flowey_stalk = false
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -196.0
+offset_top = -40.0
+offset_right = 817.0
+offset_bottom = 513.0
+
+[node name="Decor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAABAAYAAQAGABEAAAACAAYAAQAGABEAAAADAAYAAQAGABEAAAAEAAYAAQAGABEAAAAFAAYAAQAGABEAAAAGAAYAAQAGABEAAAAHAAYAAQAGABEAAAAIAAYAAQAGABEAAAAJAAYAAQAGABEAAAAKAAYAAQAGABEAAAALAAYAAQAGABEAAAAMAAYAAQAGABEAAAANAAYAAQAGABEAAAAOAAYAAQAGABEAAAAPAAYAAQAGABEAAAAAAAYAAQAGABEAAAAQAAYAAQAGABEAAAARAAYAAQAGABEAAAASAAYAAQAGABEAAAATAAYAAQAGABEAAAAUAAYAAQAGABEAAAAVAAYAAQAGABEAAAAWAAYAAQAGABEAAAAXAAYAAQAGABEAAAAYAAYAAQAGABEAAAAZAAYAAQAGABEAAAAaAAYAAQAGABEAAAAbAAYAAQAGABEAAAAcAAYAAQAGABEAAAAdAAYAAQAGABEAAAAeAAYAAQAGABEAAAA=")
+tile_set = ExtResource("2_0x6e2")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAQAGABEAAAAAAAYAAQADAA0AAAABAAYAAQADAA0AAAACAAYAAQADAA0AAAADAAYAAQADAA0AAAAEAAYAAQADAA0AAAAFAAYAAQADAA0AAAAGAAYAAQADAA0AAAABAAAAAQAGABEAAAACAAAAAQAGABEAAAADAAAAAQAGABEAAAAEAAAAAQAGABEAAAAFAAAAAQAGABEAAAAGAAAAAQAGABEAAAAHAAAAAQAGABEAAAAIAAAAAQAGABEAAAAJAAAAAQAGABEAAAAKAAAAAQAGABEAAAALAAYAAQADAA0AAAAKAAYAAQADAA0AAAAJAAYAAQADAA0AAAAIAAYAAQADAA0AAAAHAAYAAQADAA0AAAAMAAYAAQADAA0AAAANAAYAAQADAA0AAAAOAAYAAQADAA0AAAAPAAYAAQADAA0AAAAQAAAAAQAGABEAAAAPAAAAAQAGABEAAAAOAAAAAQAGABEAAAANAAAAAQAGABEAAAAMAAAAAQAGABEAAAALAAAAAQAGABEAAAD//wAAAQAGABEAAAD//wYAAQAGABEAAAD+/wYAAQAGABEAAAD+/wUAAQAGABEAAAD+/wQAAQAGABEAAAD+/wMAAQAGABEAAAD+/wIAAQAGABEAAAD+/wEAAQAGABEAAAD+/wAAAQAGABEAAAARAAAAAQAGABEAAAASAAAAAQAGABEAAAATAAAAAQAGABEAAAAUAAAAAQAGABEAAAAVAAAAAQAGABEAAAAWAAAAAQAGABEAAAAXAAAAAQAGABEAAAAYAAAAAQAGABEAAAAZAAAAAQAGABEAAAAaAAAAAQAGABEAAAAbAAAAAQAGABEAAAAcAAAAAQAGABEAAAAdAAAAAQAGABEAAAAeAAAAAQAGABEAAAAfAAAAAQAGABEAAAAfAAEAAQAGABEAAAAfAAIAAQAGABEAAAAfAAMAAQAGABEAAAAfAAQAAQAGABEAAAAfAAUAAQAGABEAAAAfAAYAAQAGABEAAAAeAAYAAQADAA0AAAAdAAYAAQADAA0AAAAcAAYAAQADAA0AAAAbAAYAAQADAA0AAAAaAAYAAQADAA0AAAAZAAYAAQADAA0AAAAYAAYAAQADAA0AAAAXAAYAAQADAA0AAAAWAAYAAQADAA0AAAAVAAYAAQADAA0AAAAUAAYAAQADAA0AAAATAAYAAQADAA0AAAASAAYAAQADAA0AAAARAAYAAQADAA0AAAAQAAYAAQADAA0AAAA=")
+tile_set = ExtResource("2_0x6e2")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("3_h64bl")
+destination = "imperfect_ideal"
+entry_point = Vector2i(260, 200)
+left_facing = 1
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(-10, 70)
+shape = SubResource("RectangleShape2D_36uev")
+
+[node name="NapstablookOption" parent="." instance=ExtResource("4_36uev")]
+position = Vector2(80, 91.5)
+text = "Napstablook"
+
+[node name="DecibatOption" parent="." instance=ExtResource("4_36uev")]
+position = Vector2(200, 91.5)
+text = "Decibat"
+
+[node name="TorielOption" parent="." instance=ExtResource("4_36uev")]
+position = Vector2(320, 91.5)
+text = "Toriel"
+
+[node name="MicroFroggitOption" parent="." instance=ExtResource("4_36uev")]
+position = Vector2(440, 91.5)
+text = "Micro Froggit"
+
+[node name="StrytaxOption" parent="." instance=ExtResource("4_36uev")]
+position = Vector2(560, 91.5)
+text = "Strytax"
+
+[node name="DreamPing" parent="." instance=ExtResource("5_f5qdn")]
+position = Vector2(140, 80)
+
+[node name="DreamPing2" parent="." instance=ExtResource("5_f5qdn")]
+position = Vector2(500, 80)
+
+[connection signal="selected" from="NapstablookOption" to="." method="_on_napstablook_option_selected"]
+[connection signal="selected" from="DecibatOption" to="." method="_on_decibat_option_selected"]
+[connection signal="selected" from="TorielOption" to="." method="_on_toriel_option_selected"]
+[connection signal="selected" from="MicroFroggitOption" to="." method="_on_micro_froggit_option_selected"]
+[connection signal="selected" from="StrytaxOption" to="." method="_on_strytax_option_selected"]

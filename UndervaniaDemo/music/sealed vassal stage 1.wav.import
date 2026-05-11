@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cfcx1csg0e5ng"
+path="res://.godot/imported/sealed vassal stage 1.wav-3fa0c55a4e175ab5710c6f339e5a0f34.sample"
+
+[deps]
+
+source_file="res://music/sealed vassal stage 1.wav"
+dest_files=["res://.godot/imported/sealed vassal stage 1.wav-3fa0c55a4e175ab5710c6f339e5a0f34.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=264600
+edit/loop_end=1587599
+compress/mode=0

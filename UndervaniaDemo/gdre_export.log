@@ -1,0 +1,33 @@
+GDRE Tools v2.5.0-beta.5
+Windows 10.0.19045, NVIDIA GeForce RTX 3050 Ti Laptop GPU, vulkan
+Opening file: D:/undervania/undervania.exe
+Loaded 754 imported files
+Detected Engine Version: 4.5.0
+Detected Bytecode Revision: 4.5.0-stable (ebc36a7)
+Verified 1692 files, no errors detected!
+Extracted 1692 files, no errors detected!
+Saved project config.
+
+
+********************************EXPORT REPORT********************************
+
+Totals:                                 
+Decompiled scripts:                     177
+Failed scripts:                         0
+Imported resources for export session:  754
+Successfully converted:                 754
+Lossy:                                  171
+Rewrote metadata:                       491
+Non-importable conversions:             0
+Not converted:                          0
+Failed conversions:                     0
+-------------
+
+
+
+------------------------------------------------------------------------------------
+
+Use Godot editor version 4.5.0 to edit the project.
+
+*******************************************************************************
+

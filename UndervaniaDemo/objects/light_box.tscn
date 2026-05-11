@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://dn26bynnj2ipw"]
+
+[ext_resource type="Texture2D" uid="uid://vch4qmbrrmnd" path="res://sprites/box_off.png" id="1"]
+[ext_resource type="Script" uid="uid://dy61ta2q0ewx2" path="res://objects/light_box.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://bg2aphvdbhkec" path="res://sounds/switch.wav" id="3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enbie"]
+size = Vector2(20, 24)
+
+[sub_resource type="Gradient" id="Gradient_b26j0"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.56050956, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.5516806, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x1hjx"]
+gradient = SubResource("Gradient_b26j0")
+width = 40
+height = 40
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="LightBox" type="Sprite2D"]
+texture = ExtResource("1")
+script = ExtResource("2")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_enbie")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+enabled = false
+blend_mode = 2
+shadow_color = Color(0, 0, 0, 0.5019608)
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_x1hjx")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3")

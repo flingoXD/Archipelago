@@ -1,0 +1,16 @@
+[gd_resource type="AudioStream" script_class="AudioStreamSelection" format=3 uid="uid://ccajipmltki81"]
+
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="1"]
+[ext_resource type="Script" uid="uid://btrwqaax5uf6" path="res://audio_stream_group.gd" id="2"]
+[ext_resource type="AudioStream" uid="uid://xnvujepu4b8n" path="res://music/too much.wav" id="3"]
+
+[sub_resource type="Resource" id="Resource_xh6og"]
+script = ExtResource("2")
+streams = Array[AudioStream]([ExtResource("3")])
+metadata/_custom_type_script = "uid://btrwqaax5uf6"
+
+[resource]
+script = ExtResource("1")
+stream_group = SubResource("Resource_xh6og")
+stream_mask = 1
+metadata/_custom_type_script = "uid://by7e4dqljavyr"

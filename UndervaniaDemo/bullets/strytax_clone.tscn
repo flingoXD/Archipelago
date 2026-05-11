@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bu1wpmq3g82qf"]
+
+[ext_resource type="Script" uid="uid://fdgmo4pg1oax" path="res://bullets/strytax_clone.gd" id="1_x36a7"]
+[ext_resource type="Texture2D" uid="uid://c2f8yiir47gim" path="res://sprites/strytax_infinity.png" id="2_m8ns7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lrgl6"]
+size = Vector2(46.000008, 1)
+
+[node name="StrytaxClone" type="Area2D"]
+script = ExtResource("1_x36a7")
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4)
+texture = ExtResource("2_m8ns7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(23, 0)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_lrgl6")

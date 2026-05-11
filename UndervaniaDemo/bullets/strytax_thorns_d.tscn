@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://gn4w77u8yqpl"]
+
+[ext_resource type="Script" uid="uid://ddb2vxbtpe3u8" path="res://objects/damage_hitbox.gd" id="1_p5wdt"]
+[ext_resource type="Texture2D" uid="uid://cg1p5nl7ewfcl" path="res://sprites/strytax_thorns.png" id="2_3pp3d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_246eg"]
+size = Vector2(16, 4)
+
+[node name="StrytaxThornsD" type="Area2D"]
+script = ExtResource("1_p5wdt")
+atk = 4
+physical = false
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = ExtResource("2_3pp3d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_246eg")

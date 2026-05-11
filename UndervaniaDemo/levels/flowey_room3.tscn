@@ -1,0 +1,396 @@
+[gd_scene load_steps=52 format=4 uid="uid://66xj5xgrmww8"]
+
+[ext_resource type="Script" uid="uid://etjqt16cgbm3" path="res://levels/flowey_room3.gd" id="1_4r3em"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2_dbn6i"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_kspla"]
+[ext_resource type="Resource" uid="uid://1jim1a1nieoy" path="res://music/dark_ruins_group.tres" id="3_4r3em"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="3_357rl"]
+[ext_resource type="Script" uid="uid://cd8yb0wnhbywb" path="res://objects/cutscene_trigger.gd" id="6_4r3em"]
+[ext_resource type="Texture2D" uid="uid://dug42y2lqua5b" path="res://sprites/flowey.png" id="7_gfsvn"]
+[ext_resource type="Texture2D" uid="uid://bdh1k52n0rh5r" path="res://sprites/flowey_evil.png" id="8_eoqsp"]
+[ext_resource type="Texture2D" uid="uid://chj1nexyhlkgm" path="res://sprites/flowey_grow.png" id="9_lnx2v"]
+[ext_resource type="Texture2D" uid="uid://bcd61phd1cf6a" path="res://sprites/flowey_laugh.png" id="10_1itf3"]
+[ext_resource type="Texture2D" uid="uid://cpwoijt7ad1mx" path="res://sprites/flowey_left.png" id="11_svcft"]
+[ext_resource type="Texture2D" uid="uid://di0k51ivj3sqd" path="res://sprites/flowey_look_right.png" id="12_yv3c8"]
+[ext_resource type="Texture2D" uid="uid://0qs1mqt134sh" path="res://sprites/flowey_shocked.png" id="13_qplir"]
+[ext_resource type="Texture2D" uid="uid://bdjvwtmdnd4xg" path="res://sprites/flowey_sink.png" id="14_eoqsp"]
+[ext_resource type="Texture2D" uid="uid://bgrqw0e3pluu4" path="res://sprites/flowey_left_talk.png" id="14_i4375"]
+[ext_resource type="Texture2D" uid="uid://bqdvm2y7bgis1" path="res://sprites/flowey_wink.png" id="15_5m0bd"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="16_6ggp3"]
+[ext_resource type="AudioStream" uid="uid://c40lnxm44xw6h" path="res://sounds/flowey_laugh.wav" id="17_nhylr"]
+
+[sub_resource type="AudioStream" id="AudioStream_acgfb"]
+script = ExtResource("2_dbn6i")
+stream_group = ExtResource("3_4r3em")
+stream_mask = 3
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdmul"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_acgfb"]
+size = Vector2(20, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lnx2v"]
+size = Vector2(40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ys817"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tc3uj"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x3t7e"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rp2wh"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(0, 60, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ukrx"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(60, 60, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgqla"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(120, 60, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kgxap"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(0, 120, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbdb5"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(60, 120, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_751a5"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(120, 120, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8lik5"]
+atlas = ExtResource("10_1itf3")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f4k04"]
+atlas = ExtResource("10_1itf3")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wb0c"]
+atlas = ExtResource("10_1itf3")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1lrky"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(120, 120, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nijyj"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(60, 120, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s37ig"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(0, 120, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dlv36"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(120, 60, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7sw1"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(60, 60, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b3bqb"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(0, 60, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1vst"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7264"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fhf04"]
+atlas = ExtResource("9_lnx2v")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnx2v"]
+atlas = ExtResource("14_eoqsp")
+region = Rect2(0, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1itf3"]
+atlas = ExtResource("14_eoqsp")
+region = Rect2(25, 0, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svcft"]
+atlas = ExtResource("14_eoqsp")
+region = Rect2(0, 25, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv3c8"]
+atlas = ExtResource("14_eoqsp")
+region = Rect2(25, 25, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qplir"]
+atlas = ExtResource("14_eoqsp")
+region = Rect2(0, 50, 25, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4375"]
+atlas = ExtResource("14_eoqsp")
+region = Rect2(25, 50, 25, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a8pes"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_gfsvn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_eoqsp")
+}],
+"loop": true,
+"name": &"evil",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ys817")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tc3uj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x3t7e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rp2wh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ukrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgqla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kgxap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbdb5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_751a5")
+}],
+"loop": false,
+"name": &"grow",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8lik5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f4k04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wb0c")
+}],
+"loop": true,
+"name": &"laugh",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_svcft")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_yv3c8")
+}],
+"loop": true,
+"name": &"look_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_qplir")
+}],
+"loop": true,
+"name": &"shocked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1lrky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nijyj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s37ig")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dlv36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7sw1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b3bqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1vst")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7264")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fhf04")
+}],
+"loop": false,
+"name": &"shrink",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnx2v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1itf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_svcft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv3c8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qplir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4375")
+}],
+"loop": false,
+"name": &"sink",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_svcft")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_i4375")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_5m0bd")
+}],
+"loop": true,
+"name": &"wink",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eoqsp"]
+size = Vector2(40, 20)
+
+[node name="FloweyRoom3" type="Node2D"]
+script = ExtResource("1_4r3em")
+default_point = Vector2i(30, 220)
+light_override = 0.5
+limit_bottom = 480
+limit_right = 640
+stream = SubResource("AudioStream_acgfb")
+flowey_stalk = false
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAOAAkAAQABAAcAAAAOAAgAAQADAAcAAAAOAAcAAQADAAcAAAAOAAYAAQADAAcAAAAOAAUAAQADAAcAAAAOAAQAAQADAAcAAAANAAkAAQABAAcAAAANAAgAAQABAAcAAAANAAcAAQABAAcAAAANAAYAAQADAAcAAAANAAUAAQABAAcAAAANAAQAAQABAAcAAAAMAAkAAQABAAcAAAAMAAgAAQABAAcAAAAMAAcAAQADAAcAAAAMAAYAAQADAAcAAAAMAAUAAQADAAcAAAAMAAQAAQADAAcAAAALAAkAAQABAAcAAAALAAgAAQABAAcAAAALAAcAAQADAAcAAAALAAYAAQABAAcAAAALAAUAAQABAAcAAAALAAQAAQABAAcAAAAKAAkAAQADAAcAAAAKAAgAAQADAAcAAAAKAAcAAQADAAcAAAAKAAYAAQADAAcAAAAKAAUAAQADAAcAAAAKAAQAAQADAAcAAAAJAAkAAQABAAcAAAAJAAgAAQADAAcAAAAJAAcAAQADAAcAAAAJAAYAAQADAAcAAAAJAAUAAQADAAcAAAAJAAQAAQADAAcAAAAJAAMAAQABAAcAAAAJAAIAAQABAAcAAAAJAAEAAQADAAcAAAAIAAkAAQABAAcAAAAIAAgAAQADAAcAAAAIAAcAAQABAAcAAAAIAAYAAQABAAcAAAAIAAUAAQADAAcAAAAIAAQAAQADAAcAAAAIAAMAAQABAAcAAAAIAAIAAQADAAcAAAAIAAEAAQABAAcAAAAHAAkAAQABAAcAAAAHAAgAAQABAAcAAAAHAAcAAQABAAcAAAAHAAYAAQADAAcAAAAHAAUAAQABAAcAAAAHAAQAAQABAAcAAAAHAAMAAQABAAcAAAAHAAIAAQABAAcAAAAHAAEAAQADAAcAAAAGAAkAAQABAAcAAAAGAAgAAQABAAcAAAAGAAcAAQABAAcAAAAGAAYAAQADAAcAAAAGAAUAAQADAAcAAAAGAAQAAQABAAcAAAAGAAMAAQADAAcAAAAGAAIAAQABAAcAAAAGAAEAAQADAAcAAAAFAAkAAQABAAcAAAAFAAgAAQADAAcAAAAFAAcAAQADAAcAAAAFAAYAAQABAAcAAAAFAAUAAQABAAcAAAAFAAQAAQADAAcAAAAFAAMAAQADAAcAAAAEAAkAAQADAAcAAAAEAAgAAQABAAcAAAAEAAcAAQABAAcAAAAEAAYAAQABAAcAAAAEAAUAAQABAAcAAAAEAAQAAQADAAcAAAADAAkAAQABAAcAAAADAAgAAQABAAcAAAADAAcAAQABAAcAAAADAAYAAQADAAcAAAADAAUAAQABAAcAAAADAAQAAQABAAcAAAACAAkAAQADAAcAAAACAAgAAQABAAcAAAACAAcAAQADAAcAAAACAAYAAQADAAcAAAACAAUAAQABAAcAAAACAAQAAQABAAcAAAABAAkAAQADAAcAAAABAAgAAQABAAcAAAABAAcAAQADAAcAAAABAAYAAQABAAcAAAABAAUAAQABAAcAAAABAAQAAQADAAcAAAAPAAoAAQABAAcAAAAPAAkAAQABAAcAAAAPAAgAAQADAAcAAAAPAAcAAQABAAcAAAAOAAoAAQADAAcAAAANAAoAAQADAAcAAAAMAAoAAQABAAcAAAALAAoAAQABAAcAAAAEAAoAAQABAAcAAAADAAoAAQADAAcAAAACAAoAAQADAAcAAAABAAoAAQADAAcAAAAFAAoAAQADAAcAAAAGAAoAAQADAAcAAAAHAAoAAQABAAcAAAAIAAoAAQADAAcAAAAJAAoAAQADAAcAAAAKAAoAAQABAAcAAAABAAMAAQADAAcAAAABAAIAAQABAAcAAAABAAEAAQADAAcAAAACAAEAAQABAAcAAAADAAEAAQABAAcAAAAEAAEAAQABAAcAAAAFAAEAAQABAAcAAAAEAAIAAQADAAcAAAADAAIAAQABAAcAAAACAAIAAQADAAcAAAAFAAIAAQABAAcAAAAEAAMAAQABAAcAAAADAAMAAQADAAcAAAACAAMAAQABAAcAAAAKAAMAAQABAAcAAAALAAMAAQABAAcAAAALAAIAAQADAAcAAAAKAAIAAQADAAcAAAAKAAEAAQADAAcAAAALAAEAAQABAAcAAAAMAAEAAQABAAcAAAANAAEAAQABAAcAAAANAAIAAQADAAcAAAAMAAIAAQADAAcAAAAMAAMAAQABAAcAAAANAAMAAQABAAcAAAAOAAMAAQABAAcAAAAOAAIAAQADAAcAAAAAAAcAAQABAAcAAAAAAAgAAQADAAcAAAAAAAkAAQABAAcAAAAAAAoAAQADAAcAAAAOAAEAAQABAAcAAAABAAAAAQADAAcAAAACAAAAAQABAAcAAAADAAAAAQABAAcAAAAEAAAAAQABAAcAAAA=")
+tile_set = ExtResource("2_kspla")
+
+[node name="Decor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAPAAsAAQACAAAAAAAOAAsAAQACAAAAAAANAAsAAQACAAAAAAAMAAsAAQACAAAAAAADAAsAAQACAAAAAAACAAsAAQACAAAAAAABAAsAAQACAAAAAAAAAAsAAQACAAAAAAAEAAsAAQACAAAAAAAFAAsAAQACAAAAAAAGAAsAAQACAAAAAAAHAAsAAQACAAAAAAAIAAsAAQACAAAAAAAJAAsAAQADAAAAAAAKAAsAAQACAAAAAAALAAsAAQACAAAAAAABAAEAAQACAAcAAAABAAIAAQACAAcAAAABAAMAAQACAAcAAAABAAQAAQACAAcAAAABAAUAAQACAAcAAAABAAYAAQACAAcAAAABAAcAAQACAAcAAAABAAgAAQACAAcAAAABAAkAAQACAAcAAAABAAoAAQACAAcAAAAOAAEAAQAAAAcAAAAOAAIAAQAAAAcAAAAOAAMAAQAAAAcAAAAOAAQAAQAAAAcAAAAOAAUAAQAAAAcAAAAOAAYAAQAAAAcAAAAOAAcAAQAAAAcAAAAOAAgAAQAAAAcAAAAOAAkAAQAAAAcAAAAOAAoAAQAAAAcAAAABAAAAAQACAAcAAAACAAMAAQABAAEAAAADAAMAAQAEAAEAAAAGAAUAAQABAAEAAAAHAAUAAQAEAAEAAAALAAgAAQABAAEAAAAMAAgAAQAEAAEAAAA=")
+tile_set = ExtResource("2_kspla")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAMAAQAEAAAAAAAAAAIAAQAEAAAAAAAAAAEAAQAEAAAAAAAAAAAAAQACAAAAAAAAAAQAAQAEAAAAAAAAAAUAAQAEAAAAAAAAAAYAAQAEAAAAAAAAAAcAAQAEAAEAAAAPAAcAAQABAAEAAAAPAAYAAQABAAAAAAAPAAUAAQABAAAAAAAPAAQAAQABAAAAAAAPAAMAAQABAAAAAAAPAAIAAQABAAAAAAAPAAEAAQABAAAAAAAPAAAAAQAEAAIAAAAOAAAAAQACAAEAAAANAAAAAQACAAEAAAAMAAAAAQACAAEAAAALAAAAAQACAAEAAAAKAAAAAQACAAEAAAAFAAAAAQACAAEAAAAEAAAAAQABAAEAAAABAAAAAQAEAAEAAAAQAAsAAQACAAEAAAARAAsAAQAEAAEAAAARAAoAAQAGAA4AAAARAAkAAQAGAA4AAAARAAgAAQAGAA4AAAARAAcAAQAEAAAAAAAQAAcAAQACAAEAAAABAAsAAQACAAkAAAACAAsAAQAAAAUAAAADAAsAAQAAAAIAAAAMAAsAAQAAAAIAAAANAAsAAQABAAUAAAAOAAsAAQACAAkAAAAPAAsAAQACAAkAAAD//wcAAQACAAEAAAD+/wsAAQABAAEAAAD+/woAAQAGAA4AAAD+/wkAAQAGAA4AAAD+/wgAAQAGAA4AAAD+/wcAAQABAAAAAAD//wsAAQACAAEAAAAAAAsAAQACAAkAAAAEAAsAAQACAAUAAAAFAAsAAQACAAkAAAAGAAsAAQACAAkAAAAHAAsAAQACAAkAAAAIAAsAAQACAAkAAAAJAAsAAQACAAkAAAAKAAsAAQACAAkAAAALAAsAAQADAAUAAAAGAAAAAQACAAEAAAAHAAAAAQACAAEAAAAIAAAAAQACAAEAAAAJAAAAAQACAAEAAAACAAMAAQAAAA4AAAADAAMAAQABAA4AAAAGAAUAAQAAAA4AAAAHAAUAAQABAA4AAAALAAgAAQAAAA4AAAAMAAgAAQABAA4AAAABAP//AQAGAA4AAAABAP7/AQAGAA4AAAAEAP7/AQAGAA4AAAAEAP//AQAGAA4AAAABAP3/AQABAAAAAAACAP3/AQACAAEAAAADAP3/AQADAAEAAAAEAP3/AQAEAAAAAAA=")
+tile_set = ExtResource("2_kspla")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("3_357rl")
+destination = "dark_corridor"
+entry_point = Vector2i(1410, 100)
+left_facing = 1
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(-10, 190)
+shape = SubResource("RectangleShape2D_sdmul")
+
+[node name="CutsceneTrigger" type="Area2D" parent="."]
+script = ExtResource("6_4r3em")
+pause_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger"]
+position = Vector2(90, 170)
+shape = SubResource("RectangleShape2D_acgfb")
+
+[node name="CutsceneTrigger2" type="Area2D" parent="."]
+script = ExtResource("6_4r3em")
+pause_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger2"]
+position = Vector2(60, 40)
+shape = SubResource("RectangleShape2D_lnx2v")
+
+[node name="Flowey" type="AnimatedSprite2D" parent="."]
+position = Vector2(160, 212.5)
+sprite_frames = SubResource("SpriteFrames_a8pes")
+animation = &"left"
+
+[node name="Textbox" parent="Flowey" instance=ExtResource("16_6ggp3")]
+position = Vector2(0, -30)
+
+[node name="Laugh" type="AudioStreamPlayer" parent="Flowey"]
+stream = ExtResource("17_nhylr")
+
+[node name="InteractDoor2" type="Area2D" parent="."]
+script = ExtResource("3_357rl")
+destination = "dark_colonnade"
+entry_point = Vector2i(1210, 220)
+left_facing = 3
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor2"]
+position = Vector2(60, -10)
+shape = SubResource("RectangleShape2D_eoqsp")
+
+[node name="InteractDoor3" type="Area2D" parent="."]
+script = ExtResource("3_357rl")
+destination = "dalv_room1"
+entry_point = Vector2i(30, 220)
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor3"]
+position = Vector2(330, 190)
+shape = SubResource("RectangleShape2D_sdmul")
+
+[connection signal="body_entered" from="CutsceneTrigger" to="CutsceneTrigger" method="_on_body_entered"]
+[connection signal="start_cutscene" from="CutsceneTrigger" to="." method="_on_cutscene_trigger_start_cutscene"]
+[connection signal="body_entered" from="CutsceneTrigger2" to="CutsceneTrigger2" method="_on_body_entered"]
+[connection signal="start_cutscene" from="CutsceneTrigger2" to="." method="_on_cutscene_trigger2_start_cutscene"]

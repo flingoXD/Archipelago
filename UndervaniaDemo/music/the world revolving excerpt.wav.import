@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://3t5t7gqqwqt5"
+path="res://.godot/imported/the world revolving excerpt.wav-518994518f75a08f3748d3d22c0871a1.sample"
+
+[deps]
+
+source_file="res://music/the world revolving excerpt.wav"
+dest_files=["res://.godot/imported/the world revolving excerpt.wav-518994518f75a08f3748d3d22c0871a1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=0
+compress/mode=0

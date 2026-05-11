@@ -1,0 +1,422 @@
+[gd_scene load_steps=28 format=4 uid="uid://b8qr84nernttt"]
+
+[ext_resource type="Script" uid="uid://k3ck0ybbficu" path="res://levels/imperfect_ideal.gd" id="1_t05oc"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_6fnkc"]
+[ext_resource type="AudioStream" uid="uid://dpx2hebi645nq" path="res://music/imperfect ideal.wav" id="2_i0c13"]
+[ext_resource type="Texture2D" uid="uid://djhtcoxj2sntx" path="res://sprites/ideal_piano.png" id="3_6fnkc"]
+[ext_resource type="Texture2D" uid="uid://32d1u3hgrawj" path="res://sprites/ideal_frame.png" id="5_wgx45"]
+[ext_resource type="Texture2D" uid="uid://dangfx7ahxxkh" path="res://sprites/guardian suite.png" id="6_l25di"]
+[ext_resource type="Texture2D" uid="uid://oinudjcwyadd" path="res://sprites/gya ha ha.png" id="7_0xyr3"]
+[ext_resource type="Texture2D" uid="uid://dflduvxx5ueiw" path="res://sprites/undertale.png" id="8_4111p"]
+[ext_resource type="Texture2D" uid="uid://hlm5cp5oymnt" path="res://sprites/ideal_table.png" id="9_62yb4"]
+[ext_resource type="Texture2D" uid="uid://gm1sgbok8c5h" path="res://tilesets/Screenshot 2026-01-05 182848.png" id="10_hpkis"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="11_mhv3r"]
+[ext_resource type="PackedScene" uid="uid://dis2mec4abpt5" path="res://objects/savepoint.tscn" id="12_km1pe"]
+[ext_resource type="Texture2D" uid="uid://nkbchorqxcti" path="res://sprites/idealist.png" id="13_pi5qc"]
+[ext_resource type="Texture2D" uid="uid://ctgrfawiy42un" path="res://sprites/idealist_e.png" id="14_xucn8"]
+[ext_resource type="Texture2D" uid="uid://65u87n4xn33p" path="res://sprites/idealist_music.png" id="15_bg22i"]
+[ext_resource type="Texture2D" uid="uid://87yfbl0wb7e3" path="res://sprites/idealist_sad.png" id="16_23c55"]
+[ext_resource type="Texture2D" uid="uid://2j1gciqpt6ck" path="res://sprites/idealist_silly.png" id="17_t05oc"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="18_xucn8"]
+[ext_resource type="AudioStream" uid="uid://bxpgdp6c2f3s2" path="res://sounds/mysterygo.wav" id="19_bg22i"]
+[ext_resource type="Texture2D" uid="uid://bqgudnv6qbh06" path="res://sprites/toriel_house_lobby_upstairs.png" id="20_23c55"]
+[ext_resource type="Script" uid="uid://do6xbjfs0rrt8" path="res://objects/sign.gd" id="21_t05oc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_km1pe"]
+size = Vector2(20, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_puf2q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_pi5qc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_xucn8")
+}],
+"loop": true,
+"name": &"e",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_bg22i")
+}],
+"loop": true,
+"name": &"music",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_23c55")
+}],
+"loop": true,
+"name": &"sad",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_t05oc")
+}],
+"loop": true,
+"name": &"silly",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_vv73l"]
+script/source = "extends NPC
+
+var talk_count = 0
+var cheer_count = 0
+var speedrun = false
+var dev_time = 528000000
+
+func talk(act):
+	var speedrun_time = Globals.get_flag(\"speedrun_time\")
+	if speedrun_time and speedrun_time < dev_time and not speedrun:
+		speedrun = true
+		await $Textbox.show_text([
+			\"Congratulations!\",
+			\"You completed the game in \"+Time.get_time_string_from_unix_time(floor(speedrun_time*0.000001)).substr(4)+\".\",
+			\"That's less than my own best time so far of \"+Time.get_time_string_from_unix_time(floor(dev_time*0.000001)).substr(4)+\"!\",
+			\"Although I'm not much of a speedrunner so it's probably pretty easy to beat.\"
+		])
+		return
+	match act:
+		\"threat\":
+			self.play(\"sad\")
+			await $Textbox.show_text(\"......\")
+			self.play(\"silly\")
+			$MysteryGo.play()
+			var tween = get_tree().create_tween()
+			tween.tween_property(self, \"modulate\", Color.TRANSPARENT, 1)
+			tween.tween_callback(self.hide)
+			talkable = false
+		\"cheer\":
+			match cheer_count:
+				0:
+					await $Textbox.show_text([
+						\"I'm glad you liked my little game!\",
+						\"It took quite a while to make.\",
+						\"And remember, this is only the beginning.\",
+						\"If people like this, I might keep going and make all the rest of Undertale and Undertale Yellow!\"
+					])
+				1:
+					await $Textbox.show_text([
+						\"I've kinda started to plan out the rest of the game, very vaguely.\",
+						\"It'll be mostly as you'd expect in terms of layout, just a bit less linear.\",
+						\"I'm also gonna expand New Home into a bigger area and add a few new minor areas myself.\",
+						\"You can see the blocked-off entrance to one of them below the Dark Caves.\"
+					])
+				2:
+					await $Textbox.show_text([
+						\"There'll be lots more movement abilities and ACTs, too.\",
+						\"You can expect all the usual abilities like wall jump and dash, plus some new ones.\",
+						\"Perhaps even some sort of offensive ACTs, which would alter enemies' behaviour and be useful outside of pacifist.\",
+						\"The ACTs probably won't be as concentrated as they are in the Ruins, though.\",
+						\"I needed to get the first few out near the start, including the crucial Talk and Check ACTs.\"
+					])
+					if not Globals.has_ability(\"check\"):
+						await $Textbox.show_text([
+							\"Wait, you didn't find Check, did you?\",
+							\"Better get looking!\"
+						])
+				3:
+					await $Textbox.show_text([
+						\"I still haven't decided exactly how soul modes are gonna work.\",
+						\"My current thought is that after each major boss, you'll get their soul mode and be able to use it elsewhere.\",
+						\"They'll each have special abilities and drawbacks, kind of like crests in Silksong I guess.\",
+						\"I didn't need to make them for this though, since you don't encounter them until the Papyrus fight.\"
+					])
+					if Globals.get_flag(\"secret_sans\"):
+						await $Textbox.show_text([
+							\"I see you've found the hidden Sans encounter, though...\",
+							\"Yeah I did have to make a barebones implementation of the blue soul mode for that.\",
+							\"Can't really make it give you gravity since you already have it.\",
+							\"Instead, I made it disable your movement abilities.\",
+							\"The plus side will probably be something that makes it more effective in combat, idk.\"
+						])
+				4:
+					await $Textbox.show_text([
+						\"But yeah, keep looking around.\",
+						\"I put lots of secrets in, so there may well be something you missed.\",
+						\"Even if it's just slightly different variants of Flowey's dialogue...\"
+					])
+				_:
+					await $Textbox.show_text(\"Thanks for playing!\")
+			cheer_count += 1
+		\"talk\":
+			match talk_count:
+				0:
+					await $Textbox.show_text([
+						\"Hi! I'm theidealist, the creator of this little fangame.\",
+						\"So this is the end of the demo for now.\",
+						\"Why do I look like this? Well uhhhhh...\"
+					])
+					self.play(\"e\")
+					await $Textbox.show_text(\"I'm not very good at art lol I just took most of the assets from Undertale\", 0.1)
+				1:
+					await $Textbox.show_text([
+						\"Through that door over there is a little hub where you can fight bosses again if you like.\",
+						\"You can use it to practice them, or try out different routes and interactions without consequences.\",
+						\"Or, you could just reset and play the whole game again, experiencing them the intended way.\"
+					])
+				2:
+					await $Textbox.show_text([
+						\"I hope you also enjoyed the soundtrack - it's my specialty.\",
+						\"It's mainly arrangements of Undertale music in my signature orchestral style.\"
+					])
+					self.play(\"music\")
+					await $Textbox.show_text(\"There are a few original tracks in there too though.\")
+					if Globals.get_persistent_flag(\"volume_music\", 1) == 0:
+						self.play(\"e\")
+						await get_tree().create_timer(1).timeout
+						await $Textbox.show_text([
+							\"Not that you'd know anything about them...\",
+							\"Why? Why did you do it?\",
+							\"Why did you turn off the music?\",
+							\"I wouldn't have made this game if not for the opportunity to write lots of music for it.\",
+							\"So why did you tear down what I'm most proud of?\"
+						])
+						await get_tree().create_timer(3).timeout
+					self.play(\"default\")
+					await $Textbox.show_text(\"When this comes out, I'll post the whole soundtrack on Youtube as well, so you can listen to it separately.\")
+					self.play(\"silly\")
+					await $Textbox.show_text(\"Or maybe I already have...\")
+					self.play(\"default\")
+				_:
+					var napstablook = Globals.get_enemy_flag(\"napstablook\") != null
+					var decibat = Globals.get_enemy_flag(\"decibat\") != null
+					var toriel = Globals.get_enemy_flag(\"toriel\") != null
+					var micro_froggit = Globals.get_enemy_flag(\"micro_froggit\") != null
+					var strytax = Globals.get_enemy_flag(\"strytax\") != null
+					var boss_count = (1 if napstablook else 0)+(1 if decibat else 0)+(1 if toriel else 0)+(1 if micro_froggit else 0)+(1 if strytax else 0)
+					if boss_count >= 5:
+						await $Textbox.show_text([
+							\"You've beaten every boss in the demo!\",
+							\"Now try beating them in different ways.\",
+							\"Most of them can be beaten in two or three ways by killing or sparing them.\"
+						])
+					else:
+						await $Textbox.show_text([
+							\"So far, you've found and beaten \"+str(boss_count)+\" of the 5 bosses in this demo.\",
+							\"You've still got \"+str(5-boss_count)+\" that you haven't found yet.\"
+						])
+						if not napstablook:
+							await $Textbox.show_text([
+								\"One of them lies fairly early on in the Ruins.\",
+								\"It's completely optional but you can't get past it without a certain ACT.\"
+							])
+						if not decibat:
+							await $Textbox.show_text([
+								\"One of them is at the bottom of the Dark Ruins.\",
+								\"I'm pretty sure it's impossible to skip though, so I don't know how you got here.\",
+								\"Did you manage to skip it with a damage boost? I tried for ages but couldn't pull it off.\",
+								\"Whichever way you did it, I'm very impressed.\"
+							])
+						if not toriel:
+							await $Textbox.show_text([
+								\"One of them lies at the end of the Ruins.\",
+								\"But I'm pretty certain you can't get here without having just beaten it???\"
+							])
+						if not micro_froggit:
+							await $Textbox.show_text([
+								\"One of them lies in the Dark Caves.\",
+								\"To get to it, you have to hit certain spots in the Dark Ruins in order.\"
+							])
+						if not strytax:
+							await $Textbox.show_text([
+								\"The last one is a secret, completely original to this game!\",
+								\"I don't really want to give you any hints about how to get to it...\"
+							])
+							match Globals.get_flag(\"secret_prog\", 0):
+								0:
+									await $Textbox.show_text([
+										\"Wait a minute... how did you get here without even meeting him once??\",
+										\"I thought the first encounter was mandatory.\"
+									])
+								1:
+									await $Textbox.show_text([
+										\"But you should probably go down and check the rooms around Decibat's arena again.\",
+										\"You might have missed something there.\"
+									])
+								2:
+									await $Textbox.show_text([
+										\"But you should probably explore a bit more.\",
+										\"Do you remember where the old bug said to find him?\"\\
+											if Globals.get_flag(\"dusty_broadsword_collect\")\\
+											else \"Have you visited the Dark Caves yet?\"
+									])
+								3:
+									await $Textbox.show_text([
+										\"But I'd suggest you go back to the very first room, where the game began.\",
+										\"You might find something there.\"
+									])
+			talk_count += 1
+	if self.animation != \"silly\":
+		self.play(\"default\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t05oc"]
+size = Vector2(30, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mxc0"]
+size = Vector2(25, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g13yg"]
+size = Vector2(45, 27)
+
+[node name="ImperfectIdeal" type="Node2D"]
+script = ExtResource("1_t05oc")
+default_point = Vector2i(150, 200)
+limit_bottom = 480
+limit_right = 640
+stream = ExtResource("2_i0c13")
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+offset_right = 320.0
+offset_bottom = 240.0
+color = Color(0.5254902, 0.654902, 0.7764706, 1)
+
+[node name="Walls" type="TileMapLayer" parent="."]
+modulate = Color(0.43, 0.63900006, 1, 1)
+tile_map_data = PackedByteArray("AAAAAAAAAgABAAEAAAABAAAAAgABAAEAAAACAAAAAgABAAEAAAADAAAAAgABAAEAAAAEAAAAAgABAAEAAAAFAAAAAgABAAEAAAAGAAAAAgABAAEAAAAHAAAAAgABAAEAAAAIAAAAAgABAAEAAAAJAAAAAgABAAEAAAAKAAAAAgABAAEAAAALAAAAAgABAAEAAAAMAAAAAgABAAEAAAANAAAAAgABAAEAAAAOAAAAAgABAAEAAAAPAAAAAgABAAEAAAAAAAsAAgABAAEAAAABAAsAAgABAAEAAAACAAsAAgABAAEAAAADAAsAAgABAAEAAAAEAAsAAgABAAEAAAAFAAsAAgABAAEAAAAGAAsAAgABAAEAAAAHAAsAAgABAAEAAAAIAAsAAgABAAEAAAAJAAsAAgABAAEAAAAKAAsAAgABAAEAAAALAAsAAgABAAEAAAAMAAsAAgABAAEAAAANAAsAAgABAAEAAAAPAAsAAgABAAEAAAAOAAsAAgABAAEAAAAAAAYAAgACAAIAAAAAAAUAAgACAAEAAAAAAAQAAgACAAEAAAAAAAMAAgACAAEAAAAAAAIAAgACAAAAAAAAAAEAAgABAAEAAAAPAAEAAgABAAEAAAAPAAIAAgAAAAAAAAAPAAMAAgAAAAEAAAAPAAQAAgAAAAEAAAAPAAUAAgAAAAEAAAAPAAYAAgAAAAEAAAAQAAYAAgACAAEAAAAQAAUAAgACAAEAAAAQAAQAAgACAAEAAAAQAAMAAgACAAEAAAAQAAIAAgACAAEAAAAQAAEAAgACAAEAAAAQAAAAAgACAAEAAAD//wAAAgAAAAEAAAD//wEAAgAAAAEAAAD//wIAAgAAAAEAAAD//wMAAgAAAAEAAAD//wQAAgAAAAEAAAD//wUAAgAAAAEAAAD//wYAAgABAAIAAAD//wsAAgAAAAEAAAD//wwAAgAAAAEAAAAAAAwAAgABAAEAAAABAAwAAgABAAEAAAACAAwAAgABAAEAAAADAAwAAgABAAEAAAAHAAwAAgABAAEAAAAIAAwAAgABAAEAAAAJAAwAAgABAAEAAAAGAAwAAgABAAEAAAAFAAwAAgABAAEAAAAEAAwAAgABAAEAAAAKAAwAAgABAAEAAAALAAwAAgABAAEAAAAMAAwAAgABAAEAAAANAAwAAgABAAEAAAAOAAwAAgABAAEAAAAPAAwAAgABAAEAAAAQAAwAAgACAAEAAAAQAAsAAgACAAEAAAD+/wcAAgAAAAEAAAD+/woAAgAAAAIAAAD+/wkAAgAAAAEAAAD+/wgAAgAAAAEAAAABAAEAAgABAAEAAAACAAEAAgABAAEAAAADAAEAAgABAAEAAAAEAAEAAgABAAEAAAAFAAEAAgABAAEAAAAGAAEAAgABAAEAAAAHAAEAAgABAAEAAAAIAAEAAgABAAEAAAAJAAEAAgABAAEAAAAKAAEAAgABAAEAAAALAAEAAgABAAEAAAAMAAEAAgABAAEAAAANAAEAAgABAAEAAAAOAAEAAgABAAEAAAAOAAIAAgABAAIAAAANAAIAAgABAAIAAAAMAAIAAgABAAIAAAALAAIAAgABAAIAAAAKAAIAAgABAAIAAAAJAAIAAgABAAIAAAAIAAIAAgABAAIAAAAHAAIAAgABAAIAAAAGAAIAAgABAAIAAAAFAAIAAgABAAIAAAAEAAIAAgABAAIAAAADAAIAAgABAAIAAAACAAIAAgABAAIAAAABAAIAAgABAAIAAAD//woAAgAAAAAAAAAAAAoAAgABAAEAAAABAAoAAgABAAEAAAACAAoAAgABAAEAAAADAAoAAgABAAEAAAAEAAoAAgABAAEAAAAFAAoAAgABAAEAAAAGAAoAAgABAAEAAAAHAAoAAgABAAEAAAAIAAoAAgABAAEAAAAJAAoAAgABAAEAAAAKAAoAAgABAAEAAAALAAoAAgABAAEAAAAMAAoAAgABAAEAAAANAAoAAgABAAEAAAAOAAoAAgABAAEAAAAPAAoAAgABAAEAAAAQAAoAAgACAAEAAAD+/wYAAgAAAAEAAAD//w0AAgAAAAIAAAAAAA0AAgABAAIAAAABAA0AAgABAAIAAAACAA0AAgABAAIAAAADAA0AAgABAAIAAAAEAA0AAgABAAIAAAAFAA0AAgABAAIAAAAGAA0AAgABAAIAAAAHAA0AAgABAAIAAAAIAA0AAgABAAIAAAAJAA0AAgABAAIAAAAKAA0AAgABAAIAAAALAA0AAgABAAIAAAAMAA0AAgABAAIAAAANAA0AAgABAAIAAAAOAA0AAgABAAIAAAAPAA0AAgABAAIAAAAQAA0AAgACAAIAAAAPAAkAAgAAAAEAAAAPAAgAAgAAAAEAAAAPAAcAAgAAAAEAAAAQAAkAAgACAAEAAAAQAAgAAgACAAEAAAAQAAcAAgACAAEAAAA=")
+tile_set = ExtResource("2_6fnkc")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAoAAgABAAAAAAABAAoAAgABAAAAAAACAAoAAgABAAAAAAADAAoAAgABAAAAAAAEAAoAAgABAAAAAAAFAAoAAgABAAAAAAAGAAoAAgABAAAAAAAHAAoAAgABAAAAAAAIAAoAAgABAAAAAAAJAAoAAgABAAAAAAAKAAoAAgABAAAAAAALAAoAAgABAAAAAAAMAAoAAgABAAAAAAANAAoAAgABAAAAAAAOAAoAAgABAAAAAAA=")
+tile_set = ExtResource("2_6fnkc")
+
+[node name="IdealPiano" type="Sprite2D" parent="."]
+position = Vector2(201.5, 187.5)
+texture = ExtResource("3_6fnkc")
+
+[node name="IdealFrame" type="NinePatchRect" parent="."]
+offset_left = 55.0
+offset_top = 85.0
+offset_right = 115.0
+offset_bottom = 124.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_wgx45")
+patch_margin_left = 3
+patch_margin_top = 4
+patch_margin_right = 3
+patch_margin_bottom = 5
+
+[node name="GuardianSuite" type="Sprite2D" parent="IdealFrame"]
+z_index = -1
+position = Vector2(30.000002, 19)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("6_l25di")
+
+[node name="IdealFrame2" type="NinePatchRect" parent="."]
+offset_left = 202.0
+offset_top = 91.0
+offset_right = 262.0
+offset_bottom = 130.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_wgx45")
+patch_margin_left = 3
+patch_margin_top = 4
+patch_margin_right = 3
+patch_margin_bottom = 5
+
+[node name="HammerSymphony" type="Sprite2D" parent="IdealFrame2"]
+z_index = -1
+position = Vector2(30.000002, 19)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("7_0xyr3")
+
+[node name="IdealFrame3" type="NinePatchRect" parent="."]
+offset_left = 128.0
+offset_top = 98.0
+offset_right = 188.0
+offset_bottom = 137.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("5_wgx45")
+patch_margin_left = 3
+patch_margin_top = 4
+patch_margin_right = 3
+patch_margin_bottom = 5
+
+[node name="HopesAndDreams" type="Sprite2D" parent="IdealFrame3"]
+z_index = -1
+position = Vector2(30.000002, 19)
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("8_4111p")
+
+[node name="IdealTable" type="Sprite2D" parent="."]
+position = Vector2(80.5, 178.5)
+texture = ExtResource("9_62yb4")
+
+[node name="Screenshot20260105182848" type="Sprite2D" parent="IdealTable"]
+position = Vector2(-5, -12.000015)
+scale = Vector2(0.023945259, 0.028409082)
+texture = ExtResource("10_hpkis")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("11_mhv3r")
+destination = "flowey_room2"
+entry_point = Vector2i(590, 120)
+left_facing = 1
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(-10, 170)
+shape = SubResource("RectangleShape2D_km1pe")
+
+[node name="Savepoint" parent="." instance=ExtResource("12_km1pe")]
+position = Vector2(150, 190)
+
+[node name="Idealist" type="AnimatedSprite2D" parent="."]
+position = Vector2(186, 182)
+sprite_frames = SubResource("SpriteFrames_puf2q")
+script = SubResource("GDScript_vv73l")
+metadata/_custom_type_script = "uid://cnq6fe8slv75o"
+
+[node name="Textbox" parent="Idealist" instance=ExtResource("18_xucn8")]
+position = Vector2(0, -25)
+
+[node name="MysteryGo" type="AudioStreamPlayer" parent="Idealist"]
+stream = ExtResource("19_bg22i")
+
+[node name="Door" type="Sprite2D" parent="."]
+modulate = Color(0.55, 0.71500003, 1, 1)
+position = Vector2(260, 170)
+texture = ExtResource("20_23c55")
+
+[node name="InteractDoor2" type="Area2D" parent="."]
+script = ExtResource("11_mhv3r")
+destination = "godhome"
+entry_point = Vector2i(30, 120)
+interact_required = true
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor2"]
+position = Vector2(260, 174.5)
+shape = SubResource("RectangleShape2D_t05oc")
+
+[node name="Sign" type="Area2D" parent="."]
+script = ExtResource("21_t05oc")
+text = Array[String](["(It's a laptop with some weird shapes and squiggles on it.)", "(Seems like someone's using it to design some sort of game.)", "(Seems like in a month or two, it might be ready to release a demo to the world...)", "(Oh wait, they're actually just playing Silksong. Never mind.)"])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign"]
+position = Vector2(75.5, 166.5)
+shape = SubResource("RectangleShape2D_2mxc0")
+
+[node name="Sign2" type="Area2D" parent="."]
+script = ExtResource("21_t05oc")
+text = Array[String](["(It's a little piano.)", "(Someone is messing around on it, making up chords and melodies.)", "(They're... okay enough. Mediocre.)"])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign2"]
+position = Vector2(201.5, 186.5)
+shape = SubResource("RectangleShape2D_g13yg")

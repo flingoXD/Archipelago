@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://d3cj7ikkfvbui"]
+
+[ext_resource type="Script" uid="uid://c3oi21bfpq15e" path="res://items/golden_pear.gd" id="1_3asw6"]
+
+[resource]
+script = ExtResource("1_3asw6")
+item_id = "golden_pear"
+display_name = "Golden Pear"
+edible = true
+description = "Makes you invulnerable for a pear of hits."
+metadata/_custom_type_script = "uid://ds3e4kaukson"

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://lulvv41ygutk"]
+
+[ext_resource type="Script" uid="uid://ds3e4kaukson" path="res://item.gd" id="1_4i2io"]
+
+[resource]
+script = ExtResource("1_4i2io")
+item_id = "monster_candy"
+display_name = "Monster Candy"
+edible = true
+eat_hp = 10
+description = "Has a distinct, non-licorice flavor."
+metadata/_custom_type_script = "uid://ds3e4kaukson"

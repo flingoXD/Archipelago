@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://b870qyukycq35"]
+
+[ext_resource type="Script" uid="uid://dwxi7j5ej6lo1" path="res://enemies/flier.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dfxwwnniw1lmx" path="res://sprites/flier_death.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://c6lmp8tx576re" path="res://sprites/flier.png" id="3"]
+[ext_resource type="Script" uid="uid://ddb2vxbtpe3u8" path="res://objects/damage_hitbox.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4u2b4"]
+atlas = ExtResource("3")
+region = Rect2(0, 0, 27, 27)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b50e1"]
+atlas = ExtResource("3")
+region = Rect2(0, 27, 27, 27)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_trqnf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4u2b4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b50e1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7wk7"]
+size = Vector2(17, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dtvi"]
+size = Vector2(9, 18)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rkhaj"]
+radius = 128.0
+
+[node name="Flier" type="CharacterBody2D" node_paths=PackedStringArray("detection")]
+script = ExtResource("1")
+max_hp = 25
+atk = 4
+def = 4
+dropped_gold = 2
+dropped_xp = 2
+death_tex = ExtResource("2")
+gauntlet_fade = true
+detection = NodePath("DetectionRange")
+metadata/_custom_type_script = "uid://u6nmfmrmnplx"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_trqnf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_s7wk7")
+
+[node name="DamageHitbox" type="Area2D" parent="."]
+script = ExtResource("4")
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_4dtvi")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_rkhaj")
+
+[node name="Textbox" parent="." instance=ExtResource("5")]
+position = Vector2(0, -15)

@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://cyh6ymjdpi82d"]
+
+[ext_resource type="Script" uid="uid://2cq65oi8vb17" path="res://objects/ambient_enemy.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://bw1fklq1qt43u" path="res://sprites/spider.png" id="2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5u3y"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 7, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2178h"]
+atlas = ExtResource("2")
+region = Rect2(0, 0, 7, 5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0hlt"]
+atlas = ExtResource("2")
+region = Rect2(0, 5, 7, 5)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n5u3y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5u3y")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2178h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0hlt")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7nthg"]
+size = Vector2(7, 5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2178h"]
+radius = 60.0
+
+[node name="Spider" type="CharacterBody2D" node_paths=PackedStringArray("detection")]
+script = ExtResource("1")
+detection = NodePath("DetectionRange")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -46.0
+offset_top = -49.0
+offset_right = 49.0
+offset_bottom = 43.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -0.5)
+sprite_frames = SubResource("SpriteFrames_n5u3y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_7nthg")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+position = Vector2(0, -0.5)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_2178h")

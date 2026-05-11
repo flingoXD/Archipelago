@@ -1,0 +1,181 @@
+[gd_scene load_steps=20 format=4 uid="uid://8thkpmes25rk"]
+
+[ext_resource type="Script" uid="uid://c6oncsoxrk8om" path="res://levels/home_tower_top.gd" id="1_56grj"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_4pamg"]
+[ext_resource type="Texture2D" uid="uid://p3cdov465ugb" path="res://tilesets/ruins_parallax1.png" id="2_7neth"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2_ldhuh"]
+[ext_resource type="Resource" uid="uid://dqvboi8ntieeg" path="res://music/pink_and_gold.tres" id="3_56grj"]
+[ext_resource type="Texture2D" uid="uid://dkm3xt6ggxnmw" path="res://tilesets/ruins_parallax2.png" id="3_sv1ng"]
+[ext_resource type="Texture2D" uid="uid://bmgwyeq4n81a" path="res://tilesets/ruins_parallax3.png" id="4_ehli8"]
+[ext_resource type="Texture2D" uid="uid://weqol5bf6j7m" path="res://tilesets/ruins_parallax4.png" id="5_ldhuh"]
+[ext_resource type="Texture2D" uid="uid://co63ahfu2j8wa" path="res://tilesets/ruins_parallax5.png" id="6_56grj"]
+[ext_resource type="Texture2D" uid="uid://bvp72vw6f0mah" path="res://tilesets/ruins_parallax6.png" id="7_yswuf"]
+[ext_resource type="Texture2D" uid="uid://baxcht737kioy" path="res://tilesets/ruins_parallax7.png" id="8_djktm"]
+[ext_resource type="Script" uid="uid://be8fu5lrtidnk" path="res://objects/hazard.gd" id="10_sv1ng"]
+[ext_resource type="Script" uid="uid://c7byuwt70ctt1" path="res://objects/camera_limit_area.gd" id="13_56grj"]
+[ext_resource type="PackedScene" uid="uid://7qq3ox63m6vb" path="res://enemies/crispy_scroll.tscn" id="14_yswuf"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="15_djktm"]
+
+[sub_resource type="AudioStream" id="AudioStream_yswuf"]
+script = ExtResource("2_ldhuh")
+stream_group = ExtResource("3_56grj")
+stream_mask = 1
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehli8"]
+size = Vector2(480, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yswuf"]
+size = Vector2(280, 180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cx5v0"]
+size = Vector2(40, 20)
+
+[node name="HomeTowerTop" type="Node2D"]
+script = ExtResource("1_56grj")
+default_point = Vector2i(170, 220)
+limit_top = -480
+limit_bottom = 480
+limit_left = -640
+limit_right = 1280
+stream = SubResource("AudioStream_yswuf")
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.5, 0.5, 0.5, 1)
+motion_scale = Vector2(0.02, 0.01)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(160, 150)
+texture = ExtResource("2_7neth")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.55, 0.55, 0.55, 1)
+motion_scale = Vector2(0.04, 0.02)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(160, 150)
+texture = ExtResource("3_sv1ng")
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.6, 0.6, 0.6, 1)
+motion_scale = Vector2(0.06, 0.03)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2(160, 150)
+texture = ExtResource("4_ehli8")
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.65, 0.65, 0.65, 1)
+motion_scale = Vector2(0.08, 0.04)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+position = Vector2(160, 150)
+texture = ExtResource("5_ldhuh")
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.7, 0.7, 0.7, 1)
+motion_scale = Vector2(0.1, 0.05)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+position = Vector2(160, 150)
+texture = ExtResource("6_56grj")
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.75, 0.75, 0.75, 1)
+motion_scale = Vector2(0.12, 0.06)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer6"]
+position = Vector2(160, 150)
+texture = ExtResource("7_yswuf")
+
+[node name="ParallaxLayer7" type="ParallaxLayer" parent="ParallaxBackground"]
+modulate = Color(0.8, 0.8, 0.8, 1)
+motion_scale = Vector2(0.14, 0.07)
+motion_mirroring = Vector2(320, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer7"]
+position = Vector2(160, 150)
+texture = ExtResource("8_djktm")
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAUAAQACAAcAAAAAAAQAAQACAAcAAAAQAAUAAQACAAcAAAAQAAQAAQACAAcAAAAPAAUAAQAAAAcAAAAPAAQAAQAAAAcAAAD//wUAAQAAAAcAAAD//wQAAQAAAAcAAAAJAAsAAQABAAcAAAAKAAsAAQABAAcAAAA=")
+tile_set = ExtResource("2_4pamg")
+
+[node name="Decor" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_4pamg")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAYAAQAEAAAAAAAAAAcAAQAEAAAAAAAAAAgAAQAEAAAAAAAAAAkAAQAEAAAAAAAAAAoAAQAEAAAAAAAAAAsAAQACAAAAAAAPAAsAAQACAAAAAAAPAAoAAQABAAAAAAAPAAkAAQABAAAAAAAPAAgAAQABAAAAAAAPAAcAAQABAAAAAAAPAAYAAQABAAAAAAABAAsAAQACAAAAAAACAAsAAQACAAAAAAADAAsAAQACAAAAAAAEAAsAAQACAAAAAAAFAAsAAQACAAAAAAAGAAsAAQAEAAIAAAAHAAsAAQACAAAAAAAIAAsAAQAEAAAAAAALAAsAAQABAAAAAAAMAAsAAQACAAAAAAANAAsAAQACAAAAAAAOAAsAAQAEAAMAAAD//wYAAQABAAAAAAD//wcAAQABAAAAAAD//wgAAQABAAAAAAD//wkAAQABAAAAAAD//woAAQABAAAAAAD//wsAAQABAAAAAAAQAAYAAQAEAAAAAAAQAAcAAQAEAAAAAAAQAAgAAQAEAAAAAAAQAAkAAQAEAAAAAAAQAAoAAQAEAAAAAAAQAAsAAQAEAAAAAAD+/wMAAQABAAEAAAD//wMAAQACAAEAAAAAAAMAAQACAAEAAAABAAMAAQAEAAEAAAAOAAMAAQABAAEAAAAPAAMAAQACAAEAAAAQAAMAAQADAAEAAAARAAMAAQAEAAEAAAAIAAwAAQAGAA4AAAAIAA0AAQAGAA4AAAAIAA4AAQABAAEAAAAJAA4AAQACAAEAAAAKAA4AAQACAAEAAAALAA4AAQAEAAEAAAALAA0AAQAGAA4AAAALAAwAAQAGAA4AAAA=")
+tile_set = ExtResource("2_4pamg")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD//wYAAQAAAA4AAAAAAAYAAQABAA4AAAAPAAYAAQAAAA4AAAAQAAYAAQABAA4AAAABAAsAAQAAAAEAAAACAAsAAQAAAAEAAAADAAsAAQAAAAEAAAAEAAsAAQAAAAEAAAAFAAsAAQAAAAEAAAAGAAsAAQAAAAEAAAAHAAsAAQAAAAEAAAAIAAsAAQABAA4AAAAOAAsAAQAAAAEAAAANAAsAAQAAAAEAAAAMAAsAAQAAAAEAAAALAAsAAQAAAA4AAAD+/wMAAQACAA4AAAD//wMAAQAAAAIAAAAAAAMAAQAAAAIAAAABAAMAAQADAA4AAAAOAAMAAQACAA4AAAAPAAMAAQAAAAIAAAAQAAMAAQAAAAIAAAARAAMAAQADAA4AAAA=")
+tile_set = ExtResource("2_4pamg")
+
+[node name="Hazard" type="Area2D" parent="."]
+script = ExtResource("10_sv1ng")
+metadata/_custom_type_script = "uid://be8fu5lrtidnk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard"]
+position = Vector2(580, 270)
+shape = SubResource("RectangleShape2D_ehli8")
+
+[node name="CameraLimitArea" type="Area2D" parent="."]
+script = ExtResource("13_56grj")
+limit_top = 0
+limit_left = 0
+limit_right = 640
+metadata/_custom_type_script = "uid://c7byuwt70ctt1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitArea"]
+position = Vector2(160, 130)
+shape = SubResource("RectangleShape2D_yswuf")
+
+[node name="Platform" type="TileMapLayer" parent="."]
+position = Vector2(0, 120)
+tile_map_data = PackedByteArray("AAAJAAUAAQABAAEAAAAKAAUAAQAEAAEAAAA=")
+tile_set = ExtResource("2_4pamg")
+
+[node name="Floor" type="TileMapLayer" parent="Platform"]
+tile_map_data = PackedByteArray("AAAJAAUAAQACAA4AAAAKAAUAAQADAA4AAAA=")
+tile_set = ExtResource("2_4pamg")
+
+[node name="CrispyScroll" parent="." instance=ExtResource("14_yswuf")]
+position = Vector2(73, 173)
+enemy_id = "home_tower_crispy_scroll"
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("15_djktm")
+destination = "home_tower"
+entry_point = Vector2i(210, -860)
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(200, 250)
+shape = SubResource("RectangleShape2D_cx5v0")
+
+[node name="InteractDoor2" type="Area2D" parent="."]
+script = ExtResource("15_djktm")
+destination = "home"
+entry_point = Vector2i(1530, -900)
+left_facing = 1
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor2"]
+position = Vector2(-260, 270)
+shape = SubResource("RectangleShape2D_ehli8")
+
+[connection signal="death" from="CrispyScroll" to="." method="arena_finish"]
+[connection signal="spared" from="CrispyScroll" to="." method="arena_finish"]

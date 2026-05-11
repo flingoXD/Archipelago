@@ -1,0 +1,130 @@
+[gd_scene load_steps=15 format=3 uid="uid://dpye0qnfscuxp"]
+
+[ext_resource type="Script" uid="uid://cdv1m0pncqtab" path="res://enemies/penilla.gd" id="1_fked3"]
+[ext_resource type="Texture2D" uid="uid://ddlgr8x0ditwb" path="res://sprites/penilla_death.png" id="2_fked3"]
+[ext_resource type="Texture2D" uid="uid://cebncxk0827lc" path="res://sprites/penilla.png" id="2_i0qjy"]
+[ext_resource type="Script" uid="uid://ddb2vxbtpe3u8" path="res://objects/damage_hitbox.gd" id="3_i0qjy"]
+[ext_resource type="Texture2D" uid="uid://duop2wpe743af" path="res://sprites/penilla_jump.png" id="4_qwfvg"]
+[ext_resource type="Texture2D" uid="uid://8thn5ab0layx" path="res://sprites/penilla_hover.png" id="4_tmcmn"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="5_g6xu7"]
+[ext_resource type="Texture2D" uid="uid://bs82y8dte0i0g" path="res://sprites/penilla_lunge.png" id="6_kujue"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qwfvg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i0qjy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_tmcmn")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fked3")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qwfvg")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_kujue")
+}],
+"loop": true,
+"name": &"lunge",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hupb1"]
+size = Vector2(12, 20)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qwfvg"]
+radius = 128.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fked3"]
+size = Vector2(10, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tmcmn"]
+size = Vector2(14, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kujue"]
+size = Vector2(12, 20)
+
+[node name="Penilla" type="CharacterBody2D" node_paths=PackedStringArray("detection")]
+script = ExtResource("1_fked3")
+max_hp = 45
+atk = 4
+def = 2
+dropped_gold = 2
+dropped_xp = 3
+death_tex = ExtResource("2_fked3")
+knockback = 0
+detection = NodePath("DetectionRange")
+metadata/_custom_type_script = "uid://u6nmfmrmnplx"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_qwfvg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_hupb1")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_qwfvg")
+
+[node name="DamageHitbox" type="Area2D" parent="."]
+script = ExtResource("3_i0qjy")
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_fked3")
+
+[node name="LungeHitbox" type="Area2D" parent="."]
+script = ExtResource("3_i0qjy")
+atk = 2
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LungeHitbox"]
+position = Vector2(-3, 10.5)
+rotation = -0.7853982
+shape = SubResource("RectangleShape2D_tmcmn")
+
+[node name="Textbox" parent="." instance=ExtResource("5_g6xu7")]
+position = Vector2(0, -15)
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_kujue")
+target_position = Vector2(0, -100)
+
+[node name="ShapeCast2D2" type="ShapeCast2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_kujue")
+target_position = Vector2(0, 0)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
+target_position = Vector2(-40, 0)

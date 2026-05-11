@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://mj15ck6tibty"]
+
+[ext_resource type="Script" uid="uid://c450qw7l6wj88" path="res://bullets/decibat_ripple.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://d3dnsew8exxxf" path="res://sprites/decibat_ripple.png" id="2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y45hs"]
+size = Vector2(4, 20)
+
+[node name="DecibatRipple" type="Area2D"]
+script = ExtResource("1")
+atk = 5
+remove_after_damage = true
+physical = false
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_y45hs")

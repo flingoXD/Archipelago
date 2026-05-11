@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://clexy2j0rf1f1"
+path="res://.godot/imported/megalo strike back.wav-0b573875a14d631a7793b0e805506326.sample"
+
+[deps]
+
+source_file="res://music/megalo strike back.wav"
+dest_files=["res://.godot/imported/megalo strike back.wav-0b573875a14d631a7793b0e805506326.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=650304
+edit/loop_end=1256828
+compress/mode=0

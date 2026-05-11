@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://mi3t2jpbjvu2"]
+
+[ext_resource type="Script" uid="uid://4pvgn5kgaalw" path="res://enemies/moldsmal.gd" id="1_ox6ma"]
+[ext_resource type="Texture2D" uid="uid://p8m5xo1a4n0i" path="res://sprites/moldsmal.png" id="2_ox6ma"]
+[ext_resource type="Script" uid="uid://ddb2vxbtpe3u8" path="res://objects/damage_hitbox.gd" id="3_ox6ma"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="4_aoy85"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aoy85"]
+atlas = ExtResource("2_ox6ma")
+region = Rect2(0, 0, 0, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ox6ma"]
+atlas = ExtResource("2_ox6ma")
+region = Rect2(0, 0, 19, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00b1m"]
+atlas = ExtResource("2_ox6ma")
+region = Rect2(0, 15, 19, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2csc5"]
+atlas = ExtResource("2_ox6ma")
+region = Rect2(0, 0, 19, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2csc5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ox6ma")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00b1m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2csc5")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w302o"]
+size = Vector2(17, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aoy85"]
+size = Vector2(13, 9)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ox6ma"]
+radius = 128.0
+
+[node name="Moldsmal" type="CharacterBody2D" node_paths=PackedStringArray("detection")]
+collision_layer = 2
+script = ExtResource("1_ox6ma")
+max_hp = 50
+atk = 4
+dropped_xp = 3
+death_tex = SubResource("AtlasTexture_aoy85")
+knockback = 0
+detection = NodePath("DetectionRange")
+metadata/_custom_type_script = "uid://u6nmfmrmnplx"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_2csc5")
+animation = &"hurt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w302o")
+
+[node name="DamageHitbox" type="Area2D" parent="."]
+script = ExtResource("3_ox6ma")
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox"]
+shape = SubResource("RectangleShape2D_aoy85")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_ox6ma")
+
+[node name="Textbox" parent="." instance=ExtResource("4_aoy85")]
+position = Vector2(0, -10)

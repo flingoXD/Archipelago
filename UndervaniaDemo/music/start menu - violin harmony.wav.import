@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dfe5ym7g1v76n"
+path="res://.godot/imported/start menu - violin harmony.wav-276df92f73c973ca0e0c74532c3e54eb.sample"
+
+[deps]
+
+source_file="res://music/start menu - violin harmony.wav"
+dest_files=["res://.godot/imported/start menu - violin harmony.wav-276df92f73c973ca0e0c74532c3e54eb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=122254
+edit/loop_end=1532214
+compress/mode=0

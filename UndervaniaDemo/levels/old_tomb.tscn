@@ -1,0 +1,121 @@
+[gd_scene load_steps=15 format=4 uid="uid://v622gg1xoq5f"]
+
+[ext_resource type="Script" uid="uid://c2fgvgrhhytqh" path="res://level.gd" id="1_pgo6g"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2_6npsg"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_7hfg1"]
+[ext_resource type="Resource" uid="uid://b4hkqa3lucj3m" path="res://music/toofar.tres" id="3_1gq4p"]
+[ext_resource type="PackedScene" uid="uid://cse5c01whxjp3" path="res://objects/broken_platform.tscn" id="3_7hfg1"]
+[ext_resource type="Shader" uid="uid://diu408fmisvhr" path="res://objects/god_rays.gdshader" id="5_8w8xt"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="6_1gq4p"]
+[ext_resource type="TileSet" uid="uid://b3v885he5ubyf" path="res://tilesets/strytax_thorns.tres" id="8_2l7q0"]
+
+[sub_resource type="AudioStream" id="AudioStream_8w8xt"]
+script = ExtResource("2_6npsg")
+stream_group = ExtResource("3_1gq4p")
+stream_mask = 1
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_8w8xt"]
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8w8xt"]
+noise = SubResource("FastNoiseLite_8w8xt")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2l7q0"]
+shader = ExtResource("5_8w8xt")
+shader_parameter/skew = 0.2
+shader_parameter/time_scale = 0.02
+shader_parameter/noise2D = SubResource("NoiseTexture2D_8w8xt")
+shader_parameter/color = Color(1, 1, 1, 0.2509804)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8w8xt"]
+size = Vector2(60, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1gq4p"]
+size = Vector2(20, 120)
+
+[node name="OldTomb" type="Node2D"]
+script = ExtResource("1_pgo6g")
+default_point = Vector2i(170, 220)
+limit_top = -400
+limit_bottom = 480
+limit_right = 640
+stream = SubResource("AudioStream_8w8xt")
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -71.0
+offset_top = -615.0
+offset_right = 942.0
+offset_bottom = 324.0
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.9, 0.9)
+
+[node name="Background" type="TileMapLayer" parent="Parallax2D"]
+modulate = Color(0.3, 0.3, 0.3, 1)
+scale = Vector2(0.8, 0.8)
+tile_map_data = PackedByteArray("AAD///n/BgABAAIAAAD///r/BgABAAIAAAD///v/BgABAAIAAAD///z/BgABAAIAAAD///3/BgABAAIAAAD///7/BgABAAIAAAD/////BgABAAIAAAAAAPn/BgAAAAQAAAAAAPr/BgABAAIAAAAAAPv/BgABAAIAAAAAAPz/BgAAAAQAAAAAAP3/BgABAAIAAAAAAP7/BgABAAIAAAAAAP//BgABAAIAAAABAPn/BgABAAIAAAABAPr/BgABAAQAAAABAPv/BgAAAAQAAAACAPn/BgABAAIAAAD///j/BgABAAIAAAAAAPj/BgABAAIAAAABAPj/BgABAAIAAAACAPj/BgABAAQAAAADAPj/BgACAAQAAAABAPz/BgABAAIAAAACAPr/BgABAAIAAAADAPn/BgACAAIAAAD//wIABgACAAMAAAD//wEABgACAAIAAAD//wAABgABAAQAAAD+/wIABgAAAAMAAAD+/wEABgAAAAIAAAD+/wAABgAAAAIAAAD+////BgAAAAIAAAD+//3/BgAAAAIAAAD+//7/BgAAAAIAAAD+//z/BgAAAAIAAAD+//v/BgAAAAIAAAD+//r/BgAAAAIAAAD+//n/BgAAAAIAAAD+//j/BgAAAAIAAAD+//f/BgAAAAIAAAD///f/BgABAAQAAAAAAPf/BgABAAIAAAABAPf/BgABAAQAAAACAPf/BgAAAAQAAAADAPf/BgABAAIAAAABAP3/BgACAAIAAAACAPz/BgACAAMAAAACAPv/BgACAAIAAAADAPr/BgACAAMAAAAEAPj/BgACAAMAAAAEAPf/BgABAAIAAAAFAPf/BgACAAMAAAAFAPb/BgACAAIAAAAEAPb/BgABAAIAAAADAPb/BgABAAIAAAACAPb/BgAAAAQAAAABAPb/BgABAAIAAAAAAPb/BgAAAAQAAAD///b/BgABAAIAAAD+//b/BgAAAAIAAAD+//X/BgAAAAIAAAD///X/BgABAAIAAAAAAPX/BgABAAIAAAABAPX/BgABAAIAAAACAPX/BgABAAIAAAADAPX/BgACAAQAAAAEAPX/BgABAAIAAAAFAPX/BgABAAQAAAAGAPX/BgACAAMAAAAGAPT/BgACAAIAAAAFAPT/BgABAAIAAAAEAPT/BgABAAIAAAADAPT/BgABAAIAAAACAPT/BgABAAIAAAABAPT/BgABAAIAAAAAAPT/BgABAAIAAAD///T/BgABAAQAAAD+//T/BgAAAAIAAAD+//P/BgAAAAIAAAD///P/BgABAAIAAAAAAPP/BgABAAIAAAABAPP/BgABAAIAAAACAPP/BgABAAIAAAADAPP/BgABAAIAAAAEAPP/BgABAAIAAAAFAPP/BgABAAIAAAAGAPP/BgACAAIAAAAHAPL/BgACAAMAAAAGAPL/BgABAAIAAAAFAPL/BgACAAQAAAAEAPL/BgABAAIAAAADAPL/BgACAAQAAAACAPL/BgABAAIAAAABAPL/BgABAAIAAAAAAPL/BgABAAIAAAD///L/BgABAAIAAAD+//L/BgAAAAIAAAAHAPH/BgACAAEAAAAGAPH/BgABAAEAAAAFAPH/BgABAAEAAAAEAPH/BgABAAEAAAADAPH/BgABAAEAAAACAPH/BgABAAEAAAABAPH/BgABAAEAAAAAAPH/BgABAAEAAAD///H/BgABAAEAAAD+//H/BgAAAAEAAAABAP7/BgACAAIAAAABAP//BgACAAMAAAAAAAAABgACAAMAAAA=")
+tile_set = ExtResource("2_7hfg1")
+collision_enabled = false
+
+[node name="GodRays" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_2l7q0")
+offset_left = -105.0
+offset_top = -316.0
+offset_right = 495.0
+offset_bottom = 284.0
+
+[node name="Walls" type="TileMapLayer" parent="."]
+modulate = Color(0.5, 0.5, 0.5, 1)
+tile_map_data = PackedByteArray("AAAAAAAAAQACAA8AAAAAAAEAAQACAA8AAAAAAAIAAQACAA8AAAAAAAMAAQACAA8AAAAAAAQAAQACAA8AAAAAAAUAAQACAA8AAAAAAAYAAQACAA8AAAAAAAcAAQACAA8AAAAAAAgAAQACAA8AAAAAAAkAAQACAA8AAAAAAAoAAQACAA8AAAAAAAsAAQAGABEAAAABAAsAAQAGABEAAAACAAsAAQAGABEAAAADAAsAAQAGABEAAAAEAAsAAQAGABEAAAAFAAsAAQAGABEAAAAGAAsAAQAGABEAAAAHAAsAAQAGABEAAAAIAAsAAQAGABEAAAAMAAsAAQAGABEAAAANAAsAAQAGABEAAAAOAAsAAQAGABEAAAAPAAAAAQACAA8AAAAPAAEAAQACAA8AAAAPAAIAAQACAA8AAAAPAAMAAQACAA8AAAAPAAQAAQACAA8AAAAPAAUAAQACAA8AAAAPAAYAAQACAA8AAAAPAAcAAQACAA8AAAAPAAgAAQACAA8AAAAPAAkAAQACAA8AAAAPAAoAAQACAA8AAAAPAAsAAQAGABEAAAAPAPb/AQACAA8AAAAOAPb/AQACAA8AAAANAPb/AQACAA8AAAAMAPb/AQACAA8AAAALAPb/AQACAA8AAAAKAPb/AQACAA8AAAAJAPb/AQACAA8AAAAIAPb/AQACAA8AAAAHAPb/AQACAA8AAAAGAPb/AQACAA8AAAAFAPb/AQACAA8AAAAEAPb/BgACAAMAAAADAPb/BgABAAIAAAACAPb/BgABAAIAAAABAPb/BgABAAIAAAAAAPb/BgABAAIAAAAPAP//AQACAA8AAAAPAP7/BgABAAAAAAARAP7/AQAGABEAAAABAPX/BgABAAEAAAAAAPX/BgABAAEAAAD///X/BgAAAAEAAAD///b/BgAAAAIAAAD///f/BgAAAAIAAAAAAPf/BgABAAIAAAACAPX/BgABAAEAAAAAAPv/BgABAAIAAAABAPr/BgACAAIAAAABAPn/BgABAAIAAAACAPj/BgACAAIAAAACAPf/BgACAAQAAAADAPf/BgACAAMAAAAEAPX/BgACAAEAAAAAAPz/BgACAAIAAAAAAP3/BgACAAIAAAD///3/BgAAAAIAAAAAAPr/BgABAAIAAAAAAPn/BgABAAIAAAAAAPj/BgABAAQAAAABAPf/BgABAAIAAAABAPj/BgABAAIAAAD///n/BgAAAAIAAAD///r/BgAAAAIAAAD///v/BgAAAAIAAAD///z/BgAAAAIAAAD///j/BgAAAAIAAAADAPX/BgABAAEAAAAAAP7/BgABAAIAAAAAAP//BgACAAMAAAAIAAwAAQAGABEAAAAIAA0AAQAGABEAAAAIAA4AAQAGABEAAAAJAA4AAQAGABEAAAAKAA4AAQAGABEAAAALAA4AAQAGABEAAAAMAA4AAQAGABEAAAAMAA0AAQAGABEAAAAMAAwAAQAGABEAAAD///7/BgAAAAIAAAABAP7/BgACAAAAAAD/////BgAAAAMAAAABAPv/BgACAAMAAAACAPn/BgACAAMAAAAPAPf/AQACAA8AAAAQAPf/AQAGABEAAAARAPf/AQAGABEAAAARAPj/AQAGABEAAAARAPn/AQAGABEAAAARAPr/AQAGABEAAAARAPv/AQAGABEAAAARAPz/AQAGABEAAAARAP3/AQAGABEAAAAQAP7/BgACAAAAAAAOAP7/BgAAAAAAAAA=")
+tile_set = ExtResource("2_7hfg1")
+
+[node name="BrokenPlatform" parent="Walls" instance=ExtResource("3_7hfg1")]
+position = Vector2(80, 170)
+platform_type = 1
+
+[node name="BrokenPlatform2" parent="Walls" instance=ExtResource("3_7hfg1")]
+position = Vector2(240, 130)
+platform_type = 1
+
+[node name="BrokenPlatform3" parent="Walls" instance=ExtResource("3_7hfg1")]
+position = Vector2(160, 50)
+platform_type = 1
+
+[node name="BrokenPlatform4" parent="Walls" instance=ExtResource("3_7hfg1")]
+position = Vector2(220, -50)
+platform_type = 1
+
+[node name="Floor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAOAAsAAQADAA0AAAANAAsAAQADAA0AAAAMAAsAAQADAA0AAAAIAAsAAQADAA0AAAAHAAsAAQADAA0AAAAGAAsAAQADAA0AAAAFAAsAAQADAA0AAAAEAAsAAQADAA0AAAADAAsAAQADAA0AAAACAAsAAQADAA0AAAABAAsAAQADAA0AAAAAAAsAAQADAA0AAAAPAAsAAQADAA0AAAA=")
+tile_set = ExtResource("2_7hfg1")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("6_1gq4p")
+destination = "start_room"
+entry_point = Vector2i(-110, 440)
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(210, 250)
+shape = SubResource("RectangleShape2D_8w8xt")
+
+[node name="InteractDoor2" type="Area2D" parent="."]
+script = ExtResource("6_1gq4p")
+destination = "old_tomb2"
+entry_point = Vector2i(30, 180)
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor2"]
+position = Vector2(330, -100)
+shape = SubResource("RectangleShape2D_1gq4p")
+
+[node name="Thorns" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAABAPz/AAAAAAAABAACAPv/AAAAAAAAAgACAPr/AAAAAAAAAgABAP//AAAAAAAAAgAAAAAAAAAAAAAABAADAPj/AAAAAAAABAAEAPf/AAAAAAAAAgANAP7/AAAAAAAAAwAOAP//AAAAAAAABAA=")
+tile_set = ExtResource("8_2l7q0")
+collision_enabled = false

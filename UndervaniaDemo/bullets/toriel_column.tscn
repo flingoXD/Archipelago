@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://cde1uicp1qqaj"]
+
+[ext_resource type="Script" uid="uid://c1vq5t583p7gb" path="res://bullets/toriel_column.gd" id="1_2h6vq"]
+[ext_resource type="Texture2D" uid="uid://4e1xlwodgg22" path="res://sprites/toriel_smoke.png" id="2_2hbt0"]
+[ext_resource type="Texture2D" uid="uid://dwiuqxlvfwo36" path="res://sprites/toriel_fire.png" id="3_btiss"]
+[ext_resource type="AudioStream" uid="uid://bxel0yoxy2xgk" path="res://sounds/toriel_column.wav" id="3_xe7s6"]
+[ext_resource type="Script" uid="uid://ddb2vxbtpe3u8" path="res://objects/damage_hitbox.gd" id="5_bnbd6"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xe7s6"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(20, 100, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+spread = 180.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, -20, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bnbd6"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 2
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_btiss"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(1, 0.2509804, 0, 1, 1, 0.5019608, 0, 1, 1, 0.9254902, 0.54509807, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bnbd6"]
+gradient = SubResource("Gradient_btiss")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_lp1es"]
+lifetime_randomness = 0.3
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 20, 1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+gravity = Vector3(0, 0, 0)
+color_ramp = SubResource("GradientTexture1D_bnbd6")
+anim_speed_min = 5.0
+anim_speed_max = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bnbd6"]
+resource_local_to_scene = true
+size = Vector2(36, 0)
+
+[node name="TorielColumn" type="Node2D"]
+script = ExtResource("1_2h6vq")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.5019608)
+emitting = false
+amount = 100
+texture = ExtResource("2_2hbt0")
+one_shot = true
+explosiveness = 0.3
+visibility_rect = Rect2(-100, -150, 200, 300)
+process_material = SubResource("ParticleProcessMaterial_xe7s6")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_bnbd6")
+position = Vector2(0, -140)
+emitting = false
+amount = 1000
+amount_ratio = 0.4
+texture = ExtResource("3_btiss")
+lifetime = 0.4
+visibility_rect = Rect2(-100, -150, 200, 300)
+process_material = SubResource("ParticleProcessMaterial_lp1es")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xe7s6")
+
+[node name="Hitbox" type="Area2D" parent="."]
+script = ExtResource("5_bnbd6")
+atk = 6
+physical = false
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="Shape" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -120)
+shape = SubResource("RectangleShape2D_bnbd6")

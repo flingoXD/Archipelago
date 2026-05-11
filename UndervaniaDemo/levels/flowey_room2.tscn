@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=4 uid="uid://ds4xyo7dlvt53"]
+
+[ext_resource type="Script" uid="uid://rkgvb2m1a30q" path="res://levels/flowey_room2.gd" id="1"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="3"]
+[ext_resource type="Script" uid="uid://c7byuwt70ctt1" path="res://objects/camera_limit_area.gd" id="4"]
+[ext_resource type="Script" uid="uid://cd8yb0wnhbywb" path="res://objects/cutscene_trigger.gd" id="5"]
+[ext_resource type="SpriteFrames" uid="uid://ckiga2s1vuavl" path="res://sprites/flowey.tres" id="6"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cybvy"]
+size = Vector2(20, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrvgk"]
+size = Vector2(220, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jkeh"]
+size = Vector2(20, 100)
+
+[node name="FloweyRoom2" type="Node2D"]
+script = ExtResource("1")
+default_point = Vector2i(30, 120)
+limit_top = -200
+limit_bottom = 280
+limit_right = 1240
+flowey_stalk = false
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -196.0
+offset_top = -40.0
+offset_right = 817.0
+offset_bottom = 513.0
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2")
+
+[node name="Decor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAABAAYAAQAGABEAAAACAAYAAQAGABEAAAADAAYAAQAGABEAAAAEAAYAAQAGABEAAAAFAAYAAQAGABEAAAAGAAYAAQAGABEAAAAHAAYAAQAGABEAAAAIAAYAAQAGABEAAAAJAAYAAQAGABEAAAAKAAYAAQAGABEAAAALAAYAAQAGABEAAAAMAAYAAQAGABEAAAANAAYAAQAGABEAAAAOAAYAAQAGABEAAAASAAYAAQAGABEAAAAPAAYAAQAGABEAAAAQAAYAAQAGABEAAAARAAYAAQAGABEAAAATAAYAAQAGABEAAAAUAAYAAQAGABEAAAAVAAYAAQAGABEAAAAWAAYAAQAGABEAAAAXAAYAAQAGABEAAAAYAAYAAQAGABEAAAAZAAYAAQAGABEAAAAaAAYAAQAGABEAAAAbAAYAAQAGABEAAAAcAAYAAQAGABEAAAAdAAYAAQAGABEAAAAeAAYAAQAGABEAAAAAAAYAAQAGABEAAAA=")
+tile_set = ExtResource("2")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAQAGABEAAAAAAAYAAQADAA0AAAABAAYAAQADAA0AAAACAAYAAQADAA0AAAADAAYAAQADAA0AAAAEAAYAAQADAA0AAAAFAAYAAQADAA0AAAAGAAYAAQADAA0AAAABAAAAAQAGABEAAAACAAAAAQAGABEAAAADAAAAAQAGABEAAAAEAAAAAQAGABEAAAAFAAAAAQAGABEAAAAGAAAAAQAGABEAAAAHAAAAAQAGABEAAAAIAAAAAQAGABEAAAAJAAAAAQAGABEAAAAKAAAAAQAGABEAAAALAAYAAQADAA0AAAAKAAYAAQADAA0AAAAJAAYAAQADAA0AAAAIAAYAAQADAA0AAAAHAAYAAQADAA0AAAAMAAYAAQABAAYAAAANAAYAAQABAAQAAAAOAAYAAQAHAAMAAAAPAAYAAQADAAsAAAAQAAYAAQAHAAQAAAARAAYAAQADAAQAAAASAAYAAQADAAYAAAATAAYAAQADAA0AAAAUAAYAAQADAA0AAAAVAAYAAQADAA0AAAAWAAYAAQADAA0AAAAXAAYAAQADAA0AAAAYAAYAAQADAA0AAAAZAAYAAQADAA0AAAAaAAYAAQADAA0AAAAbAAYAAQADAA0AAAAcAAYAAQADAA0AAAAdAAYAAQADAA0AAAAeAAYAAQADAA0AAAAeAAAAAQAGABEAAAAdAAAAAQAGABEAAAAcAAAAAQAGABEAAAAbAAAAAQAGABEAAAAaAAAAAQAGABEAAAAZAAAAAQAGABEAAAAYAAAAAQAGABEAAAAXAAAAAQAGABEAAAAWAAAAAQAGABEAAAAVAAAAAQAGABEAAAAUAAAAAQAGABEAAAATAAAAAQAGABEAAAASAAAAAQAGABEAAAARAAAAAQAGABEAAAAQAAAAAQAGABEAAAAPAAAAAQAGABEAAAAOAAAAAQAGABEAAAANAAAAAQAGABEAAAAMAAAAAQAGABEAAAALAAAAAQAGABEAAAD//wAAAQAGABEAAAD//wYAAQAGABEAAAAfAAYAAQAGABEAAAAfAAAAAQAGABEAAAD+/wYAAQAGABEAAAD+/wUAAQAGABEAAAD+/wQAAQAGABEAAAD+/wMAAQAGABEAAAD+/wIAAQAGABEAAAD+/wEAAQAGABEAAAD+/wAAAQAGABEAAAAgAAYAAQAGABEAAAAgAAUAAQAGABEAAAAgAAQAAQAGABEAAAAgAAMAAQAGABEAAAAgAAIAAQAGABEAAAAgAAEAAQAGABEAAAAgAAAAAQAGABEAAAA=")
+tile_set = ExtResource("2")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("3")
+destination = "home_exit"
+entry_point = Vector2i(1770, 220)
+left_facing = 1
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(-10, 70)
+shape = SubResource("RectangleShape2D_cybvy")
+
+[node name="InteractDoor2" type="Area2D" parent="."]
+script = ExtResource("3")
+destination = "imperfect_ideal"
+entry_point = Vector2i(30, 200)
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor2"]
+position = Vector2(630, 70)
+shape = SubResource("RectangleShape2D_cybvy")
+
+[node name="CameraLimitArea" type="Area2D" parent="."]
+script = ExtResource("4")
+limit_top = -120
+limit_left = 300
+limit_right = 940
+metadata/_custom_type_script = "uid://c7byuwt70ctt1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitArea"]
+position = Vector2(310, 70)
+shape = SubResource("RectangleShape2D_vrvgk")
+
+[node name="CutsceneTrigger" type="Area2D" parent="."]
+script = ExtResource("5")
+pause_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger"]
+position = Vector2(250, 70)
+shape = SubResource("RectangleShape2D_7jkeh")
+
+[node name="CutsceneTrigger2" type="Area2D" parent="."]
+script = ExtResource("5")
+pause_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger2"]
+position = Vector2(640, 70)
+shape = SubResource("RectangleShape2D_cybvy")
+
+[node name="Flowey" type="AnimatedSprite2D" parent="."]
+position = Vector2(310, 112.5)
+sprite_frames = ExtResource("6")
+animation = &"left"
+
+[node name="Textbox" parent="Flowey" instance=ExtResource("7")]
+position = Vector2(0, -30)
+
+[connection signal="body_entered" from="CutsceneTrigger" to="CutsceneTrigger" method="_on_body_entered"]
+[connection signal="start_cutscene" from="CutsceneTrigger" to="." method="_on_cutscene_trigger_start_cutscene"]
+[connection signal="body_entered" from="CutsceneTrigger2" to="CutsceneTrigger2" method="_on_body_entered"]
+[connection signal="start_cutscene" from="CutsceneTrigger2" to="." method="_on_cutscene_trigger2_start_cutscene"]

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bkcme7hli65p8"
+path="res://.godot/imported/ruins - distant.wav-794d88652a4f0b55e468eb5c6ade5f33.sample"
+
+[deps]
+
+source_file="res://music/ruins - distant.wav"
+dest_files=["res://.godot/imported/ruins - distant.wav-794d88652a4f0b55e468eb5c6ade5f33.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=577784
+edit/loop_end=5773126
+compress/mode=0

@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://dnfcx6ayttayw"]
+
+[ext_resource type="Script" uid="uid://dq7vn488dokcg" path="res://objects/heart_shard.gd" id="1_wflbj"]
+[ext_resource type="Texture2D" uid="uid://ckisekcsws8wd" path="res://sprites/heartshards.png" id="2_kv8fs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oneh3"]
+atlas = ExtResource("2_kv8fs")
+region = Rect2(0, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5wa4x"]
+atlas = ExtResource("2_kv8fs")
+region = Rect2(10, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_01yef"]
+atlas = ExtResource("2_kv8fs")
+region = Rect2(20, 0, 10, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyhl7"]
+atlas = ExtResource("2_kv8fs")
+region = Rect2(30, 0, 10, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gbshf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oneh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5wa4x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01yef")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyhl7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="HeartShard" type="RigidBody2D"]
+gravity_scale = 0.2
+script = ExtResource("1_wflbj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_gbshf")
+frame_progress = 0.749499

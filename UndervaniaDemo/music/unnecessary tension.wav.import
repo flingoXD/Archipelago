@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b807elxbohyj5"
+path="res://.godot/imported/unnecessary tension.wav-17fb33a7340072bc98687d956ad45a89.sample"
+
+[deps]
+
+source_file="res://music/unnecessary tension.wav"
+dest_files=["res://.godot/imported/unnecessary tension.wav-17fb33a7340072bc98687d956ad45a89.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=284844
+edit/loop_end=2534754
+compress/mode=0

@@ -1,0 +1,16 @@
+[gd_resource type="TileSet" format=3 uid="uid://b3v885he5ubyf"]
+
+[ext_resource type="PackedScene" uid="uid://cylg2wetabplc" path="res://bullets/strytax_thorns_l.tscn" id="1_fa8ds"]
+[ext_resource type="PackedScene" uid="uid://yjdxgkmrd8ad" path="res://bullets/strytax_thorns_r.tscn" id="2_065ut"]
+[ext_resource type="PackedScene" uid="uid://dcxxoqsp2neql" path="res://bullets/strytax_thorns_u.tscn" id="3_ssopy"]
+[ext_resource type="PackedScene" uid="uid://gn4w77u8yqpl" path="res://bullets/strytax_thorns_d.tscn" id="4_fl15a"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_l6y63"]
+scenes/2/scene = ExtResource("1_fa8ds")
+scenes/3/scene = ExtResource("2_065ut")
+scenes/4/scene = ExtResource("3_ssopy")
+scenes/5/scene = ExtResource("4_fl15a")
+
+[resource]
+tile_size = Vector2i(20, 20)
+sources/0 = SubResource("TileSetScenesCollectionSource_l6y63")

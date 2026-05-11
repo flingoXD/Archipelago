@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://urxuaqxi6a3k"
+path="res://.godot/imported/dark ruins - bassoon bass.wav-5caea397bf42d6529993557102eaf379.sample"
+
+[deps]
+
+source_file="res://music/dark ruins - bassoon bass.wav"
+dest_files=["res://.godot/imported/dark ruins - bassoon bass.wav-5caea397bf42d6529993557102eaf379.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=793090
+edit/loop_end=4763074
+compress/mode=0

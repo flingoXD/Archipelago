@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://rgx5kxu7j51p"]
+
+[ext_resource type="Script" uid="uid://uif6pindh4d1" path="res://objects/death_particle.gd" id="1"]
+
+[node name="DeathParticle" type="Sprite2D"]
+script = ExtResource("1")

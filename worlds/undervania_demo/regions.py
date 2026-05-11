@@ -35,7 +35,13 @@ def connect_regions(world: UVDemoWorld) -> None:
 
     # placeholders
     save_warp.connect(old_tomb,"Old Tomb Savepoint")
-    save_warp.connect(east_ruins,"East Ruins Savepoint")
     save_warp.connect(west_ruins,"West Ruins Savepoint")
-    save_warp.connect(west_dark_ruins,"West Dark Ruins Savepoint")
+    save_warp.connect(west_dark_ruins,"Dark Ruins Savepoint")
     save_warp.connect(dark_caves,"Dark Caves Savepoint")
+    save_warp.connect(east_ruins,"Home Savepoint")
+    east_ruins.connect(dark_caves,"Home Tower Door")
+    dark_caves.connect(west_dark_ruins,"Dark Caves Exit")
+    west_dark_ruins.connect(west_ruins,"Dark Ruins Exits")
+    west_ruins.connect(east_ruins,"West Ruins Exits")
+    west_ruins.connect(west_dark_ruins,"West Ruins to Dark Ruins")
+    

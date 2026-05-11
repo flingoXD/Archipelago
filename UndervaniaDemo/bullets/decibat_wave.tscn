@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://craqflqx7r1ya"]
+
+[ext_resource type="Script" uid="uid://degw7130ck12o" path="res://bullets/decibat_wave.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://djm8mm50y5wod" path="res://sprites/decibat_wave.png" id="2"]
+
+[node name="DecibatWave" type="Area2D"]
+script = ExtResource("1")
+atk = 5
+physical = false
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(42.5, 0)
+texture = ExtResource("2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(36, -36, 43, -27, 48, -8, 48, 8, 43, 27, 36, 36, 43, 15, 43, -15)

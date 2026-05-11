@@ -1,0 +1,177 @@
+[gd_scene load_steps=20 format=4 uid="uid://bh7g1m47wotll"]
+
+[ext_resource type="Script" uid="uid://dmwb5ll8kirr8" path="res://levels/toriel_hallway.gd" id="1_v2dya"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2_cu0dk"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_lpxr7"]
+[ext_resource type="Texture2D" uid="uid://satvs3e2w8tj" path="res://sprites/toriel_house_hallway.png" id="3_0lcjw"]
+[ext_resource type="Resource" uid="uid://c6lhwbe8x3gmd" path="res://music/home_group.tres" id="3_v2dya"]
+[ext_resource type="Texture2D" uid="uid://bqgudnv6qbh06" path="res://sprites/toriel_house_lobby_upstairs.png" id="4_n5hkr"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="5_a1qkq"]
+[ext_resource type="SpriteFrames" uid="uid://btx1at45fmjed" path="res://sprites/player.tres" id="5_v2dya"]
+[ext_resource type="SpriteFrames" uid="uid://pj6k8edfrhtl" path="res://sprites/toriel.tres" id="9_5vmti"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="10_bqwb6"]
+[ext_resource type="Script" uid="uid://cd8yb0wnhbywb" path="res://objects/cutscene_trigger.gd" id="11_bqwb6"]
+[ext_resource type="Script" uid="uid://do6xbjfs0rrt8" path="res://objects/sign.gd" id="12_cxsb1"]
+
+[sub_resource type="AudioStream" id="AudioStream_6q421"]
+script = ExtResource("2_cu0dk")
+stream_group = ExtResource("3_v2dya")
+stream_mask = 2
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4frd2"]
+size = Vector2(30, 51)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwo7d"]
+size = Vector2(33, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxsb1"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5kbi"]
+size = Vector2(13, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpdnm"]
+size = Vector2(25, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5nkbk"]
+size = Vector2(51, 27)
+
+[node name="TorielHallway" type="Node2D"]
+script = ExtResource("1_v2dya")
+offset = Vector2(8, 0)
+min_pos = Vector2(617.5, 140)
+max_pos = Vector2(696.5, 187.5)
+default_point = Vector2i(60, 200)
+limit_top = 40
+limit_bottom = 520
+limit_right = 1480
+stream = SubResource("AudioStream_6q421")
+flowey_stalk = false
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 740.0
+offset_bottom = 240.0
+color = Color(0.92156863, 0.7294118, 0.2627451, 1)
+
+[node name="Walls" type="TileMapLayer" parent="."]
+modulate = Color(0.92156863, 0.7294118, 0.2627451, 1)
+tile_map_data = PackedByteArray("AAAAAAAAAgABAAEAAAABAAAAAgABAAEAAAACAAAAAgABAAEAAAADAAAAAgABAAEAAAAEAAAAAgABAAEAAAAFAAAAAgABAAEAAAAGAAAAAgABAAEAAAAHAAAAAgABAAEAAAAIAAAAAgABAAEAAAAJAAAAAgABAAEAAAAKAAAAAgABAAEAAAALAAAAAgABAAEAAAAMAAAAAgABAAEAAAANAAAAAgABAAEAAAAOAAAAAgABAAEAAAAPAAAAAgABAAEAAAAAAAsAAgABAAEAAAABAAsAAgABAAEAAAACAAsAAgABAAEAAAADAAsAAgABAAEAAAAEAAsAAgABAAEAAAAFAAsAAgABAAEAAAAGAAsAAgABAAEAAAAHAAsAAgABAAEAAAAIAAsAAgABAAEAAAAJAAsAAgABAAEAAAAKAAsAAgABAAEAAAALAAsAAgABAAEAAAAMAAsAAgABAAEAAAANAAsAAgABAAEAAAAPAAsAAgABAAEAAAAOAAsAAgABAAEAAAAAAAYAAgACAAEAAAAAAAUAAgACAAEAAAAAAAQAAgACAAAAAAAAAAMAAgABAAEAAAAAAAIAAgABAAEAAAAAAAEAAgABAAEAAAAPAAEAAgABAAEAAAAPAAIAAgABAAEAAAAPAAMAAgABAAEAAAAQAAMAAgABAAEAAAAQAAIAAgABAAEAAAAQAAEAAgABAAEAAAAQAAAAAgABAAEAAAD//wAAAgAAAAEAAAD//wEAAgAAAAEAAAD//wIAAgAAAAEAAAD//wMAAgAAAAEAAAD//wQAAgAAAAEAAAD//wUAAgAAAAEAAAD//wYAAgAAAAEAAAD//wsAAgAAAAEAAAD//wwAAgAAAAEAAAAAAAwAAgABAAEAAAABAAwAAgABAAEAAAACAAwAAgABAAEAAAADAAwAAgABAAEAAAAHAAwAAgABAAEAAAAIAAwAAgABAAEAAAAJAAwAAgABAAEAAAAGAAwAAgABAAEAAAAFAAwAAgABAAEAAAAEAAwAAgABAAEAAAAKAAwAAgABAAEAAAALAAwAAgABAAEAAAAMAAwAAgABAAEAAAANAAwAAgABAAEAAAAOAAwAAgABAAEAAAAPAAwAAgABAAEAAAAQAAwAAgABAAEAAAAQAAsAAgABAAEAAAABAAEAAgABAAEAAAACAAEAAgABAAEAAAADAAEAAgABAAEAAAAEAAEAAgABAAEAAAAFAAEAAgABAAEAAAAGAAEAAgABAAEAAAAHAAEAAgABAAEAAAAIAAEAAgABAAEAAAAJAAEAAgABAAEAAAAKAAEAAgABAAEAAAALAAEAAgABAAEAAAAMAAEAAgABAAEAAAANAAEAAgABAAEAAAAOAAEAAgABAAEAAAAOAAIAAgABAAEAAAANAAIAAgABAAEAAAAMAAIAAgABAAEAAAALAAIAAgABAAEAAAAKAAIAAgABAAEAAAAJAAIAAgABAAEAAAAIAAIAAgABAAEAAAAHAAIAAgABAAEAAAAGAAIAAgABAAEAAAAFAAIAAgABAAEAAAAEAAIAAgABAAEAAAADAAIAAgABAAEAAAACAAIAAgABAAEAAAABAAIAAgABAAEAAAD//woAAgAAAAEAAAAAAAoAAgABAAEAAAABAAoAAgABAAEAAAACAAoAAgABAAEAAAADAAoAAgABAAEAAAAEAAoAAgABAAEAAAAFAAoAAgABAAEAAAAGAAoAAgABAAEAAAAHAAoAAgABAAEAAAAIAAoAAgABAAEAAAAJAAoAAgABAAEAAAAKAAoAAgABAAEAAAALAAoAAgABAAEAAAAMAAoAAgABAAEAAAANAAoAAgABAAEAAAAOAAoAAgABAAEAAAAPAAoAAgABAAEAAAAQAAoAAgABAAEAAAARAAIAAgABAAEAAAARAAEAAgABAAEAAAARAAAAAgABAAEAAAASAAAAAgABAAEAAAASAAEAAgABAAEAAAASAAIAAgABAAEAAAATAAIAAgABAAEAAAATAAEAAgABAAEAAAATAAAAAgABAAEAAAAUAAAAAgABAAEAAAAUAAEAAgABAAEAAAAVAAEAAgABAAEAAAAVAAIAAgABAAEAAAAUAAIAAgABAAEAAAAVAAAAAgABAAEAAAAWAAAAAgABAAEAAAAWAAEAAgABAAEAAAAWAAIAAgABAAEAAAAXAAIAAgABAAEAAAAXAAEAAgABAAEAAAAXAAAAAgABAAEAAAAYAAAAAgABAAEAAAAYAAEAAgABAAEAAAAYAAIAAgABAAEAAAAZAAIAAgABAAEAAAAaAAIAAgABAAEAAAAaAAEAAgABAAEAAAAZAAEAAgABAAEAAAAZAAAAAgABAAEAAAAaAAAAAgABAAEAAAAbAAAAAgABAAEAAAAbAAEAAgABAAEAAAAbAAIAAgABAAEAAAAcAAIAAgABAAEAAAAcAAEAAgABAAEAAAAcAAAAAgABAAEAAAAdAAAAAgABAAEAAAAdAAEAAgABAAEAAAAdAAIAAgABAAEAAAAeAAIAAgABAAEAAAAeAAEAAgABAAEAAAAeAAAAAgABAAEAAAAfAAAAAgABAAEAAAAfAAEAAgABAAEAAAAfAAIAAgABAAEAAAAgAAIAAgABAAEAAAAgAAEAAgABAAEAAAAgAAAAAgABAAEAAAARAAoAAgABAAEAAAASAAsAAgABAAEAAAASAAwAAgABAAEAAAARAAwAAgABAAEAAAARAAsAAgABAAEAAAASAAoAAgABAAEAAAATAAoAAgABAAEAAAAUAAoAAgABAAEAAAAVAAoAAgABAAEAAAAWAAoAAgABAAEAAAAXAAoAAgABAAEAAAAYAAoAAgABAAEAAAATAAsAAgABAAEAAAATAAwAAgABAAEAAAAUAAwAAgABAAEAAAAUAAsAAgABAAEAAAAVAAsAAgABAAEAAAAVAAwAAgABAAEAAAAWAAwAAgABAAEAAAAXAAsAAgABAAEAAAAWAAsAAgABAAEAAAAXAAwAAgABAAEAAAAYAAwAAgABAAEAAAAYAAsAAgABAAEAAAAZAAoAAgABAAEAAAAZAAsAAgABAAEAAAAZAAwAAgABAAEAAAAaAAwAAgABAAEAAAAaAAsAAgABAAEAAAAaAAoAAgABAAEAAAAbAAoAAgABAAEAAAAbAAsAAgABAAEAAAAbAAwAAgABAAEAAAAcAAwAAgABAAEAAAAcAAsAAgABAAEAAAAdAAoAAgABAAEAAAAdAAsAAgABAAEAAAAcAAoAAgABAAEAAAAdAAwAAgABAAEAAAAeAAwAAgABAAEAAAAeAAsAAgABAAEAAAAeAAoAAgABAAEAAAAfAAoAAgABAAEAAAAfAAsAAgABAAEAAAAfAAwAAgABAAEAAAAgAAwAAgABAAEAAAAgAAsAAgABAAEAAAAgAAoAAgABAAEAAAAhAAIAAgABAAEAAAAhAAEAAgABAAEAAAAhAAAAAgABAAEAAAAiAAIAAgABAAEAAAAiAAEAAgABAAEAAAAiAAAAAgABAAEAAAAjAAAAAgABAAEAAAAjAAEAAgABAAEAAAAjAAIAAgABAAEAAAAkAAIAAgABAAEAAAAkAAEAAgABAAEAAAAkAAAAAgABAAEAAAAkAAMAAgABAAEAAAAlAAMAAgACAAEAAAAlAAIAAgACAAEAAAAlAAEAAgACAAEAAAAlAAAAAgACAAEAAAAhAAoAAgABAAEAAAAiAAoAAgABAAEAAAAjAAoAAgABAAEAAAAkAAoAAgABAAEAAAAlAAoAAgACAAEAAAAlAAsAAgACAAEAAAAlAAwAAgACAAEAAAAkAAwAAgABAAEAAAAjAAwAAgABAAEAAAAiAAwAAgABAAEAAAAhAAwAAgABAAEAAAAhAAsAAgABAAEAAAAiAAsAAgABAAEAAAAjAAsAAgABAAEAAAAkAAsAAgABAAEAAAAAAAcAAgACAAEAAAAAAAgAAgACAAEAAAAAAAkAAgACAAEAAAD//wcAAgAAAAEAAAD//wgAAgAAAAEAAAD//wkAAgAAAAEAAAABAAMAAgABAAEAAAACAAMAAgABAAEAAAADAAMAAgABAAEAAAAEAAMAAgABAAEAAAAFAAMAAgABAAEAAAAGAAMAAgABAAEAAAAHAAMAAgABAAEAAAAIAAMAAgABAAEAAAAJAAMAAgABAAEAAAAKAAMAAgABAAEAAAALAAMAAgABAAEAAAAMAAMAAgABAAEAAAANAAMAAgABAAEAAAAOAAMAAgABAAEAAAARAAMAAgABAAEAAAASAAMAAgABAAEAAAATAAMAAgABAAEAAAAUAAMAAgABAAEAAAAVAAMAAgABAAEAAAAWAAMAAgABAAEAAAAXAAMAAgABAAEAAAAYAAMAAgABAAEAAAAZAAMAAgABAAEAAAAaAAMAAgABAAEAAAAbAAMAAgABAAEAAAAcAAMAAgABAAEAAAAdAAMAAgABAAEAAAAeAAMAAgABAAEAAAAfAAMAAgABAAEAAAAgAAMAAgABAAEAAAAhAAMAAgABAAEAAAAiAAMAAgABAAEAAAAjAAMAAgABAAEAAAAkAAQAAgAAAAAAAAAkAAUAAgAAAAEAAAAlAAQAAgACAAEAAAAlAAUAAgACAAEAAAAlAAYAAgACAAEAAAAkAAYAAgAAAAEAAAAkAAcAAgAAAAEAAAAkAAgAAgAAAAEAAAAlAAcAAgACAAEAAAAlAAgAAgACAAEAAAAlAAkAAgACAAEAAAAkAAkAAgAAAAEAAAD//w0AAgAAAAIAAAAAAA0AAgABAAIAAAABAA0AAgABAAIAAAACAA0AAgABAAIAAAADAA0AAgABAAIAAAAEAA0AAgABAAIAAAAFAA0AAgABAAIAAAAGAA0AAgABAAIAAAAHAA0AAgABAAIAAAAIAA0AAgABAAIAAAAJAA0AAgABAAIAAAAKAA0AAgABAAIAAAALAA0AAgABAAIAAAAMAA0AAgABAAIAAAANAA0AAgABAAIAAAAOAA0AAgABAAIAAAAPAA0AAgABAAIAAAAQAA0AAgABAAIAAAARAA0AAgABAAIAAAASAA0AAgABAAIAAAATAA0AAgABAAIAAAAUAA0AAgABAAIAAAAVAA0AAgABAAIAAAAWAA0AAgABAAIAAAAXAA0AAgABAAIAAAAYAA0AAgABAAIAAAAZAA0AAgABAAIAAAAaAA0AAgABAAIAAAAbAA0AAgABAAIAAAAcAA0AAgABAAIAAAAdAA0AAgABAAIAAAAeAA0AAgABAAIAAAAfAA0AAgABAAIAAAAgAA0AAgABAAIAAAAhAA0AAgABAAIAAAAiAA0AAgABAAIAAAAjAA0AAgABAAIAAAAkAA0AAgABAAIAAAAlAA0AAgACAAIAAAABAAQAAgABAAIAAAACAAQAAgABAAIAAAADAAQAAgABAAIAAAAEAAQAAgABAAIAAAAFAAQAAgABAAIAAAAGAAQAAgABAAIAAAAHAAQAAgABAAIAAAAIAAQAAgABAAIAAAAJAAQAAgABAAIAAAAKAAQAAgABAAIAAAALAAQAAgABAAIAAAAMAAQAAgABAAIAAAANAAQAAgABAAIAAAAOAAQAAgABAAIAAAAPAAQAAgABAAIAAAAQAAQAAgABAAIAAAARAAQAAgABAAIAAAASAAQAAgABAAIAAAATAAQAAgABAAIAAAAUAAQAAgABAAIAAAAVAAQAAgABAAIAAAAWAAQAAgABAAIAAAAXAAQAAgABAAIAAAAYAAQAAgABAAIAAAAZAAQAAgABAAIAAAAaAAQAAgABAAIAAAAbAAQAAgABAAIAAAAcAAQAAgABAAIAAAAdAAQAAgABAAIAAAAeAAQAAgABAAIAAAAfAAQAAgABAAIAAAAgAAQAAgABAAIAAAAhAAQAAgABAAIAAAAiAAQAAgABAAIAAAAjAAQAAgABAAIAAAA=")
+tile_set = ExtResource("2_lpxr7")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+modulate = Color(0.944, 1, 0.52, 1)
+tile_map_data = PackedByteArray("AAABAAoAAgABAAAAAAACAAoAAgABAAAAAAADAAoAAgABAAAAAAAEAAoAAgABAAAAAAAFAAoAAgABAAAAAAAGAAoAAgABAAAAAAAHAAoAAgABAAAAAAAIAAoAAgABAAAAAAAJAAoAAgABAAAAAAAKAAoAAgABAAAAAAALAAoAAgABAAAAAAAMAAoAAgABAAAAAAANAAoAAgABAAAAAAAOAAoAAgABAAAAAAAPAAoAAgABAAAAAAAQAAoAAgABAAAAAAARAAoAAgABAAAAAAASAAoAAgABAAAAAAATAAoAAgABAAAAAAAUAAoAAgABAAAAAAAVAAoAAgABAAAAAAAWAAoAAgABAAAAAAAXAAoAAgABAAAAAAAYAAoAAgABAAAAAAAZAAoAAgABAAAAAAAaAAoAAgABAAAAAAAbAAoAAgABAAAAAAAcAAoAAgABAAAAAAAdAAoAAgABAAAAAAAeAAoAAgABAAAAAAAfAAoAAgABAAAAAAAgAAoAAgABAAAAAAAhAAoAAgABAAAAAAAiAAoAAgABAAAAAAAjAAoAAgABAAAAAAA=")
+tile_set = ExtResource("2_lpxr7")
+
+[node name="Reflection" type="AnimatedSprite2D" parent="."]
+position = Vector2(653, 134.5)
+sprite_frames = ExtResource("5_v2dya")
+
+[node name="Mirror" type="ColorRect" parent="."]
+offset_left = 619.0
+offset_top = 135.0
+offset_right = 692.0
+offset_bottom = 190.0
+color = Color(0.627451, 1, 1, 0.1254902)
+
+[node name="Hallway" type="Sprite2D" parent="."]
+position = Vector2(360, 158)
+texture = ExtResource("3_0lcjw")
+
+[node name="LobbyUpstairs" type="Sprite2D" parent="."]
+modulate = Color(0.97, 0.78861004, 0.32979998, 1)
+position = Vector2(60, 170)
+texture = ExtResource("4_n5hkr")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("5_a1qkq")
+destination = "toriel_house"
+entry_point = Vector2i(260, 200)
+interact_required = true
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(60, 174.5)
+shape = SubResource("RectangleShape2D_4frd2")
+
+[node name="InteractDoor2" type="Area2D" parent="."]
+script = ExtResource("5_a1qkq")
+destination = "asriel_room"
+entry_point = Vector2i(50, 180)
+interact_required = true
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor2"]
+position = Vector2(158, 177)
+shape = SubResource("RectangleShape2D_pwo7d")
+
+[node name="InteractDoor3" type="Area2D" parent="."]
+script = ExtResource("5_a1qkq")
+destination = "toriel_room"
+entry_point = Vector2i(50, 180)
+interact_required = true
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor3"]
+position = Vector2(367, 177)
+shape = SubResource("RectangleShape2D_pwo7d")
+
+[node name="Toriel" type="AnimatedSprite2D" parent="."]
+position = Vector2(171, 177)
+sprite_frames = ExtResource("9_5vmti")
+flip_h = true
+
+[node name="Textbox" parent="Toriel" instance=ExtResource("10_bqwb6")]
+position = Vector2(0, -30)
+
+[node name="CutsceneTrigger" type="Area2D" parent="."]
+script = ExtResource("11_bqwb6")
+pause_player = true
+metadata/_custom_type_script = "uid://cd8yb0wnhbywb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger"]
+position = Vector2(152, 170)
+shape = SubResource("RectangleShape2D_cxsb1")
+
+[node name="Sign" type="Area2D" parent="."]
+script = ExtResource("12_cxsb1")
+text = Array[String](["You have seen this type of plant before but do not know its name."])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign"]
+position = Vector2(212.5, 186.5)
+shape = SubResource("RectangleShape2D_u5kbi")
+
+[node name="Sign3" type="Area2D" parent="."]
+visible = false
+script = ExtResource("12_cxsb1")
+text = Array[String](["Oh! This must be a Typha, a \"water sausage\".", "Although, on closer inspection...", "It appears this isn't just any ordinary water sausage.", "It's actually Typhomet, the evil, inexorable god of water sausages!", "...wait nevermind, it is just a normal water sausage after all."])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign3"]
+position = Vector2(212.5, 186.5)
+shape = SubResource("RectangleShape2D_u5kbi")
+
+[node name="Sign2" type="Area2D" parent="."]
+script = ExtResource("12_cxsb1")
+text = Array[String](["Inside the drawer are flower seeds and some broken crayons."])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign2"]
+position = Vector2(542.5, 188)
+shape = SubResource("RectangleShape2D_lpdnm")
+
+[node name="Sign4" type="Area2D" parent="."]
+script = ExtResource("12_cxsb1")
+text = Array[String](["It's you!"])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign4"]
+position = Vector2(657, 167.5)
+shape = SubResource("RectangleShape2D_5nkbk")
+
+[connection signal="start_cutscene" from="CutsceneTrigger" to="." method="_on_cutscene_trigger_start_cutscene"]

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cpa3y612t182s"]
+
+[ext_resource type="Script" uid="uid://ds3e4kaukson" path="res://item.gd" id="1_necut"]
+
+[resource]
+script = ExtResource("1_necut")
+item_id = "rock_candy"
+display_name = "Rock Candy"
+edible = true
+eat_hp = 1
+description = "Here is a recipe to make this:
+1. Find a rock"
+metadata/_custom_type_script = "uid://ds3e4kaukson"

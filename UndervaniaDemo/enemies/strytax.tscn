@@ -1,0 +1,325 @@
+[gd_scene load_steps=38 format=3 uid="uid://da4hx7mftdfxb"]
+
+[ext_resource type="Script" uid="uid://cixc2lyuf1223" path="res://enemies/strytax.gd" id="1_k3pgi"]
+[ext_resource type="SpriteFrames" uid="uid://bru6fljf32pgy" path="res://sprites/strytax_battle.tres" id="2_1sgsg"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2_t85ux"]
+[ext_resource type="Script" uid="uid://ddb2vxbtpe3u8" path="res://objects/damage_hitbox.gd" id="3_1sgsg"]
+[ext_resource type="Script" uid="uid://btrwqaax5uf6" path="res://audio_stream_group.gd" id="3_rwwyh"]
+[ext_resource type="AudioStream" uid="uid://dqm1iouht821c" path="res://music/secret boss phase 3.wav" id="4_n30ul"]
+[ext_resource type="AudioStream" uid="uid://dv10hio3rbagx" path="res://music/secret boss phase 1.wav" id="4_ny5xv"]
+[ext_resource type="AudioStream" uid="uid://b42h6a13qgr5h" path="res://music/secret boss phase transition.wav" id="4_ujk2r"]
+[ext_resource type="AudioStream" uid="uid://b8oihtmy6wr4s" path="res://music/secret boss phase 2.wav" id="5_4dhyh"]
+[ext_resource type="AudioStream" uid="uid://bluhakr2vkuyx" path="res://music/secret boss ending.wav" id="5_rwwyh"]
+[ext_resource type="Texture2D" uid="uid://b7ycsg8fu83of" path="res://sprites/strytax_kneel.png" id="9_4dhyh"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="9_356vo"]
+[ext_resource type="Texture2D" uid="uid://4e1xlwodgg22" path="res://sprites/toriel_smoke.png" id="10_2e5xx"]
+
+[sub_resource type="Resource" id="Resource_4dhyh"]
+script = ExtResource("3_rwwyh")
+streams = Array[AudioStream]([ExtResource("4_ujk2r")])
+volume = 3
+metadata/_custom_type_script = "uid://btrwqaax5uf6"
+
+[sub_resource type="AudioStream" id="AudioStream_4kxg5"]
+script = ExtResource("2_t85ux")
+stream_group = SubResource("Resource_4dhyh")
+stream_mask = 1
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="Resource" id="Resource_4kxg5"]
+script = ExtResource("3_rwwyh")
+streams = Array[AudioStream]([ExtResource("5_4dhyh")])
+metadata/_custom_type_script = "uid://btrwqaax5uf6"
+
+[sub_resource type="AudioStream" id="AudioStream_3bnwd"]
+script = ExtResource("2_t85ux")
+stream_group = SubResource("Resource_4kxg5")
+stream_mask = 1
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="Resource" id="Resource_2e5xx"]
+script = ExtResource("3_rwwyh")
+streams = Array[AudioStream]([ExtResource("4_n30ul")])
+volume = 3
+metadata/_custom_type_script = "uid://btrwqaax5uf6"
+
+[sub_resource type="AudioStream" id="AudioStream_ujk2r"]
+script = ExtResource("2_t85ux")
+stream_group = SubResource("Resource_2e5xx")
+stream_mask = 1
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="Resource" id="Resource_356vo"]
+script = ExtResource("3_rwwyh")
+streams = Array[AudioStream]([ExtResource("4_ny5xv")])
+volume = 3
+metadata/_custom_type_script = "uid://btrwqaax5uf6"
+
+[sub_resource type="AudioStream" id="AudioStream_ny5xv"]
+script = ExtResource("2_t85ux")
+stream_group = SubResource("Resource_356vo")
+stream_mask = 1
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="Resource" id="Resource_n30ul"]
+script = ExtResource("3_rwwyh")
+streams = Array[AudioStream]([ExtResource("5_rwwyh")])
+metadata/_custom_type_script = "uid://btrwqaax5uf6"
+
+[sub_resource type="AudioStream" id="AudioStream_2e5xx"]
+script = ExtResource("2_t85ux")
+stream_group = SubResource("Resource_n30ul")
+stream_mask = 1
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3pgi"]
+size = Vector2(12, 58)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1sgsg"]
+size = Vector2(28, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n30ul"]
+size = Vector2(12, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2e5xx"]
+size = Vector2(16, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwwyh"]
+size = Vector2(1.4142151, 27.57717)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ny5xv"]
+size = Vector2(28, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_356vo"]
+size = Vector2(1, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujk2r"]
+size = Vector2(1, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dhyh"]
+size = Vector2(120, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4kxg5"]
+size = Vector2(20, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bnwd"]
+size = Vector2(46.000008, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o444x"]
+size = Vector2(320, 50)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ujk2r"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(60, 2, 0)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 80, 0)
+scale_min = 2.0
+scale_max = 2.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_4dhyh"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(120, 10, 0)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 60.0
+radial_velocity_min = 19.999977
+radial_velocity_max = 39.999977
+gravity = Vector3(0, 80, 0)
+scale_min = 2.0
+scale_max = 2.0
+
+[node name="Strytax" type="CharacterBody2D"]
+script = ExtResource("1_k3pgi")
+music_trans = SubResource("AudioStream_4kxg5")
+music2 = SubResource("AudioStream_3bnwd")
+music3 = SubResource("AudioStream_ujk2r")
+boss_name = "Strytax"
+boss_bar_color = Color(0.28235295, 0.4, 0.36078432, 1)
+aggression = 20
+boss_music = SubResource("AudioStream_ny5xv")
+end_music = SubResource("AudioStream_2e5xx")
+max_hp = 400
+atk = 6
+def = 8
+dropped_xp = 50
+death_tex = ExtResource("9_4dhyh")
+knockback = 100
+metadata/_custom_type_script = "uid://b1o5dt0adx7r6"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -70.0
+offset_top = -42.0
+offset_right = 72.0
+offset_bottom = 68.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = ExtResource("2_1sgsg")
+animation = &"lunge"
+
+[node name="CollisionDefault" type="CollisionShape2D" parent="."]
+position = Vector2(0, 15)
+shape = SubResource("RectangleShape2D_k3pgi")
+
+[node name="CollisionSpin" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1sgsg")
+disabled = true
+
+[node name="CollisionSlam" type="CollisionShape2D" parent="."]
+position = Vector2(0, 22)
+shape = SubResource("RectangleShape2D_n30ul")
+disabled = true
+
+[node name="CollisionSlam2" type="CollisionShape2D" parent="."]
+position = Vector2(14, 7)
+shape = SubResource("RectangleShape2D_2e5xx")
+disabled = true
+
+[node name="DamageHitbox" type="Area2D" parent="."]
+script = ExtResource("3_1sgsg")
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="DamageIdleUp" type="CollisionShape2D" parent="DamageHitbox"]
+visible = false
+position = Vector2(26.75, -0.75000095)
+rotation = 0.7853982
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_rwwyh")
+
+[node name="DamageIdleDown" type="CollisionShape2D" parent="DamageHitbox"]
+position = Vector2(30, 10)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_ny5xv")
+
+[node name="DamageBasicUp" type="CollisionPolygon2D" parent="DamageHitbox"]
+visible = false
+polygon = PackedVector2Array(36, -11, 39, -8, 42, 5, 42, 11, 40, 7, 37, 4, 32, 2, 27, 2, 24, 3)
+
+[node name="DamageBasicDown" type="CollisionPolygon2D" parent="DamageHitbox"]
+visible = false
+polygon = PackedVector2Array(44, 11, 45, 10, 45, 7, 43, 0, 40, -6, 36, -10, 33, -11, 35, -9, 36, -5, 36, -2, 35, 1, 33, 6, 31, 8, 27, 9, 26, 10)
+
+[node name="DamageSpin" type="CollisionPolygon2D" parent="DamageHitbox"]
+visible = false
+polygon = PackedVector2Array(-19, 20, -14, 24, -2, 28, 5, 28, 14, 25, 18, 23, 22, 19, 13, 23, 6, 23, 0, 21, -3, 18, -5, 9, 2, 2, 0, 0)
+
+[node name="DamageRiposteUp" type="CollisionShape2D" parent="DamageHitbox"]
+visible = false
+position = Vector2(6.0000005, -29)
+scale = Vector2(0.9999998, 0.9999998)
+shape = SubResource("RectangleShape2D_356vo")
+
+[node name="DamageRiposteDown" type="CollisionShape2D" parent="DamageHitbox"]
+visible = false
+position = Vector2(21.749998, 24.749998)
+rotation = -0.7853982
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("RectangleShape2D_rwwyh")
+
+[node name="DamageRiposteSwingDown" type="CollisionPolygon2D" parent="DamageHitbox"]
+visible = false
+polygon = PackedVector2Array(31, 35, 39, 25, 46, 6, 46, -2, 42, -17, 31, -33, 22, -38, 16, -41, 6, -44, 0, 0, 11, 15)
+
+[node name="DamageRiposteSwingUp" type="CollisionPolygon2D" parent="DamageHitbox"]
+visible = false
+polygon = PackedVector2Array(6, -44, 12, -44, 21, -42, 32, -35, 42, -25, 47, -14, 49, -4, 49, 3, 47, 15, 43, 24, 32, 35, 0, 0, 5, -15, 5, -43)
+
+[node name="DamageSlamUp" type="CollisionShape2D" parent="DamageHitbox"]
+visible = false
+position = Vector2(8.750002, -25.75)
+rotation = 0.7853982
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_rwwyh")
+
+[node name="DamageSlamDown" type="CollisionShape2D" parent="DamageHitbox"]
+visible = false
+position = Vector2(18, 30)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_ujk2r")
+
+[node name="DamageSlamShock" type="CollisionShape2D" parent="DamageHitbox"]
+visible = false
+position = Vector2(11.999999, 39)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_4dhyh")
+
+[node name="DamageSlamShock2" type="CollisionShape2D" parent="DamageHitbox"]
+visible = false
+position = Vector2(11.999999, 4)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_4kxg5")
+
+[node name="DamageCling" type="CollisionShape2D" parent="DamageHitbox"]
+visible = false
+position = Vector2(25.750002, 2.250001)
+rotation = 0.7853982
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_rwwyh")
+
+[node name="DamageInfinity" type="CollisionShape2D" parent="DamageHitbox"]
+visible = false
+position = Vector2(22.999998, 3.999998)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_3bnwd")
+
+[node name="DamageMegaSlam" type="CollisionShape2D" parent="DamageHitbox"]
+visible = false
+position = Vector2(12, 39)
+scale = Vector2(0.99999976, 0.99999976)
+shape = SubResource("RectangleShape2D_o444x")
+
+[node name="DamageLunge1" type="CollisionShape2D" parent="DamageHitbox"]
+position = Vector2(32, 8)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_ny5xv")
+
+[node name="DamageLunge2" type="CollisionShape2D" parent="DamageHitbox"]
+position = Vector2(34, 6)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_ny5xv")
+
+[node name="DamageLunge3" type="CollisionShape2D" parent="DamageHitbox"]
+position = Vector2(35, 9)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_ny5xv")
+
+[node name="DamageLunge4" type="CollisionShape2D" parent="DamageHitbox"]
+position = Vector2(36, 20)
+scale = Vector2(0.9999999, 0.9999999)
+shape = SubResource("RectangleShape2D_ny5xv")
+
+[node name="SlamParticles" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(12, 42)
+emitting = false
+amount = 20
+texture = ExtResource("10_2e5xx")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ujk2r")
+
+[node name="MegaSlamParticles" type="GPUParticles2D" parent="."]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(12, 34)
+emitting = false
+amount = 100
+texture = ExtResource("10_2e5xx")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_4dhyh")
+
+[node name="Textbox" parent="." instance=ExtResource("9_356vo")]
+position = Vector2(0, -20)
+
+[connection signal="animation_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_changed"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

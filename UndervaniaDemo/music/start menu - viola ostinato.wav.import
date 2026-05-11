@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bt521rpn85xsd"
+path="res://.godot/imported/start menu - viola ostinato.wav-f93b706642244b2b3dc2f9c755bb9e17.sample"
+
+[deps]
+
+source_file="res://music/start menu - viola ostinato.wav"
+dest_files=["res://.godot/imported/start menu - viola ostinato.wav-f93b706642244b2b3dc2f9c755bb9e17.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=122254
+edit/loop_end=1532214
+compress/mode=0

@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dchq7c1wmf46s"]
+
+[ext_resource type="Texture2D" uid="uid://deu4xd7w7ng87" path="res://sprites/detect.png" id="1"]
+
+[sub_resource type="GDScript" id="GDScript_4cvvg"]
+script/source = "extends Sprite2D
+
+func _ready():
+	await get_tree().create_timer(1).timeout
+	self.queue_free()
+"
+RefCounted = null
+Resource = null
+Script = null
+FakeScript = null
+
+[node name="Detect" type="Sprite2D"]
+z_index = 1
+texture = ExtResource("1")
+script = SubResource("GDScript_4cvvg")

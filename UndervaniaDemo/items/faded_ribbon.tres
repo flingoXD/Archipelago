@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3 uid="uid://cws4vfqqmo767"]
+
+[ext_resource type="Script" uid="uid://ds3e4kaukson" path="res://item.gd" id="1_e1dss"]
+
+[resource]
+script = ExtResource("1_e1dss")
+item_id = "faded_ribbon"
+display_name = "Faded Ribbon"
+nickname = "Ribbon"
+wearable = true
+wear_def = 3
+description = "If you're cuter, monsters won't hit you as hard."
+metadata/_custom_type_script = "uid://ds3e4kaukson"

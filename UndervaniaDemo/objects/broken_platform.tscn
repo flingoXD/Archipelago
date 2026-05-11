@@ -1,0 +1,135 @@
+[gd_scene load_steps=16 format=3 uid="uid://cse5c01whxjp3"]
+
+[ext_resource type="Texture2D" uid="uid://dh2k3p2tfkodh" path="res://tilesets/ruins.png" id="1_iyjvh"]
+[ext_resource type="Script" uid="uid://b7xyi5jdk23va" path="res://objects/broken_platform.gd" id="1_tp8x8"]
+[ext_resource type="Texture2D" uid="uid://dt1wbaeqa4nbw" path="res://tilesets/rubble.png" id="3_6t84t"]
+[ext_resource type="AudioStream" uid="uid://sgqv875so71o" path="res://sounds/platform_prebreak.wav" id="3_yrlss"]
+[ext_resource type="AudioStream" uid="uid://coeuwk2uevtd6" path="res://sounds/platform_break.wav" id="4_kt6wj"]
+[ext_resource type="AudioStream" uid="uid://dnooqhikm2wdx" path="res://sounds/platform_unbreak.wav" id="5_iri20"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_iri20"]
+lifetime_randomness = 1.0
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(20, 10, 1)
+direction = Vector3(0, -1, 0)
+spread = 180.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 400, 0)
+scale_min = 2.0
+scale_max = 2.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6t84t"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 40.0
+emission_ring_inner_radius = 0.0
+emission_ring_cone_angle = 90.0
+radial_velocity_min = -60.000023
+radial_velocity_max = -40.000023
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -300.0
+radial_accel_max = -300.0
+scale_min = 2.0
+scale_max = 2.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tp8x8"]
+atlas = ExtResource("1_iyjvh")
+region = Rect2(20, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyjvh"]
+atlas = ExtResource("1_iyjvh")
+region = Rect2(80, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yrlss"]
+atlas = ExtResource("1_iyjvh")
+region = Rect2(80, 300, 40, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5nbci"]
+atlas = ExtResource("3_6t84t")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2p6er"]
+atlas = ExtResource("3_6t84t")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyjvh"]
+size = Vector2(40, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tp8x8"]
+size = Vector2(38, 1)
+
+[node name="BrokenPlatform" type="StaticBody2D"]
+script = ExtResource("1_tp8x8")
+
+[node name="BreakParticles" type="GPUParticles2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+emitting = false
+amount = 500
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_iri20")
+
+[node name="UnbreakParticles" type="GPUParticles2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+emitting = false
+amount = 500
+lifetime = 0.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_6t84t")
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Ruins1" type="Sprite2D" parent="Sprites"]
+position = Vector2(-10, 0)
+texture = SubResource("AtlasTexture_tp8x8")
+
+[node name="Ruins2" type="Sprite2D" parent="Sprites"]
+position = Vector2(10, 0)
+texture = SubResource("AtlasTexture_iyjvh")
+
+[node name="Ruins3" type="Sprite2D" parent="Sprites"]
+texture = SubResource("AtlasTexture_yrlss")
+
+[node name="Rubble1" type="Sprite2D" parent="Sprites"]
+visible = false
+position = Vector2(-10, 0)
+texture = SubResource("AtlasTexture_5nbci")
+
+[node name="Rubble2" type="Sprite2D" parent="Sprites"]
+visible = false
+position = Vector2(10, 0)
+texture = SubResource("AtlasTexture_2p6er")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_iyjvh")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -8.5)
+shape = SubResource("RectangleShape2D_tp8x8")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+
+[node name="PreBreak" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_yrlss")
+
+[node name="Break" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kt6wj")
+
+[node name="Unbreak" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_iri20")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

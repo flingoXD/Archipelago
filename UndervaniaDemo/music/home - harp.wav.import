@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://df1y1wa6sjpcr"
+path="res://.godot/imported/home - harp.wav-9ad5305e3b7dffd328070d9f8a10708e.sample"
+
+[deps]
+
+source_file="res://music/home - harp.wav"
+dest_files=["res://.godot/imported/home - harp.wav-9ad5305e3b7dffd328070d9f8a10708e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=0
+edit/loop_end=5546293
+compress/mode=0

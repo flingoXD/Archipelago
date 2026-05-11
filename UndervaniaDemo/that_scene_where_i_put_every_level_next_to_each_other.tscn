@@ -1,0 +1,266 @@
+[gd_scene format=3 uid="uid://dvd1qkm6w23be"]
+
+[ext_resource type="PackedScene" uid="uid://338ibbwde188" path="res://levels/start_room.tscn" id="1_6ypwl"]
+[ext_resource type="PackedScene" uid="uid://v622gg1xoq5f" path="res://levels/old_tomb.tscn" id="2_q6c2f"]
+[ext_resource type="PackedScene" uid="uid://bm77o3gbt584k" path="res://levels/flowey_room1.tscn" id="2_rwwv8"]
+[ext_resource type="PackedScene" uid="uid://br6b76re8dwhu" path="res://levels/old_tomb2.tscn" id="3_hc6mu"]
+[ext_resource type="PackedScene" uid="uid://b1bmctsx1a1cm" path="res://levels/ruins_entrance.tscn" id="3_rwwv8"]
+[ext_resource type="PackedScene" uid="uid://cbrk7e1hb41lw" path="res://levels/puzzle_intro1.tscn" id="4_7ual6"]
+[ext_resource type="PackedScene" uid="uid://bx1vkn562j4ma" path="res://levels/puzzle_intro2.tscn" id="5_vw3lo"]
+[ext_resource type="PackedScene" uid="uid://mpmanv1jpslw" path="res://levels/dummy_room.tscn" id="6_ussjw"]
+[ext_resource type="PackedScene" uid="uid://cgs35yl1d8p46" path="res://levels/puzzle_intro3.tscn" id="7_fm5yx"]
+[ext_resource type="PackedScene" uid="uid://bu8wqned37ml3" path="res://levels/long_corridor.tscn" id="8_4kls0"]
+[ext_resource type="PackedScene" uid="uid://bhq1lg230hj2y" path="res://levels/froggit_room1.tscn" id="9_bcrfd"]
+[ext_resource type="PackedScene" uid="uid://dbrew4nh22yau" path="res://levels/candy_room.tscn" id="10_np4us"]
+[ext_resource type="PackedScene" uid="uid://bl3e5fjlsiji5" path="res://levels/puzzle_rock1.tscn" id="11_iujis"]
+[ext_resource type="PackedScene" uid="uid://cr0eg3xlgi88d" path="res://objects/map.tscn" id="12_2e2rr"]
+[ext_resource type="PackedScene" uid="uid://ego1adxe5rqn" path="res://levels/dark_entrance.tscn" id="13_7d1ih"]
+[ext_resource type="PackedScene" uid="uid://b1imtr0n6ebsu" path="res://levels/dark_corridor.tscn" id="14_5p8g6"]
+[ext_resource type="PackedScene" uid="uid://66xj5xgrmww8" path="res://levels/flowey_room3.tscn" id="15_7rb1e"]
+[ext_resource type="PackedScene" uid="uid://dfivbwtkicgh6" path="res://levels/dark_colonnade.tscn" id="16_ui28b"]
+[ext_resource type="PackedScene" uid="uid://beutp5lu2nuvu" path="res://levels/puzzle_dark1.tscn" id="17_p4msd"]
+[ext_resource type="PackedScene" uid="uid://b36utdcvfl33" path="res://levels/puzzle_box1.tscn" id="18_bj7sb"]
+[ext_resource type="PackedScene" uid="uid://b7iuqswyiphxn" path="res://levels/puzzle_pitfall1.tscn" id="19_t0g0t"]
+[ext_resource type="PackedScene" uid="uid://d1qjstaqb7bo7" path="res://levels/napstablook_arena.tscn" id="20_2mvam"]
+[ext_resource type="PackedScene" uid="uid://cd40sbiwdmwtb" path="res://levels/puzzle_pitfall2.tscn" id="21_d2e68"]
+[ext_resource type="PackedScene" uid="uid://d357lo3350v8j" path="res://levels/puzzle_rock2.tscn" id="22_e5p5l"]
+[ext_resource type="PackedScene" uid="uid://bearwliu0hikx" path="res://levels/snowdin_overlook.tscn" id="23_28ffg"]
+[ext_resource type="PackedScene" uid="uid://d16gmn4fcjs30" path="res://levels/spider_room.tscn" id="24_ja3fa"]
+[ext_resource type="PackedScene" uid="uid://cbpuwu0n7iytn" path="res://levels/froggit_room2.tscn" id="25_7pods"]
+[ext_resource type="PackedScene" uid="uid://bpwvkihvgl5so" path="res://levels/dalv_room1.tscn" id="26_w3grv"]
+[ext_resource type="PackedScene" uid="uid://bkssixapbpwyo" path="res://levels/lemonade_room.tscn" id="27_sw6dv"]
+[ext_resource type="PackedScene" uid="uid://uuavuat1yt0j" path="res://levels/dark_lobby.tscn" id="28_q347u"]
+[ext_resource type="PackedScene" uid="uid://cgtbwkpytuyga" path="res://levels/puzzle_pitfall3.tscn" id="29_jndda"]
+[ext_resource type="PackedScene" uid="uid://b3s6b8ewihalo" path="res://levels/corn_maze.tscn" id="30_6bjv3"]
+[ext_resource type="PackedScene" uid="uid://4dohr16u1gwg" path="res://levels/dalv_room2.tscn" id="31_nkbsh"]
+[ext_resource type="PackedScene" uid="uid://y4xwg5dh56rx" path="res://levels/decibat_colonnade.tscn" id="32_srm24"]
+[ext_resource type="PackedScene" uid="uid://dispvqe2usmb1" path="res://levels/decibat_arena.tscn" id="33_utjny"]
+[ext_resource type="PackedScene" uid="uid://cxxi1taa7m5pa" path="res://levels/puzzle_box2.tscn" id="34_mudoj"]
+[ext_resource type="PackedScene" uid="uid://dxbnbllevb216" path="res://levels/home_entrance.tscn" id="35_nna74"]
+[ext_resource type="PackedScene" uid="uid://cwsus0afcfj6d" path="res://levels/toriel_house.tscn" id="36_lom6d"]
+[ext_resource type="PackedScene" uid="uid://bh7g1m47wotll" path="res://levels/toriel_hallway.tscn" id="37_s2atp"]
+[ext_resource type="PackedScene" uid="uid://bxo007qkkbmeh" path="res://levels/home_colonnade.tscn" id="38_oewtm"]
+[ext_resource type="PackedScene" uid="uid://hlu0gcry03jn" path="res://levels/junk_pit.tscn" id="39_hkt3k"]
+[ext_resource type="PackedScene" uid="uid://bh5pp2amp08ta" path="res://levels/toriel_basement.tscn" id="40_5752y"]
+[ext_resource type="PackedScene" uid="uid://cvay2cjhsyhqe" path="res://levels/home.tscn" id="41_aom7i"]
+[ext_resource type="Resource" uid="uid://dqvboi8ntieeg" path="res://music/pink_and_gold.tres" id="42_3tyyb"]
+[ext_resource type="PackedScene" uid="uid://6uu0eq5xa65a" path="res://levels/home_secret.tscn" id="42_o20rr"]
+[ext_resource type="PackedScene" uid="uid://bqye4n7xji0fs" path="res://levels/home_tower.tscn" id="44_ehbnl"]
+[ext_resource type="PackedScene" uid="uid://8thkpmes25rk" path="res://levels/home_tower_top.tscn" id="45_n0leq"]
+[ext_resource type="PackedScene" uid="uid://cvli3vp20n3qg" path="res://levels/toriel_arena.tscn" id="46_k3oxc"]
+[ext_resource type="PackedScene" uid="uid://d1kyw8q2eyed8" path="res://levels/secret_sans.tscn" id="47_bkxpm"]
+[ext_resource type="PackedScene" uid="uid://dgd60xoks108i" path="res://levels/home_exit.tscn" id="48_5xn31"]
+[ext_resource type="PackedScene" uid="uid://ds4xyo7dlvt53" path="res://levels/flowey_room2.tscn" id="49_v1hhk"]
+[ext_resource type="PackedScene" uid="uid://b8qr84nernttt" path="res://levels/imperfect_ideal.tscn" id="50_mhuqe"]
+[ext_resource type="PackedScene" uid="uid://ly8oot360171" path="res://levels/raffle_room.tscn" id="51_vvwib"]
+[ext_resource type="PackedScene" uid="uid://p008foil7h7t" path="res://levels/perspective_room.tscn" id="52_syn3p"]
+[ext_resource type="PackedScene" uid="uid://ccbx2an5uf327" path="res://levels/dalv_entrance.tscn" id="53_gqa6v"]
+[ext_resource type="PackedScene" uid="uid://c2cnrc7o83pim" path="res://levels/dalv_arena.tscn" id="54_mni8c"]
+[ext_resource type="PackedScene" uid="uid://bebrb15ebqut7" path="res://levels/cave_exit.tscn" id="55_byg83"]
+[ext_resource type="PackedScene" uid="uid://c5p1qhb0dwb6" path="res://levels/dark_cave.tscn" id="56_34ml0"]
+[ext_resource type="PackedScene" uid="uid://bojlsuo8bbqor" path="res://levels/quiry_teaser.tscn" id="57_271ce"]
+[ext_resource type="PackedScene" uid="uid://b2q4w1krfcgxw" path="res://levels/micro_arena.tscn" id="58_6g1b7"]
+[ext_resource type="PackedScene" uid="uid://gbeaqyej0t7k" path="res://levels/strytax_arena.tscn" id="61_ng58p"]
+[ext_resource type="PackedScene" uid="uid://d1yoeol48t5x1" path="res://levels/old_tomb3.tscn" id="62_gr5kn"]
+
+[node name="ThatSceneWhereIPutEveryLevelNextToEachOther" type="Node2D" unique_id=1628205117]
+
+[node name="Map" parent="." unique_id=958647931 instance=ExtResource("12_2e2rr")]
+modulate = Color(1, 1, 1, 0.5019608)
+z_index = 20
+position = Vector2(4.7683716e-07, 280)
+scale = Vector2(10, 10)
+
+[node name="OldTomb" parent="." unique_id=1048969962 instance=ExtResource("2_q6c2f")]
+position = Vector2(-340, -20)
+
+[node name="OldTomb2" parent="." unique_id=1159147268 instance=ExtResource("3_hc6mu")]
+position = Vector2(0, -240)
+
+[node name="OldTomb3" parent="." unique_id=1583802627 instance=ExtResource("62_gr5kn")]
+position = Vector2(340, -220)
+
+[node name="StartRoom" parent="." unique_id=1891830913 instance=ExtResource("1_6ypwl")]
+
+[node name="FloweyRoom1" parent="." unique_id=956130088 instance=ExtResource("2_rwwv8")]
+position = Vector2(780, 340)
+
+[node name="RuinsEntrance" parent="." unique_id=1351649911 instance=ExtResource("3_rwwv8")]
+position = Vector2(1400, 340)
+
+[node name="PuzzleIntro1" parent="." unique_id=1760024339 instance=ExtResource("4_7ual6")]
+position = Vector2(2100, 100)
+
+[node name="PuzzleIntro2" parent="." unique_id=1309043043 instance=ExtResource("5_vw3lo")]
+position = Vector2(2500, 140)
+
+[node name="DummyRoom" parent="." unique_id=190602437 instance=ExtResource("6_ussjw")]
+position = Vector2(2920, -160)
+
+[node name="PuzzleIntro3" parent="." unique_id=1954386803 instance=ExtResource("7_fm5yx")]
+position = Vector2(1660, -140)
+
+[node name="LongCorridor" parent="." unique_id=1736030171 instance=ExtResource("8_4kls0")]
+position = Vector2(1700, -440)
+
+[node name="CandyRoom" parent="." unique_id=852246538 instance=ExtResource("10_np4us")]
+position = Vector2(4380, -140)
+
+[node name="FroggitRoom1" parent="." unique_id=1730355389 instance=ExtResource("9_bcrfd")]
+position = Vector2(4760, -300)
+
+[node name="PuzzleRock1" parent="." unique_id=656548099 instance=ExtResource("11_iujis")]
+position = Vector2(4760, -520)
+
+[node name="DarkEntrance" parent="." unique_id=1490600757 instance=ExtResource("13_7d1ih")]
+visible = false
+position = Vector2(3020, 420)
+
+[node name="DarkCorridor" parent="." unique_id=1151716886 instance=ExtResource("14_5p8g6")]
+visible = false
+position = Vector2(3400, 540)
+wind = 0.0
+
+[node name="FloweyRoom3" parent="." unique_id=1549880666 instance=ExtResource("15_7rb1e")]
+position = Vector2(4900, 420)
+
+[node name="DarkColonnade" parent="." unique_id=963500597 instance=ExtResource("16_ui28b")]
+visible = false
+position = Vector2(3720, 120)
+
+[node name="PuzzleDark1" parent="." unique_id=813918050 instance=ExtResource("17_p4msd")]
+position = Vector2(3340, 160)
+
+[node name="PuzzleBox1" parent="." unique_id=1818621252 instance=ExtResource("18_bj7sb")]
+visible = false
+position = Vector2(3360, -140)
+
+[node name="PuzzlePitfall1" parent="." unique_id=1074928852 instance=ExtResource("19_t0g0t")]
+position = Vector2(5140, -140)
+
+[node name="NapstablookArena" parent="." unique_id=1448571323 instance=ExtResource("20_2mvam")]
+position = Vector2(5580, -240)
+
+[node name="PuzzlePitfall2" parent="." unique_id=1323827281 instance=ExtResource("21_d2e68")]
+position = Vector2(5300, -780)
+
+[node name="PuzzleRock2" parent="." unique_id=1384284252 instance=ExtResource("22_e5p5l")]
+position = Vector2(5680, -800)
+
+[node name="SnowdinOverlook" parent="." unique_id=1424762407 instance=ExtResource("23_28ffg")]
+position = Vector2(6220, -800)
+
+[node name="SpiderRoom" parent="." unique_id=507543932 instance=ExtResource("24_ja3fa")]
+visible = false
+position = Vector2(6060, -260)
+
+[node name="FroggitRoom2" parent="." unique_id=279580012 instance=ExtResource("25_7pods")]
+position = Vector2(5680, -520)
+
+[node name="DalvRoom1" parent="." unique_id=705383493 instance=ExtResource("26_w3grv")]
+position = Vector2(5280, 420)
+
+[node name="LemonadeRoom" parent="." unique_id=1837779231 instance=ExtResource("27_sw6dv")]
+position = Vector2(5520, 120)
+
+[node name="DarkLobby" parent="." unique_id=997652986 instance=ExtResource("28_q347u")]
+position = Vector2(5900, 120)
+
+[node name="PuzzlePitfall3" parent="." unique_id=114759279 instance=ExtResource("29_jndda")]
+position = Vector2(6460, -420)
+
+[node name="CornMaze" parent="." unique_id=1694446832 instance=ExtResource("30_6bjv3")]
+visible = false
+position = Vector2(6600, 100)
+
+[node name="DalvRoom2" parent="." unique_id=836527998 instance=ExtResource("31_nkbsh")]
+visible = false
+position = Vector2(7620, 420)
+
+[node name="DecibatArena" parent="." unique_id=1746130132 instance=ExtResource("33_utjny")]
+visible = false
+position = Vector2(6980, 1140)
+wind = 0.0
+
+[node name="DecibatColonnade" parent="." unique_id=1590188837 instance=ExtResource("32_srm24")]
+position = Vector2(6900, 720)
+
+[node name="PuzzleBox2" parent="." unique_id=179265834 instance=ExtResource("34_mudoj")]
+visible = false
+position = Vector2(8460, 720)
+
+[node name="HomeEntrance" parent="." unique_id=1990483449 instance=ExtResource("35_nna74")]
+position = Vector2(7060, -440)
+
+[node name="TorielHouse" parent="." unique_id=222636240 instance=ExtResource("36_lom6d")]
+position = Vector2(7760, -220)
+
+[node name="TorielHallway" parent="." unique_id=587503693 instance=ExtResource("37_s2atp")]
+position = Vector2(7960, -360)
+
+[node name="HomeColonnade" parent="." unique_id=981799618 instance=ExtResource("38_oewtm")]
+position = Vector2(7620, -740)
+
+[node name="JunkPit" parent="." unique_id=483812763 instance=ExtResource("39_hkt3k")]
+position = Vector2(5580, 720)
+
+[node name="TorielBasement" parent="." unique_id=1315583204 instance=ExtResource("40_5752y")]
+position = Vector2(7820, 80)
+
+[node name="Home" parent="." unique_id=1286572302 instance=ExtResource("41_aom7i")]
+position = Vector2(8840, -240)
+stream = ExtResource("42_3tyyb")
+
+[node name="HomeSecret" parent="." unique_id=1666724618 instance=ExtResource("42_o20rr")]
+position = Vector2(8400, -480)
+
+[node name="HomeTower" parent="." unique_id=790541704 instance=ExtResource("44_ehbnl")]
+position = Vector2(10580, -200)
+
+[node name="HomeTowerTop" parent="." unique_id=1369611949 instance=ExtResource("45_n0leq")]
+position = Vector2(10580, -1440)
+
+[node name="TorielArena" parent="." unique_id=335873161 instance=ExtResource("46_k3oxc")]
+position = Vector2(9600, 80)
+
+[node name="SecretSans" parent="." unique_id=1363259835 instance=ExtResource("47_bkxpm")]
+position = Vector2(2100, 440)
+
+[node name="HomeExit" parent="." unique_id=1484345406 instance=ExtResource("48_5xn31")]
+visible = false
+position = Vector2(9980, 80)
+
+[node name="FloweyRoom2" parent="." unique_id=1128207062 instance=ExtResource("49_v1hhk")]
+position = Vector2(11840, 180)
+
+[node name="ImperfectIdeal" parent="." unique_id=979185837 instance=ExtResource("50_mhuqe")]
+position = Vector2(12520, 100)
+
+[node name="RaffleRoom" parent="." unique_id=916426160 instance=ExtResource("51_vvwib")]
+position = Vector2(4760, -820)
+
+[node name="PerspectiveRoom" parent="." unique_id=2134003990 instance=ExtResource("52_syn3p")]
+position = Vector2(7065, -1719)
+
+[node name="DalvEntrance" parent="." unique_id=1306333545 instance=ExtResource("53_gqa6v")]
+position = Vector2(8840, 360)
+
+[node name="DalvArena" parent="." unique_id=608342924 instance=ExtResource("54_mni8c")]
+position = Vector2(9660, 420)
+
+[node name="CaveExit" parent="." unique_id=1688630501 instance=ExtResource("55_byg83")]
+visible = false
+position = Vector2(9660, 860)
+
+[node name="DarkCave" parent="." unique_id=1996923817 instance=ExtResource("56_34ml0")]
+position = Vector2(10700, 740)
+
+[node name="QuiryTeaser" parent="." unique_id=587550395 instance=ExtResource("57_271ce")]
+position = Vector2(8860, 1340)
+
+[node name="MicroArena" parent="." unique_id=86150021 instance=ExtResource("58_6g1b7")]
+visible = false
+position = Vector2(11240, 1040)
+
+[node name="StrytaxArena" parent="." unique_id=761181733 instance=ExtResource("61_ng58p")]
+position = Vector2(0, -1140)

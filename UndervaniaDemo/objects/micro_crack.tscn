@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://cw8u5avdxxjt3"]
+
+[ext_resource type="Texture2D" uid="uid://dom30g01jn7dk" path="res://sprites/micro_crack1.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://dox632ylky210" path="res://sprites/micro_crack2.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bwuyowm1ibycc" path="res://sprites/micro_crack3.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://dooluqojto632" path="res://sprites/micro_crack4.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dxxjpfhrkuit6" path="res://sprites/micro_crack5.png" id="5"]
+[ext_resource type="Script" uid="uid://bi683xxlium30" path="res://objects/micro_crack.gd" id="6"]
+[ext_resource type="AudioStream" uid="uid://x2dngf0ibivl" path="res://sounds/micro_croak.wav" id="7"]
+[ext_resource type="AudioStream" uid="uid://c6bl53rgwllux" path="res://sounds/wall_break.wav" id="8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e0hl5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1")
+}],
+"loop": true,
+"name": &"crack1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"crack2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": true,
+"name": &"crack3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}],
+"loop": true,
+"name": &"crack4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5")
+}],
+"loop": true,
+"name": &"crack5",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbqh1"]
+
+[node name="MicroCrack" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_e0hl5")
+animation = &"crack1"
+script = ExtResource("6")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hbqh1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8")

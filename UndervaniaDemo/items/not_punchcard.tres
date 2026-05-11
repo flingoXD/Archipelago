@@ -1,0 +1,10 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://8ic7sacohi10"]
+
+[ext_resource type="Script" uid="uid://dj8gapnqe0676" path="res://items/not_punchcard.gd" id="1_ed3wv"]
+
+[resource]
+script = ExtResource("1_ed3wv")
+item_id = "not_punchcard"
+display_name = "Raffle Ticket"
+description = "It may look like a Punch Card, but it's completely different."
+metadata/_custom_type_script = "uid://ds3e4kaukson"

@@ -1,0 +1,124 @@
+[gd_scene load_steps=15 format=3 uid="uid://dlwitai0g60ms"]
+
+[ext_resource type="Script" uid="uid://8fdc2xk1igdx" path="res://enemies/boree.gd" id="1_gm03q"]
+[ext_resource type="Texture2D" uid="uid://d2hstbl0ll7ll" path="res://sprites/boree_head.png" id="2_cspdv"]
+[ext_resource type="Texture2D" uid="uid://b6tp12kxm8i8a" path="res://sprites/empty.png" id="3_cnx2y"]
+[ext_resource type="Script" uid="uid://ddb2vxbtpe3u8" path="res://objects/damage_hitbox.gd" id="3_p7s0w"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="4_cnx2y"]
+[ext_resource type="Texture2D" uid="uid://285w405bqygk" path="res://sprites/boree_head_armoured.png" id="4_w8c8m"]
+[ext_resource type="AudioStream" uid="uid://dqbpwxn2npnps" path="res://sounds/boree_step.wav" id="7_cnx2y"]
+[ext_resource type="Texture2D" uid="uid://bdcbcpwwgvkbu" path="res://sprites/pixel.png" id="8_w8c8m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gm03q"]
+radius = 256.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w8c8m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_cspdv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_cnx2y")
+}],
+"loop": true,
+"name": &"hidden",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ckea"]
+size = Vector2(6, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gm03q"]
+size = Vector2(14, 14)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cspdv"]
+size = Vector2(6, 6)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_w8c8m"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(4, 4, 0)
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, 50, 0)
+scale_min = 2.0
+scale_max = 2.0
+color = Color(0, 0, 0, 1)
+collision_mode = 2
+collision_use_scale = true
+
+[node name="Boree" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_gm03q")
+segment_count = 7
+max_hp = 80
+atk = 6
+def = 5
+dropped_xp = 8
+death_tex = ExtResource("2_cspdv")
+knockback = 0
+metadata/_custom_type_script = "uid://u6nmfmrmnplx"
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_gm03q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_w8c8m")
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite2D"]
+visible = false
+use_parent_material = true
+position = Vector2(0, 6.5)
+texture = ExtResource("4_w8c8m")
+
+[node name="DamageHitbox" type="Area2D" parent="AnimatedSprite2D"]
+script = ExtResource("3_p7s0w")
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/DamageHitbox"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_7ckea")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gm03q")
+
+[node name="Textbox" parent="." instance=ExtResource("4_cnx2y")]
+position = Vector2(0, -20)
+
+[node name="WallDetector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallDetector"]
+shape = SubResource("RectangleShape2D_cspdv")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(3, 3)
+rect = Rect2(-10, -10, 14, 14)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, 200)
+collision_mask = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_cnx2y")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+z_index = 1
+amount = 60
+texture = ExtResource("8_w8c8m")
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_w8c8m")

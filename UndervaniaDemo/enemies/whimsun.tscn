@@ -1,0 +1,93 @@
+[gd_scene load_steps=12 format=3 uid="uid://bpfvd6coh0er8"]
+
+[ext_resource type="Script" uid="uid://cnd0igj06m58m" path="res://enemies/whimsun.gd" id="1_0opm1"]
+[ext_resource type="Texture2D" uid="uid://deftk8t1jjfxk" path="res://sprites/whimsun_death.png" id="2_0opm1"]
+[ext_resource type="Texture2D" uid="uid://c17kobdgq42wa" path="res://sprites/whimsun.png" id="2_qnty1"]
+[ext_resource type="Script" uid="uid://ddb2vxbtpe3u8" path="res://objects/damage_hitbox.gd" id="3_qnty1"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="5_sqe0k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqe0k"]
+atlas = ExtResource("2_qnty1")
+region = Rect2(0, 0, 27, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgi5a"]
+atlas = ExtResource("2_qnty1")
+region = Rect2(0, 25, 27, 25)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r5wwl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqe0k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgi5a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0opm1")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u564x"]
+size = Vector2(13, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnty1"]
+size = Vector2(9, 11)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0opm1"]
+radius = 128.0
+
+[node name="Whimsun" type="CharacterBody2D" node_paths=PackedStringArray("detection")]
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_0opm1")
+atk = 4
+dropped_xp = 2
+death_tex = ExtResource("2_0opm1")
+gauntlet_fade = true
+knockback = 500
+detection = NodePath("DetectionRange")
+metadata/_custom_type_script = "uid://u6nmfmrmnplx"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_r5wwl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_u564x")
+
+[node name="DamageHitbox" type="Area2D" parent="."]
+script = ExtResource("3_qnty1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox"]
+shape = SubResource("RectangleShape2D_qnty1")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+target_desired_distance = 40.0
+path_postprocessing = 1
+radius = 40.0
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_0opm1")
+
+[node name="NavigationTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="Textbox" parent="." instance=ExtResource("5_sqe0k")]
+position = Vector2(0, -10)
+
+[connection signal="timeout" from="NavigationTimer" to="." method="_on_navigation_timer_timeout"]

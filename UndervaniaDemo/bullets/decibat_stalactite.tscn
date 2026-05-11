@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl6w75it7won"]
+
+[ext_resource type="Script" uid="uid://r17afkt4kd3p" path="res://bullets/decibat_stalactite.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://tq3eta2vaalc" path="res://sprites/decibat_STALACTITE.png" id="2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1fmf"]
+size = Vector2(6, 19)
+
+[node name="DecibatStalactite" type="Area2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1")
+atk = 6
+remove_after_damage = true
+collide_with_ground = true
+remove_on_ground = true
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 0.5)
+texture = ExtResource("2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_b1fmf")
+
+[connection signal="collided" from="." to="." method="_on_collided"]

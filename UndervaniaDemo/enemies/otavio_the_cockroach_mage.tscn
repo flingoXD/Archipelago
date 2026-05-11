@@ -1,0 +1,112 @@
+[gd_scene load_steps=16 format=3 uid="uid://cewb5kt0n513n"]
+
+[ext_resource type="Script" uid="uid://d08fi0accdpw2" path="res://enemies/otavio_the_cockroach_mage.gd" id="1_eu3hi"]
+[ext_resource type="Texture2D" uid="uid://dya325kwrori1" path="res://sprites/otavio_the_cockroach_mage_death.png" id="2_xt3ur"]
+[ext_resource type="Texture2D" uid="uid://pjwmm8und5yr" path="res://sprites/otavio_the_cockroach_mage.png" id="4_puovw"]
+[ext_resource type="Texture2D" uid="uid://dqrtlcy50imhj" path="res://sprites/otavio_the_cockroach_mage_hurt.png" id="4_xt3ur"]
+[ext_resource type="Texture2D" uid="uid://co8fpn2anuj81" path="res://sprites/otavio_the_cockroach_mage_walk.png" id="5_xt3ur"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="7_2atju"]
+[ext_resource type="Texture2D" uid="uid://fwe2ygpmn63m" path="res://sprites/minigosp.png" id="8_iwieg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nsgb"]
+atlas = ExtResource("4_puovw")
+region = Rect2(0, 0, 25, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4flc"]
+atlas = ExtResource("4_puovw")
+region = Rect2(25, 0, 25, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu3hi"]
+atlas = ExtResource("5_xt3ur")
+region = Rect2(0, 0, 25, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puovw"]
+atlas = ExtResource("5_xt3ur")
+region = Rect2(25, 0, 25, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_erwbk"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_4nsgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4flc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nsgb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4flc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_xt3ur")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu3hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puovw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5ijq"]
+size = Vector2(15, 24)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pi6se"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 2
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1aav3"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 1)
+spread = 180.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -20, 0)
+anim_speed_min = 5.0
+anim_speed_max = 5.0
+
+[node name="OtavioTheCockroachMage" type="CharacterBody2D"]
+script = ExtResource("1_eu3hi")
+max_hp = 80
+atk = 5
+def = 4
+dropped_gold = 50
+dropped_xp = 1
+death_tex = ExtResource("2_xt3ur")
+metadata/_custom_type_script = "uid://u6nmfmrmnplx"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+position = Vector2(0, -4)
+sprite_frames = SubResource("SpriteFrames_erwbk")
+animation = &"hurt"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_e5ijq")
+
+[node name="Textbox" parent="." instance=ExtResource("7_2atju")]
+position = Vector2(0, -15)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_pi6se")
+amount = 6
+texture = ExtResource("8_iwieg")
+process_material = SubResource("ParticleProcessMaterial_1aav3")

@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://du4o5vw1m5gpy"]
+
+[ext_resource type="Script" uid="uid://i3wp431ihmq1" path="res://enemies/micro_froggit.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://d0gekfxunhjqc" path="res://music/fun sized.wav" id="2"]
+[ext_resource type="Texture2D" uid="uid://is1toyy0o7s2" path="res://sprites/micro_froggit.png" id="3"]
+[ext_resource type="Script" uid="uid://ddb2vxbtpe3u8" path="res://objects/damage_hitbox.gd" id="4"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7p8e6"]
+size = Vector2(4, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c65gd"]
+size = Vector2(2, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7l5ub"]
+size = Vector2(8, 8)
+
+[node name="MicroFroggit" type="CharacterBody2D"]
+script = ExtResource("1")
+boss_name = "Micro Froggit"
+aggression = 3
+boss_music = ExtResource("2")
+max_hp = 1
+atk = 1
+dropped_xp = 1
+death_tex = ExtResource("3")
+metadata/_custom_type_script = "uid://b1o5dt0adx7r6"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7p8e6")
+
+[node name="DamageHitbox" type="Area2D" parent="."]
+script = ExtResource("4")
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox"]
+shape = SubResource("RectangleShape2D_c65gd")
+
+[node name="Textbox" parent="." instance=ExtResource("5")]
+position = Vector2(0, -5)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_7l5ub")

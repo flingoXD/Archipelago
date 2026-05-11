@@ -1,0 +1,98 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://bd53o8ut1f45b"]
+
+[ext_resource type="Texture2D" uid="uid://ctc24nbm0l1ny" path="res://sprites/strytax_cloaked.png" id="1_ae5ob"]
+[ext_resource type="Texture2D" uid="uid://ckwa1w3nym4lx" path="res://sprites/warrior_swordless.png" id="1_ubpx1"]
+[ext_resource type="Texture2D" uid="uid://vvlny5liffem" path="res://sprites/strytax.png" id="2_15tsq"]
+[ext_resource type="Texture2D" uid="uid://bwp8bn252ll18" path="res://sprites/strytax_cloaked_up.png" id="2_wkqi4"]
+[ext_resource type="Texture2D" uid="uid://gmqq5bb6wqni" path="res://sprites/strytax_sword_draw.png" id="3_diyc7"]
+[ext_resource type="Texture2D" uid="uid://bvrdyjxfbk6qn" path="res://sprites/strytax_kneel_sheathed.png" id="3_iejua"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iejua"]
+atlas = ExtResource("3_diyc7")
+region = Rect2(0, 0, 100, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkqi4"]
+atlas = ExtResource("3_diyc7")
+region = Rect2(100, 0, 100, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fb758"]
+atlas = ExtResource("3_diyc7")
+region = Rect2(0, 90, 100, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_34d28"]
+atlas = ExtResource("3_diyc7")
+region = Rect2(100, 90, 100, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8d1s"]
+atlas = ExtResource("3_diyc7")
+region = Rect2(0, 180, 100, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_my13o"]
+atlas = ExtResource("3_diyc7")
+region = Rect2(100, 180, 100, 90)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ae5ob")
+}],
+"loop": true,
+"name": &"cloaked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wkqi4")
+}],
+"loop": true,
+"name": &"cloaked_up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_15tsq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_iejua")
+}],
+"loop": true,
+"name": &"kneel",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iejua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkqi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fb758")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_34d28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8d1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_my13o")
+}],
+"loop": false,
+"name": &"sword_draw",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ubpx1")
+}],
+"loop": true,
+"name": &"swordless",
+"speed": 5.0
+}]

@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dyk61j6yp5xad"]
+
+[ext_resource type="Texture2D" uid="uid://c4y1b0iujl0vw" path="res://sprites/map_save.png" id="1_wkksb"]
+[ext_resource type="Script" uid="uid://b3roqj25ekshc" path="res://objects/map_save.gd" id="2_mj0n3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q2ejr"]
+atlas = ExtResource("1_wkksb")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp71e"]
+atlas = ExtResource("1_wkksb")
+region = Rect2(0, 12, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kjc6f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q2ejr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp71e")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wkksb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kjc6f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mj0n3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fl11e"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6mbfb"]
+
+[node name="MapSave" type="Node2D" unique_id=1489430062]
+
+[node name="Save" type="AnimatedSprite2D" parent="." unique_id=868611601]
+sprite_frames = SubResource("SpriteFrames_kjc6f")
+
+[node name="MapSaveButton" type="Button" parent="." unique_id=54531519]
+offset_left = -6.0
+offset_top = -6.0
+offset_right = 6.0
+offset_bottom = 6.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wkksb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_kjc6f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_mj0n3")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_fl11e")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6mbfb")
+script = ExtResource("2_mj0n3")
+
+[connection signal="pressed" from="MapSaveButton" to="MapSaveButton" method="_on_pressed"]

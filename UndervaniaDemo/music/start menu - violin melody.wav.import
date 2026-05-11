@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c00vfxidg6lmu"
+path="res://.godot/imported/start menu - violin melody.wav-4a62ae033d0b7705ffc963f0cebd25bb.sample"
+
+[deps]
+
+source_file="res://music/start menu - violin melody.wav"
+dest_files=["res://.godot/imported/start menu - violin melody.wav-4a62ae033d0b7705ffc963f0cebd25bb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=122254
+edit/loop_end=1532214
+compress/mode=0

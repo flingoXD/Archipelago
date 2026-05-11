@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwxl32uquefb0"]
+
+[ext_resource type="Script" uid="uid://o4tnb05ekps3" path="res://enemies/dummy.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://dcoljsil6qm2c" path="res://sprites/dummy.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ch3w"]
+size = Vector2(17, 28)
+
+[node name="Dummy" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1")
+max_hp = 15
+def = -5
+death_tex = ExtResource("2")
+metadata/_custom_type_script = "uid://u6nmfmrmnplx"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+texture = ExtResource("2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_0ch3w")
+
+[node name="Textbox" parent="." instance=ExtResource("3")]
+position = Vector2(0, -15)

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://tacw74ds2cam"
+path="res://.godot/imported/dark ruins - viola melody 1.wav-35c1bf5fe661fadbd9b4574bd6645e40.sample"
+
+[deps]
+
+source_file="res://music/dark ruins - viola melody 1.wav"
+dest_files=["res://.godot/imported/dark ruins - viola melody 1.wav-35c1bf5fe661fadbd9b4574bd6645e40.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=793090
+edit/loop_end=4763074
+compress/mode=0

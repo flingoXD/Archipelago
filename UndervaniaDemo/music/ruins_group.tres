@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="AudioStreamGroup" load_steps=19 format=3 uid="uid://bh86tsbegtgne"]
+
+[ext_resource type="Script" uid="uid://btrwqaax5uf6" path="res://audio_stream_group.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://i658equ0y4vl" path="res://music/ruins - piano bass.wav" id="2"]
+[ext_resource type="AudioStream" uid="uid://dupw7k6hnw2bx" path="res://music/ruins - piano melody.wav" id="3"]
+[ext_resource type="AudioStream" uid="uid://co0s2j2hemgok" path="res://music/ruins - violin intro.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://b0dvt684s50o8" path="res://music/ruins - piano ostinato.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://ds8n1akbybrk2" path="res://music/ruins - piano harmony 1.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://dehsmcffxavp2" path="res://music/ruins - piano harmony 2.wav" id="7"]
+[ext_resource type="AudioStream" uid="uid://dh8br2qfjl02b" path="res://music/ruins - piano harmony alt.wav" id="8"]
+[ext_resource type="AudioStream" uid="uid://rvdi76m5jx32" path="res://music/ruins - piano high.wav" id="9"]
+[ext_resource type="AudioStream" uid="uid://ctnywft382mob" path="res://music/ruins - piano mega bass.wav" id="10"]
+[ext_resource type="AudioStream" uid="uid://cg2uxepovd65m" path="res://music/ruins - cello bass.wav" id="11"]
+[ext_resource type="AudioStream" uid="uid://dc6ff8w7whxeq" path="res://music/ruins - violin melody.wav" id="12"]
+[ext_resource type="AudioStream" uid="uid://bkcme7hli65p8" path="res://music/ruins - distant.wav" id="13"]
+[ext_resource type="AudioStream" uid="uid://ch8gryurmt5nv" path="res://music/ruins - snowdin sleigh bells.wav" id="14"]
+[ext_resource type="AudioStream" uid="uid://ncxo5scaee24" path="res://music/ruins - violin ostinato.wav" id="15"]
+[ext_resource type="AudioStream" uid="uid://c4ub2in5wgixy" path="res://music/ruins - contrabass mega bass.wav" id="16"]
+[ext_resource type="AudioStream" uid="uid://c5jlq6k7pbeiq" path="res://music/ruins - abstraction.wav" id="17"]
+[ext_resource type="AudioStream" uid="uid://bexemwydx8xg1" path="res://music/ruins - drum roll.wav" id="18"]
+
+[resource]
+script = ExtResource("1")
+resource_name = "ruins"
+streams = [ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6"), ExtResource("7"), ExtResource("8"), ExtResource("9"), ExtResource("10"), ExtResource("11"), ExtResource("12"), ExtResource("13"), ExtResource("14"), ExtResource("15"), ExtResource("16"), ExtResource("17"), ExtResource("18")]
+title = "Ruins"
+title_delay = 12.0
+metadata/_custom_type_script = "uid://btrwqaax5uf6"

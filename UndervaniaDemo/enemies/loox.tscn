@@ -1,0 +1,152 @@
+[gd_scene load_steps=21 format=3 uid="uid://c1lao1vs20a8r"]
+
+[ext_resource type="Script" uid="uid://btpqg28bdqg21" path="res://enemies/loox.gd" id="1_5s7io"]
+[ext_resource type="Texture2D" uid="uid://bu4jvkpj33yh" path="res://sprites/loox.png" id="2_mx23t"]
+[ext_resource type="Texture2D" uid="uid://djcoav2rk465u" path="res://sprites/loox_death.png" id="3_5s7io"]
+[ext_resource type="Script" uid="uid://ddb2vxbtpe3u8" path="res://objects/damage_hitbox.gd" id="4_5s7io"]
+[ext_resource type="Texture2D" uid="uid://0772jcx7hsnh" path="res://sprites/loox_roll.png" id="4_6ew04"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="6_oct30"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oct30"]
+atlas = ExtResource("2_mx23t")
+region = Rect2(0, 0, 31, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7giaf"]
+atlas = ExtResource("2_mx23t")
+region = Rect2(0, 29, 31, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7j3m7"]
+atlas = ExtResource("4_6ew04")
+region = Rect2(0, 0, 31, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwb6y"]
+atlas = ExtResource("4_6ew04")
+region = Rect2(31, 0, 31, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5q063"]
+atlas = ExtResource("4_6ew04")
+region = Rect2(0, 29, 31, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8iwag"]
+atlas = ExtResource("4_6ew04")
+region = Rect2(31, 29, 31, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ml4mm"]
+atlas = ExtResource("4_6ew04")
+region = Rect2(31, 29, 31, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_st0yj"]
+atlas = ExtResource("4_6ew04")
+region = Rect2(0, 29, 31, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ngn72"]
+atlas = ExtResource("4_6ew04")
+region = Rect2(31, 0, 31, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en7vt"]
+atlas = ExtResource("4_6ew04")
+region = Rect2(0, 0, 31, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7j3m7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oct30")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7giaf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5s7io")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7j3m7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwb6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5q063")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8iwag")
+}],
+"loop": false,
+"name": &"roll",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ml4mm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_st0yj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ngn72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en7vt")
+}],
+"loop": true,
+"name": &"roll_exit",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mx23t"]
+size = Vector2(23, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ew04"]
+size = Vector2(17, 15)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oct30"]
+radius = 128.0
+
+[node name="Loox" type="CharacterBody2D" node_paths=PackedStringArray("detection")]
+collision_layer = 2
+script = ExtResource("1_5s7io")
+max_hp = 50
+atk = 5
+def = 4
+dropped_gold = 5
+dropped_xp = 7
+death_tex = ExtResource("3_5s7io")
+knockback = 100
+detection = NodePath("DetectionRange")
+metadata/_custom_type_script = "uid://u6nmfmrmnplx"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_7j3m7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_mx23t")
+
+[node name="DamageHitbox" type="Area2D" parent="."]
+script = ExtResource("4_5s7io")
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageHitbox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_6ew04")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_oct30")
+
+[node name="Textbox" parent="." instance=ExtResource("6_oct30")]
+position = Vector2(0, -20)

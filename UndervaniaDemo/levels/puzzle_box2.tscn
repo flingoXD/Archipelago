@@ -1,0 +1,284 @@
+[gd_scene load_steps=30 format=4 uid="uid://cxxi1taa7m5pa"]
+
+[ext_resource type="Script" uid="uid://r7dev8xi7ao1" path="res://levels/puzzle_box2.gd" id="1_81ver"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2_7li3u"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_mfjyp"]
+[ext_resource type="Resource" uid="uid://1jim1a1nieoy" path="res://music/dark_ruins_group.tres" id="3_81ver"]
+[ext_resource type="PackedScene" uid="uid://dstq48sodbfqp" path="res://objects/ruins_door.tscn" id="3_ipigb"]
+[ext_resource type="Script" uid="uid://c7byuwt70ctt1" path="res://objects/camera_limit_area.gd" id="4_tki5v"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="5_c8rk0"]
+[ext_resource type="PackedScene" uid="uid://dn26bynnj2ipw" path="res://objects/light_box.tscn" id="6_7cpmn"]
+[ext_resource type="Script" uid="uid://dcy3kp7go3mm1" path="res://objects/fake_wall.gd" id="9_81ver"]
+[ext_resource type="Script" uid="uid://cd8yb0wnhbywb" path="res://objects/cutscene_trigger.gd" id="10_mjdmu"]
+[ext_resource type="Texture2D" uid="uid://b31wd5pv67tph" path="res://sprites/bat_wing.png" id="11_irtnd"]
+[ext_resource type="Script" uid="uid://be8fu5lrtidnk" path="res://objects/hazard.gd" id="12_e7bt8"]
+[ext_resource type="Script" uid="uid://c2ggpwjfpuy5m" path="res://objects/hazard_respawn.gd" id="13_rj8sm"]
+[ext_resource type="PackedScene" uid="uid://7qq3ox63m6vb" path="res://enemies/crispy_scroll.tscn" id="14_rj8sm"]
+
+[sub_resource type="AudioStream" id="AudioStream_mjdmu"]
+script = ExtResource("2_7li3u")
+stream_group = ExtResource("3_81ver")
+stream_mask = 227
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_xql7n"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ipigb"]
+noise = SubResource("FastNoiseLite_xql7n")
+seamless = true
+normalize = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8rk0"]
+size = Vector2(180, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cpmn"]
+size = Vector2(60, 20)
+
+[sub_resource type="Gradient" id="Gradient_f70sn"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_81ver"]
+gradient = SubResource("Gradient_f70sn")
+width = 40
+
+[sub_resource type="Gradient" id="Gradient_mjdmu"]
+offsets = PackedFloat32Array(0, 0.9936306)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_irtnd"]
+gradient = SubResource("Gradient_mjdmu")
+width = 60
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_irtnd"]
+
+[sub_resource type="Gradient" id="Gradient_b26j0"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.56050956, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.5516806, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vpkhl"]
+gradient = SubResource("Gradient_b26j0")
+width = 40
+height = 40
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ea18j"]
+size = Vector2(280, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55c1y"]
+size = Vector2(40, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4pa4"]
+size = Vector2(20, 60)
+
+[node name="PuzzleBox2" type="Node2D"]
+script = ExtResource("1_81ver")
+default_point = Vector2i(-480, 220)
+light_override = 0.5
+limit_bottom = 480
+limit_left = -1240
+limit_right = 640
+stream = SubResource("AudioStream_mjdmu")
+wind = 0.8
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+modulate = Color(0.95666665, 0.8, 1, 1)
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(1024, 1024)
+autoscroll = Vector2(10, 0)
+repeat_times = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+modulate = Color(1, 1, 1, 0.5019608)
+position = Vector2(512, 512)
+scale = Vector2(2, 2)
+texture = SubResource("NoiseTexture2D_ipigb")
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAHAAoAAQAAAAcAAAAHAAkAAQAAAAcAAAAHAAgAAQAAAAcAAAAHAAcAAQAAAAcAAAAHAAYAAQAAAAcAAAAHAAUAAQAAAAcAAAAHAAQAAQAAAAcAAAAHAAMAAQAAAAcAAAAHAAIAAQAAAAcAAAAHAAEAAQAAAAcAAAAOAAoAAQADAAcAAAAOAAkAAQADAAcAAAAOAAgAAQADAAcAAAAOAAcAAQADAAcAAAAOAAYAAQABAAcAAAAOAAUAAQADAAcAAAAOAAQAAQADAAcAAAAOAAMAAQADAAcAAAAOAAIAAQABAAcAAAAOAAEAAQADAAcAAAANAAoAAQABAAcAAAANAAkAAQADAAcAAAANAAgAAQABAAcAAAANAAcAAQABAAcAAAANAAYAAQABAAcAAAANAAUAAQADAAcAAAANAAQAAQADAAcAAAANAAMAAQADAAcAAAANAAIAAQADAAcAAAANAAEAAQADAAcAAAAMAAoAAQABAAcAAAAMAAkAAQABAAcAAAAMAAgAAQADAAcAAAAMAAcAAQADAAcAAAAMAAYAAQABAAcAAAAMAAUAAQABAAcAAAAMAAQAAQADAAcAAAAMAAMAAQADAAcAAAAMAAIAAQABAAcAAAAMAAEAAQABAAcAAAALAAoAAQABAAcAAAALAAkAAQABAAcAAAALAAgAAQADAAcAAAALAAcAAQADAAcAAAALAAYAAQADAAcAAAALAAUAAQABAAcAAAALAAQAAQABAAcAAAALAAMAAQADAAcAAAALAAIAAQABAAcAAAALAAEAAQABAAcAAAAKAAoAAQADAAcAAAAKAAkAAQADAAcAAAAKAAgAAQADAAcAAAAKAAcAAQADAAcAAAAKAAYAAQABAAcAAAAKAAUAAQABAAcAAAAKAAQAAQADAAcAAAAKAAMAAQADAAcAAAAKAAIAAQADAAcAAAAKAAEAAQADAAcAAAAJAAoAAQADAAcAAAAJAAkAAQABAAcAAAAJAAgAAQADAAcAAAAJAAcAAQADAAcAAAAJAAYAAQABAAcAAAAJAAUAAQABAAcAAAAJAAQAAQADAAcAAAAJAAMAAQABAAcAAAAJAAIAAQADAAcAAAAJAAEAAQABAAcAAAAIAAoAAQABAAcAAAAIAAkAAQADAAcAAAAIAAgAAQADAAcAAAAIAAcAAQADAAcAAAAIAAYAAQABAAcAAAAIAAUAAQADAAcAAAAIAAQAAQADAAcAAAAIAAMAAQABAAcAAAAIAAIAAQADAAcAAAAIAAEAAQADAAcAAAAPAAMAAQADAAcAAAAPAAIAAQADAAcAAAAPAAEAAQABAAcAAAAOAAsAAQADAAcAAAANAAsAAQADAAcAAAAMAAsAAQABAAcAAAAMAAwAAQADAAcAAAANAAwAAQADAAcAAAAOAAwAAQADAAcAAAD9/woAAQACAAcAAAD9/wkAAQACAAcAAAD9/wgAAQACAAcAAAD9/wcAAQACAAcAAAD9/wYAAQACAAcAAAD9/wUAAQACAAcAAAD9/wQAAQACAAcAAAD9/wMAAQACAAcAAAD9/wIAAQACAAcAAAD9/wEAAQACAAcAAAD8/woAAQABAAcAAAD8/wkAAQABAAcAAAD8/wgAAQABAAcAAAD8/wcAAQADAAcAAAD8/wYAAQADAAcAAAD8/wUAAQABAAcAAAD8/wQAAQABAAcAAAD8/wMAAQADAAcAAAD8/wIAAQADAAcAAAD8/wEAAQADAAcAAAD7/woAAQABAAcAAAD7/wkAAQABAAcAAAD7/wgAAQADAAcAAAD7/wcAAQABAAcAAAD7/wYAAQADAAcAAAD7/wUAAQABAAcAAAD7/wQAAQADAAcAAAD7/wMAAQADAAcAAAD7/wIAAQADAAcAAAD7/wEAAQABAAcAAAD6/woAAQABAAcAAAD6/wkAAQABAAcAAAD6/wgAAQADAAcAAAD6/wcAAQADAAcAAAD6/wYAAQABAAcAAAD6/wUAAQABAAcAAAD6/wQAAQABAAcAAAD6/wMAAQADAAcAAAD6/wIAAQADAAcAAAD6/wEAAQABAAcAAAD5/woAAQADAAcAAAD5/wkAAQADAAcAAAD5/wgAAQABAAcAAAD5/wcAAQABAAcAAAD5/wYAAQADAAcAAAD5/wUAAQABAAcAAAD5/wQAAQABAAcAAAD5/wMAAQADAAcAAAD5/wIAAQABAAcAAAD5/wEAAQABAAcAAAD4/woAAQADAAcAAAD4/wkAAQADAAcAAAD4/wgAAQADAAcAAAD4/wcAAQABAAcAAAD4/wYAAQABAAcAAAD4/wUAAQABAAcAAAD4/wQAAQADAAcAAAD4/wMAAQABAAcAAAD4/wIAAQADAAcAAAD4/wEAAQADAAcAAAD3/woAAQABAAcAAAD3/wkAAQABAAcAAAD3/wgAAQABAAcAAAD3/wcAAQABAAcAAAD3/wYAAQADAAcAAAD3/wUAAQADAAcAAAD3/wQAAQABAAcAAAD3/wMAAQABAAcAAAD3/wIAAQABAAcAAAD3/wEAAQABAAcAAAD2/woAAQADAAcAAAD2/wkAAQABAAcAAAD2/wgAAQADAAcAAAD2/wcAAQABAAcAAAD2/wYAAQABAAcAAAD2/wUAAQABAAcAAAD2/wQAAQABAAcAAAD2/wMAAQABAAcAAAD2/wIAAQABAAcAAAD2/wEAAQABAAcAAAD1/woAAQADAAcAAAD1/wkAAQADAAcAAAD1/wgAAQADAAcAAAD1/wcAAQADAAcAAAD1/wYAAQABAAcAAAD1/wUAAQABAAcAAAD1/wQAAQABAAcAAAD1/wMAAQADAAcAAAD1/wIAAQABAAcAAAD1/wEAAQADAAcAAAD0/woAAQABAAcAAAD0/wkAAQABAAcAAAD0/wgAAQABAAcAAAD0/wcAAQABAAcAAAD0/wYAAQABAAcAAAD0/wUAAQABAAcAAAD0/wQAAQADAAcAAAD0/wMAAQADAAcAAAD0/wIAAQADAAcAAAD0/wEAAQADAAcAAADz/woAAQADAAcAAADz/wkAAQABAAcAAADz/wgAAQABAAcAAADz/wcAAQABAAcAAADz/wYAAQADAAcAAADz/wUAAQABAAcAAADz/wQAAQABAAcAAADz/wMAAQADAAcAAADz/wIAAQABAAcAAADz/wEAAQABAAcAAADy/woAAQABAAcAAADy/wkAAQABAAcAAADy/wgAAQABAAcAAADy/wcAAQABAAcAAADy/wYAAQABAAcAAADy/wUAAQADAAcAAADy/wQAAQABAAcAAADy/wMAAQADAAcAAADy/wIAAQADAAcAAADy/wEAAQADAAcAAADx/woAAQABAAcAAADx/wkAAQADAAcAAADx/wgAAQABAAcAAADx/wcAAQABAAcAAADx/wYAAQADAAcAAADx/wUAAQABAAcAAADx/wQAAQAAAAcAAADx/wMAAQAAAAcAAADx/wIAAQAAAAcAAADx/wEAAQAAAAcAAADw/wQABQABAAMAAADw/wMABQAAAAQAAADw/wIABQABAAQAAADv/wIABQACAAQAAADv/wMABQAAAAMAAADv/wQABQAAAAQAAADu/wQABQABAAMAAADu/wMABQAAAAQAAADu/wIABQAAAAMAAADt/wIABQAAAAMAAADt/wMABQABAAMAAADt/wQABQAAAAMAAADs/wsABQAAAAQAAADs/woABQABAAMAAADs/wkABQABAAMAAADs/wgABQABAAMAAADs/wcABQABAAMAAADs/wYABQACAAQAAADs/wUABQABAAQAAADs/wQABQACAAQAAADs/wMABQAAAAQAAADs/wIABQABAAMAAADs/wEABQAAAAMAAADr/wsABQACAAQAAADr/woABQAAAAQAAADr/wkABQABAAMAAADr/wgABQACAAMAAADr/wcABQABAAMAAADr/wYABQABAAQAAADr/wUABQACAAQAAADr/wQABQACAAMAAADr/wMABQABAAQAAADr/wIABQACAAQAAADr/wEABQACAAQAAADq/wsABQAAAAMAAADq/woABQABAAMAAADq/wkABQABAAQAAADq/wgABQAAAAMAAADq/wcABQABAAMAAADq/wYABQAAAAMAAADq/wUABQAAAAQAAADq/wQABQABAAMAAADq/wMABQABAAMAAADq/wIABQABAAMAAADq/wEABQABAAMAAADp/wsABQABAAMAAADp/woABQABAAQAAADp/wkABQAAAAMAAADp/wgABQACAAQAAADp/wcABQAAAAMAAADp/wYABQAAAAMAAADp/wUABQACAAQAAADp/wQABQACAAMAAADp/wMABQAAAAQAAADp/wIABQAAAAMAAADp/wEABQABAAMAAADo/wsABQAAAAMAAADo/woABQABAAMAAADo/wkABQAAAAQAAADo/wgABQABAAQAAADo/wcABQAAAAMAAADo/wYABQABAAMAAADo/wUABQAAAAMAAADo/wQABQAAAAMAAADo/wMABQAAAAMAAADo/wIABQACAAQAAADo/wEABQAAAAMAAADn/wsABQAAAAMAAADn/woABQAAAAQAAADn/wkABQAAAAMAAADn/wgABQABAAQAAADn/wcABQAAAAQAAADn/wYABQABAAMAAADn/wUABQACAAQAAADn/wQABQAAAAQAAADn/wMABQAAAAQAAADn/wIABQAAAAQAAADn/wEABQAAAAMAAADm/wsABQAAAAQAAADm/woABQACAAQAAADm/wkABQAAAAMAAADm/wgABQACAAQAAADm/wcABQAAAAQAAADm/wYABQACAAMAAADm/wUABQACAAQAAADm/wQABQACAAQAAADm/wMABQAAAAMAAADm/wIABQACAAMAAADm/wEABQABAAQAAADl/wsABQACAAMAAADl/woABQABAAMAAADl/wkABQAAAAQAAADl/wgABQABAAQAAADl/wcABQAAAAMAAADl/wYABQAAAAQAAADl/wUABQAAAAQAAADl/wQABQAAAAQAAADl/wMABQAAAAMAAADl/wIABQACAAMAAADl/wEABQACAAMAAADk/wsABQAAAAMAAADk/woABQABAAQAAADk/wkABQACAAQAAADk/wgABQABAAQAAADk/wcABQACAAQAAADk/wYABQAAAAQAAADk/wUABQABAAMAAADk/wQABQABAAQAAADk/wMABQABAAMAAADk/wIABQABAAMAAADk/wEABQACAAQAAADj/wQABQAAAAQAAADj/wMABQACAAMAAADj/wIABQAAAAMAAADi/wIABQABAAQAAADi/wMABQACAAQAAADi/wQABQAAAAMAAADt/wUABQABAAMAAADv/wEABQAAAAQAAADw/wEABQAAAAMAAADt/wEABQAAAAMAAADu/wEABQAAAAQAAAA=")
+tile_set = ExtResource("2_mfjyp")
+
+[node name="Decor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAKAAoAAQAAAAcAAAAKAAkAAQAAAAcAAAAKAAgAAQAAAAcAAAAKAAcAAQAAAAcAAAAHAAEAAQAGAAoAAAAHAAIAAQAGAAoAAAAHAAMAAQAGAAoAAAAHAAQAAQAGAAoAAAAHAAUAAQAGAAoAAAAHAAYAAQAGAAoAAAAJAAEAAQAGAAoAAAAJAAIAAQAGAAoAAAAJAAMAAQAGAAoAAAD4/wcAAQAEAAsAAAD4/wYAAQAEAAsAAAD4/wUAAQAEAAsAAAD4/wQAAQAEAAsAAAD4/wMAAQAEAAsAAAD4/wIAAQAEAAsAAAD4/wEAAQAEAAsAAAD5/wEAAQAHAAsAAAD5/wIAAQAHAAsAAAD5/wMAAQAHAAsAAAD5/wQAAQAHAAsAAAD5/wUAAQAHAAsAAAD5/wYAAQAHAAsAAAD5/wcAAQAHAAsAAAD1/wgAAQABAAEAAAD1/wcAAQAFAAsAAAD2/wcAAQAHAAsAAAD2/wgAAQACAAEAAAD2/wkAAQAHAAsAAAD1/wkAAQAFAAsAAAD0/wcAAQAEAAsAAAD0/wgAAQAEAAsAAAD0/wkAAQAEAAsAAAD0/woAAQAEAAsAAAD1/woAAQAFAAsAAAD2/woAAQAHAAsAAAD2/wYAAQAHAAsAAAD1/wYAAQAGAAsAAAD1/wUAAQAGAAsAAAD0/wUAAQAEAAsAAAD0/wYAAQAEAAsAAAD1/wMAAQAFAAsAAAD1/wIAAQAGAAsAAAD0/wMAAQAEAAsAAAD0/wIAAQAEAAsAAAD0/wEAAQAEAAsAAAD1/wEAAQAFAAsAAAD2/wEAAQAHAAsAAAD2/wIAAQAHAAsAAAD2/wMAAQAHAAsAAAD2/wUAAQAHAAsAAAD3/wgAAQACAAEAAAD4/wgAAQACAAEAAAD5/wgAAQAEAAEAAAADAAwAAQABAAkAAAADAAoAAQABAAkAAAADAAkAAQABAAkAAAADAAgAAQABAAkAAAADAAcAAQABAAkAAAADAAYAAQABAAkAAAADAAUAAQABAAkAAAADAAQAAQABAAkAAAADAAMAAQABAAkAAAADAAIAAQABAAkAAAADAAEAAQABAAkAAAD0/wQAAQAEAAsAAAD1/wQAAQAGAAsAAAD2/wQAAQAHAAsAAAADAAsAAQABAAkAAAAKAAYAAQAAAAcAAAAKAAUAAQAAAAcAAAAKAAQAAQAAAAcAAAAKAAMAAQAAAAcAAAAKAAIAAQAAAAcAAAAKAAEAAQAAAAcAAAA=")
+tile_set = ExtResource("2_mfjyp")
+
+[node name="Door" parent="." instance=ExtResource("3_ipigb")]
+position = Vector2(310, 50)
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAQACAAEAAAAPAAcAAQABAAAAAAAPAAYAAQABAAAAAAAPAAUAAQABAAAAAAAPAAAAAQACAAEAAAAOAAAAAQADAAEAAAANAAAAAQACAAEAAAAMAAAAAQACAAEAAAALAAAAAQACAAEAAAAKAAAAAQACAAEAAAAJAAAAAQACAAEAAAAIAAAAAQACAAEAAAAHAAAAAQADAAEAAAAGAAAAAQACAAEAAAAFAAAAAQACAAEAAAAEAAAAAQACAAEAAAADAAAAAQADAAEAAAACAAAAAQACAAEAAAABAAAAAQACAAEAAAAPAAoAAQABAAAAAAAPAAsAAQABAAAAAAD//wAAAQACAAEAAAD+/wAAAQACAAEAAAD9/wAAAQACAAEAAAD8/wAAAQACAAEAAAD7/wAAAQACAAEAAAD6/wAAAQACAAEAAAD5/wAAAQACAAEAAAD4/wAAAQADAAEAAAAHAAwAAQABAAAAAAALAAwAAQAEAAAAAAAIAAwAAQACAAAAAAAJAAwAAQACAAAAAAAKAAwAAQACAAAAAAAPAAwAAQABAAAAAAALAA0AAQAGAA4AAAAPAA0AAQAGAA4AAAALAA4AAQABAAEAAAAMAA4AAQACAAEAAAANAA4AAQACAAEAAAAOAA4AAQACAAEAAAAPAA4AAQAEAAEAAAD9/wwAAQAEAAAAAAD8/wwAAQACAAAAAAD7/wwAAQACAAAAAAD6/wwAAQACAAAAAAD1/wwAAQACAAAAAAD2/wwAAQACAAAAAAD3/wwAAQAEAAIAAAD4/wwAAQACAAAAAAD5/wwAAQACAAAAAAD3/wAAAQACAAEAAAD2/wAAAQACAAEAAAD1/wAAAQACAAEAAAD0/wAAAQADAAEAAADz/wAAAQACAAEAAADx/wwAAQABAAAAAADy/wwAAQACAAAAAADz/wwAAQACAAAAAAD0/wwAAQADAAAAAADw/wwABQABAAIAAADt/wAABQABAAIAAADt/wcABQAAAAEAAADt/wgABQAAAAEAAADt/wkABQAAAAEAAADt/woABQABAAEAAADt/wsABQABAAEAAADt/wwABQACAAIAAADu/wAABQACAAIAAADu/wwABQACAAIAAADv/wwABQABAAIAAAD8/wsAAQACAAAAAAD7/wsAAQAEAAMAAAD6/wsAAQACAAAAAAD5/wsAAQACAAAAAAD4/wsAAQACAAAAAAD3/wsAAQACAAAAAAD2/wsAAQACAAAAAAD1/wsAAQACAAAAAAD0/wsAAQACAAAAAADz/wsAAQACAAAAAADy/wsAAQAEAAIAAAAKAAsAAQAEAAMAAAAJAAsAAQACAAAAAAAIAAsAAQACAAAAAAAHAAsAAQACAAAAAAALAAsAAQAEAAAAAAD9/wsAAQACAAAAAAD+/wsAAQAEAAEAAAAGAAsAAQABAAEAAAAPAAQAAQAEAAMAAAD1/wgAAQACAA4AAAD2/wgAAQAAAAIAAAD3/wgAAQAAAAIAAAD4/wgAAQAAAAIAAAD5/wgAAQADAA4AAADy/wUAAQAEAAAAAADy/wYAAQAEAAAAAADx/wsAAQABAAAAAADv/wsABQABAAEAAADw/wsABQABAAEAAADu/wsABQACAAEAAADx/wYAAQABAAAAAADw/wYABQACAAEAAADv/wYABQABAAEAAADu/wYABQACAAEAAADv/wUABQACAAAAAADw/wUABQACAAAAAADx/wUAAQABAAAAAADu/woABQACAAEAAADv/woABQABAAEAAADw/woABQACAAEAAADx/woAAQABAAAAAADy/woAAQAEAAAAAADv/wAABQACAAIAAADw/wAABQACAAIAAADx/wAAAQABAAAAAADy/wAAAQADAAAAAAAQAAAAAQACAAEAAAARAAAAAQAEAAAAAAARAAEAAQAGAA4AAAARAAIAAQAGAA4AAAARAAMAAQAGAA4AAAARAAQAAQAEAAEAAAAQAAQAAQACAAEAAAAOAAQAAQABAAEAAADy/wEAAQAEAAEAAADx/wEAAQABAAEAAADu/wkABQABAAEAAADu/wgABQABAAEAAADu/wcABQACAAEAAADv/wcABQACAAEAAADv/wgABQABAAEAAADv/wkABQACAAEAAADw/wkABQABAAEAAADw/wgABQABAAEAAADw/wcABQACAAEAAADx/wgAAQABAAAAAADx/wkAAQABAAAAAADx/wcAAQABAAAAAADy/wcAAQAEAAAAAADy/wgAAQAEAAAAAADy/wkAAQAEAAAAAADw////BQADAAAAAADv////BQACAAAAAADu////BQACAAAAAADt////BQACAAAAAADs/wwABQABAAIAAADr/wwABQACAAIAAADq/wwABQACAAIAAADp/wwABQACAAIAAADo/wwABQABAAIAAADn/wwABQABAAIAAADm/wwABQACAAIAAADl/wwABQACAAIAAADk/wwABQACAAIAAADj/wwABQACAAIAAADi/wwABQABAAIAAADi/wsABQACAAEAAADj/wsABQABAAEAAADj/woABQACAAEAAADi/woABQACAAEAAADi/wkABQACAAEAAADj/wkABQABAAEAAADj/wgABQADAAEAAADi/wcABQABAAEAAADi/wgABQABAAEAAADj/wcABQADAAEAAADj/wYABQADAAEAAADi/wYABQABAAEAAADi/wUABQABAAAAAADj/wUABQADAAAAAADi/wEABQACAAEAAADj/wEABQABAAIAAADj/wAABQACAAEAAADi/wAABQACAAEAAADi////BQACAAAAAADj////BQACAAAAAADk////BQACAAAAAADk/wAABQACAAEAAADl/wAABQACAAEAAADl////BQACAAAAAADm////BQACAAAAAADm/wAABQABAAIAAADn/wAABQABAAIAAADn////BQABAAAAAADo/wAABQACAAIAAADo////BQABAAAAAADp////BQACAAAAAADp/wAABQACAAIAAADq/wAABQABAAIAAADq////BQABAAAAAADr////BQACAAAAAADs////BQABAAAAAADs/wAABQACAAIAAADr/wAABQABAAIAAADh/wwABQABAAIAAADh/wsABQABAAEAAADh/woABQABAAEAAADh/wkABQABAAEAAADh/wgABQACAAEAAADh/wcABQABAAEAAADh/wYABQACAAEAAADh/wUABQACAAEAAADh/wEABQABAAEAAADh/wAABQABAAEAAADh////BQACAAAAAADg/wwABQAAAAIAAADg/wsABQAAAAEAAADg/woABQAAAAEAAADg/wkABQAAAAEAAADg/wgABQAAAAEAAADg/wcABQAAAAEAAADg/wYABQAAAAEAAADg/wUABQAAAAEAAADg/wQABQAAAAEAAADg/wMABQAAAAEAAADg/wIABQAAAAEAAADg/wEABQAAAAEAAADg/wAABQAAAAEAAADg////BQAAAAAAAADu/wUABQABAAEAAADt/wYABQACAAEAAADk/wkABQADAAAAAADk/woABQABAAEAAADk/wsABQACAAEAAADo/wYABQADAAIAAADp/wUABQADAAIAAADo/wUABQACAAEAAADr/wsABQABAAEAAADs/wsABQACAAEAAADl/wsABQACAAEAAADn/wUABQAAAAAAAADo/wQABQAAAAAAAADn/wYABQAAAAIAAADp/wQABQADAAAAAADs/wYABQAAAAIAAADk/wEABQABAAIAAADl/wEABQADAAIAAADh/wQABQADAAEAAADh/wMABQADAAEAAADh/wIABQABAAEAAADi/wIABQADAAIAAADl/woABQADAAAAAADm/wsABQACAAAAAADn/wsABQACAAAAAADo/wsABQACAAAAAADp/wsABQACAAAAAADq/wsABQABAAAAAADr/woABQAAAAAAAADs/woABQABAAAAAADs/wUABQAAAAEAAADt/wUABQACAAEAAADt/wQABQABAAAAAADs/wQABQAAAAAAAADu/wQABQADAAAAAAAPAAgAAQABAAAAAAAPAAkAAQABAAAAAAAKAAcAAQAEAAEAAAAJAAcAAQABAAEAAAA=")
+tile_set = ExtResource("2_mfjyp")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD8/wsAAQACAAkAAAD7/wsAAQACAAkAAAD6/wsAAQACAAkAAAD5/wsAAQACAAkAAAD4/wsAAQACAAkAAAD3/wsAAQACAAkAAAD2/wsAAQACAAkAAAD1/wsAAQACAAkAAAD0/wsAAQACAAkAAADz/wsAAQACAAkAAAAKAAsAAQACAAkAAAAJAAsAAQACAAkAAAAIAAsAAQACAAkAAAAHAAsAAQABAAUAAAALAAsAAQAFAA4AAAD9/wsAAQAAAAUAAAD+/wsAAQADAA4AAAAGAAsAAQACAA4AAAAPAAQAAQAAAAIAAAD1/wgAAQACAA4AAAD2/wgAAQAAAAIAAAD3/wgAAQAAAAIAAAD4/wgAAQAAAAIAAAD5/wgAAQADAA4AAAAOAAQAAQACAA4AAADx/wUAAQACAA4AAADy/wUAAQADAA4AAAAKAAcAAQAFAA4AAAAJAAcAAQAEAA4AAAA=")
+tile_set = ExtResource("2_mfjyp")
+
+[node name="Bridge" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD+/wsAAQACAAEAAAD//wsAAQACAAEAAAAAAAsAAQACAAEAAAABAAsAAQACAAEAAAACAAsAAQACAAEAAAADAAsAAQACAAEAAAAEAAsAAQACAAEAAAAFAAsAAQACAAEAAAAGAAsAAQACAAEAAAA=")
+tile_set = ExtResource("2_mfjyp")
+
+[node name="Floor" type="TileMapLayer" parent="Bridge"]
+tile_map_data = PackedByteArray("AAD+/wsAAQAAAAIAAAD//wsAAQAAAAIAAAAAAAsAAQAAAAIAAAABAAsAAQAAAAIAAAACAAsAAQAAAAIAAAADAAsAAQAAAAIAAAAEAAsAAQAAAAIAAAAFAAsAAQAAAAIAAAAGAAsAAQAAAAIAAAA=")
+tile_set = ExtResource("2_mfjyp")
+
+[node name="CameraLimitArea" type="Area2D" parent="."]
+script = ExtResource("4_tki5v")
+limit_bottom = 520
+metadata/_custom_type_script = "uid://c7byuwt70ctt1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitArea"]
+position = Vector2(50, 120)
+shape = SubResource("RectangleShape2D_c8rk0")
+
+[node name="CameraLimitArea2" type="Area2D" parent="."]
+script = ExtResource("4_tki5v")
+limit_left = -560
+metadata/_custom_type_script = "uid://c7byuwt70ctt1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitArea2"]
+position = Vector2(-170, 120)
+shape = SubResource("RectangleShape2D_c8rk0")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("5_c8rk0")
+destination = "decibat_arena"
+entry_point = Vector2i(1770, -40)
+left_facing = 1
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(270, 250)
+shape = SubResource("RectangleShape2D_7cpmn")
+
+[node name="Puzzle" type="Node2D" parent="."]
+
+[node name="LightBox" parent="Puzzle" node_paths=PackedStringArray("neighbors") instance=ExtResource("6_7cpmn")]
+position = Vector2(-210, 150)
+neighbors = [NodePath("../LightBox2"), NodePath("../LightBox6")]
+active = true
+
+[node name="LightBox2" parent="Puzzle" node_paths=PackedStringArray("neighbors") instance=ExtResource("6_7cpmn")]
+position = Vector2(-190, 150)
+neighbors = [NodePath("../LightBox3"), NodePath("../LightBox7"), NodePath("../LightBox")]
+
+[node name="LightBox3" parent="Puzzle" node_paths=PackedStringArray("neighbors") instance=ExtResource("6_7cpmn")]
+position = Vector2(-170, 150)
+neighbors = [NodePath("../LightBox2"), NodePath("../LightBox4"), NodePath("../LightBox8")]
+active = true
+
+[node name="LightBox4" parent="Puzzle" node_paths=PackedStringArray("neighbors") instance=ExtResource("6_7cpmn")]
+position = Vector2(-150, 150)
+neighbors = [NodePath("../LightBox3"), NodePath("../LightBox5"), NodePath("../LightBox9")]
+
+[node name="LightBox5" parent="Puzzle" node_paths=PackedStringArray("neighbors") instance=ExtResource("6_7cpmn")]
+position = Vector2(-130, 150)
+neighbors = [NodePath("../LightBox4"), NodePath("../LightBox10")]
+
+[node name="LightBox6" parent="Puzzle" node_paths=PackedStringArray("neighbors") instance=ExtResource("6_7cpmn")]
+position = Vector2(-210, 210)
+neighbors = [NodePath("../LightBox"), NodePath("../LightBox7")]
+
+[node name="LightBox7" parent="Puzzle" node_paths=PackedStringArray("neighbors") instance=ExtResource("6_7cpmn")]
+position = Vector2(-190, 210)
+neighbors = [NodePath("../LightBox6"), NodePath("../LightBox2"), NodePath("../LightBox8")]
+active = true
+
+[node name="LightBox8" parent="Puzzle" node_paths=PackedStringArray("neighbors") instance=ExtResource("6_7cpmn")]
+position = Vector2(-170, 210)
+neighbors = [NodePath("../LightBox7"), NodePath("../LightBox9"), NodePath("../LightBox3")]
+active = true
+
+[node name="LightBox9" parent="Puzzle" node_paths=PackedStringArray("neighbors") instance=ExtResource("6_7cpmn")]
+position = Vector2(-150, 210)
+neighbors = [NodePath("../LightBox8"), NodePath("../LightBox10"), NodePath("../LightBox4")]
+active = true
+
+[node name="LightBox10" parent="Puzzle" node_paths=PackedStringArray("neighbors") instance=ExtResource("6_7cpmn")]
+position = Vector2(-130, 210)
+neighbors = [NodePath("../LightBox9"), NodePath("../LightBox5")]
+active = true
+
+[node name="ExitFade" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.7529412)
+z_index = 100
+position = Vector2(-280, 172)
+texture = SubResource("GradientTexture2D_81ver")
+
+[node name="Sprite2D" type="Sprite2D" parent="ExitFade"]
+position = Vector2(-50, 0)
+texture = SubResource("GradientTexture2D_irtnd")
+
+[node name="FakeWall" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AADy/wEAAQAEAAAAAADy/wIAAQAEAAAAAADy/wMAAQAEAAAAAADy/wQAAQAEAAAAAADy/wUAAQAEAAAAAAA=")
+tile_set = ExtResource("2_mfjyp")
+script = ExtResource("9_81ver")
+wall_id = "fakewall_puzzle_box2"
+metadata/_custom_type_script = "uid://dcy3kp7go3mm1"
+
+[node name="CutsceneTrigger" type="Area2D" parent="."]
+script = ExtResource("10_mjdmu")
+pause_player = true
+metadata/_custom_type_script = "uid://cd8yb0wnhbywb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger"]
+position = Vector2(-480, 210)
+shape = SubResource("RectangleShape2D_irtnd")
+
+[node name="Sprite2D" type="Sprite2D" parent="CutsceneTrigger/CollisionShape2D"]
+position = Vector2(0, 7)
+texture = ExtResource("11_irtnd")
+metadata/_edit_lock_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="CutsceneTrigger/CollisionShape2D/Sprite2D"]
+blend_mode = 2
+shadow_color = Color(0, 0, 0, 0.5019608)
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_vpkhl")
+metadata/_edit_lock_ = true
+
+[node name="Hazard" type="Area2D" parent="."]
+script = ExtResource("12_e7bt8")
+metadata/_custom_type_script = "uid://be8fu5lrtidnk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hazard"]
+position = Vector2(50, 290)
+shape = SubResource("RectangleShape2D_ea18j")
+
+[node name="HazardRespawn" type="Area2D" parent="."]
+script = ExtResource("13_rj8sm")
+respawn_position = Vector2i(-40, 220)
+metadata/_custom_type_script = "uid://c2ggpwjfpuy5m"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawn"]
+position = Vector2(-40, 170)
+shape = SubResource("RectangleShape2D_55c1y")
+
+[node name="HazardRespawn2" type="Area2D" parent="."]
+script = ExtResource("13_rj8sm")
+respawn_position = Vector2i(140, 220)
+metadata/_custom_type_script = "uid://c2ggpwjfpuy5m"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawn2"]
+position = Vector2(140, 170)
+shape = SubResource("RectangleShape2D_55c1y")
+
+[node name="CrispyScroll" parent="." instance=ExtResource("14_rj8sm")]
+position = Vector2(-40, 123)
+enemy_id = "puzzle_box2_crispy_scroll"
+
+[node name="InteractDoor2" type="Area2D" parent="."]
+script = ExtResource("5_c8rk0")
+destination = "dalv_entrance"
+entry_point = Vector2i(30, 440)
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor2"]
+position = Vector2(330, 50)
+shape = SubResource("RectangleShape2D_u4pa4")
+
+[connection signal="start_cutscene" from="CutsceneTrigger" to="." method="_on_cutscene_trigger_start_cutscene"]

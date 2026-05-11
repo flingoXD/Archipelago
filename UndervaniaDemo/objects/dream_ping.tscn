@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://cn6d3duk6ik2l"]
+
+[ext_resource type="Texture2D" uid="uid://lk6871nm662u" path="res://sprites/dream_ping.png" id="1_ljr1k"]
+[ext_resource type="Script" uid="uid://c2r14e1r2wul0" path="res://objects/dream_ping.gd" id="2_t1r53"]
+[ext_resource type="AudioStream" uid="uid://btw2d2wm1hra2" path="res://sounds/fail.wav" id="3_t1r53"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0m6kj"]
+atlas = ExtResource("1_ljr1k")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73xom"]
+atlas = ExtResource("1_ljr1k")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73tsu"]
+atlas = ExtResource("1_ljr1k")
+region = Rect2(0, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ow3hk"]
+atlas = ExtResource("1_ljr1k")
+region = Rect2(20, 20, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlv7t"]
+atlas = ExtResource("1_ljr1k")
+region = Rect2(0, 40, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibh6i"]
+atlas = ExtResource("1_ljr1k")
+region = Rect2(20, 40, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_go26k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0m6kj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73xom")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73tsu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ow3hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlv7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibh6i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f5qdn"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ljr1k"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 150.0
+gravity = Vector3(0, 200, 0)
+scale_min = 2.0
+scale_max = 2.0
+
+[node name="DreamPing" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_go26k")
+autoplay = "default"
+script = ExtResource("2_t1r53")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_f5qdn")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 100
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_ljr1k")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_t1r53")

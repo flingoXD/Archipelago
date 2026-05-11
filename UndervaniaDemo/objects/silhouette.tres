@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://di146wwsddi8w"]
+
+[ext_resource type="Shader" uid="uid://cgrg41lsapmos" path="res://objects/silhouette.gdshader" id="1_o5j0x"]
+
+[resource]
+shader = ExtResource("1_o5j0x")

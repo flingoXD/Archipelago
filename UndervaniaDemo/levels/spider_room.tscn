@@ -1,0 +1,147 @@
+[gd_scene load_steps=22 format=4 uid="uid://d16gmn4fcjs30"]
+
+[ext_resource type="Script" uid="uid://csg87j8u1fprm" path="res://levels/spider_room.gd" id="1"]
+[ext_resource type="Resource" uid="uid://cudfwrev3rxcr" path="res://items/spider_donut.tres" id="2"]
+[ext_resource type="Resource" uid="uid://b471m56gkalg0" path="res://items/spider_cider.tres" id="3"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="4"]
+[ext_resource type="Resource" uid="uid://bh86tsbegtgne" path="res://music/ruins_group.tres" id="5"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="6"]
+[ext_resource type="Texture2D" uid="uid://cui8unfr6copc" path="res://sprites/smallweb.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://c831pm5v2wjuu" path="res://sprites/bigweb.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://cfbsoq1q04quc" path="res://sprites/web_yellow.png" id="9"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="10"]
+[ext_resource type="Script" uid="uid://do6xbjfs0rrt8" path="res://objects/sign.gd" id="11"]
+[ext_resource type="Texture2D" uid="uid://b3kuo110in22h" path="res://sprites/sign.png" id="12"]
+[ext_resource type="Script" uid="uid://6nqocp1mgsa5" path="res://objects/object_spawner.gd" id="13"]
+[ext_resource type="PackedScene" uid="uid://cyh6ymjdpi82d" path="res://enemies/spider.tscn" id="14"]
+
+[sub_resource type="AudioStream" id="AudioStream_kfimg"]
+script = ExtResource("4")
+stream_group = ExtResource("5")
+stream_mask = 2048
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ghij"]
+size = Vector2(20, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjj0p"]
+size = Vector2(30, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfimg"]
+atlas = ExtResource("9")
+region = Rect2(0, 0, 36, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cea4r"]
+atlas = ExtResource("9")
+region = Rect2(0, 48, 36, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cea4r"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5bqth"]
+
+[node name="SpiderRoom" type="Node2D"]
+script = ExtResource("1")
+doughnut = ExtResource("2")
+cider = ExtResource("3")
+default_point = Vector2i(30, 220)
+light_override = 0.5
+limit_bottom = 480
+limit_right = 640
+stream = SubResource("AudioStream_kfimg")
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAOAAkAAQABAAcAAAAOAAgAAQADAAcAAAAOAAcAAQADAAcAAAAOAAYAAQADAAcAAAAOAAUAAQADAAcAAAAOAAQAAQABAAcAAAAOAAMAAQADAAcAAAAOAAIAAQADAAcAAAAOAAEAAQADAAcAAAANAAkAAQABAAcAAAANAAgAAQABAAcAAAANAAcAAQABAAcAAAANAAYAAQADAAcAAAANAAUAAQABAAcAAAANAAQAAQABAAcAAAANAAMAAQADAAcAAAANAAIAAQABAAcAAAANAAEAAQABAAcAAAAMAAkAAQABAAcAAAAMAAgAAQABAAcAAAAMAAcAAQADAAcAAAAMAAYAAQADAAcAAAAMAAUAAQADAAcAAAAMAAQAAQADAAcAAAAMAAMAAQADAAcAAAAMAAIAAQABAAcAAAAMAAEAAQADAAcAAAALAAkAAQABAAcAAAALAAgAAQABAAcAAAALAAcAAQADAAcAAAALAAYAAQABAAcAAAALAAUAAQABAAcAAAALAAQAAQABAAcAAAALAAMAAQABAAcAAAALAAIAAQADAAcAAAALAAEAAQADAAcAAAAKAAkAAQADAAcAAAAKAAgAAQADAAcAAAAKAAcAAQADAAcAAAAKAAYAAQADAAcAAAAKAAUAAQADAAcAAAAKAAQAAQADAAcAAAAKAAMAAQABAAcAAAAKAAIAAQADAAcAAAAKAAEAAQADAAcAAAAJAAkAAQABAAcAAAAJAAgAAQADAAcAAAAJAAcAAQADAAcAAAAJAAYAAQADAAcAAAAJAAUAAQADAAcAAAAJAAQAAQADAAcAAAAJAAMAAQADAAcAAAAJAAIAAQADAAcAAAAJAAEAAQADAAcAAAAIAAkAAQABAAcAAAAIAAgAAQADAAcAAAAIAAcAAQABAAcAAAAIAAYAAQABAAcAAAAIAAUAAQADAAcAAAAIAAQAAQADAAcAAAAIAAMAAQADAAcAAAAIAAIAAQADAAcAAAAIAAEAAQABAAcAAAAHAAkAAQABAAcAAAAHAAgAAQABAAcAAAAHAAcAAQABAAcAAAAHAAYAAQADAAcAAAAHAAUAAQABAAcAAAAHAAQAAQABAAcAAAAHAAMAAQADAAcAAAAHAAIAAQABAAcAAAAHAAEAAQADAAcAAAAGAAkAAQABAAcAAAAGAAgAAQABAAcAAAAGAAcAAQABAAcAAAAGAAYAAQADAAcAAAAGAAUAAQADAAcAAAAGAAQAAQABAAcAAAAGAAMAAQABAAcAAAAGAAIAAQADAAcAAAAGAAEAAQABAAcAAAAFAAkAAQABAAcAAAAFAAgAAQADAAcAAAAFAAcAAQADAAcAAAAFAAYAAQABAAcAAAAFAAUAAQABAAcAAAAFAAQAAQADAAcAAAAFAAMAAQADAAcAAAAFAAIAAQABAAcAAAAFAAEAAQADAAcAAAAEAAkAAQADAAcAAAAEAAgAAQABAAcAAAAEAAcAAQABAAcAAAAEAAYAAQABAAcAAAAEAAUAAQABAAcAAAAEAAQAAQADAAcAAAAEAAMAAQADAAcAAAAEAAIAAQADAAcAAAAEAAEAAQADAAcAAAADAAkAAQABAAcAAAADAAgAAQABAAcAAAADAAcAAQABAAcAAAADAAYAAQADAAcAAAADAAUAAQABAAcAAAADAAQAAQABAAcAAAADAAMAAQADAAcAAAADAAIAAQADAAcAAAADAAEAAQADAAcAAAACAAkAAQADAAcAAAACAAgAAQABAAcAAAACAAcAAQADAAcAAAACAAYAAQADAAcAAAACAAUAAQABAAcAAAACAAQAAQABAAcAAAACAAMAAQADAAcAAAACAAIAAQADAAcAAAACAAEAAQABAAcAAAABAAkAAQADAAcAAAABAAgAAQABAAcAAAABAAcAAQADAAcAAAABAAYAAQABAAcAAAABAAUAAQABAAcAAAABAAQAAQADAAcAAAABAAMAAQADAAcAAAABAAIAAQADAAcAAAABAAEAAQABAAcAAAAOAAoAAQABAAcAAAANAAoAAQADAAcAAAAMAAoAAQABAAcAAAALAAoAAQABAAcAAAAEAAoAAQABAAcAAAADAAoAAQADAAcAAAACAAoAAQADAAcAAAABAAoAAQADAAcAAAAFAAoAAQADAAcAAAAGAAoAAQADAAcAAAAHAAoAAQABAAcAAAAIAAoAAQADAAcAAAAJAAoAAQADAAcAAAAKAAoAAQABAAcAAAAAAAoAAQABAAcAAAAAAAkAAQABAAcAAAAAAAgAAQADAAcAAAAAAAcAAQABAAcAAAA=")
+tile_set = ExtResource("6")
+
+[node name="Decor" type="TileMapLayer" parent="."]
+tile_set = ExtResource("6")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAMAAQAEAAAAAAAAAAIAAQAEAAAAAAAAAAEAAQAEAAAAAAAAAAAAAQACAAAAAAAAAAQAAQAEAAAAAAAAAAUAAQAEAAAAAAAAAAYAAQAEAAAAAAAAAAcAAQACAAEAAAAPAAcAAQABAAAAAAAPAAYAAQABAAAAAAAPAAUAAQABAAAAAAAPAAQAAQABAAAAAAAPAAMAAQABAAAAAAAPAAIAAQABAAAAAAAPAAEAAQABAAAAAAAPAAAAAQAEAAIAAAAOAAAAAQADAAEAAAANAAAAAQACAAEAAAAMAAAAAQACAAEAAAALAAAAAQACAAEAAAAKAAAAAQACAAEAAAAJAAAAAQACAAEAAAAIAAAAAQACAAEAAAAHAAAAAQADAAEAAAAGAAAAAQACAAEAAAAFAAAAAQACAAEAAAAEAAAAAQACAAEAAAADAAAAAQADAAEAAAACAAAAAQACAAEAAAABAAAAAQACAAEAAAAPAAsAAQACAAAAAAD//wcAAQACAAEAAAD+/wcAAQAGABEAAAD+/wgAAQAGABEAAAD+/wkAAQAGABEAAAD+/woAAQAEAAAAAAD+/wsAAQAGABEAAAD//wsAAQAGABEAAAAPAAgAAQABAAAAAAAPAAkAAQABAAAAAAAPAAoAAQABAAAAAAAAAAsAAQACAAAAAAABAAcAAQAEAAEAAAABAAsAAQACAAAAAAACAAsAAQADAAAAAAADAAsAAQACAAAAAAAEAAsAAQACAAAAAAAFAAUAAQABAAEAAAAFAAsAAQACAAAAAAAGAAUAAQACAAEAAAAGAAsAAQACAAAAAAAHAAUAAQACAAEAAAAHAAsAAQACAAAAAAAIAAUAAQACAAEAAAAIAAsAAQACAAAAAAAJAAUAAQACAAEAAAAJAAsAAQACAAAAAAAKAAUAAQACAAEAAAAKAAsAAQACAAAAAAALAAUAAQAEAAEAAAALAAsAAQACAAAAAAAMAAsAAQACAAAAAAANAAsAAQACAAAAAAAOAAsAAQACAAAAAAA=")
+tile_set = ExtResource("6")
+
+[node name="Floor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAEAAsAAQAAAAIAAAAFAAsAAQAAAAIAAAAGAAsAAQAAAAMAAAAHAAsAAQAAAAEAAAAIAAsAAQABAAMAAAAJAAsAAQAAAAIAAAAKAAsAAQAAAAMAAAALAAsAAQAAAAEAAAAMAAsAAQAAAAEAAAANAAsAAQABAAMAAAAOAAsAAQAAAAIAAAABAAsAAQAAAAIAAAACAAsAAQAAAAIAAAADAAsAAQAAAAIAAAAAAAsAAQAAAAIAAAABAAcAAQABAA4AAAAFAAUAAQAAAA4AAAAGAAUAAQAAAAEAAAAHAAUAAQAAAAEAAAAIAAUAAQAAAAEAAAAJAAUAAQAAAAEAAAAKAAUAAQAAAAEAAAALAAUAAQABAA4AAAA=")
+tile_set = ExtResource("6")
+
+[node name="SmallWeb" type="Sprite2D" parent="."]
+position = Vector2(150, 214.5)
+texture = ExtResource("7")
+
+[node name="Area2D" type="Area2D" parent="SmallWeb"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SmallWeb/Area2D"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_5ghij")
+
+[node name="BigWeb" type="Sprite2D" parent="."]
+position = Vector2(240, 208)
+texture = ExtResource("8")
+
+[node name="Area2D" type="Area2D" parent="BigWeb"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BigWeb/Area2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_mjj0p")
+
+[node name="CeilingWeb" type="Sprite2D" parent="."]
+position = Vector2(38, 27)
+texture = SubResource("AtlasTexture_kfimg")
+flip_v = true
+
+[node name="CeilingWeb2" type="Sprite2D" parent="."]
+position = Vector2(282, 27)
+texture = SubResource("AtlasTexture_kfimg")
+flip_h = true
+flip_v = true
+
+[node name="CeilingWeb3" type="Sprite2D" parent="."]
+position = Vector2(18, 165)
+texture = SubResource("AtlasTexture_cea4r")
+flip_v = true
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("10")
+destination = "napstablook_arena"
+entry_point = Vector2i(390, 200)
+left_facing = 1
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(-10, 190)
+shape = SubResource("RectangleShape2D_cea4r")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(-58, 83)
+rotation = -1.3962634
+color = Color(0.5, 0.5, 0.5, 1)
+blend_mode = 2
+shadow_enabled = true
+shadow_filter = 1
+
+[node name="Sign" type="Area2D" parent="."]
+position = Vector2(190, 212)
+script = ExtResource("11")
+text = [" Spider Bake Sale!", "All proceeds go to real spiders.", "Spider Donut - 7G", "Spider Cider - 18G"]
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="Sprite2D" type="Sprite2D" parent="Sign"]
+texture = ExtResource("12")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign"]
+shape = SubResource("RectangleShape2D_5bqth")
+metadata/_edit_lock_ = true
+
+[node name="ObjectSpawner" type="Node2D" parent="." node_paths=PackedStringArray("tilemap")]
+script = ExtResource("13")
+object_scene = ExtResource("14")
+count = 100
+tilemap = NodePath("../Walls")
+metadata/_custom_type_script = "uid://6nqocp1mgsa5"

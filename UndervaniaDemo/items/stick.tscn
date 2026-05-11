@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://j2wx8kkdthju"]
+
+[ext_resource type="Script" uid="uid://bsdsh24i10b6" path="res://items/stick.gd" id="1_ugobb"]
+[ext_resource type="Texture2D" uid="uid://bwkqrakt5tcbt" path="res://sprites/stick.png" id="1_vfs4v"]
+[ext_resource type="Resource" uid="uid://bp08x5m4m5v6w" path="res://items/stick.tres" id="2_bsidc"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bsidc"]
+bounce = 0.2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfs4v"]
+size = Vector2(16, 2)
+
+[sub_resource type="Gradient" id="Gradient_u0x5g"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.56050956, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.5516806, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ugobb"]
+gradient = SubResource("Gradient_u0x5g")
+width = 40
+height = 40
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="Stick" type="RigidBody2D"]
+collision_layer = 0
+mass = 0.7
+physics_material_override = SubResource("PhysicsMaterial_bsidc")
+script = ExtResource("1_ugobb")
+stick = ExtResource("2_bsidc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_vfs4v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.9999998, 1.9999998)
+shape = SubResource("RectangleShape2D_vfs4v")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.9999998, 1.9999998)
+shape = SubResource("RectangleShape2D_vfs4v")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(2, 2)
+blend_mode = 2
+shadow_color = Color(0, 0, 0, 0.5019608)
+shadow_filter = 1
+texture = SubResource("GradientTexture2D_ugobb")
+metadata/_edit_lock_ = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

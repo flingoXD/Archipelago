@@ -1,0 +1,325 @@
+[gd_scene load_steps=30 format=4 uid="uid://p008foil7h7t"]
+
+[ext_resource type="Script" uid="uid://didct46w5x3sw" path="res://levels/perspective_room.gd" id="1_gn6pr"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2_ikijk"]
+[ext_resource type="PackedScene" uid="uid://bgsycuqjee40l" path="res://levels/perspective_room_segment.tscn" id="2_vcoc3"]
+[ext_resource type="Resource" uid="uid://bh86tsbegtgne" path="res://music/ruins_group.tres" id="3_f4rto"]
+[ext_resource type="Script" uid="uid://c7byuwt70ctt1" path="res://objects/camera_limit_area.gd" id="3_rxoqm"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="5_4y7we"]
+[ext_resource type="PackedScene" uid="uid://xc2flko2kai0" path="res://objects/color_switch.tscn" id="5_m8l1f"]
+[ext_resource type="PackedScene" uid="uid://mi3t2jpbjvu2" path="res://enemies/moldsmal.tscn" id="6_f4rto"]
+[ext_resource type="PackedScene" uid="uid://bpfvd6coh0er8" path="res://enemies/whimsun.tscn" id="7_oacfp"]
+[ext_resource type="PackedScene" uid="uid://c1lao1vs20a8r" path="res://enemies/loox.tscn" id="8_t3eee"]
+[ext_resource type="PackedScene" uid="uid://bq4vau1r0vt7q" path="res://enemies/froggit.tscn" id="9_t3eee"]
+[ext_resource type="PackedScene" uid="uid://bq68abe1r4ixo" path="res://enemies/sweet_corn.tscn" id="10_fyiym"]
+[ext_resource type="Texture2D" uid="uid://2ljbn0jmlwny" path="res://sprites/ruins_door.png" id="13_2au0a"]
+[ext_resource type="PackedScene" uid="uid://dqj0bvmj43lse" path="res://objects/spikes.tscn" id="14_4vdt1"]
+[ext_resource type="Script" uid="uid://c2ggpwjfpuy5m" path="res://objects/hazard_respawn.gd" id="15_gn6pr"]
+[ext_resource type="AudioStream" uid="uid://bthilmsmb0ldy" path="res://sounds/fall.wav" id="16_x0o6v"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="17_5oc5d"]
+[ext_resource type="PackedScene" uid="uid://cpg17dgl384dx" path="res://enemies/vegetoid.tscn" id="18_ggkk8"]
+
+[sub_resource type="AudioStream" id="AudioStream_waklc"]
+script = ExtResource("2_ikijk")
+stream_group = ExtResource("3_f4rto")
+stream_mask = 42116
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcoc3"]
+size = Vector2(40, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikijk"]
+size = Vector2(280, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmue6"]
+size = Vector2(160, 520)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxoqm"]
+size = Vector2(560, 160)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_byphh"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x0o6v"]
+size = Vector2(40, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggkk8"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5oc5d"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dw1qf"]
+size = Vector2(120, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1olrd"]
+
+[node name="PerspectiveRoom" type="Node2D"]
+script = ExtResource("1_gn6pr")
+default_point = Vector2i(70, -300)
+limit_top = -880
+limit_bottom = 880
+limit_left = -880
+limit_right = 880
+stream = SubResource("AudioStream_waklc")
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="PerspectiveRoomSegment" parent="." instance=ExtResource("2_vcoc3")]
+
+[node name="ColorSwitch" parent="PerspectiveRoomSegment" instance=ExtResource("5_m8l1f")]
+position = Vector2(170, -267)
+color = "blue"
+
+[node name="ColorSwitch2" parent="PerspectiveRoomSegment" instance=ExtResource("5_m8l1f")]
+position = Vector2(390, -307)
+color = "green"
+
+[node name="ColorSwitch3" parent="PerspectiveRoomSegment" instance=ExtResource("5_m8l1f")]
+position = Vector2(390, -107)
+
+[node name="PerspectiveRoomSegment2" parent="." instance=ExtResource("2_vcoc3")]
+rotation = 1.5707964
+
+[node name="ColorSwitch" parent="PerspectiveRoomSegment2" instance=ExtResource("5_m8l1f")]
+position = Vector2(170, -267)
+color = "blue"
+correct = true
+
+[node name="ColorSwitch2" parent="PerspectiveRoomSegment2" instance=ExtResource("5_m8l1f")]
+position = Vector2(390, -307)
+color = "green"
+fatal = true
+
+[node name="ColorSwitch3" parent="PerspectiveRoomSegment2" instance=ExtResource("5_m8l1f")]
+position = Vector2(390, -107)
+fatal = true
+
+[node name="PerspectiveRoomSegment3" parent="." instance=ExtResource("2_vcoc3")]
+rotation = 3.1415927
+
+[node name="ColorSwitch" parent="PerspectiveRoomSegment3" instance=ExtResource("5_m8l1f")]
+position = Vector2(170, -267)
+color = "blue"
+fatal = true
+
+[node name="ColorSwitch2" parent="PerspectiveRoomSegment3" instance=ExtResource("5_m8l1f")]
+position = Vector2(390, -307)
+color = "green"
+fatal = true
+
+[node name="ColorSwitch3" parent="PerspectiveRoomSegment3" instance=ExtResource("5_m8l1f")]
+position = Vector2(390, -107)
+correct = true
+
+[node name="PerspectiveRoomSegment4" parent="." instance=ExtResource("2_vcoc3")]
+rotation = 4.712389
+
+[node name="ColorSwitch" parent="PerspectiveRoomSegment4" instance=ExtResource("5_m8l1f")]
+position = Vector2(170, -267)
+color = "blue"
+fatal = true
+
+[node name="ColorSwitch2" parent="PerspectiveRoomSegment4" instance=ExtResource("5_m8l1f")]
+position = Vector2(390, -307)
+color = "green"
+correct = true
+
+[node name="ColorSwitch3" parent="PerspectiveRoomSegment4" instance=ExtResource("5_m8l1f")]
+position = Vector2(390, -107)
+fatal = true
+
+[node name="SpikePlates" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AADt/wQAAQAHAA4AAADs/wQAAQAHAA4AAAAAABMAAQAHAA4AAAD//xMAAQAHAA4AAAAHAO3/AQABAAIAAAAIAO3/AQADAAIAAAA=")
+tile_set = ExtResource("5_4y7we")
+
+[node name="Corn" type="TileMapLayer" parent="."]
+z_index = 10
+tile_map_data = PackedByteArray("AAD1//L/AAACAAIAAAD1//H/AAABAAAAAAD2//H/AAACAAAAAAD2//L/AAACAAIAAAD3//L/AAADAAIAAAD3//H/AAADAAAAAAA=")
+tile_set = ExtResource("5_4y7we")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -350)
+shape = SubResource("RectangleShape2D_vcoc3")
+
+[node name="CameraLimits" type="Node2D" parent="."]
+
+[node name="CameraLimitArea" type="Area2D" parent="CameraLimits"]
+script = ExtResource("3_rxoqm")
+limit_bottom = -400
+limit_left = 80
+metadata/_custom_type_script = "uid://c7byuwt70ctt1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimits/CameraLimitArea"]
+position = Vector2(140, -340)
+shape = SubResource("RectangleShape2D_ikijk")
+
+[node name="CameraLimitArea2" type="Area2D" parent="CameraLimits"]
+script = ExtResource("3_rxoqm")
+limit_left = 240
+metadata/_custom_type_script = "uid://c7byuwt70ctt1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimits/CameraLimitArea2"]
+position = Vector2(340, 0)
+shape = SubResource("RectangleShape2D_xmue6")
+
+[node name="CameraLimitArea3" type="Area2D" parent="CameraLimits"]
+script = ExtResource("3_rxoqm")
+limit_top = 400
+metadata/_custom_type_script = "uid://c7byuwt70ctt1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimits/CameraLimitArea3"]
+position = Vector2(0, 340)
+shape = SubResource("RectangleShape2D_rxoqm")
+
+[node name="CameraLimitArea4" type="Area2D" parent="CameraLimits"]
+script = ExtResource("3_rxoqm")
+limit_right = -240
+metadata/_custom_type_script = "uid://c7byuwt70ctt1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimits/CameraLimitArea4"]
+position = Vector2(-340, 0)
+shape = SubResource("RectangleShape2D_xmue6")
+
+[node name="CameraLimitArea5" type="Area2D" parent="CameraLimits"]
+script = ExtResource("3_rxoqm")
+limit_bottom = -400
+limit_right = -80
+metadata/_custom_type_script = "uid://c7byuwt70ctt1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimits/CameraLimitArea5"]
+position = Vector2(-140, -340)
+shape = SubResource("RectangleShape2D_ikijk")
+
+[node name="Moldsmal" parent="." instance=ExtResource("6_f4rto")]
+position = Vector2(290.5, -364.5)
+enemy_id = "perspective_room_moldsmal1"
+
+[node name="Whimsun" parent="." instance=ExtResource("7_oacfp")]
+position = Vector2(373, -159)
+enemy_id = "perspective_room_whimsun1"
+
+[node name="Loox" parent="." instance=ExtResource("8_t3eee")]
+position = Vector2(260, 408.5)
+enemy_id = "perspective_room_loox"
+
+[node name="Froggit" parent="." instance=ExtResource("9_t3eee")]
+position = Vector2(-200, 412)
+enemy_id = "perspective_room_froggit"
+
+[node name="Moldsmal2" parent="." instance=ExtResource("6_f4rto")]
+position = Vector2(-390.5, 275.5)
+enemy_id = "perspective_room_moldsmal2"
+
+[node name="Whimsun2" parent="." instance=ExtResource("7_oacfp")]
+position = Vector2(-321, -352)
+enemy_id = "perspective_room_whimsun2"
+
+[node name="SweetCorn" parent="." instance=ExtResource("10_fyiym")]
+position = Vector2(-188, -274)
+enemy_id = "perspective_room_sweet_corn"
+
+[node name="Door" type="StaticBody2D" parent="."]
+position = Vector2(-50, -350)
+
+[node name="Sprite2D" type="Sprite2D" parent="Door"]
+texture = ExtResource("13_2au0a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+shape = SubResource("RectangleShape2D_byphh")
+
+[node name="Spikes" parent="." instance=ExtResource("14_4vdt1")]
+position = Vector2(10, 385)
+
+[node name="Spikes2" parent="." instance=ExtResource("14_4vdt1")]
+position = Vector2(-10, 385)
+
+[node name="Spikes3" parent="." instance=ExtResource("14_4vdt1")]
+position = Vector2(-390, 85)
+
+[node name="Spikes4" parent="." instance=ExtResource("14_4vdt1")]
+position = Vector2(-370, 85)
+
+[node name="HazardRespawn" type="Area2D" parent="."]
+script = ExtResource("15_gn6pr")
+respawn_position = Vector2i(40, 380)
+metadata/_custom_type_script = "uid://c2ggpwjfpuy5m"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawn"]
+position = Vector2(40, 350)
+shape = SubResource("RectangleShape2D_x0o6v")
+
+[node name="HazardRespawn2" type="Area2D" parent="."]
+script = ExtResource("15_gn6pr")
+respawn_position = Vector2i(-40, 380)
+metadata/_custom_type_script = "uid://c2ggpwjfpuy5m"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawn2"]
+position = Vector2(-40, 350)
+shape = SubResource("RectangleShape2D_x0o6v")
+
+[node name="HazardRespawn3" type="Area2D" parent="."]
+script = ExtResource("15_gn6pr")
+respawn_position = Vector2i(-300, 140)
+metadata/_custom_type_script = "uid://c2ggpwjfpuy5m"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawn3"]
+position = Vector2(-300, 110)
+shape = SubResource("RectangleShape2D_x0o6v")
+
+[node name="HazardRespawn4" type="Area2D" parent="."]
+script = ExtResource("15_gn6pr")
+respawn_position = Vector2i(-320, 0)
+metadata/_custom_type_script = "uid://c2ggpwjfpuy5m"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HazardRespawn4"]
+position = Vector2(-360, -10)
+shape = SubResource("RectangleShape2D_x0o6v")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_x0o6v")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("17_5oc5d")
+destination = "puzzle_pitfall3"
+entry_point = Vector2i(510, 120)
+left_facing = 1
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(30, -350)
+shape = SubResource("RectangleShape2D_ggkk8")
+
+[node name="InteractDoor2" type="Area2D" parent="."]
+script = ExtResource("17_5oc5d")
+destination = "home_entrance"
+entry_point = Vector2i(30, 140)
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor2"]
+position = Vector2(-30, -350)
+shape = SubResource("RectangleShape2D_5oc5d")
+
+[node name="Vegetoid" parent="." instance=ExtResource("18_ggkk8")]
+position = Vector2(325, 419.5)
+enemy_id = "perspective_room_vegetoid1"
+
+[node name="Vegetoid2" parent="." instance=ExtResource("18_ggkk8")]
+position = Vector2(-317, 419.5)
+enemy_id = "perspective_room_vegetoid2"
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(360, 431)
+shape = SubResource("RectangleShape2D_dw1qf")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-50, 410)
+shape = SubResource("RectangleShape2D_1olrd")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-430, 410)
+shape = SubResource("RectangleShape2D_1olrd")

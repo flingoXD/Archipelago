@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://jc1jdrjbxgd8"]
+
+[ext_resource type="SpriteFrames" uid="uid://ckiga2s1vuavl" path="res://sprites/flowey.tres" id="1"]
+[ext_resource type="Script" uid="uid://1v2kaipbltt4" path="res://enemies/flowey_stalker.gd" id="2"]
+
+[node name="FloweyStalker" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1")
+animation = &"empty"
+speed_scale = 2.0
+offset = Vector2(0, -10.5)
+script = ExtResource("2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.5, -8)
+rect = Rect2(-10, -11, 21, 21)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

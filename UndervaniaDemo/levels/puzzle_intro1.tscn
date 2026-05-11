@@ -1,0 +1,147 @@
+[gd_scene load_steps=22 format=4 uid="uid://cbrk7e1hb41lw"]
+
+[ext_resource type="Script" uid="uid://begfsc7o6jwbk" path="res://levels/puzzle_intro1.gd" id="1"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2"]
+[ext_resource type="Resource" uid="uid://bh86tsbegtgne" path="res://music/ruins_group.tres" id="3"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="4"]
+[ext_resource type="Texture2D" uid="uid://2ljbn0jmlwny" path="res://sprites/ruins_door.png" id="5"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="6"]
+[ext_resource type="Script" uid="uid://cd8yb0wnhbywb" path="res://objects/cutscene_trigger.gd" id="7"]
+[ext_resource type="Texture2D" uid="uid://bca1wmumwf11f" path="res://sprites/switch_up.png" id="8"]
+[ext_resource type="AudioStream" uid="uid://bg2aphvdbhkec" path="res://sounds/switch.wav" id="9"]
+[ext_resource type="PackedScene" uid="uid://dlxhxfvrb43rp" path="res://objects/switch.tscn" id="10"]
+[ext_resource type="Texture2D" uid="uid://bhmktm51er81b" path="res://sprites/lever_up.png" id="11"]
+[ext_resource type="Script" uid="uid://do6xbjfs0rrt8" path="res://objects/sign.gd" id="12"]
+[ext_resource type="Texture2D" uid="uid://y3gqktbrf6h3" path="res://sprites/sign_wall.png" id="13"]
+[ext_resource type="SpriteFrames" uid="uid://pj6k8edfrhtl" path="res://sprites/toriel.tres" id="14"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="15"]
+[ext_resource type="PackedScene" uid="uid://cdey3c3ntbgnj" path="res://enemies/whimsdux.tscn" id="16"]
+
+[sub_resource type="AudioStream" id="AudioStream_a610j"]
+script = ExtResource("2")
+stream_group = ExtResource("3")
+stream_mask = 11
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a610j"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2tqt"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h36du"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5xv5"]
+size = Vector2(12, 50)
+
+[node name="PuzzleIntro1" type="Node2D"]
+script = ExtResource("1")
+default_point = Vector2i(30, 220)
+limit_bottom = 480
+limit_right = 640
+stream = SubResource("AudioStream_a610j")
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAOAAkAAQABAAcAAAAOAAgAAQADAAcAAAAOAAcAAQADAAcAAAAOAAYAAQADAAcAAAAOAAUAAQADAAcAAAAOAAQAAQABAAcAAAAOAAMAAQADAAcAAAAOAAIAAQADAAcAAAAOAAEAAQADAAcAAAANAAkAAQABAAcAAAANAAgAAQABAAcAAAANAAcAAQABAAcAAAANAAYAAQADAAcAAAANAAUAAQABAAcAAAANAAQAAQABAAcAAAANAAMAAQADAAcAAAANAAIAAQABAAcAAAANAAEAAQABAAcAAAAMAAkAAQABAAcAAAAMAAgAAQABAAcAAAAMAAcAAQADAAcAAAAMAAYAAQADAAcAAAAMAAUAAQADAAcAAAAMAAQAAQADAAcAAAAMAAMAAQADAAcAAAAMAAIAAQABAAcAAAAMAAEAAQADAAcAAAALAAkAAQABAAcAAAALAAgAAQABAAcAAAALAAcAAQADAAcAAAALAAYAAQABAAcAAAALAAUAAQABAAcAAAALAAQAAQABAAcAAAALAAMAAQABAAcAAAALAAIAAQADAAcAAAALAAEAAQADAAcAAAAKAAkAAQABAAcAAAAKAAgAAQADAAcAAAAKAAcAAQADAAcAAAAKAAYAAQADAAcAAAAKAAUAAQADAAcAAAAKAAQAAQADAAcAAAAKAAMAAQABAAcAAAAKAAIAAQADAAcAAAAKAAEAAQADAAcAAAAJAAkAAQABAAcAAAAJAAgAAQADAAcAAAAJAAcAAQADAAcAAAAJAAYAAQADAAcAAAAJAAUAAQADAAcAAAAJAAQAAQADAAcAAAAJAAMAAQADAAcAAAAJAAIAAQADAAcAAAAJAAEAAQADAAcAAAAIAAkAAQABAAcAAAAIAAgAAQADAAcAAAAIAAcAAQABAAcAAAAIAAYAAQABAAcAAAAIAAUAAQADAAcAAAAIAAQAAQADAAcAAAAIAAMAAQADAAcAAAAIAAIAAQADAAcAAAAIAAEAAQABAAcAAAAHAAkAAQADAAcAAAAHAAgAAQABAAcAAAAHAAcAAQABAAcAAAAHAAYAAQADAAcAAAAHAAUAAQABAAcAAAAHAAQAAQABAAcAAAAHAAMAAQADAAcAAAAHAAIAAQABAAcAAAAHAAEAAQADAAcAAAAGAAkAAQABAAcAAAAGAAgAAQABAAcAAAAGAAcAAQABAAcAAAAGAAYAAQADAAcAAAAGAAUAAQADAAcAAAAGAAQAAQABAAcAAAAGAAMAAQABAAcAAAAGAAIAAQADAAcAAAAGAAEAAQABAAcAAAAFAAkAAQABAAcAAAAFAAgAAQADAAcAAAAFAAcAAQADAAcAAAAFAAYAAQABAAcAAAAFAAUAAQABAAcAAAAFAAQAAQADAAcAAAAFAAMAAQADAAcAAAAFAAIAAQABAAcAAAAFAAEAAQADAAcAAAAEAAkAAQADAAcAAAAEAAgAAQABAAcAAAAEAAcAAQABAAcAAAAEAAYAAQABAAcAAAAEAAUAAQABAAcAAAAEAAQAAQADAAcAAAAEAAMAAQADAAcAAAAEAAIAAQADAAcAAAAEAAEAAQADAAcAAAADAAkAAQABAAcAAAADAAgAAQABAAcAAAADAAcAAQABAAcAAAADAAYAAQADAAcAAAADAAUAAQABAAcAAAADAAQAAQABAAcAAAADAAMAAQADAAcAAAADAAIAAQADAAcAAAADAAEAAQADAAcAAAACAAkAAQADAAcAAAACAAgAAQABAAcAAAACAAcAAQADAAcAAAACAAYAAQADAAcAAAACAAUAAQABAAcAAAACAAQAAQABAAcAAAACAAMAAQADAAcAAAACAAIAAQADAAcAAAACAAEAAQABAAcAAAABAAkAAQADAAcAAAABAAgAAQADAAcAAAABAAcAAQADAAcAAAABAAYAAQABAAcAAAABAAUAAQABAAcAAAABAAQAAQADAAcAAAABAAMAAQADAAcAAAABAAIAAQADAAcAAAABAAEAAQABAAcAAAAPAAoAAQABAAcAAAAPAAkAAQABAAcAAAAPAAgAAQADAAcAAAAPAAcAAQABAAcAAAAOAAoAAQADAAcAAAANAAoAAQADAAcAAAAMAAoAAQABAAcAAAALAAoAAQABAAcAAAAEAAoAAQABAAcAAAADAAoAAQADAAcAAAACAAoAAQADAAcAAAABAAoAAQADAAcAAAAAAAoAAQABAAcAAAAAAAkAAQABAAcAAAAAAAgAAQABAAcAAAAAAAcAAQABAAcAAAA=")
+tile_set = ExtResource("4")
+
+[node name="Decor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAsAAQAEAAIAAAABAAsAAQACAAAAAAACAAsAAQACAAAAAAADAAsAAQACAAAAAAAEAAsAAQACAAAAAAALAAsAAQACAAAAAAAMAAsAAQACAAAAAAANAAsAAQACAAAAAAAOAAsAAQACAAAAAAAPAAsAAQACAAAAAAAFAAoAAQABAAAAAAAGAAoAAQACAAAAAAAHAAoAAQACAAAAAAAIAAoAAQACAAAAAAAJAAoAAQACAAAAAAAKAAoAAQAEAAAAAAABAAoAAQACAAcAAAABAAkAAQACAAcAAAABAAgAAQACAAcAAAABAAcAAQACAAcAAAABAAYAAQACAAcAAAABAAUAAQACAAcAAAABAAQAAQACAAcAAAABAAMAAQACAAcAAAABAAIAAQACAAcAAAABAAEAAQACAAcAAAAOAAoAAQAAAAcAAAAOAAkAAQAAAAcAAAAOAAgAAQAAAAcAAAAOAAcAAQAAAAcAAAAOAAYAAQAAAAcAAAAOAAUAAQAAAAcAAAAOAAQAAQAAAAcAAAAOAAMAAQAAAAcAAAAOAAIAAQAAAAcAAAAOAAEAAQAAAAcAAAAFAAUAAQAGAAoAAAAFAAQAAQAGAAoAAAAFAAMAAQAGAAoAAAAFAAIAAQAGAAoAAAAFAAEAAQAGAAoAAAAJAAQAAQAGAAoAAAAJAAUAAQAGAAoAAAAJAAYAAQAGAAoAAAAJAAcAAQAGAAoAAAAJAAgAAQAGAAoAAAAJAAkAAQAGAAoAAAALAAYAAQAGAAoAAAALAAUAAQAGAAoAAAALAAQAAQAGAAoAAAALAAMAAQAGAAoAAAALAAIAAQAGAAoAAAALAAEAAQAGAAoAAAA=")
+tile_set = ExtResource("4")
+
+[node name="FakeDoor" type="Sprite2D" parent="."]
+position = Vector2(310, 190)
+texture = ExtResource("5")
+
+[node name="ColorRect" type="ColorRect" parent="FakeDoor"]
+offset_left = -10.0
+offset_top = -50.0
+offset_right = 10.0
+offset_bottom = -30.0
+color = Color(0, 0, 0, 1)
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAMAAQAEAAAAAAAAAAIAAQAEAAAAAAAAAAEAAQAEAAAAAAAAAAAAAQACAAAAAAAAAAQAAQAEAAAAAAAAAAUAAQAEAAAAAAAAAAYAAQAEAAAAAAAAAAcAAQAEAAEAAAAAAAsAAQACAAkAAAABAAsAAQAAAAUAAAACAAsAAQAAAAIAAAADAAsAAQAAAAMAAAAEAAsAAQAAAAEAAAAFAAsAAQACAAAAAAAGAAsAAQACAAAAAAAHAAsAAQAEAAIAAAAIAAsAAQACAAAAAAAJAAsAAQACAAAAAAAKAAsAAQADAAAAAAALAAsAAQAAAAEAAAAMAAsAAQABAAMAAAANAAsAAQAAAAIAAAAOAAsAAQABAAUAAAAPAAsAAQACAAkAAAAPAAcAAQABAAEAAAAPAAYAAQABAAAAAAAPAAUAAQABAAAAAAAPAAQAAQABAAAAAAAPAAMAAQABAAAAAAAPAAIAAQABAAAAAAAPAAEAAQABAAAAAAAPAAAAAQAEAAIAAAAOAAAAAQADAAEAAAANAAAAAQACAAEAAAAMAAAAAQACAAEAAAALAAAAAQACAAEAAAAKAAAAAQACAAEAAAAJAAAAAQACAAEAAAAIAAAAAQACAAEAAAAHAAAAAQADAAEAAAAGAAAAAQACAAEAAAAFAAAAAQACAAEAAAAEAAAAAQACAAEAAAADAAAAAQADAAEAAAACAAAAAQACAAEAAAABAAAAAQACAAEAAAAFAAoAAQACAA4AAAAGAAoAAQAAAAIAAAAHAAoAAQADAAMAAAAIAAoAAQACAAMAAAAJAAoAAQAAAAIAAAAKAAoAAQADAA4AAAD//wsAAQADAAAAAAD+/wsAAQACAAAAAAD+/woAAQAEAAAAAAD+/wkAAQAEAAAAAAD+/wgAAQAEAAAAAAD+/wcAAQADAAAAAAD//wcAAQACAAEAAAAQAAsAAQACAAAAAAARAAsAAQADAAAAAAARAAoAAQABAAAAAAARAAkAAQABAAAAAAARAAgAAQABAAAAAAARAAcAAQACAAAAAAAQAAcAAQACAAEAAAA=")
+tile_set = ExtResource("4")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("6")
+destination = "ruins_entrance"
+entry_point = Vector2i(610, -20)
+left_facing = 1
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(-10, 190)
+shape = SubResource("RectangleShape2D_a610j")
+
+[node name="InteractDoor2" type="Area2D" parent="."]
+script = ExtResource("6")
+destination = "puzzle_intro2"
+entry_point = Vector2i(30, 180)
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor2"]
+position = Vector2(330, 190)
+shape = SubResource("RectangleShape2D_a610j")
+
+[node name="CutsceneTrigger" type="Area2D" parent="."]
+script = ExtResource("7")
+pause_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger"]
+position = Vector2(30, 190)
+shape = SubResource("RectangleShape2D_y2tqt")
+
+[node name="FakeSwitch1" type="Sprite2D" parent="."]
+position = Vector2(130, 199)
+texture = ExtResource("8")
+
+[node name="FakeSwitch2" type="Sprite2D" parent="."]
+position = Vector2(190, 199)
+texture = ExtResource("8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9")
+
+[node name="Switch" parent="." instance=ExtResource("10")]
+position = Vector2(160, 199)
+
+[node name="FakeLever" type="Sprite2D" parent="."]
+position = Vector2(260.5, 189.5)
+texture = ExtResource("11")
+
+[node name="Sign" type="Area2D" parent="."]
+position = Vector2(70, 190)
+script = ExtResource("12")
+text = ["Only the fearless may proceed.", "Brave ones, foolish ones. Both walk not the middle road."]
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="Sprite2D" type="Sprite2D" parent="Sign"]
+texture = ExtResource("13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign"]
+shape = SubResource("RectangleShape2D_h36du")
+
+[node name="Toriel" type="CharacterBody2D" parent="."]
+position = Vector2(80, 197)
+collision_layer = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Toriel"]
+sprite_frames = ExtResource("14")
+flip_h = true
+
+[node name="Textbox" parent="Toriel" instance=ExtResource("15")]
+position = Vector2(0, -30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toriel"]
+shape = SubResource("RectangleShape2D_i5xv5")
+
+[node name="Whimsdux" parent="." instance=ExtResource("16")]
+position = Vector2(182.87566, 74.88185)
+enemy_id = "puzzle_intro1_whimsdux"
+
+[connection signal="body_entered" from="CutsceneTrigger" to="CutsceneTrigger" method="_on_body_entered"]
+[connection signal="start_cutscene" from="CutsceneTrigger" to="." method="_on_cutscene_trigger_start_cutscene"]

@@ -1,0 +1,130 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://pj6k8edfrhtl"]
+
+[ext_resource type="Texture2D" uid="uid://bjjo4p7q4ngqn" path="res://sprites/toriel_walk.png" id="1_6hs02"]
+[ext_resource type="Texture2D" uid="uid://b44wexyg8868b" path="res://sprites/toriel_angry.png" id="1_uhb6a"]
+[ext_resource type="Texture2D" uid="uid://b7qv5v7awg0vq" path="res://sprites/toriel_up.png" id="2_p1hlr"]
+[ext_resource type="Texture2D" uid="uid://gmpg55cdd4sq" path="res://sprites/toriel_hd_remaster.png" id="3_1but5"]
+[ext_resource type="Texture2D" uid="uid://4spxwpspcmd1" path="res://sprites/toriel_shocked.png" id="3_85pnm"]
+[ext_resource type="Texture2D" uid="uid://be0w5myhrhh34" path="res://sprites/toriel_ruffle.png" id="3_kttic"]
+[ext_resource type="Texture2D" uid="uid://tjuhuvnu2m17" path="res://sprites/toriel_worried.png" id="6_kttic"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1hlr"]
+atlas = ExtResource("1_6hs02")
+region = Rect2(0, 0, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kttic"]
+atlas = ExtResource("3_kttic")
+region = Rect2(0, 0, 71, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1but5"]
+atlas = ExtResource("3_kttic")
+region = Rect2(71, 0, 71, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tmxsd"]
+atlas = ExtResource("3_kttic")
+region = Rect2(0, 54, 71, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y17cx"]
+atlas = ExtResource("3_kttic")
+region = Rect2(71, 54, 71, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hs02"]
+atlas = ExtResource("1_6hs02")
+region = Rect2(0, 0, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coeiw"]
+atlas = ExtResource("1_6hs02")
+region = Rect2(32, 0, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhb6a"]
+atlas = ExtResource("1_6hs02")
+region = Rect2(0, 58, 32, 58)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85pnm"]
+atlas = ExtResource("1_6hs02")
+region = Rect2(32, 58, 32, 58)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uhb6a")
+}],
+"loop": true,
+"name": &"angry",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1hlr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1but5")
+}],
+"loop": true,
+"name": &"hd_remaster",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kttic")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1but5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tmxsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y17cx")
+}],
+"loop": true,
+"name": &"ruffle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_85pnm")
+}],
+"loop": true,
+"name": &"shocked",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p1hlr")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6hs02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_coeiw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhb6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_85pnm")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_kttic")
+}],
+"loop": true,
+"name": &"worried",
+"speed": 5.0
+}]

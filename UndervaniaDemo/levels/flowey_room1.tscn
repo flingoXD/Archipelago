@@ -1,0 +1,306 @@
+[gd_scene load_steps=29 format=4 uid="uid://bm77o3gbt584k"]
+
+[ext_resource type="Script" uid="uid://b0mxslixjy5fm" path="res://levels/flowey_room1.gd" id="1_3bhlh"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_jsvqe"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="3_dcmwr"]
+[ext_resource type="Script" uid="uid://cd8yb0wnhbywb" path="res://objects/cutscene_trigger.gd" id="4_3bhlh"]
+[ext_resource type="Script" uid="uid://c7byuwt70ctt1" path="res://objects/camera_limit_area.gd" id="5_y0wr6"]
+[ext_resource type="SpriteFrames" uid="uid://ckiga2s1vuavl" path="res://sprites/flowey.tres" id="6_txqv6"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="7_jcnou"]
+[ext_resource type="Texture2D" uid="uid://hblhmiahtgxt" path="res://sprites/spare_star.png" id="9_u3hhq"]
+[ext_resource type="FontFile" uid="uid://c0g4qqod4g3cs" path="res://fonts/DeterminationMonoWebRegular-Z5oq.ttf" id="13_txqv6"]
+[ext_resource type="Texture2D" uid="uid://iy1qti13usrt" path="res://sprites/froggit_npc.png" id="14_ys817"]
+[ext_resource type="Script" uid="uid://60v7rjl1crdr" path="res://enemy_npc.gd" id="15_tc3uj"]
+[ext_resource type="AudioStream" uid="uid://c40lnxm44xw6h" path="res://sounds/flowey_laugh.wav" id="16_tc3uj"]
+[ext_resource type="SpriteFrames" uid="uid://bd53o8ut1f45b" path="res://sprites/strytax.tres" id="16_x3t7e"]
+[ext_resource type="Texture2D" uid="uid://dwiuqxlvfwo36" path="res://sprites/toriel_fire.png" id="19_7ukrx"]
+[ext_resource type="AudioStream" uid="uid://qbdyc1srl3t6" path="res://sounds/flowey_yelp.wav" id="19_kgxap"]
+[ext_resource type="SpriteFrames" uid="uid://pj6k8edfrhtl" path="res://sprites/toriel.tres" id="20_xgqla"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jsvqe"]
+size = Vector2(20, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3bhlh"]
+size = Vector2(20, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y0wr6"]
+size = Vector2(220, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_65rkt"]
+size = Vector2(20, 100)
+
+[sub_resource type="GDScript" id="GDScript_u3hhq"]
+script/source = "extends Sprite2D
+
+func run_animation():
+	self.position = Vector2(6, -11)
+	self.offset = Vector2.ZERO
+	self.modulate.a = 1
+	self.rotation = 0
+	self.show()
+	var tween = get_tree().create_tween().set_parallel()
+	tween.tween_property(self, \"position\", self.position+Vector2(20, -20), 1)
+	tween.tween_property(self, \"rotation\", 2*PI, 1)
+	tween.tween_property(self, \"modulate\", Color(self.modulate, 0), 1)
+	tween.tween_property(self, \"offset\", Vector2(4, 4), 1)
+	tween.set_parallel(false)
+	tween.tween_callback(self.hide)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txqv6"]
+size = Vector2(18, 20)
+
+[sub_resource type="LabelSettings" id="LabelSettings_usy01"]
+font = ExtResource("13_txqv6")
+font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj3rv"]
+atlas = ExtResource("19_7ukrx")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ndp6b"]
+atlas = ExtResource("19_7ukrx")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rhv3u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj3rv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ndp6b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x3t7e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_ys817")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_rp2wh"]
+script/source = "extends NPC
+
+var strytax_talk = preload(\"res://sounds/strytax_talk.wav\")
+
+var talk_count = 0
+
+const text = [
+	[
+		\"For me, now, it is time to diminish, and become the old Strytax you first met.\",
+		\"My appearance was not entirely a facade, you know.\", #I wanted to put a cedilla but it looks stupid
+		\"I was once a lot like that, and I want to find that part of me again.\"
+	],
+	[
+		\"And to think that if you hadn't entered the Dark Ruins, we never would have met.\",
+		\"Now I see this was always your story, and I merely a side character to it.\",
+		\"I hope I have played my part well, and have not been too uninteresting, or demanded too much attention.\",
+		\"Did I pass the test?\"
+	],
+	\"Did I pass the test?\"
+]
+
+func _ready():
+	$Textbox.set_talk_sound(strytax_talk)
+
+func talk(_act):
+	if not Globals.get_flag(\"strytax_spare_amulet\"):
+		var received = Globals.game_manager.find_child(\"Player\").add_item(get_parent().shadow_amulet)
+		await $Textbox.show_text(get_parent().secret_text[3 if received else 4])
+		Globals.set_flag(\"strytax_spare_amulet\", received)
+		return
+	await $Textbox.show_text(text[min(talk_count, 2)])
+	talk_count += 1
+"
+
+[node name="FloweyRoom1" type="Node2D"]
+script = ExtResource("1_3bhlh")
+default_point = Vector2i(30, 120)
+limit_top = -200
+limit_bottom = 280
+limit_right = 1240
+flowey_stalk = false
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -196.0
+offset_top = -40.0
+offset_right = 817.0
+offset_bottom = 513.0
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_jsvqe")
+
+[node name="Decor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAABAAYAAQAGABEAAAACAAYAAQAGABEAAAADAAYAAQAGABEAAAAEAAYAAQAGABEAAAAFAAYAAQAGABEAAAAGAAYAAQAGABEAAAAHAAYAAQAGABEAAAAIAAYAAQAGABEAAAAJAAYAAQAGABEAAAAKAAYAAQAGABEAAAALAAYAAQAGABEAAAAMAAYAAQAGABEAAAANAAYAAQAGABEAAAAOAAYAAQAGABEAAAASAAYAAQAGABEAAAAPAAYAAQAGABEAAAAQAAYAAQAGABEAAAARAAYAAQAGABEAAAATAAYAAQAGABEAAAAUAAYAAQAGABEAAAAVAAYAAQAGABEAAAAWAAYAAQAGABEAAAAXAAYAAQAGABEAAAAYAAYAAQAGABEAAAAZAAYAAQAGABEAAAAaAAYAAQAGABEAAAAbAAYAAQAGABEAAAAcAAYAAQAGABEAAAAdAAYAAQAGABEAAAAeAAYAAQAGABEAAAAAAAYAAQAGABEAAAA=")
+tile_set = ExtResource("2_jsvqe")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAAAAQAGABEAAAAAAAYAAQADAA0AAAABAAYAAQADAA0AAAACAAYAAQADAA0AAAADAAYAAQADAA0AAAAEAAYAAQADAA0AAAAFAAYAAQADAA0AAAAGAAYAAQADAA0AAAABAAAAAQAGABEAAAACAAAAAQAGABEAAAADAAAAAQAGABEAAAAEAAAAAQAGABEAAAAFAAAAAQAGABEAAAAGAAAAAQAGABEAAAAHAAAAAQAGABEAAAAIAAAAAQAGABEAAAAJAAAAAQAGABEAAAAKAAAAAQAGABEAAAALAAYAAQADAA0AAAAKAAYAAQADAA0AAAAJAAYAAQADAA0AAAAIAAYAAQADAA0AAAAHAAYAAQADAA0AAAAMAAYAAQABAAYAAAANAAYAAQABAAQAAAAOAAYAAQAHAAMAAAAPAAYAAQADAAsAAAAQAAYAAQAHAAQAAAARAAYAAQADAAQAAAASAAYAAQADAAYAAAATAAYAAQADAA0AAAAUAAYAAQADAA0AAAAVAAYAAQADAA0AAAAWAAYAAQADAA0AAAAXAAYAAQADAA0AAAAYAAYAAQADAA0AAAAZAAYAAQADAA0AAAAaAAYAAQADAA0AAAAbAAYAAQADAA0AAAAcAAYAAQADAA0AAAAdAAYAAQADAA0AAAAeAAYAAQADAA0AAAAeAAAAAQAGABEAAAAdAAAAAQAGABEAAAAcAAAAAQAGABEAAAAbAAAAAQAGABEAAAAaAAAAAQAGABEAAAAZAAAAAQAGABEAAAAYAAAAAQAGABEAAAAXAAAAAQAGABEAAAAWAAAAAQAGABEAAAAVAAAAAQAGABEAAAAUAAAAAQAGABEAAAATAAAAAQAGABEAAAASAAAAAQAGABEAAAARAAAAAQAGABEAAAAQAAAAAQAGABEAAAAPAAAAAQAGABEAAAAOAAAAAQAGABEAAAANAAAAAQAGABEAAAAMAAAAAQAGABEAAAALAAAAAQAGABEAAAD//wAAAQAGABEAAAD//wYAAQAGABEAAAAfAAYAAQAGABEAAAAfAAAAAQAGABEAAAD+/wYAAQAGABEAAAD+/wUAAQAGABEAAAD+/wQAAQAGABEAAAD+/wMAAQAGABEAAAD+/wIAAQAGABEAAAD+/wEAAQAGABEAAAD+/wAAAQAGABEAAAAgAAYAAQAGABEAAAAgAAUAAQAGABEAAAAgAAQAAQAGABEAAAAgAAMAAQAGABEAAAAgAAIAAQAGABEAAAAgAAEAAQAGABEAAAAgAAAAAQAGABEAAAA=")
+tile_set = ExtResource("2_jsvqe")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("3_dcmwr")
+destination = "start_room"
+entry_point = Vector2i(680, 460)
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(-10, 70)
+shape = SubResource("RectangleShape2D_jsvqe")
+
+[node name="InteractDoor2" type="Area2D" parent="."]
+script = ExtResource("3_dcmwr")
+destination = "ruins_entrance"
+entry_point = Vector2i(80, 120)
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor2"]
+position = Vector2(630, 70)
+shape = SubResource("RectangleShape2D_jsvqe")
+
+[node name="CutsceneTrigger" type="Area2D" parent="."]
+script = ExtResource("4_3bhlh")
+pause_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger"]
+position = Vector2(250, 70)
+shape = SubResource("RectangleShape2D_3bhlh")
+
+[node name="CutsceneTrigger2" type="Area2D" parent="."]
+script = ExtResource("4_3bhlh")
+pause_player = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CutsceneTrigger2"]
+position = Vector2(250, 70)
+shape = SubResource("RectangleShape2D_3bhlh")
+
+[node name="CameraLimitArea" type="Area2D" parent="."]
+script = ExtResource("5_y0wr6")
+limit_top = -120
+limit_left = 300
+limit_right = 940
+metadata/_custom_type_script = "uid://c7byuwt70ctt1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraLimitArea"]
+position = Vector2(310, 70)
+shape = SubResource("RectangleShape2D_y0wr6")
+
+[node name="Flowey" type="AnimatedSprite2D" parent="."]
+position = Vector2(310, 112.5)
+sprite_frames = ExtResource("6_txqv6")
+animation = &"left"
+
+[node name="ArenaWalls" type="StaticBody2D" parent="Flowey"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flowey/ArenaWalls"]
+position = Vector2(-120, -42.5)
+shape = SubResource("RectangleShape2D_65rkt")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Flowey/ArenaWalls"]
+position = Vector2(120, -42.5)
+shape = SubResource("RectangleShape2D_65rkt")
+disabled = true
+
+[node name="Textbox" parent="Flowey" instance=ExtResource("7_jcnou")]
+position = Vector2(0, -30)
+
+[node name="Sprite2D" type="Sprite2D" parent="Flowey"]
+visible = false
+position = Vector2(6, -11)
+texture = ExtResource("9_u3hhq")
+script = SubResource("GDScript_u3hhq")
+
+[node name="Area2D" type="Area2D" parent="Flowey"]
+position = Vector2(0, -0.5)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Flowey/Area2D"]
+shape = SubResource("RectangleShape2D_txqv6")
+
+[node name="DIE" type="Label" parent="Flowey"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -86.0
+offset_right = 27.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Die."
+label_settings = SubResource("LabelSettings_usy01")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Laugh" type="AudioStreamPlayer" parent="Flowey"]
+stream = ExtResource("16_tc3uj")
+
+[node name="Yelp" type="AudioStreamPlayer" parent="Flowey"]
+stream = ExtResource("19_kgxap")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="TorielFire" type="AnimatedSprite2D" parent="."]
+visible = false
+modulate = Color(1, 0.5019608, 0, 1)
+position = Vector2(460, 112)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_rhv3u")
+
+[node name="Toriel" type="AnimatedSprite2D" parent="."]
+position = Vector2(480, 97)
+sprite_frames = ExtResource("20_xgqla")
+flip_h = true
+
+[node name="Textbox" parent="Toriel" instance=ExtResource("7_jcnou")]
+position = Vector2(-30, -30)
+
+[node name="EnemyNPC" type="AnimatedSprite2D" parent="."]
+position = Vector2(160, 112)
+sprite_frames = SubResource("SpriteFrames_x3t7e")
+script = ExtResource("15_tc3uj")
+talk1 = Array[String](["Ribbit, ribbit.\\n(A little tip for you, human.)", "(There is an old Toy Knife up on the roof near Toriel's house.)", "(Apparently, when you swing it at just the right time...)", "(It will block attacks from hitting you.)", "(It does not work on magical attacks, though.)", "(I would use it myself, but unfortunately I cannot.)", "(I have no hands.)\\nRibbit."])
+talk_end = Array[String](["Ribbit, ribbit.\\n(You should practice using the Toy Knife.)", "(It might be very useful.)\\nRibbit."])
+cheer = Array[String](["(Blushes deeply) Ribbit..."])
+metadata/_custom_type_script = "uid://60v7rjl1crdr"
+
+[node name="Textbox" parent="EnemyNPC" instance=ExtResource("7_jcnou")]
+position = Vector2(0, -15)
+
+[node name="Strytax" type="AnimatedSprite2D" parent="."]
+position = Vector2(380, 89)
+sprite_frames = ExtResource("16_x3t7e")
+script = SubResource("GDScript_rp2wh")
+metadata/_custom_type_script = "uid://cnq6fe8slv75o"
+
+[node name="Textbox" parent="Strytax" instance=ExtResource("7_jcnou")]
+position = Vector2(0, -35)
+
+[connection signal="body_entered" from="CutsceneTrigger" to="CutsceneTrigger" method="_on_body_entered"]
+[connection signal="start_cutscene" from="CutsceneTrigger" to="." method="_on_cutscene_trigger_start_cutscene"]
+[connection signal="body_entered" from="CutsceneTrigger2" to="CutsceneTrigger2" method="_on_body_entered"]
+[connection signal="start_cutscene" from="CutsceneTrigger2" to="." method="_on_cutscene_trigger2_start_cutscene"]
+[connection signal="timeout" from="Timer" to="." method="continue_cutscene"]
+[connection signal="timeout" from="Timer2" to="." method="finish_cutscene"]

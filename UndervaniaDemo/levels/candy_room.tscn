@@ -1,0 +1,188 @@
+[gd_scene load_steps=26 format=4 uid="uid://dbrew4nh22yau"]
+
+[ext_resource type="Script" uid="uid://b66jxxbx1f868" path="res://levels/candy_room.gd" id="1_hi4xf"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2_86gdk"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_f6afg"]
+[ext_resource type="Resource" uid="uid://lulvv41ygutk" path="res://items/monster_candy.tres" id="2_nm32h"]
+[ext_resource type="Resource" uid="uid://bh86tsbegtgne" path="res://music/ruins_group.tres" id="3_36apf"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="3_ayrcd"]
+[ext_resource type="Script" uid="uid://60v7rjl1crdr" path="res://enemy_npc.gd" id="6_36apf"]
+[ext_resource type="Texture2D" uid="uid://02ahsm8upgm7" path="res://sprites/froggit.png" id="6_v70pb"]
+[ext_resource type="Texture2D" uid="uid://iy1qti13usrt" path="res://sprites/froggit_npc.png" id="7_h32bl"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="7_v70pb"]
+[ext_resource type="Texture2D" uid="uid://eb7kcwlgnvl2" path="res://sprites/migosp.png" id="9_n3w3k"]
+[ext_resource type="Texture2D" uid="uid://fwe2ygpmn63m" path="res://sprites/minigosp.png" id="10_3g87n"]
+[ext_resource type="Texture2D" uid="uid://hewib5v5v7er" path="res://sprites/candy_stand.png" id="12_cxgqv"]
+[ext_resource type="Texture2D" uid="uid://21bqk0sij50g" path="res://sprites/candy_sit.png" id="13_hi4xf"]
+
+[sub_resource type="AudioStream" id="AudioStream_v70pb"]
+script = ExtResource("2_86gdk")
+stream_group = ExtResource("3_36apf")
+stream_mask = 1036
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7m5co"]
+size = Vector2(20, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h32bl"]
+atlas = ExtResource("6_v70pb")
+region = Rect2(0, 0, 21, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v70pb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h32bl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_h32bl")
+}],
+"loop": true,
+"name": &"forward",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_36apf"]
+script/source = "extends EnemyNPC
+
+var counter = false
+
+func _process(_delta):
+	if $Textbox.visible:
+		play(\"forward\")
+		flip_h = false
+	else:
+		play(\"default\")
+		counter = not counter
+		if counter:
+			flip_h = not flip_h
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g87n"]
+atlas = ExtResource("9_n3w3k")
+region = Rect2(0, 0, 21, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hphwq"]
+atlas = ExtResource("9_n3w3k")
+region = Rect2(21, 0, 21, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cxgqv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g87n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hphwq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hphwq"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 2
+particles_anim_loop = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cxgqv"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(10, 10, 1)
+spread = 180.0
+initial_velocity_max = 20.0
+gravity = Vector3(0, -20, 0)
+anim_speed_min = 5.0
+anim_speed_max = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hi4xf"]
+size = Vector2(20, 24)
+
+[node name="CandyRoom" type="Node2D"]
+script = ExtResource("1_hi4xf")
+item = ExtResource("2_nm32h")
+default_point = Vector2i(290, 220)
+limit_bottom = 480
+limit_right = 640
+stream = SubResource("AudioStream_v70pb")
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAOAAkAAQABAAcAAAAOAAgAAQADAAcAAAAOAAcAAQADAAcAAAAOAAYAAQADAAcAAAAOAAUAAQADAAcAAAAOAAQAAQABAAcAAAAOAAMAAQADAAcAAAAOAAIAAQADAAcAAAAOAAEAAQADAAcAAAANAAkAAQABAAcAAAANAAgAAQABAAcAAAANAAcAAQABAAcAAAANAAYAAQADAAcAAAANAAUAAQABAAcAAAANAAQAAQABAAcAAAANAAMAAQADAAcAAAANAAIAAQABAAcAAAANAAEAAQABAAcAAAAMAAkAAQABAAcAAAAMAAgAAQABAAcAAAAMAAcAAQADAAcAAAAMAAYAAQADAAcAAAAMAAUAAQADAAcAAAAMAAQAAQADAAcAAAAMAAMAAQADAAcAAAAMAAIAAQABAAcAAAAMAAEAAQADAAcAAAALAAkAAQABAAcAAAALAAgAAQABAAcAAAALAAcAAQADAAcAAAALAAYAAQABAAcAAAALAAUAAQABAAcAAAALAAQAAQABAAcAAAALAAMAAQABAAcAAAALAAIAAQADAAcAAAALAAEAAQADAAcAAAAKAAkAAQADAAcAAAAKAAgAAQADAAcAAAAKAAcAAQADAAcAAAAKAAYAAQADAAcAAAAKAAUAAQADAAcAAAAKAAQAAQADAAcAAAAKAAMAAQABAAcAAAAKAAIAAQADAAcAAAAKAAEAAQADAAcAAAAJAAkAAQABAAcAAAAJAAgAAQADAAcAAAAJAAcAAQADAAcAAAAJAAYAAQADAAcAAAAJAAUAAQADAAcAAAAJAAQAAQADAAcAAAAJAAMAAQADAAcAAAAJAAIAAQADAAcAAAAJAAEAAQADAAcAAAAIAAkAAQABAAcAAAAIAAgAAQADAAcAAAAIAAcAAQABAAcAAAAIAAYAAQABAAcAAAAIAAUAAQADAAcAAAAIAAQAAQADAAcAAAAIAAMAAQADAAcAAAAIAAIAAQADAAcAAAAIAAEAAQABAAcAAAAHAAkAAQABAAcAAAAHAAgAAQABAAcAAAAHAAcAAQABAAcAAAAHAAYAAQADAAcAAAAHAAUAAQABAAcAAAAHAAQAAQABAAcAAAAHAAMAAQADAAcAAAAHAAIAAQABAAcAAAAHAAEAAQADAAcAAAAGAAkAAQABAAcAAAAGAAgAAQABAAcAAAAGAAcAAQABAAcAAAAGAAYAAQADAAcAAAAGAAUAAQADAAcAAAAGAAQAAQABAAcAAAAGAAMAAQABAAcAAAAGAAIAAQADAAcAAAAGAAEAAQABAAcAAAAFAAkAAQABAAcAAAAFAAgAAQADAAcAAAAFAAcAAQADAAcAAAAFAAYAAQABAAcAAAAFAAUAAQABAAcAAAAFAAQAAQADAAcAAAAFAAMAAQADAAcAAAAFAAIAAQABAAcAAAAFAAEAAQADAAcAAAAEAAkAAQADAAcAAAAEAAgAAQABAAcAAAAEAAcAAQABAAcAAAAEAAYAAQABAAcAAAAEAAUAAQABAAcAAAAEAAQAAQADAAcAAAAEAAMAAQADAAcAAAAEAAIAAQADAAcAAAAEAAEAAQADAAcAAAADAAkAAQABAAcAAAADAAgAAQABAAcAAAADAAcAAQABAAcAAAADAAYAAQADAAcAAAADAAUAAQABAAcAAAADAAQAAQABAAcAAAADAAMAAQADAAcAAAADAAIAAQADAAcAAAADAAEAAQADAAcAAAACAAkAAQADAAcAAAACAAgAAQABAAcAAAACAAcAAQADAAcAAAACAAYAAQADAAcAAAACAAUAAQABAAcAAAACAAQAAQABAAcAAAACAAMAAQADAAcAAAACAAIAAQADAAcAAAACAAEAAQABAAcAAAABAAkAAQADAAcAAAABAAgAAQABAAcAAAABAAcAAQADAAcAAAABAAYAAQABAAcAAAABAAUAAQABAAcAAAABAAQAAQADAAcAAAABAAMAAQADAAcAAAABAAIAAQADAAcAAAABAAEAAQABAAcAAAAPAAoAAQABAAcAAAAPAAkAAQABAAcAAAAPAAgAAQADAAcAAAAPAAcAAQABAAcAAAAOAAoAAQADAAcAAAANAAoAAQADAAcAAAAMAAoAAQABAAcAAAALAAoAAQABAAcAAAAEAAoAAQABAAcAAAADAAoAAQADAAcAAAACAAoAAQADAAcAAAABAAoAAQADAAcAAAAFAAoAAQADAAcAAAAGAAoAAQADAAcAAAAHAAoAAQABAAcAAAAIAAoAAQADAAcAAAAJAAoAAQADAAcAAAAKAAoAAQABAAcAAAA=")
+tile_set = ExtResource("2_f6afg")
+
+[node name="Decor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAABAAsAAQADAAkAAAACAAsAAQAEAAkAAAADAAsAAQAFAAkAAAAEAAsAAQACAAAAAAALAAsAAQACAAAAAAAKAAsAAQACAAAAAAAJAAsAAQACAAAAAAAIAAsAAQACAAAAAAAHAAsAAQAEAAMAAAAGAAsAAQACAAAAAAAFAAsAAQACAAAAAAAMAAsAAQADAAkAAAANAAsAAQAEAAkAAAAOAAsAAQAFAAkAAAAPAAsAAQACAAAAAAABAAoAAQADAAgAAAACAAoAAQAEAAgAAAADAAoAAQAFAAgAAAAMAAoAAQADAAgAAAANAAoAAQAEAAgAAAAOAAoAAQAFAAgAAAAJAAoAAQAHAAsAAAAJAAkAAQAHAAsAAAAJAAgAAQAHAAsAAAAJAAcAAQAHAAsAAAAJAAYAAQAHAAsAAAAJAAUAAQAHAAsAAAAJAAQAAQAHAAsAAAAJAAMAAQAHAAsAAAAJAAIAAQAHAAsAAAAJAAEAAQAHAAsAAAAIAAoAAQAGAAsAAAAIAAkAAQAGAAsAAAAIAAgAAQAFAAsAAAAIAAcAAQAGAAsAAAAIAAYAAQAFAAsAAAAIAAUAAQAFAAsAAAAIAAQAAQAFAAsAAAAIAAMAAQAFAAsAAAAIAAIAAQAGAAsAAAAIAAEAAQAFAAsAAAAHAAoAAQAFAAsAAAAHAAkAAQAFAAsAAAAHAAgAAQAGAAsAAAAHAAcAAQAGAAsAAAAHAAYAAQAGAAsAAAAHAAUAAQAFAAsAAAAHAAQAAQAGAAsAAAAHAAMAAQAFAAsAAAAHAAIAAQAGAAsAAAAHAAEAAQAFAAsAAAAGAAoAAQAEAAsAAAAGAAkAAQAEAAsAAAAGAAgAAQAEAAsAAAAGAAcAAQAEAAsAAAAGAAYAAQAEAAsAAAAGAAUAAQAEAAsAAAAGAAQAAQAEAAsAAAAGAAMAAQAEAAsAAAAGAAIAAQAEAAsAAAAGAAEAAQAEAAsAAAA=")
+tile_set = ExtResource("2_f6afg")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAMAAQAEAAAAAAAAAAIAAQAEAAAAAAAAAAEAAQAEAAAAAAAAAAAAAQACAAAAAAAAAAQAAQAEAAAAAAAAAAUAAQAEAAAAAAAAAAYAAQAEAAAAAAAAAAcAAQAEAAAAAAAAAAsAAQACAAAAAAAPAAcAAQABAAEAAAAPAAYAAQABAAAAAAAPAAUAAQABAAAAAAAPAAQAAQABAAAAAAAPAAMAAQABAAAAAAAPAAIAAQABAAAAAAAPAAEAAQABAAAAAAAPAAAAAQAEAAIAAAAOAAAAAQADAAEAAAANAAAAAQACAAEAAAAMAAAAAQACAAEAAAALAAAAAQACAAEAAAAKAAAAAQACAAEAAAAJAAAAAQACAAEAAAAIAAAAAQACAAEAAAAHAAAAAQADAAEAAAAGAAAAAQACAAEAAAAFAAAAAQACAAEAAAAEAAAAAQACAAEAAAADAAAAAQADAAEAAAACAAAAAQACAAEAAAABAAAAAQACAAEAAAAAAAgAAQAEAAAAAAAAAAkAAQAEAAAAAAAAAAoAAQAEAAAAAAAQAAsAAQACAAEAAAARAAsAAQAEAAEAAAARAAoAAQAGAA4AAAARAAkAAQAGAA4AAAARAAgAAQAGAA4AAAARAAcAAQAEAAAAAAAQAAcAAQACAAEAAAAEAAsAAQAAAAEAAAAFAAsAAQAAAAEAAAAGAAsAAQAAAAEAAAAHAAsAAQAAAAEAAAAIAAsAAQAAAAEAAAAJAAsAAQAAAAEAAAAKAAsAAQAAAAEAAAALAAsAAQAAAAEAAAAPAAsAAQAAAAEAAAAMAAsAAQAAAAkAAAANAAsAAQAAAAkAAAAOAAsAAQAAAAkAAAABAAsAAQAAAAkAAAACAAsAAQAAAAkAAAADAAsAAQAAAAkAAAA=")
+tile_set = ExtResource("2_f6afg")
+
+[node name="Leaves" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAFAAsAAQAAAAsAAAAGAAsAAQACAAsAAAAKAAsAAQACAAsAAAAJAAsAAQAAAAsAAAA=")
+tile_set = ExtResource("2_f6afg")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("3_ayrcd")
+destination = "froggit_room1"
+entry_point = Vector2i(30, 380)
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(330, 190)
+shape = SubResource("RectangleShape2D_7m5co")
+
+[node name="EnemyNPC" type="AnimatedSprite2D" parent="."]
+position = Vector2(220.5, 212)
+sprite_frames = SubResource("SpriteFrames_v70pb")
+script = SubResource("GDScript_36apf")
+talk1 = Array[String](["Ribbit!\\n(I'm dancing!)"])
+talk_end = Array[String](["Ribbit, ribbit.\\n(Do you like my dance?)"])
+cheer = Array[String](["(Blushes deeply.) Ribbit..."])
+metadata/_custom_type_script = "uid://60v7rjl1crdr"
+
+[node name="Textbox" parent="EnemyNPC" instance=ExtResource("7_v70pb")]
+visible = false
+position = Vector2(0, -15)
+
+[node name="EnemyNPC2" type="AnimatedSprite2D" parent="."]
+position = Vector2(80.5, 209)
+sprite_frames = SubResource("SpriteFrames_cxgqv")
+flip_h = true
+script = ExtResource("6_36apf")
+talk1 = Array[String](["OH MY GOD WILL YOU STOP DOING THAT.", "STOP DANCING!", "WE CAN SEE YOU A MILE AWAY!"])
+talk_end = Array[String](["STOP DANCING!"])
+metadata/_custom_type_script = "uid://60v7rjl1crdr"
+
+[node name="Textbox" parent="EnemyNPC2" instance=ExtResource("7_v70pb")]
+position = Vector2(0, -15)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="EnemyNPC2"]
+material = SubResource("CanvasItemMaterial_hphwq")
+amount = 6
+texture = ExtResource("10_3g87n")
+process_material = SubResource("ParticleProcessMaterial_cxgqv")
+
+[node name="CandyStand" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CandyStand"]
+position = Vector2(160, 208.5)
+texture = ExtResource("12_cxgqv")
+
+[node name="Sprite2D2" type="Sprite2D" parent="CandyStand"]
+position = Vector2(164.5, 212)
+texture = ExtResource("13_hi4xf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CandyStand"]
+position = Vector2(160, 208)
+shape = SubResource("RectangleShape2D_hi4xf")

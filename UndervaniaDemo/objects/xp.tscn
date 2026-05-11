@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://b6ilc3c4glukp"]
+
+[ext_resource type="Script" uid="uid://b0smkq5ckn6ug" path="res://objects/xp.gd" id="1_l7x5y"]
+[ext_resource type="Texture2D" uid="uid://dofcg1gnub0dg" path="res://sprites/xp.png" id="2_l7x5y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1y1a"]
+size = Vector2(12, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qj4y5"]
+size = Vector2(20, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l7x5y"]
+radius = 1000.0
+
+[sub_resource type="Curve" id="Curve_l7x5y"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 1, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p0ke8"]
+curve = SubResource("Curve_l7x5y")
+
+[sub_resource type="Curve" id="Curve_4d3bu"]
+_data = [Vector2(0, 1), 0.0, -1.0, 0, 1, Vector2(1, 0), -1.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_2p7qq"]
+curve = SubResource("Curve_4d3bu")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_02hup"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 2.0
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_2p7qq")
+alpha_curve = SubResource("CurveTexture_p0ke8")
+
+[node name="XP" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_l7x5y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_l7x5y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_s1y1a")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(0.5, 0.5)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_qj4y5")
+
+[node name="DetectionRange" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_l7x5y")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+amount = 64
+texture = ExtResource("2_l7x5y")
+process_material = SubResource("ParticleProcessMaterial_02hup")

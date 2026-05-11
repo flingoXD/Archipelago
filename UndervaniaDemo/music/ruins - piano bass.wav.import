@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://i658equ0y4vl"
+path="res://.godot/imported/ruins - piano bass.wav-fd65a5651a01f45265f6e7ea951c39a5.sample"
+
+[deps]
+
+source_file="res://music/ruins - piano bass.wav"
+dest_files=["res://.godot/imported/ruins - piano bass.wav-fd65a5651a01f45265f6e7ea951c39a5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=577784
+edit/loop_end=5773126
+compress/mode=0

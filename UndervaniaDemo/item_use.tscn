@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmxydf1tk84fd"]
+
+[ext_resource type="Texture2D" uid="uid://dn7dwneeokqrb" path="res://sprites/menu_box.png" id="1"]
+[ext_resource type="Script" uid="uid://cf3mjnn4hmjmr" path="res://item_use.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://b3ta5ciyicf81" path="res://objects/inventory_option.tscn" id="3"]
+
+[node name="ItemUse" type="NinePatchRect"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -184.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+script = ExtResource("2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 10.0
+offset_right = 132.0
+offset_bottom = 174.0
+metadata/_edit_lock_ = true
+
+[node name="InventoryOption" parent="VBoxContainer" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("3")]
+layout_mode = 2
+neighbor_up = NodePath("../InventoryOption8")
+neighbor_down = NodePath("../InventoryOption2")
+
+[node name="InventoryOption2" parent="VBoxContainer" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("3")]
+layout_mode = 2
+neighbor_up = NodePath("../InventoryOption")
+neighbor_down = NodePath("../InventoryOption3")
+
+[node name="InventoryOption3" parent="VBoxContainer" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("3")]
+layout_mode = 2
+neighbor_up = NodePath("../InventoryOption2")
+neighbor_down = NodePath("../InventoryOption4")
+
+[node name="InventoryOption4" parent="VBoxContainer" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("3")]
+layout_mode = 2
+neighbor_up = NodePath("../InventoryOption3")
+neighbor_down = NodePath("../InventoryOption5")
+
+[node name="InventoryOption5" parent="VBoxContainer" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("3")]
+layout_mode = 2
+neighbor_up = NodePath("../InventoryOption4")
+neighbor_down = NodePath("../InventoryOption6")
+
+[node name="InventoryOption6" parent="VBoxContainer" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("3")]
+layout_mode = 2
+neighbor_up = NodePath("../InventoryOption5")
+neighbor_down = NodePath("../InventoryOption7")
+
+[node name="InventoryOption7" parent="VBoxContainer" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("3")]
+layout_mode = 2
+neighbor_up = NodePath("../InventoryOption6")
+neighbor_down = NodePath("../InventoryOption8")
+
+[node name="InventoryOption8" parent="VBoxContainer" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("3")]
+layout_mode = 2
+neighbor_up = NodePath("../InventoryOption7")
+neighbor_down = NodePath("../InventoryOption")

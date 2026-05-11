@@ -1,0 +1,200 @@
+[gd_scene format=3 uid="uid://ckat1xcljxvfe"]
+
+[ext_resource type="Script" uid="uid://cqm23wi42pcfc" path="res://game_manager.gd" id="1_vk86k"]
+[ext_resource type="PackedScene" uid="uid://d0pmmo0ji1nmg" path="res://player.tscn" id="2_smx3j"]
+[ext_resource type="PackedScene" uid="uid://b5xppqute5gvq" path="res://objects/camera.tscn" id="3_o2178"]
+[ext_resource type="Script" uid="uid://bxvnq758qbcp3" path="res://music_player.gd" id="5_eakoi"]
+[ext_resource type="Script" uid="uid://cwffxbw1mtade" path="res://objects/screen_fade.gd" id="6_shwjl"]
+[ext_resource type="PackedScene" uid="uid://4epdleqtl8rv" path="res://inventory.tscn" id="7_anra8"]
+[ext_resource type="PackedScene" uid="uid://bg2b0tiy7dx84" path="res://hud.tscn" id="7_eakoi"]
+[ext_resource type="PackedScene" uid="uid://dmxydf1tk84fd" path="res://item_use.tscn" id="7_tmn8n"]
+[ext_resource type="PackedScene" uid="uid://c3onxv8j3fisk" path="res://objects/ability_cutscene.tscn" id="8_8jrwq"]
+[ext_resource type="FontFile" uid="uid://w1w5t0oryk6v" path="res://fonts/Mars Needs Cunnilingus.ttf" id="9_dq8jp"]
+[ext_resource type="PackedScene" uid="uid://cr0eg3xlgi88d" path="res://objects/map.tscn" id="9_gth8u"]
+[ext_resource type="Script" uid="uid://cycg5j2ev1qan" path="res://objects/title.gd" id="10_dq8jp"]
+[ext_resource type="PackedScene" uid="uid://dxb4npvypgseq" path="res://objects/title.tscn" id="11_yawsv"]
+[ext_resource type="AudioStream" uid="uid://cy3hi0wb0l671" path="res://sounds/intro.mp3" id="12_le433"]
+[ext_resource type="FontFile" uid="uid://c0g4qqod4g3cs" path="res://fonts/DeterminationMonoWebRegular-Z5oq.ttf" id="13_2tadr"]
+[ext_resource type="PackedScene" uid="uid://bjt8ii21blp2l" path="res://silly_shaders/silly_shader.tscn" id="15_es4nv"]
+
+[sub_resource type="Gradient" id="Gradient_tmn8n"]
+offsets = PackedFloat32Array(0.62, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_es4nv"]
+gradient = SubResource("Gradient_tmn8n")
+width = 640
+height = 480
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_yawsv"]
+font = ExtResource("9_dq8jp")
+font_size = 64
+
+[node name="GameManager" type="Node2D" unique_id=1508622716]
+scale = Vector2(2, 2)
+script = ExtResource("1_vk86k")
+start_level = "old_tomb3"
+inf_health = true
+
+[node name="Player" parent="." unique_id=1289432081 instance=ExtResource("2_smx3j")]
+
+[node name="Camera" parent="Player" unique_id=367216296 instance=ExtResource("3_o2178")]
+
+[node name="MusicPlayer" type="Node" parent="." unique_id=1827949159]
+script = ExtResource("5_eakoi")
+
+[node name="GUI" type="CanvasLayer" parent="." unique_id=254393450]
+
+[node name="HUD" parent="GUI" unique_id=1340729994 node_paths=PackedStringArray("player") instance=ExtResource("7_eakoi")]
+modulate = Color(1, 1, 1, 0)
+player = NodePath("../../Player")
+
+[node name="HurtVignette" type="TextureRect" parent="GUI" unique_id=296074218]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_es4nv")
+expand_mode = 1
+
+[node name="ScreenFade" type="ColorRect" parent="GUI" unique_id=806787496]
+process_mode = 3
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0, 0, 0, 1)
+script = ExtResource("6_shwjl")
+
+[node name="Inventory" parent="GUI" unique_id=808179989 node_paths=PackedStringArray("player") instance=ExtResource("7_anra8")]
+visible = false
+player = NodePath("../../Player")
+
+[node name="ItemUse" parent="GUI" unique_id=1294697443 node_paths=PackedStringArray("player") instance=ExtResource("7_tmn8n")]
+visible = false
+anchors_preset = 8
+player = NodePath("../../Player")
+
+[node name="AbilityCutscene" parent="GUI" unique_id=1170116819 instance=ExtResource("8_8jrwq")]
+
+[node name="SVC" type="SubViewportContainer" parent="GUI" unique_id=131521781]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SV" type="SubViewport" parent="GUI/SVC" unique_id=113995505]
+handle_input_locally = false
+size = Vector2i(640, 480)
+render_target_update_mode = 4
+
+[node name="Map" parent="GUI/SVC/SV" unique_id=1512145858 node_paths=PackedStringArray("player") instance=ExtResource("9_gth8u")]
+player = NodePath("../../../../Player")
+
+[node name="Title" type="Label" parent="GUI" unique_id=987952179]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_yawsv")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("10_dq8jp")
+
+[node name="GameTitle" parent="GUI" unique_id=1722551900 instance=ExtResource("11_yawsv")]
+visible = false
+offset_top = 140.0
+offset_bottom = 180.0
+scale = Vector2(2, 2)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="GUI/GameTitle" unique_id=1239767945]
+stream = ExtResource("12_le433")
+
+[node name="Credits" type="RichTextLabel" parent="GUI" unique_id=1859885811]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("13_2tadr")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "By theidealist
+
+Based on
+[color=yellow]Undertale[/color] by Toby Fox
+[color=yellow]Undertale Yellow[/color] by MasterSwordRemix"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Credits2" type="RichTextLabel" parent="GUI" unique_id=1599090746]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("13_2tadr")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "	[color=yellow]Music, code, level design
+	New enemy concepts
+	Misc. art and animations[/color]
+		theidealist
+
+	[color=yellow]Sprites for a few Ruins monsters[/color]
+		some random Reddit post"
+vertical_alignment = 1
+
+[node name="Credits3" type="RichTextLabel" parent="GUI" unique_id=2129577015]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("13_2tadr")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "	[color=yellow]Alpha playtesters[/color]
+		Kitnight
+		Declarune
+		RedGreenPurple
+		Tudor_0"
+vertical_alignment = 1
+
+[node name="Credits4" type="RichTextLabel" parent="GUI" unique_id=1786073720]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("13_2tadr")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "	[color=yellow]Beta playtesters[/color]
+		AlliumMaster
+		BI0ckB0y
+		Eggy McEggington
+		flingo
+		Greyroot
+		Keiren Lorelei
+		Krispy
+		Lars V. Kor
+		PhoenixHorseGuy"
+vertical_alignment = 1
+
+[node name="SillyShader" parent="GUI" unique_id=1057154218 instance=ExtResource("15_es4nv")]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="." unique_id=1453656925]
+color = Color(0.2, 0.2, 0.2, 1)
+
+[connection signal="hud_act" from="Player" to="GUI/HUD" method="_on_player_hud_act"]
+[connection signal="quit" from="GUI/HUD" to="." method="_on_hud_quit"]

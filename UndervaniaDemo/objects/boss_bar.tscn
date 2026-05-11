@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://bt1fswlvpcwej"]
+
+[ext_resource type="Script" uid="uid://bt13oin5uhqym" path="res://objects/boss_bar.gd" id="1"]
+[ext_resource type="FontFile" uid="uid://w1w5t0oryk6v" path="res://fonts/Mars Needs Cunnilingus.ttf" id="2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0pref"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa68n"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_6gn2x"]
+font = ExtResource("2")
+font_size = 32
+
+[node name="BossBar" type="ProgressBar"]
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -160.0
+offset_top = 16.0
+offset_right = 160.0
+offset_bottom = 44.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_0pref")
+theme_override_styles/fill = SubResource("StyleBoxFlat_oa68n")
+step = 1.0
+value = 100.0
+show_percentage = false
+script = ExtResource("1")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -116.0
+offset_top = 32.0
+offset_right = 116.0
+offset_bottom = 64.0
+grow_horizontal = 2
+text = "Rouxls Kaard"
+label_settings = SubResource("LabelSettings_6gn2x")
+horizontal_alignment = 1

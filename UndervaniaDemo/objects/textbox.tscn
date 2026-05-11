@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5co5ryyyeql7"]
+
+[ext_resource type="Script" uid="uid://kvh1vfvssf2n" path="res://objects/textbox.gd" id="1_ptcjm"]
+[ext_resource type="FontFile" uid="uid://c0g4qqod4g3cs" path="res://fonts/DeterminationMonoWebRegular-Z5oq.ttf" id="1_vng66"]
+[ext_resource type="AudioStream" uid="uid://cdv326n1lu6a" path="res://sounds/talk_default.wav" id="3_see4t"]
+
+[node name="Textbox" type="Node2D"]
+z_index = 100
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ptcjm")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+modulate = Color(4.415934, 4.415934, 4.415934, 1)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -152.875
+offset_top = -83.0
+offset_right = 152.875
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/normal_font = ExtResource("1_vng66")
+bbcode_enabled = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 2
+visible_characters = 0
+visible_characters_behavior = 1
+visible_ratio = 0.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_see4t")
+volume_db = -6.0
+
+[node name="Timer" type="Timer" parent="AudioStreamPlayer"]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="AudioStreamPlayer/Timer" to="." method="_on_timer_timeout"]

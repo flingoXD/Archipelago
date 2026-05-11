@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq5dccj1776gp"]
+
+[ext_resource type="Texture2D" uid="uid://4e1xlwodgg22" path="res://sprites/toriel_smoke.png" id="1"]
+[ext_resource type="Script" uid="uid://dcpwnars52set" path="res://bullets/toriel_smoke_single.gd" id="2"]
+
+[node name="TorielSmokeSingle" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.5019608)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1")
+script = ExtResource("2")

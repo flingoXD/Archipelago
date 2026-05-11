@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://bu8crd48bg5oc"]
+
+[ext_resource type="Script" uid="uid://bkqtss6500twf" path="res://bullets/rorrim_attack_shard.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://57cjvuq0pn2k" path="res://sprites/rorrim_attack_shard.png" id="2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iinpl"]
+size = Vector2(4, 4)
+
+[node name="RorrimAttackShard" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1")
+atk = 4
+remove_after_damage = true
+collide_with_ground = true
+remove_on_ground = true
+metadata/_custom_type_script = "uid://ddb2vxbtpe3u8"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.9490196, 0.6509804, 1, 1)
+texture = ExtResource("2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_iinpl")

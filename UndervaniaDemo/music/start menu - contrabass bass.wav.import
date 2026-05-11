@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cetcy33xvga3r"
+path="res://.godot/imported/start menu - contrabass bass.wav-9c64880cf65c69a1f5b6edd8d1f3704d.sample"
+
+[deps]
+
+source_file="res://music/start menu - contrabass bass.wav"
+dest_files=["res://.godot/imported/start menu - contrabass bass.wav-9c64880cf65c69a1f5b6edd8d1f3704d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=122254
+edit/loop_end=1532214
+compress/mode=0

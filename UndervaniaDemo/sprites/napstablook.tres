@@ -1,0 +1,55 @@
+[gd_resource type="SpriteFrames" format=3 uid="uid://c4nt6hku34x63"]
+
+[ext_resource type="Texture2D" uid="uid://bfyydn6papf4q" path="res://sprites/dapperblook.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://l06gdlxjrw3d" path="res://sprites/napstablook.png" id="2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21jcl"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 19, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eixf7"]
+atlas = ExtResource("1")
+region = Rect2(19, 0, 19, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7k04u"]
+atlas = ExtResource("1")
+region = Rect2(38, 0, 19, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8j2i"]
+atlas = ExtResource("1")
+region = Rect2(0, 43, 19, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o50v"]
+atlas = ExtResource("1")
+region = Rect2(19, 43, 19, 43)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21jcl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eixf7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7k04u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8j2i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o50v")
+}],
+"loop": false,
+"name": &"dapperblook",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"left",
+"speed": 5.0
+}]

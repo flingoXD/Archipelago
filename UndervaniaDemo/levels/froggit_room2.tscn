@@ -1,0 +1,238 @@
+[gd_scene load_steps=23 format=4 uid="uid://cbpuwu0n7iytn"]
+
+[ext_resource type="Script" uid="uid://dafg6rdgwbdm5" path="res://levels/froggit_room2.gd" id="1_1nlxu"]
+[ext_resource type="TileSet" uid="uid://cxkj8uwdq3rgn" path="res://tilesets/ruins.tres" id="2_d63l5"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2_jjosd"]
+[ext_resource type="Texture2D" uid="uid://2ljbn0jmlwny" path="res://sprites/ruins_door.png" id="3_1nlxu"]
+[ext_resource type="Resource" uid="uid://bh86tsbegtgne" path="res://music/ruins_group.tres" id="3_qm7qg"]
+[ext_resource type="Script" uid="uid://c4cx1cjbx5nku" path="res://objects/interact_door.gd" id="4_gsree"]
+[ext_resource type="PackedScene" uid="uid://drcmi41l4jv4d" path="res://objects/lever.tscn" id="5_gsree"]
+[ext_resource type="PackedScene" uid="uid://mi3t2jpbjvu2" path="res://enemies/moldsmal.tscn" id="8_vdyaj"]
+[ext_resource type="Texture2D" uid="uid://iy1qti13usrt" path="res://sprites/froggit_npc.png" id="9_3ftn5"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="10_3ftn5"]
+[ext_resource type="Script" uid="uid://do6xbjfs0rrt8" path="res://objects/sign.gd" id="12_i2srn"]
+[ext_resource type="Texture2D" uid="uid://b3kuo110in22h" path="res://sprites/sign.png" id="13_cx56p"]
+
+[sub_resource type="AudioStream" id="AudioStream_qm7qg"]
+script = ExtResource("2_jjosd")
+stream_group = ExtResource("3_qm7qg")
+stream_mask = 9908
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsree"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qm7qg"]
+size = Vector2(20, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vdyaj"]
+size = Vector2(60, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t6xm4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_3ftn5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="GDScript" id="GDScript_eynsv"]
+script/source = "extends EnemyNPC
+
+func _ready():
+	var x = Globals.get_key_name(\"text_show\")
+	talk1 = [
+		\"Ribbit, ribbit.\\n(Sigh...)\",
+		\"(My friend never listens to me.)\",
+		\"(Whenever I talk, she skips through my words by pressing [\"+x+\"].)\",
+		\"(That's right.......)\\n(Pressing [\"+x+\"].............)\"
+	]
+	talk_end = [
+		\"Ribbit, ribbit.\\n(You, too, can harness this power.)\",
+		\"(I'd really rather you didn't though.)\\nRibbit.\"
+	]
+	super._ready()
+"
+
+[sub_resource type="GDScript" id="GDScript_3ftn5"]
+script/source = "extends EnemyNPC
+
+func _ready():
+	var f4 = Globals.get_key_name(\"fullscreen\")
+	talk1 = [
+		\"Ribbit, ribbit.\\n(I heard using \\\"\"+f4+\"\\\" can make you have a \\\"full screen\\\".)\",
+		\"(But what does \\\"\"+f4+\"\\\" stand for?)\\n(\\\"Four frogs\\\"?)\",
+		\"(I have never seen more than three frogs in this room...)\",
+		\"(This is troubling, to say the least.)\\nRibbit.\"
+	]
+	talk_end = [
+		\"Ribbit, ribbit.\\n(Have you seen a fourth frog around here?)\",
+		\"(If you have, I don't want to know.)\",
+		\"(My worldview has been shattered by the idea.)\\nRibbit.\"
+	]
+	super._ready()
+"
+
+[sub_resource type="GDScript" id="GDScript_i2srn"]
+script/source = "extends EnemyNPC
+
+var pink = false
+
+func _ready():
+	pink = Globals.get_flag(\"pink_spare\")
+	if pink:
+		talk_end[1] = \"(Maybe one day, you'll have to do it even if they aren't pink.)\"
+		talk_count += 1
+	super._ready()
+
+func talk(act):
+	if talk_count > 1 and act == \"threat\" and not pink:
+		await $Textbox.show_text([
+			\"(Really? Then I'll tell all my friends to tell their friends' friends...)\",
+			\"(To throw out their yellow outlines and use pink ones instead.)\",
+		])
+		pink = true
+		Globals.set_flag(\"pink_spare\", true)
+		talk_end[1] = \"(Maybe one day, you'll have to do it even if they aren't pink.)\"
+	else:
+		await super.talk(act)
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i2srn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5kwq"]
+
+[node name="FroggitRoom2" type="Node2D"]
+script = ExtResource("1_1nlxu")
+default_point = Vector2i(30, 220)
+limit_bottom = 480
+limit_right = 1120
+stream = SubResource("AudioStream_qm7qg")
+metadata/_custom_type_script = "uid://c2fgvgrhhytqh"
+
+[node name="Background" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAOAAkAAQABAAcAAAAOAAgAAQADAAcAAAAOAAcAAQADAAcAAAAOAAYAAQADAAcAAAAOAAUAAQADAAcAAAAOAAQAAQABAAcAAAAOAAMAAQADAAcAAAAOAAIAAQADAAcAAAAOAAEAAQADAAcAAAANAAkAAQABAAcAAAANAAgAAQABAAcAAAANAAcAAQABAAcAAAANAAYAAQADAAcAAAANAAUAAQABAAcAAAANAAQAAQABAAcAAAANAAMAAQADAAcAAAANAAIAAQABAAcAAAANAAEAAQABAAcAAAAMAAkAAQABAAcAAAAMAAgAAQABAAcAAAAMAAcAAQADAAcAAAAMAAYAAQADAAcAAAAMAAUAAQADAAcAAAAMAAQAAQADAAcAAAAMAAMAAQADAAcAAAAMAAIAAQABAAcAAAAMAAEAAQADAAcAAAALAAkAAQABAAcAAAALAAgAAQABAAcAAAALAAcAAQADAAcAAAALAAYAAQABAAcAAAALAAUAAQABAAcAAAALAAQAAQABAAcAAAALAAMAAQABAAcAAAALAAIAAQADAAcAAAALAAEAAQADAAcAAAAKAAkAAQADAAcAAAAKAAgAAQADAAcAAAAKAAcAAQADAAcAAAAKAAYAAQADAAcAAAAKAAUAAQADAAcAAAAKAAQAAQADAAcAAAAKAAMAAQABAAcAAAAKAAIAAQADAAcAAAAKAAEAAQADAAcAAAAJAAkAAQABAAcAAAAJAAgAAQADAAcAAAAJAAcAAQADAAcAAAAJAAYAAQADAAcAAAAJAAUAAQADAAcAAAAJAAQAAQADAAcAAAAJAAMAAQADAAcAAAAJAAIAAQADAAcAAAAJAAEAAQADAAcAAAAIAAkAAQABAAcAAAAIAAgAAQADAAcAAAAIAAcAAQABAAcAAAAIAAYAAQABAAcAAAAIAAUAAQADAAcAAAAIAAQAAQADAAcAAAAIAAMAAQADAAcAAAAIAAIAAQADAAcAAAAIAAEAAQABAAcAAAAHAAkAAQABAAcAAAAHAAgAAQABAAcAAAAHAAcAAQABAAcAAAAHAAYAAQADAAcAAAAHAAUAAQABAAcAAAAHAAQAAQABAAcAAAAHAAMAAQADAAcAAAAHAAIAAQABAAcAAAAHAAEAAQADAAcAAAAGAAkAAQABAAcAAAAGAAgAAQABAAcAAAAGAAcAAQABAAcAAAAGAAYAAQADAAcAAAAGAAUAAQADAAcAAAAGAAQAAQABAAcAAAAGAAMAAQABAAcAAAAGAAIAAQADAAcAAAAGAAEAAQABAAcAAAAFAAkAAQABAAcAAAAFAAgAAQADAAcAAAAFAAcAAQADAAcAAAAFAAYAAQABAAcAAAAFAAUAAQABAAcAAAAFAAQAAQADAAcAAAAFAAMAAQADAAcAAAAFAAIAAQABAAcAAAAFAAEAAQADAAcAAAAEAAkAAQADAAcAAAAEAAgAAQABAAcAAAAEAAcAAQABAAcAAAAEAAYAAQABAAcAAAAEAAUAAQABAAcAAAAEAAQAAQADAAcAAAAEAAMAAQADAAcAAAAEAAIAAQADAAcAAAAEAAEAAQADAAcAAAADAAkAAQABAAcAAAADAAgAAQABAAcAAAADAAcAAQABAAcAAAADAAYAAQADAAcAAAADAAUAAQABAAcAAAADAAQAAQABAAcAAAADAAMAAQADAAcAAAADAAIAAQADAAcAAAADAAEAAQADAAcAAAACAAkAAQADAAcAAAACAAgAAQABAAcAAAACAAcAAQADAAcAAAACAAYAAQADAAcAAAACAAUAAQABAAcAAAACAAQAAQABAAcAAAACAAMAAQADAAcAAAACAAIAAQADAAcAAAACAAEAAQABAAcAAAABAAkAAQADAAcAAAABAAgAAQABAAcAAAABAAcAAQADAAcAAAABAAYAAQABAAcAAAABAAUAAQABAAcAAAABAAQAAQADAAcAAAABAAMAAQADAAcAAAABAAIAAQADAAcAAAABAAEAAQABAAcAAAAOAAoAAQABAAcAAAANAAoAAQADAAcAAAAMAAoAAQABAAcAAAALAAoAAQABAAcAAAAEAAoAAQABAAcAAAADAAoAAQADAAcAAAACAAoAAQADAAcAAAABAAoAAQADAAcAAAAFAAoAAQADAAcAAAAGAAoAAQADAAcAAAAHAAoAAQABAAcAAAAIAAoAAQADAAcAAAAJAAoAAQADAAcAAAAKAAoAAQABAAcAAAAAAAoAAQABAAcAAAAAAAkAAQABAAcAAAAAAAgAAQADAAcAAAAAAAcAAQABAAcAAAAaAAkAAQABAAcAAAAaAAgAAQABAAcAAAAaAAcAAQADAAcAAAAaAAYAAQABAAcAAAAaAAUAAQADAAcAAAAaAAQAAQABAAcAAAAaAAMAAQABAAcAAAAaAAIAAQADAAcAAAAaAAEAAQABAAcAAAAZAAkAAQADAAcAAAAZAAgAAQABAAcAAAAZAAcAAQABAAcAAAAZAAYAAQADAAcAAAAZAAUAAQADAAcAAAAZAAQAAQABAAcAAAAZAAMAAQABAAcAAAAZAAIAAQADAAcAAAAZAAEAAQABAAcAAAAYAAkAAQADAAcAAAAYAAgAAQABAAcAAAAYAAcAAQABAAcAAAAYAAYAAQADAAcAAAAYAAUAAQADAAcAAAAYAAQAAQADAAcAAAAYAAMAAQABAAcAAAAYAAIAAQABAAcAAAAYAAEAAQADAAcAAAAXAAkAAQABAAcAAAAXAAgAAQABAAcAAAAXAAcAAQABAAcAAAAXAAYAAQADAAcAAAAXAAUAAQADAAcAAAAXAAQAAQADAAcAAAAXAAMAAQADAAcAAAAXAAIAAQABAAcAAAAXAAEAAQADAAcAAAAWAAkAAQADAAcAAAAWAAgAAQADAAcAAAAWAAcAAQADAAcAAAAWAAYAAQADAAcAAAAWAAUAAQABAAcAAAAWAAQAAQABAAcAAAAWAAMAAQADAAcAAAAWAAIAAQABAAcAAAAWAAEAAQABAAcAAAAVAAkAAQABAAcAAAAVAAgAAQABAAcAAAAVAAcAAQADAAcAAAAVAAYAAQABAAcAAAAVAAUAAQADAAcAAAAVAAQAAQABAAcAAAAVAAMAAQADAAcAAAAVAAIAAQABAAcAAAAVAAEAAQABAAcAAAAUAAkAAQABAAcAAAAUAAgAAQADAAcAAAAUAAcAAQABAAcAAAAUAAYAAQADAAcAAAAUAAUAAQADAAcAAAAUAAQAAQADAAcAAAAUAAMAAQADAAcAAAAUAAIAAQABAAcAAAAUAAEAAQADAAcAAAATAAkAAQABAAcAAAATAAgAAQADAAcAAAATAAcAAQABAAcAAAATAAYAAQADAAcAAAATAAUAAQABAAcAAAATAAQAAQABAAcAAAATAAMAAQABAAcAAAATAAIAAQADAAcAAAATAAEAAQADAAcAAAASAAkAAQABAAcAAAASAAgAAQADAAcAAAASAAcAAQABAAcAAAASAAYAAQADAAcAAAASAAUAAQADAAcAAAASAAQAAQABAAcAAAASAAMAAQADAAcAAAASAAIAAQADAAcAAAASAAEAAQADAAcAAAARAAkAAQADAAcAAAARAAgAAQABAAcAAAARAAcAAQABAAcAAAARAAYAAQABAAcAAAARAAUAAQABAAcAAAARAAQAAQABAAcAAAARAAMAAQABAAcAAAARAAIAAQABAAcAAAARAAEAAQABAAcAAAAQAAkAAQABAAcAAAAQAAgAAQADAAcAAAAQAAcAAQADAAcAAAAQAAYAAQABAAcAAAAQAAUAAQADAAcAAAAQAAQAAQABAAcAAAAQAAMAAQADAAcAAAAQAAIAAQABAAcAAAAQAAEAAQADAAcAAAAPAAkAAQABAAcAAAAPAAgAAQABAAcAAAAPAAcAAQADAAcAAAAPAAYAAQABAAcAAAAPAAUAAQABAAcAAAAPAAQAAQADAAcAAAAPAAMAAQABAAcAAAAPAAIAAQADAAcAAAAPAAEAAQADAAcAAAAaAAoAAQADAAcAAAAZAAoAAQABAAcAAAAYAAoAAQADAAcAAAAXAAoAAQABAAcAAAAWAAoAAQADAAcAAAAVAAoAAQABAAcAAAAUAAoAAQADAAcAAAATAAoAAQABAAcAAAASAAoAAQABAAcAAAARAAoAAQADAAcAAAAQAAoAAQADAAcAAAAPAAoAAQABAAcAAAAbAAoAAQABAAcAAAAbAAkAAQABAAcAAAAbAAgAAQADAAcAAAAbAAcAAQABAAcAAAAOAAsAAQABAAcAAAANAAsAAQADAAcAAAAMAAsAAQADAAcAAAA=")
+tile_set = ExtResource("2_d63l5")
+
+[node name="Decor" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAABAAsAAQACAAAAAAACAAsAAQADAAAAAAADAAsAAQACAAAAAAAEAAsAAQACAAAAAAALAAsAAQAEAAAAAAAKAAsAAQACAAAAAAAJAAsAAQACAAAAAAAIAAsAAQACAAAAAAAHAAsAAQACAAAAAAAGAAsAAQACAAAAAAAFAAsAAQACAAAAAAAAAAsAAQACAAAAAAARAAsAAQACAAAAAAASAAsAAQACAAAAAAAQAAsAAQADAAAAAAAPAAsAAQABAAAAAAATAAsAAQACAAAAAAAUAAsAAQACAAAAAAAVAAsAAQACAAAAAAAWAAsAAQACAAAAAAAXAAsAAQADAAAAAAAYAAsAAQACAAAAAAAZAAsAAQACAAAAAAAaAAsAAQACAAAAAAAbAAsAAQACAAAAAAAHAAgAAQAEAAEAAAAGAAgAAQACAAEAAAAFAAgAAQABAAEAAAAKAAUAAQACAAEAAAALAAUAAQAEAAEAAAAaAAYAAQACAAEAAAAZAAYAAQACAAEAAAAYAAYAAQABAAEAAAASAAgAAQACAAEAAAARAAgAAQABAAEAAAATAAgAAQAEAAEAAAAJAAUAAQABAAEAAAA=")
+tile_set = ExtResource("2_d63l5")
+
+[node name="Door" type="StaticBody2D" parent="."]
+position = Vector2(10, 190)
+
+[node name="Sprite2D" type="Sprite2D" parent="Door"]
+texture = ExtResource("3_1nlxu")
+
+[node name="ColorRect" type="ColorRect" parent="Door/Sprite2D"]
+offset_left = -10.0
+offset_top = -50.0
+offset_right = 10.0
+offset_bottom = -30.0
+color = Color(0, 0, 0, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+shape = SubResource("RectangleShape2D_gsree")
+
+[node name="Walls" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAMAAQAEAAAAAAAAAAIAAQAEAAAAAAAAAAEAAQAEAAAAAAAAAAAAAQACAAAAAAAAAAQAAQAEAAAAAAAAAAUAAQAEAAAAAAAAAAYAAQAEAAAAAAAAAAcAAQAEAAEAAAAOAAAAAQACAAEAAAANAAAAAQACAAEAAAAMAAAAAQACAAEAAAALAAAAAQADAAEAAAAKAAAAAQACAAEAAAAJAAAAAQACAAEAAAAIAAAAAQACAAEAAAAHAAAAAQACAAEAAAAGAAAAAQACAAEAAAAFAAAAAQACAAEAAAAEAAAAAQACAAEAAAADAAAAAQACAAEAAAACAAAAAQADAAEAAAABAAAAAQACAAEAAAAEAAsAAQAAAAEAAAAFAAsAAQAAAAEAAAAGAAsAAQAAAAEAAAAHAAsAAQAAAAEAAAAIAAsAAQAAAAEAAAAJAAsAAQAAAAEAAAAKAAsAAQAAAAEAAAALAAsAAQABAA4AAAABAAsAAQAAAAIAAAACAAsAAQAAAAIAAAADAAsAAQAAAAMAAAD//wcAAQACAAEAAAD+/wcAAQABAAAAAAD+/wgAAQAGAA4AAAD+/wkAAQAGAA4AAAD+/woAAQAGAA4AAAD+/wsAAQABAAEAAAD//wsAAQADAAEAAAAAAAsAAQAAAAIAAAAPAAAAAQADAAEAAAAQAAAAAQACAAEAAAARAAAAAQACAAEAAAASAAAAAQACAAEAAAATAAAAAQACAAEAAAAUAAAAAQACAAEAAAAVAAAAAQACAAEAAAAWAAAAAQACAAEAAAAXAAAAAQACAAEAAAAYAAAAAQACAAEAAAAZAAAAAQACAAEAAAAaAAAAAQACAAEAAAAbAAAAAQACAAAAAAANAA4AAQACAAEAAAAOAA4AAQACAAEAAAAPAA4AAQAEAAEAAAALAAwAAQAGAA4AAAALAA0AAQAGAA4AAAALAA4AAQABAAEAAAAMAA4AAQADAAEAAAAPAAwAAQAGAA4AAAAPAA0AAQAGAA4AAAAPAAsAAQAAAA4AAAAQAAsAAQAAAAEAAAARAAsAAQAAAAEAAAASAAsAAQAAAAEAAAAbAAEAAQABAAAAAAAbAAIAAQABAAAAAAAbAAMAAQABAAAAAAAbAAQAAQABAAAAAAAbAAUAAQABAAAAAAAbAAYAAQACAAAAAAAbAAcAAQABAAEAAAAcAAcAAQACAAEAAAAdAAcAAQAEAAAAAAAdAAgAAQAGAA4AAAAdAAkAAQAGAA4AAAAdAAoAAQAGAA4AAAAdAAsAAQAEAAEAAAAcAAsAAQACAAEAAAATAAsAAQAAAAEAAAAUAAsAAQAAAAEAAAAVAAsAAQAAAAEAAAAWAAsAAQAAAAEAAAAXAAsAAQAAAAEAAAAYAAsAAQAAAAEAAAAZAAsAAQAAAAEAAAAaAAsAAQAAAAEAAAAbAAsAAQAAAAEAAAAFAAgAAQAAAA4AAAAGAAgAAQAAAAEAAAAHAAgAAQABAA4AAAAKAAUAAQAAAAEAAAALAAUAAQABAA4AAAARAAgAAQAAAA4AAAASAAgAAQAAAAEAAAATAAgAAQABAA4AAAAYAAYAAQAAAA4AAAAZAAYAAQAAAAEAAAAaAAYAAQAAAAEAAAAJAAUAAQAAAA4AAAA=")
+tile_set = ExtResource("2_d63l5")
+
+[node name="InteractDoor" type="Area2D" parent="."]
+script = ExtResource("4_gsree")
+destination = "puzzle_pitfall2"
+entry_point = Vector2i(290, 480)
+left_facing = 1
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor"]
+position = Vector2(-10, 190)
+shape = SubResource("RectangleShape2D_qm7qg")
+
+[node name="InteractDoor3" type="Area2D" parent="."]
+script = ExtResource("4_gsree")
+destination = "puzzle_pitfall3"
+entry_point = Vector2i(-130, 120)
+left_facing = 2
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor3"]
+position = Vector2(570, 190)
+shape = SubResource("RectangleShape2D_qm7qg")
+
+[node name="Lever" parent="." instance=ExtResource("5_gsree")]
+position = Vector2(50.5, 189.5)
+
+[node name="InteractDoor2" type="Area2D" parent="."]
+script = ExtResource("4_gsree")
+destination = "napstablook_arena"
+entry_point = Vector2i(390, 80)
+left_facing = 1
+metadata/_custom_type_script = "uid://c4cx1cjbx5nku"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractDoor2"]
+position = Vector2(270, 250)
+shape = SubResource("RectangleShape2D_vdyaj")
+
+[node name="Moldsmal" parent="." instance=ExtResource("8_vdyaj")]
+position = Vector2(210, 95.5)
+enemy_id = "froggit_room2_moldsmal"
+
+[node name="EnemyNPC" type="AnimatedSprite2D" parent="."]
+position = Vector2(130, 152)
+sprite_frames = SubResource("SpriteFrames_t6xm4")
+script = SubResource("GDScript_eynsv")
+cheer = Array[String](["(Blushes deeply.) Ribbit..."])
+metadata/_custom_type_script = "uid://60v7rjl1crdr"
+
+[node name="Textbox" parent="EnemyNPC" instance=ExtResource("10_3ftn5")]
+position = Vector2(0, -15)
+
+[node name="EnemyNPC2" type="AnimatedSprite2D" parent="."]
+position = Vector2(370, 152)
+sprite_frames = SubResource("SpriteFrames_t6xm4")
+script = SubResource("GDScript_3ftn5")
+cheer = Array[String](["(Blushes deeply.) Ribbit..."])
+metadata/_custom_type_script = "uid://60v7rjl1crdr"
+
+[node name="Textbox" parent="EnemyNPC2" instance=ExtResource("10_3ftn5")]
+position = Vector2(0, -15)
+
+[node name="EnemyNPC3" type="AnimatedSprite2D" parent="."]
+position = Vector2(510, 112)
+sprite_frames = SubResource("SpriteFrames_t6xm4")
+script = SubResource("GDScript_i2srn")
+talk1 = Array[String](["Ribbit, ribbit.\\n(I have heard you are quite merciful, for a human.)", "(Surely you know by now a monster has a [color=yellow]YELLOW[/color] outline when you can [color=yellow]SPARE[/color] it.)", "(What do you think of that?)\\nRibbit."])
+talk_end = Array[String](["Ribbit, ribbit.\\n(Remember, sparing is just refusing to fight.)", "(Maybe one day, you'll have to do it even if they aren't yellow.)"])
+cheer = Array[String](["(Blushes deeply.) Ribbit..."])
+metadata/_custom_type_script = "uid://60v7rjl1crdr"
+
+[node name="Textbox" parent="EnemyNPC3" instance=ExtResource("10_3ftn5")]
+position = Vector2(-30, -15)
+
+[node name="Sign" type="Area2D" parent="."]
+position = Vector2(210, 90)
+script = ExtResource("12_i2srn")
+text = Array[String](["(There's an ant-sized piece of paper stuck on the wall.)", "(You can barely make out the words.)", "(\"Gone to fetch the milk! If anyone needs me, I'm in the Dark Ruins.\")"])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign"]
+shape = SubResource("RectangleShape2D_i2srn")
+metadata/_edit_lock_ = true
+
+[node name="Sign2" type="Area2D" parent="."]
+position = Vector2(210, 212)
+script = ExtResource("12_i2srn")
+text = Array[String](["Did you miss it? Spider Bake Sale down and to the right.", "Come eat food made by spiders, for spiders, of spiders!"])
+metadata/_custom_type_script = "uid://do6xbjfs0rrt8"
+
+[node name="Sprite2D" type="Sprite2D" parent="Sign2"]
+texture = ExtResource("13_cx56p")
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign2"]
+shape = SubResource("RectangleShape2D_o5kwq")
+metadata/_edit_lock_ = true

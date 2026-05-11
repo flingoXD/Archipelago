@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://b05qnjgp3mwyy"]
+
+[ext_resource type="Script" uid="uid://co6mdhm7xj2ah" path="res://enemies/rorrim.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://ccy2tu4x51lp7" path="res://sprites/rorrim_death.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://djaohchn2bl3n" path="res://sprites/rorrim.png" id="3"]
+[ext_resource type="PackedScene" uid="uid://c5co5ryyyeql7" path="res://objects/textbox.tscn" id="4"]
+[ext_resource type="AudioStream" uid="uid://c10ghkhiw5rxg" path="res://sounds/switch2.wav" id="5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ebn7w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_naa6g"]
+size = Vector2(21, 40)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ebn7w"]
+radius = 256.0
+
+[node name="Rorrim" type="CharacterBody2D" node_paths=PackedStringArray("detection")]
+script = ExtResource("1")
+max_hp = 35
+atk = 5
+def = 1
+dropped_gold = 3
+dropped_xp = 6
+death_tex = ExtResource("2")
+detection = NodePath("DetectionRange")
+metadata/_custom_type_script = "uid://u6nmfmrmnplx"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_ebn7w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_naa6g")
+
+[node name="Textbox" parent="." instance=ExtResource("4")]
+position = Vector2(0, -25)
+
+[node name="DetectionRange" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionRange"]
+shape = SubResource("CircleShape2D_ebn7w")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5")
+autoplay = true

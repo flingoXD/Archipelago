@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dh8br2qfjl02b"
+path="res://.godot/imported/ruins - piano harmony alt.wav-bd63f10e87a0d12e07ac93c1560520e6.sample"
+
+[deps]
+
+source_file="res://music/ruins - piano harmony alt.wav"
+dest_files=["res://.godot/imported/ruins - piano harmony alt.wav-bd63f10e87a0d12e07ac93c1560520e6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=1
+edit/loop_begin=577784
+edit/loop_end=5773126
+compress/mode=0

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="AudioStreamGroup" load_steps=10 format=3 uid="uid://bjuc0s5wlpdui"]
+
+[ext_resource type="Script" uid="uid://btrwqaax5uf6" path="res://audio_stream_group.gd" id="1"]
+[ext_resource type="AudioStream" uid="uid://cfcx1csg0e5ng" path="res://music/sealed vassal stage 1.wav" id="2"]
+[ext_resource type="AudioStream" uid="uid://ck02c8t5jrgk1" path="res://music/sealed vassal stage 2.wav" id="3"]
+[ext_resource type="AudioStream" uid="uid://b55uft0rhotch" path="res://music/sealed vassal stage 3.wav" id="4"]
+[ext_resource type="AudioStream" uid="uid://cu3onqa6mtegi" path="res://music/sealed vassal stage 4.wav" id="5"]
+[ext_resource type="AudioStream" uid="uid://i0esoteeu3j1" path="res://music/sealed vassal stage 5.wav" id="6"]
+[ext_resource type="AudioStream" uid="uid://o0welt8maw70" path="res://music/sealed vassal stage 6 - no perc.wav" id="7"]
+[ext_resource type="AudioStream" uid="uid://djr2jkolqxlnb" path="res://music/sealed vassal stage 6 - perc 1.wav" id="8"]
+[ext_resource type="AudioStream" uid="uid://dikvpqc5sq1ll" path="res://music/sealed vassal stage 6 - perc 2.wav" id="9"]
+
+[resource]
+script = ExtResource("1")
+streams = [ExtResource("2"), ExtResource("3"), ExtResource("4"), ExtResource("5"), ExtResource("6"), ExtResource("7"), ExtResource("8"), ExtResource("9")]
+volume = 3
+metadata/_custom_type_script = "uid://btrwqaax5uf6"

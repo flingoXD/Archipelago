@@ -1,0 +1,13 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ci6uwtto07j7h"]
+
+[ext_resource type="Script" uid="uid://bbqa66u4rpxul" path="res://items/pie.gd" id="1_vl04e"]
+
+[resource]
+script = ExtResource("1_vl04e")
+item_id = "pie"
+display_name = "Butterscotch Pie"
+nickname = "Butts. Pie"
+serious_name = "Pie"
+edible = true
+description = "Butterscotch-cinnamon pie, one slice."
+metadata/_custom_type_script = "uid://ds3e4kaukson"

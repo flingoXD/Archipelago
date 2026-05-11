@@ -1,0 +1,620 @@
+[gd_scene load_steps=22 format=3 uid="uid://4yt7xgisb04k"]
+
+[ext_resource type="FontFile" uid="uid://c0g4qqod4g3cs" path="res://fonts/DeterminationMonoWebRegular-Z5oq.ttf" id="1_a7obv"]
+[ext_resource type="Script" uid="uid://bpr0xkelcuch2" path="res://start_submenu.gd" id="1_yuswj"]
+[ext_resource type="Script" uid="uid://by7e4dqljavyr" path="res://audio_stream_selection.gd" id="2_36px6"]
+[ext_resource type="PackedScene" uid="uid://tdxcq2n4sxjk" path="res://objects/start_submenu_option.tscn" id="2_4030c"]
+[ext_resource type="Resource" uid="uid://b6piny0ylyfiq" path="res://music/start_menu.tres" id="3_i5v4h"]
+[ext_resource type="Script" uid="uid://bxvnq758qbcp3" path="res://music_player.gd" id="4_okkke"]
+[ext_resource type="AudioStream" uid="uid://3fsxbbpwc4tb" path="res://sounds/select.wav" id="6_4ky6f"]
+[ext_resource type="AudioStream" uid="uid://sae7pgf5nvj4" path="res://sounds/okdesuka.wav" id="7_8nwcp"]
+[ext_resource type="AudioStream" uid="uid://c1udc4ykg5niu" path="res://sounds/bork.wav" id="8_ld0tt"]
+[ext_resource type="Texture2D" uid="uid://b6tp12kxm8i8a" path="res://sprites/empty.png" id="9_04mmq"]
+[ext_resource type="PackedScene" uid="uid://c3onxv8j3fisk" path="res://objects/ability_cutscene.tscn" id="11_m8yaj"]
+[ext_resource type="PackedScene" uid="uid://dxb4npvypgseq" path="res://objects/title.tscn" id="11_qgq0w"]
+[ext_resource type="AudioStream" uid="uid://cy3hi0wb0l671" path="res://sounds/intro.mp3" id="12_fhvl4"]
+[ext_resource type="PackedScene" uid="uid://bjt8ii21blp2l" path="res://silly_shaders/silly_shader.tscn" id="14_m8yaj"]
+
+[sub_resource type="AudioStream" id="AudioStream_i5v4h"]
+script = ExtResource("2_36px6")
+stream_group = ExtResource("3_i5v4h")
+stream_mask = 5
+metadata/_custom_type_script = "uid://by7e4dqljavyr"
+
+[sub_resource type="LabelSettings" id="LabelSettings_4030c"]
+font = ExtResource("1_a7obv")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ky6f"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_detail = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_ld0tt"]
+font = ExtResource("1_a7obv")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fhvl4"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_04mmq"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8yaj"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 1)
+
+[node name="StartSubmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -320.0
+offset_bottom = -240.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+script = ExtResource("1_yuswj")
+menu_stream = SubResource("AudioStream_i5v4h")
+
+[node name="ResetMenu" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -43.5
+offset_right = 104.0
+offset_bottom = -6.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Are you sure?
+All progress will be lost!"
+label_settings = SubResource("LabelSettings_4030c")
+horizontal_alignment = 1
+
+[node name="ResetOption" parent="ResetMenu" node_paths=PackedStringArray("neighbor_right") instance=ExtResource("2_4030c")]
+layout_mode = 1
+offset_left = -84.0
+offset_top = 41.5
+offset_right = -76.0
+offset_bottom = 58.5
+text = "Reset"
+neighbor_right = NodePath("../MenuOption")
+
+[node name="MenuOption" parent="ResetMenu" node_paths=PackedStringArray("neighbor_left") instance=ExtResource("2_4030c")]
+layout_mode = 1
+offset_left = 76.0
+offset_top = 41.5
+offset_right = 84.0
+offset_bottom = 58.5
+text = "Do not"
+neighbor_left = NodePath("../ResetOption")
+
+[node name="ControlsMenu" type="Label" parent="."]
+visible = false
+modulate = Color(0.7, 0.7, 0.7, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -48.5
+offset_right = 124.0
+offset_bottom = 48.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "--- BASIC CONTROLS ---
+
+Arrows - Move and look around
+Z - Jump, advance text
+X - Attack, skip text
+I - Open inventory
+
+Most things can be interacted with
+by attacking or looking up at them
+
+Press any key to start"
+label_settings = SubResource("LabelSettings_4030c")
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="ControlsMenu"]
+stream = ExtResource("6_4ky6f")
+
+[node name="NameMenu" type="LineEdit" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -140.0
+offset_right = 180.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_placeholder_color = Color(0.88, 0.88, 0.88, 1)
+theme_override_colors/selection_color = Color(0.5, 0.5, 0.5, 0)
+theme_override_fonts/font = ExtResource("1_a7obv")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_4ky6f")
+alignment = 1
+max_length = 6
+caret_blink = true
+
+[node name="Label" type="Label" parent="NameMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -65.5
+offset_right = 124.0
+offset_bottom = -16.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(124, 17)
+text = "Name the fallen human."
+label_settings = SubResource("LabelSettings_4030c")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Label2" type="Label" parent="NameMenu"]
+modulate = Color(0.7, 0.7, 0.7, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = 14.5
+offset_right = 148.0
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "(Use keyboard, press ENTER to finish)"
+label_settings = SubResource("LabelSettings_ld0tt")
+horizontal_alignment = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NameMenu"]
+stream = ExtResource("7_8nwcp")
+volume_db = -3.0
+
+[node name="Bork" type="AudioStreamPlayer" parent="NameMenu"]
+stream = ExtResource("8_ld0tt")
+volume_db = -3.0
+
+[node name="SettingsMenu" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -108.5
+offset_right = 104.0
+offset_bottom = -6.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "--- SETTINGS ---"
+label_settings = SubResource("LabelSettings_4030c")
+horizontal_alignment = 1
+
+[node name="VolumeOption" parent="SettingsMenu" node_paths=PackedStringArray("neighbor_right", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 1
+offset_left = -132.5
+offset_top = -11.0
+offset_right = -28.5
+offset_bottom = 6.0
+text = "Master Volume"
+neighbor_right = NodePath("../MusicOption")
+neighbor_down = NodePath("../KeybindsOption")
+
+[node name="HSlider" type="HSlider" parent="SettingsMenu/VolumeOption"]
+modulate = Color(1, 1, 1, 0.8)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 11.5
+offset_right = 64.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = ExtResource("9_04mmq")
+theme_override_icons/grabber_highlight = ExtResource("9_04mmq")
+theme_override_icons/grabber_disabled = ExtResource("9_04mmq")
+theme_override_styles/slider = SubResource("StyleBoxFlat_fhvl4")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_04mmq")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_m8yaj")
+max_value = 1.0
+step = 0.01
+value = 1.0
+editable = false
+scrollable = false
+
+[node name="MusicOption" parent="SettingsMenu" node_paths=PackedStringArray("neighbor_left", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 1
+offset_left = 32.0
+offset_top = -11.5
+offset_right = 128.0
+offset_bottom = 5.5
+text = "Music Volume"
+neighbor_left = NodePath("../VolumeOption")
+neighbor_down = NodePath("../KeybindsOption")
+
+[node name="HSlider" type="HSlider" parent="SettingsMenu/MusicOption"]
+modulate = Color(1, 1, 1, 0.8)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = 11.5
+offset_right = 64.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = ExtResource("9_04mmq")
+theme_override_icons/grabber_highlight = ExtResource("9_04mmq")
+theme_override_icons/grabber_disabled = ExtResource("9_04mmq")
+theme_override_styles/slider = SubResource("StyleBoxFlat_fhvl4")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_04mmq")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_m8yaj")
+max_value = 1.0
+step = 0.01
+value = 1.0
+editable = false
+scrollable = false
+
+[node name="KeybindsOption" parent="SettingsMenu" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 1
+offset_left = -20.0
+offset_top = 39.0
+offset_right = 20.0
+offset_bottom = 56.0
+text = "Keybinds"
+horizontal_alignment = 1
+neighbor_up = NodePath("../VolumeOption")
+neighbor_down = NodePath("../ShaderOption")
+
+[node name="ShaderOption" parent="SettingsMenu" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 1
+offset_left = -72.0
+offset_top = 64.0
+offset_right = 72.0
+offset_bottom = 81.0
+text = "Silly Shader: None"
+horizontal_alignment = 1
+neighbor_up = NodePath("../KeybindsOption")
+neighbor_down = NodePath("../ShakeOption")
+
+[node name="ShakeOption" parent="SettingsMenu" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 1
+offset_left = -40.0
+offset_top = 89.0
+offset_right = 40.0
+offset_bottom = 106.0
+text = "Camera Shake: On"
+horizontal_alignment = 1
+neighbor_up = NodePath("../ShaderOption")
+neighbor_down = NodePath("../TrueResetOption")
+
+[node name="TrueResetOption" parent="SettingsMenu" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 1
+offset_left = -40.0
+offset_top = 114.0
+offset_right = 40.0
+offset_bottom = 131.0
+text = "True Reset"
+horizontal_alignment = 1
+neighbor_up = NodePath("../ShakeOption")
+neighbor_down = NodePath("../MenuOption")
+
+[node name="MenuOption" parent="SettingsMenu" node_paths=PackedStringArray("neighbor_up") instance=ExtResource("2_4030c")]
+layout_mode = 1
+offset_left = -16.0
+offset_top = 148.5
+offset_right = 16.0
+offset_bottom = 165.5
+text = "Apply"
+horizontal_alignment = 1
+neighbor_up = NodePath("../TrueResetOption")
+
+[node name="KeybindsMenu" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -108.5
+offset_right = 104.0
+offset_bottom = -6.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "--- KEYBINDS ---"
+label_settings = SubResource("LabelSettings_4030c")
+horizontal_alignment = 1
+
+[node name="SettingsOption" parent="KeybindsMenu" node_paths=PackedStringArray("neighbor_left", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 1
+offset_left = 34.0
+offset_top = 148.5
+offset_right = 66.0
+offset_bottom = 165.5
+text = "Back"
+horizontal_alignment = 1
+neighbor_left = NodePath("../ResetBindOption")
+neighbor_up = NodePath("../VBoxContainer2/Map")
+neighbor_down = NodePath("../VBoxContainer2/Down")
+
+[node name="ResetBindOption" parent="KeybindsMenu" node_paths=PackedStringArray("neighbor_right", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 1
+offset_left = -70.0
+offset_top = 148.5
+offset_right = -30.0
+offset_bottom = 165.5
+text = "Reset"
+horizontal_alignment = 1
+neighbor_right = NodePath("../SettingsOption")
+neighbor_up = NodePath("../VBoxContainer/Act1")
+neighbor_down = NodePath("../VBoxContainer/Up")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="KeybindsMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = -24.5
+offset_right = 237.5
+offset_bottom = 139.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Up" parent="KeybindsMenu/VBoxContainer" node_paths=PackedStringArray("neighbor_right", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "Move Up: []"
+neighbor_right = NodePath("../../VBoxContainer2/Down")
+neighbor_up = NodePath("../../ResetBindOption")
+neighbor_down = NodePath("../Left")
+metadata/_edit_lock_ = true
+
+[node name="Left" parent="KeybindsMenu/VBoxContainer" node_paths=PackedStringArray("neighbor_right", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "Move Left: []"
+neighbor_right = NodePath("../../VBoxContainer2/Right")
+neighbor_up = NodePath("../Up")
+neighbor_down = NodePath("../Jump")
+metadata/_edit_lock_ = true
+
+[node name="Jump" parent="KeybindsMenu/VBoxContainer" node_paths=PackedStringArray("neighbor_right", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "Jump/Enter: []"
+neighbor_right = NodePath("../../VBoxContainer2/Attack")
+neighbor_up = NodePath("../Left")
+neighbor_down = NodePath("../Dash")
+metadata/_edit_lock_ = true
+
+[node name="Dash" parent="KeybindsMenu/VBoxContainer" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "Dash/Skip: []"
+neighbor_up = NodePath("../Jump")
+neighbor_down = NodePath("../Heal")
+metadata/_edit_lock_ = true
+
+[node name="Heal" parent="KeybindsMenu/VBoxContainer" node_paths=PackedStringArray("neighbor_right", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "Use Item: []"
+neighbor_right = NodePath("../../VBoxContainer2/Inventory")
+neighbor_up = NodePath("../Dash")
+neighbor_down = NodePath("../Talk")
+metadata/_edit_lock_ = true
+
+[node name="Talk" parent="KeybindsMenu/VBoxContainer" node_paths=PackedStringArray("neighbor_right", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "Talk ACT: []"
+neighbor_right = NodePath("../../VBoxContainer2/Check")
+neighbor_up = NodePath("../Heal")
+neighbor_down = NodePath("../Act1")
+metadata/_edit_lock_ = true
+
+[node name="Act1" parent="KeybindsMenu/VBoxContainer" node_paths=PackedStringArray("neighbor_right", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "ACT 1: []"
+neighbor_right = NodePath("../../VBoxContainer2/Act2")
+neighbor_up = NodePath("../Talk")
+neighbor_down = NodePath("../../ResetBindOption")
+metadata/_edit_lock_ = true
+
+[node name="Act3" parent="KeybindsMenu/VBoxContainer" node_paths=PackedStringArray("neighbor_right", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+modulate = Color(1, 1, 1, 0.5019608)
+layout_mode = 2
+text = "(ACT 3): []"
+neighbor_right = NodePath("../../VBoxContainer2/Map")
+neighbor_up = NodePath("../Act1")
+neighbor_down = NodePath("../../ResetBindOption")
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="KeybindsMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 16.0
+offset_top = -24.5
+offset_right = 371.5
+offset_bottom = 139.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Down" parent="KeybindsMenu/VBoxContainer2" node_paths=PackedStringArray("neighbor_left", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "Move Down: []"
+neighbor_left = NodePath("../../VBoxContainer/Up")
+neighbor_up = NodePath("../../SettingsOption")
+neighbor_down = NodePath("../Right")
+metadata/_edit_lock_ = true
+
+[node name="Right" parent="KeybindsMenu/VBoxContainer2" node_paths=PackedStringArray("neighbor_left", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "Move Right: []"
+neighbor_left = NodePath("../../VBoxContainer/Left")
+neighbor_up = NodePath("../Down")
+neighbor_down = NodePath("../Attack")
+metadata/_edit_lock_ = true
+
+[node name="Attack" parent="KeybindsMenu/VBoxContainer2" node_paths=PackedStringArray("neighbor_left", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "Attack/Show: []"
+neighbor_left = NodePath("../../VBoxContainer/Jump")
+neighbor_up = NodePath("../Right")
+neighbor_down = NodePath("../Inventory")
+metadata/_edit_lock_ = true
+
+[node name="Super" parent="KeybindsMenu/VBoxContainer2" node_paths=PackedStringArray("neighbor_left", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+modulate = Color(1, 1, 1, 0.5019608)
+layout_mode = 2
+text = "(Super): []"
+neighbor_left = NodePath("../../VBoxContainer/Dash")
+neighbor_up = NodePath("../Attack")
+neighbor_down = NodePath("../Inventory")
+metadata/_edit_lock_ = true
+
+[node name="Inventory" parent="KeybindsMenu/VBoxContainer2" node_paths=PackedStringArray("neighbor_left", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "Inventory: []"
+neighbor_left = NodePath("../../VBoxContainer/Heal")
+neighbor_up = NodePath("../Attack")
+neighbor_down = NodePath("../Check")
+metadata/_edit_lock_ = true
+
+[node name="Check" parent="KeybindsMenu/VBoxContainer2" node_paths=PackedStringArray("neighbor_left", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "Check ACT: []"
+neighbor_left = NodePath("../../VBoxContainer/Talk")
+neighbor_up = NodePath("../Inventory")
+neighbor_down = NodePath("../Act2")
+metadata/_edit_lock_ = true
+
+[node name="Act2" parent="KeybindsMenu/VBoxContainer2" node_paths=PackedStringArray("neighbor_left", "neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "ACT 2: []"
+neighbor_left = NodePath("../../VBoxContainer/Act1")
+neighbor_up = NodePath("../Check")
+neighbor_down = NodePath("../Map")
+metadata/_edit_lock_ = true
+
+[node name="Map" parent="KeybindsMenu/VBoxContainer2" node_paths=PackedStringArray("neighbor_up", "neighbor_down") instance=ExtResource("2_4030c")]
+layout_mode = 2
+text = "Open Map: []"
+neighbor_up = NodePath("../Act2")
+neighbor_down = NodePath("../../SettingsOption")
+metadata/_edit_lock_ = true
+
+[node name="MusicPlayer" type="Node" parent="."]
+script = ExtResource("4_okkke")
+metadata/_custom_type_script = "uid://bxvnq758qbcp3"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0)
+metadata/_edit_lock_ = true
+
+[node name="AbilityCutscene" parent="." instance=ExtResource("11_m8yaj")]
+visible = false
+layout_mode = 1
+scale = Vector2(0.5, 0.5)
+
+[node name="Title" parent="." instance=ExtResource("11_qgq0w")]
+visible = false
+layout_mode = 0
+offset_top = 70.0
+offset_bottom = 110.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Title"]
+stream = ExtResource("12_fhvl4")
+
+[node name="SkipLabel" type="Label" parent="."]
+visible = false
+modulate = Color(0.7, 0.7, 0.7, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -148.0
+offset_top = 80.0
+offset_right = 148.0
+offset_bottom = 97.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "(Press and hold any key to skip)"
+label_settings = SubResource("LabelSettings_ld0tt")
+horizontal_alignment = 1
+
+[node name="SillyShader" parent="." instance=ExtResource("14_m8yaj")]
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 320.0
+offset_bottom = 240.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[connection signal="selected" from="ResetMenu/ResetOption" to="." method="_on_reset_option_selected"]
+[connection signal="selected" from="ResetMenu/MenuOption" to="." method="_on_menu_option_selected"]
+[connection signal="text_submitted" from="NameMenu" to="." method="_on_name_menu_text_submitted"]
+[connection signal="selected" from="SettingsMenu/VolumeOption" to="." method="_on_volume_option_selected"]
+[connection signal="selected" from="SettingsMenu/MusicOption" to="." method="_on_music_option_selected"]
+[connection signal="selected" from="SettingsMenu/KeybindsOption" to="." method="_on_keybinds_option_selected"]
+[connection signal="selected" from="SettingsMenu/ShaderOption" to="." method="_on_shader_option_selected"]
+[connection signal="selected" from="SettingsMenu/ShakeOption" to="." method="_on_shake_option_selected"]
+[connection signal="selected" from="SettingsMenu/TrueResetOption" to="." method="_on_true_reset_option_selected"]
+[connection signal="selected" from="SettingsMenu/MenuOption" to="." method="_on_menu_option_selected"]
+[connection signal="selected" from="KeybindsMenu/SettingsOption" to="." method="_on_settings_option_selected"]
+[connection signal="selected" from="KeybindsMenu/ResetBindOption" to="." method="_on_reset_bind_option_selected"]
