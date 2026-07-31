@@ -5,24 +5,16 @@ from .options import option_groups
 
 class VardrainWebWorld(WebWorld):
     game = "vardrain--"
-    theme = "grassFlowers"
+    theme = "stone"
     setup_en = Tutorial(
         "Multiworld Setup Guide",
-        "A guide to setting up APQuest for MultiWorld.",
+        "A guide to setting up vardrain-- for MultiWorld.",
         "English",
         "setup_en.md",
         "setup/en",
-        ["NewSoupVi"],
-    )
-    setup_de = Tutorial(
-        "Multiworld Setup Guide",
-        "A guide to setting up APQuest for MultiWorld.",
-        "German",
-        "setup_de.md",
-        "setup/de",
-        ["NewSoupVi"],
+        ["flingo"],
     )
 
-    tutorials = [setup_en, setup_de]
+    tutorials = [setup_en]
 
     option_groups = option_groups

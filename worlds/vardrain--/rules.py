@@ -81,7 +81,7 @@ def set_all_location_rules(world: VardrainWorld) -> None:
     world.set_rule(lv11p1, HasAll("Cannons", "Fragile Blocks", "Pull Blocks"))
     world.set_rule(lv11p2, HasAll("Cannons", "Moveable Platforms"))
     # Level Impossible IS possible without killing any enemies but it's tough
-    world.set_rule(lv12p2, HasAll("Push Platforms", "Vertical Scale Blocks", "KillRope Thickness"))
+    world.set_rule(lv12p2, HasAll("Push Platforms", "Vertical Scale Blocks", "KillRope Thickness", "Bombs"))
     world.set_rule(lv12p3, HasAll("Cannons", "Push Platforms", "KillRope Thickness"))
 
 def set_completion_condition(world: VardrainWorld) -> None:

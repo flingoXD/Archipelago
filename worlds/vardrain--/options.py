@@ -18,7 +18,7 @@ class StartWithPlaceIndicators(DefaultOnToggle):
     """
     Choose to start with or without Place Indicators. This will probably break generation if you turn it off.
     """
-    display_name = "Start With Chains Door"
+    display_name = "Start With Place Indicators"
 
 @dataclass
 class VardrainOptions(PerGameCommonOptions):
