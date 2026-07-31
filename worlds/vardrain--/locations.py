@@ -30,7 +30,6 @@ LOCATION_NAME_TO_ID = {
     "The Hordes... Part 1 Complete": 18,
     "Impossible Part 1 Complete": 19,
     "A Doozy, Heh Part 2 Complete": 20,
-    "Impossible Part 3 Complete": 21,
 }
 
 class VardrainLocation(Location):
@@ -69,7 +68,6 @@ def create_regular_locations(world: VardrainWorld) -> None:
         "The Hordes... Part 1 Complete",
         "Impossible Part 1 Complete",
         "A Doozy, Heh Part 2 Complete",
-        "Impossible Part 3 Complete"
     ]), VardrainLocation)
 def create_events(world: VardrainWorld) -> None:
     epilogue = world.get_region("Epilogue")

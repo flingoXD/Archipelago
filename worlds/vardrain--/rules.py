@@ -51,9 +51,8 @@ def set_all_location_rules(world: VardrainWorld) -> None:
     lv10p2 = world.get_location("Sisyphus Part 2 Complete")
     lv11p1 = world.get_location("Catapult frenzy Part 1 Complete")
     lv11p2 = world.get_location("Catapult frenzy Part 2 Complete")
-    lv12p1 = world.get_location("Impossible Part 1 Complete")
-    lv12p2 = world.get_location("Impossible Part 2 Complete")
-    lv12p3 = world.get_location("Impossible Part 3 Complete")
+    lv12p2 = world.get_location("Impossible Part 1 Complete")
+    lv12p3 = world.get_location("Impossible Part 2 Complete")
     # lv13 = world.get_location("Damn It Complete")
 
     world.set_rule(tut, Has("Vertical Scale Blocks"))
