@@ -83,6 +83,12 @@ def create_all_items(world: VardrainWorld) -> None:
     itempool += [world.create_filler() for _ in range(needed_number_of_filler_items)]
     world.multiworld.itempool += itempool
 
-    world.push_precollected(world.create_item("Vertical Scale Blocks"))
-    world.push_precollected(world.create_item("Place Indicators"))
-    world.push_precollected(world.create_item("Chains Door"))
+    if world.options.start_with_vertical_scale_blocks:
+        world.push_precollected(world.create_item("Vertical Scale Blocks"))
+    else: itempool.append(world.create_item("Vertical Scale Blocks"))
+    if world.options.start_with_place_indicators:
+        world.push_precollected(world.create_item("Place Indicators"))
+    else: itempool.append(world.create_item("Place Indicators"))
+    if world.options.start_with_chains_door:
+        world.push_precollected(world.create_item("Chains Door"))
+    else: itempool.append(world.create_item("Chains Door"))

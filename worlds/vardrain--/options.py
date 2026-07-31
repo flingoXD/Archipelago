@@ -1,27 +1,34 @@
 from dataclasses import dataclass
 
-from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle
+from Options import Choice, OptionGroup, PerGameCommonOptions, DefaultOnToggle
 
-class Idk(Choice):
+class StartWithVSBlocks(DefaultOnToggle):
     """
-    Placeholder option
+    Choose to start with or without Vertical Scale Blocks. This will probably break generation if you turn it off.
     """
+    display_name = "Start With Vertical Scale Blocks"
 
-    display_name = "Placeholder option"
+class StartWithChainsDoor(DefaultOnToggle):
+    """
+    Choose to start with or without the Chains Door. This will probably break generation if you turn it off.
+    """
+    display_name = "Start With Chains Door"
 
-    option_hi = 0
-    option_q = 1
-    option_agdfgs = 2
-
-    default = option_hi
+class StartWithPlaceIndicators(DefaultOnToggle):
+    """
+    Choose to start with or without Place Indicators. This will probably break generation if you turn it off.
+    """
+    display_name = "Start With Chains Door"
 
 @dataclass
 class VardrainOptions(PerGameCommonOptions):
-    idk: Idk
+    start_with_vertical_scale_blocks: StartWithVSBlocks
+    start_with_chains_door: StartWithChainsDoor
+    start_with_place_indicators: StartWithPlaceIndicators
 
 option_groups = [
     OptionGroup(
-        "Gameplay Options",
-        [Idk],
+        "Starting Abilities",
+        [StartWithVSBlocks, StartWithChainsDoor, StartWithPlaceIndicators],
     ),
 ]
