@@ -41,7 +41,6 @@ class VardrainWorld(World):
         return items.get_random_filler_item_name(self)
 
     def fill_slot_data(self) -> Mapping[str, Any]:
-        pass
-        #return self.options.as_dict(
-        #    "route"
-        #)
+        return self.options.as_dict(
+            "death_link", "death_link_amnesty"
+        )
